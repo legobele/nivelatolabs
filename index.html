@@ -176,5 +176,73 @@
   }), {threshold: .12});
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
+<style>
+  /* Custom dual cursor: slow outer ring + springy inner dot that can
+     overshoot (overflow) the ring on fast moves. Fine pointers only. */
+  #cur-outer, #cur-inner {
+    position: fixed; top: 0; left: 0; z-index: 9999;
+    pointer-events: none; border-radius: 50%;
+    opacity: 0; transition: opacity .25s;
+    will-change: transform;
+  }
+  #cur-outer {
+    width: 38px; height: 38px;
+    border: 1.5px solid rgba(245,165,36,.85);
+    transition: opacity .25s, width .2s, height .2s, border-color .2s;
+  }
+  #cur-outer.grow { width: 58px; height: 58px; border-color: rgba(200,245,66,.9); }
+  #cur-inner {
+    width: 8px; height: 8px;
+    background: #c8f542;
+    box-shadow: 0 0 10px rgba(200,245,66,.7);
+  }
+  body.cur-on #cur-outer, body.cur-on #cur-inner { opacity: 1; }
+</style>
+<div id="cur-outer" aria-hidden="true"></div>
+<div id="cur-inner" aria-hidden="true"></div>
+<script>
+(function () {
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var outer = document.getElementById('cur-outer');
+  var inner = document.getElementById('cur-inner');
+  var mx = -100, my = -100;          // mouse
+  var ox = -100, oy = -100;          // outer ring (slow lerp)
+  var ix = -100, iy = -100, ivx = 0, ivy = 0; // inner dot (spring)
+  var shown = false;
+  document.addEventListener('mousemove', function (e) {
+    mx = e.clientX; my = e.clientY;
+    if (!shown) {
+      shown = true;
+      ox = ix = mx; oy = iy = my;
+      document.body.classList.add('cur-on');
+    }
+  });
+  document.addEventListener('mouseleave', function () {
+    document.body.classList.remove('cur-on'); shown = false;
+  });
+  // Grow the ring over interactive elements.
+  document.addEventListener('mouseover', function (e) {
+    if (e.target.closest('a, button, .btn')) outer.classList.add('grow');
+  });
+  document.addEventListener('mouseout', function (e) {
+    if (e.target.closest('a, button, .btn')) outer.classList.remove('grow');
+  });
+  (function tick() {
+    // Outer: lazy follow, always trailing.
+    ox += (mx - ox) * 0.16;
+    oy += (my - oy) * 0.16;
+    // Inner: stiff spring, underdamped so it overshoots the cursor and can
+    // pop outside the ring for a beat on fast moves.
+    ivx = (ivx + (mx - ix) * 0.32) * 0.62;
+    ivy = (ivy + (my - iy) * 0.32) * 0.62;
+    ix += ivx; iy += ivy;
+    var ow = outer.offsetWidth, oh = outer.offsetHeight;
+    outer.style.transform = 'translate(' + (ox - ow / 2) + 'px,' + (oy - oh / 2) + 'px)';
+    inner.style.transform = 'translate(' + (ix - 4) + 'px,' + (iy - 4) + 'px)';
+    requestAnimationFrame(tick);
+  })();
+})();
+</script>
 </body>
 </html>
