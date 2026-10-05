@@ -70,27 +70,6 @@
   .phone .total{margin-top:20px;display:flex;justify-content:space-between;align-items:center}
   .phone .total b{font-family:'Space Grotesk';font-size:1.5rem}
   .soon{display:inline-block;margin-top:14px;font-family:'JetBrains Mono';font-size:.78rem;color:var(--dim);border:1px dashed var(--line);border-radius:999px;padding:8px 16px}
-  /* projects */
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:transform .18s,border-color .18s;display:flex;flex-direction:column}
-  .card:hover{transform:translateY(-4px);border-color:#3a3a44}
-  .card .tag{font-family:'JetBrains Mono';font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
-  .card h3{font-family:'Space Grotesk';font-size:1.25rem;margin-bottom:10px}
-  .card p{color:var(--muted);font-size:.93rem;flex:1}
-  .card .meta{margin-top:18px;font-family:'JetBrains Mono';font-size:.76rem;color:var(--dim)}
-  .card a.card-link{margin-top:14px;color:var(--amber2);font-size:.88rem;text-decoration:none;font-weight:500}
-  .card a.card-link:hover{text-decoration:underline}
-  /* about */
-  #about{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px}
-  @media(max-width:880px){.about-grid{grid-template-columns:1fr}}
-  .about-grid p{color:var(--muted);margin-bottom:18px}
-  .about-grid p b{color:var(--ink);font-weight:600}
-  .facts{list-style:none;display:grid;gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
-  .facts li{padding:16px 22px;display:flex;justify-content:space-between;gap:16px;font-size:.93rem;border-bottom:1px solid var(--line)}
-  .facts li:last-child{border-bottom:none}
-  .facts .k{font-family:'JetBrains Mono';font-size:.78rem;color:var(--dim);text-transform:uppercase;letter-spacing:.12em;padding-top:3px;flex:none}
-  .facts .v{text-align:right}
   /* contact */
   #contact{text-align:center}
   #contact .sec-sub{margin-left:auto;margin-right:auto}
@@ -110,8 +89,6 @@
     <a class="brand" href="#top"><span class="tick"></span>Nivelato&nbsp;Labs</a>
     <ul>
       <li><a href="#nivelato">Nivelato</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a class="btn small" href="#nivelato">Get Nivelato</a>
@@ -120,17 +97,17 @@
 
 <header id="top">
   <div class="wrap">
-    <div class="kicker reveal">Nivelato Labs · Guaynabo, Puerto Rico</div>
+    <div class="kicker reveal">Nivelato · Guaynabo, Puerto Rico</div>
     <h1 class="reveal">Software that <span class="laser">measures up.</span></h1>
-    <p class="lede reveal">A one-person software lab building tools for the trades — starting with the glass shop. Real apps, real billing, real users. No vaporware.</p>
+    <p class="lede reveal">Field measurement and quoting for glass shops. Walk in, measure everything, walk out with a quote — from your phone.</p>
     <div class="cta-row reveal">
       <a class="btn" href="#nivelato">See Nivelato</a>
-      <a class="btn ghost" href="#work">All projects</a>
+      <a class="btn ghost" href="#contact">Contact</a>
     </div>
     <div class="rule reveal">
       <span><b>01</b>&nbsp; flagship app in development</span>
-      <span><b>04</b>&nbsp; shipped projects</span>
-      <span><b>01</b>&nbsp; human, full stack</span>
+      <span><b>02</b>&nbsp; platforms: Android + web</span>
+      <span><b>00</b>&nbsp; clipboards required</span>
     </div>
   </div>
 </header>
@@ -161,67 +138,11 @@
   </div>
 </section>
 
-<section id="work">
-  <div class="wrap">
-    <div class="sec-kicker reveal">Selected work</div>
-    <h2 class="reveal">One lab, several obsessions.</h2>
-    <p class="sec-sub reveal">Everything below was designed, built, and shipped by the same person. Some of it sells, some of it just had to exist.</p>
-    <div class="grid">
-      <div class="card reveal">
-        <div class="tag">3D printing · product</div>
-        <h3>NextPrints</h3>
-        <p>A print-on-demand fidget and gadget shop — storefront, auth, and fulfillment pipeline, built from scratch.</p>
-        <div class="meta">FIREBASE · STRIPE-READY</div>
-        <a class="card-link" href="https://legobele.github.io/nextprints" target="_blank" rel="noopener">Visit shop →</a>
-      </div>
-      <div class="card reveal">
-        <div class="tag">CAD · hardware</div>
-        <h3>Expanding phone case</h3>
-        <p>A print-in-place expanding iPhone case: zero-bend insertion, rigid hinges, no flexures. Currently on print iteration v2.</p>
-        <div class="meta">FREECAD · FDM</div>
-      </div>
-      <div class="card reveal">
-        <div class="tag">Civic tech</div>
-        <h3>CERT practice test</h3>
-        <p>A full practice exam for Community Emergency Response Team training — built after serving as team secretary in a live disaster sim.</p>
-        <div class="meta">STATIC WEB · GITHUB PAGES</div>
-        <a class="card-link" href="https://legobele.github.io/cert-practice-test/" target="_blank" rel="noopener">Take the quiz →</a>
-      </div>
-      <div class="card reveal">
-        <div class="tag">Logistics · in progress</div>
-        <h3>NextInv</h3>
-        <p>An RFID inventory system for a CAP squadron supply room — intake, tracking, and issue logging for real gear.</p>
-        <div class="meta">RFID · WEB APP</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="wrap">
-    <div class="sec-kicker reveal">About the lab</div>
-    <div class="about-grid">
-      <div>
-        <h2 class="reveal">One person. Full stack. Zero meetings.</h2>
-        <p class="reveal">Nivelato Labs is run by a 15-year-old builder in Guaynabo, Puerto Rico, who grew up around a family glass shop and got tired of watching quotes take three hours.</p>
-        <p class="reveal">The lab's rule is simple: <b>build things people actually use.</b> If it doesn't survive contact with a real customer, a real job site, or a real 3D printer, it doesn't ship.</p>
-      </div>
-      <ul class="facts reveal">
-        <li><span class="k">Base</span><span class="v">Guaynabo, PR</span></li>
-        <li><span class="k">Stack</span><span class="v">Android · Web · Firebase · CAD</span></li>
-        <li><span class="k">Day job</span><span class="v">10th grade</span></li>
-        <li><span class="k">Night job</span><span class="v">This</span></li>
-        <li><span class="k">Philosophy</span><span class="v">Measure twice, ship once</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
 <section id="contact">
   <div class="wrap">
     <div class="sec-kicker reveal">Contact</div>
-    <h2 class="reveal">Got a job site that needs measuring?</h2>
-    <p class="sec-sub reveal">Shops, beta testers, and the incurably curious — the inbox is open.</p>
+    <h2 class="reveal">Run a glass shop?</h2>
+    <p class="sec-sub reveal">Nivelato is in closed testing. Shops interested in the pilot — the inbox is open.</p>
     <a class="mail reveal" href="mailto:legobele@gmail.com">legobele@gmail.com</a>
   </div>
 </section>
@@ -229,7 +150,7 @@
 <footer>
   <div class="wrap">
     <span>© 2026 Nivelato Labs · Guaynabo, Puerto Rico</span>
-    <span class="mono">nivelatolabs.com · v1.0</span>
+    <span class="mono">nivelatolabs.com · v1.1</span>
   </div>
 </footer>
 
