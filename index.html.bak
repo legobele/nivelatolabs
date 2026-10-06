@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nivelato Labs — Software that measures up</title>
+<meta name="description" content="Nivelato Labs is a one-person software lab in Puerto Rico building tools for the trades. Flagship product: Nivelato, field measurement for glass shops.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b0e; --bg2:#121216; --card:#16161c; --line:#232329;
+    --ink:#f2f1ec; --muted:#a7a7b3; --dim:#6d6d78;
+    --amber:#f5a524; --amber2:#ffcf5c; --laser:#c8f542;
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--amber);color:#111}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  /* nav */
+  nav{position:sticky;top:0;z-index:50;background:rgba(11,11,14,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-family:'Space Grotesk';font-weight:700;font-size:1.15rem;letter-spacing:.02em;display:flex;align-items:center;gap:10px;text-decoration:none}
+  .brand .tick{width:26px;height:26px;border:2px solid var(--amber);border-radius:6px;position:relative;flex:none}
+  .brand .tick::after{content:"";position:absolute;left:5px;top:5px;width:12px;height:6px;border-left:3px solid var(--amber);border-bottom:3px solid var(--amber);transform:rotate(-45deg)}
+  nav ul{display:flex;gap:28px;list-style:none;font-size:.92rem}
+  nav ul a{text-decoration:none;color:var(--muted);transition:color .2s}
+  nav ul a:hover{color:var(--ink)}
+  .btn{display:inline-block;background:var(--amber);color:#141414;font-weight:600;padding:12px 26px;border-radius:999px;text-decoration:none;font-size:.95rem;transition:transform .15s,box-shadow .15s;border:none;cursor:pointer}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,165,36,.35)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn.ghost:hover{box-shadow:none;border-color:var(--amber)}
+  .btn.small{padding:9px 20px;font-size:.85rem}
+  .login-link{font-size:.9rem;color:var(--muted);text-decoration:none;margin-right:18px;transition:color .2s}
+  .login-link:hover{color:var(--ink)}
+  .nav-actions{display:flex;align-items:center}
+  @media(max-width:720px){nav ul{display:none}}
+  /* hero */
+  header{padding:110px 0 80px;position:relative;overflow:hidden}
+  header::before{content:"";position:absolute;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(245,165,36,.14),transparent 65%);pointer-events:none}
+  .kicker{font-family:'JetBrains Mono';font-size:.8rem;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:22px}
+  h1{font-family:'Space Grotesk';font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.04;font-weight:700;letter-spacing:-.02em;max-width:16ch}
+  h1 .laser{color:var(--laser)}
+  .lede{margin-top:22px;font-size:1.15rem;color:var(--muted);max-width:56ch}
+  .cta-row{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
+  .rule{margin-top:70px;border-top:1px solid var(--line);padding-top:26px;display:flex;gap:36px;flex-wrap:wrap;font-family:'JetBrains Mono';font-size:.82rem;color:var(--dim)}
+  .rule b{color:var(--amber);font-weight:500}
+  /* sections */
+  section{padding:84px 0}
+  .sec-kicker{font-family:'JetBrains Mono';font-size:.78rem;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:14px}
+  h2{font-family:'Space Grotesk';font-size:clamp(1.8rem,3.6vw,2.7rem);letter-spacing:-.01em;line-height:1.12;margin-bottom:16px}
+  .sec-sub{color:var(--muted);max-width:62ch;margin-bottom:44px;font-size:1.05rem}
+  /* flagship */
+  #nivelato{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .flag-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  @media(max-width:880px){.flag-grid{grid-template-columns:1fr}}
+  .feat-list{list-style:none;margin:28px 0 34px;display:grid;gap:18px}
+  .feat-list li{display:flex;gap:14px;align-items:flex-start}
+  .feat-list .n{font-family:'JetBrains Mono';color:var(--amber);font-size:.85rem;border:1px solid var(--line);border-radius:8px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none}
+  .feat-list b{display:block;font-weight:600;margin-bottom:2px}
+  .feat-list p{color:var(--muted);font-size:.94rem}
+  .phone{border:1px solid var(--line);border-radius:28px;background:var(--card);padding:34px 30px;position:relative;overflow:hidden}
+  .phone::before{content:"";position:absolute;top:0;left:10%;right:10%;height:3px;background:linear-gradient(90deg,transparent,var(--laser),transparent)}
+  .phone .screen-label{font-family:'JetBrains Mono';font-size:.75rem;color:var(--dim);letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+  .measure{font-family:'JetBrains Mono';padding:16px 0;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;font-size:.95rem}
+  .measure:last-of-type{border-bottom:none}
+  .measure .v{color:var(--laser)}
+  .measure .u{color:var(--dim);font-size:.8rem;margin-left:6px}
+  .phone .total{margin-top:20px;display:flex;justify-content:space-between;align-items:center}
+  .phone .total b{font-family:'Space Grotesk';font-size:1.5rem}
+  .soon{display:inline-block;margin-top:14px;font-family:'JetBrains Mono';font-size:.78rem;color:var(--dim);border:1px dashed var(--line);border-radius:999px;padding:8px 16px}
+  /* contact */
+  #pilot{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  #contact{text-align:center}
+  #contact .sec-sub{margin-left:auto;margin-right:auto}
+  .mail{font-family:'Space Grotesk';font-size:clamp(1.3rem,3vw,2rem);color:var(--amber2);text-decoration:none;border-bottom:2px solid var(--amber);padding-bottom:4px}
+  .mail:hover{color:var(--amber)}
+  footer{border-top:1px solid var(--line);padding:34px 0;color:var(--dim);font-size:.85rem}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer .mono{font-family:'JetBrains Mono';font-size:.76rem}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="tick"></span>Nivelato&nbsp;Labs</a>
+    <ul>
+      <li><a href="#nivelato">Nivelato</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a class="login-link" href="https://login.nivelatolabs.com">Log in</a>
+      <a class="btn small" href="#nivelato">Get Nivelato</a>
+    </div>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wrap">
+    <div class="kicker reveal">Nivelato · Guaynabo, Puerto Rico</div>
+    <h1 class="reveal">Software that <span class="laser">measures up.</span></h1>
+    <p class="lede reveal">Field measurement and quoting for glass shops. Walk in, measure everything, walk out with a quote — from your phone.</p>
+    <div class="cta-row reveal">
+      <a class="btn" href="#nivelato">See Nivelato</a>
+      <a class="btn ghost" href="#contact">Contact</a>
+    </div>
+    <div class="rule reveal">
+      <span><b>01</b>&nbsp; flagship app in development</span>
+      <span><b>02</b>&nbsp; platforms: Android + web</span>
+      <span><b>00</b>&nbsp; clipboards required</span>
+    </div>
+  </div>
+</header>
+
+<section id="nivelato">
+  <div class="wrap">
+    <div class="sec-kicker reveal">Flagship product</div>
+    <div class="flag-grid">
+      <div>
+        <h2 class="reveal">Nivelato — field measurements, minus the paper.</h2>
+        <p class="sec-sub reveal" style="margin-bottom:0">Built for glass shops and the tradespeople who quote on site. Walk in, measure everything, walk out with a quote — from your phone.</p>
+        <ul class="feat-list">
+          <li class="reveal"><span class="n">01</span><div><b>Measure on site</b><p>Log every opening as you walk the job. No clipboards, no lost napkins.</p></div></li>
+          <li class="reveal"><span class="n">02</span><div><b>Quote on the spot</b><p>Turn measurements into a customer-ready quote before you leave the driveway.</p></div></li>
+          <li class="reveal"><span class="n">03</span><div><b>Pro &amp; Ultra tiers</b><p>Per-shop plans with dashboards, project history, and team seats that grow with the business.</p></div></li>
+        </ul>
+        <div class="reveal"><span class="soon">●&nbsp; now in closed testing on Google Play</span></div>
+      </div>
+      <div class="phone reveal">
+        <div class="screen-label">Nivelato · job #1042</div>
+        <div class="measure"><span>Storefront window</span><span><span class="v">96.5</span><span class="u">in</span></span></div>
+        <div class="measure"><span>Door glass</span><span><span class="v">34.25</span><span class="u">in</span></span></div>
+        <div class="measure"><span>Sidelite ×2</span><span><span class="v">18.0</span><span class="u">in</span></span></div>
+        <div class="measure"><span>Mirror, 1/4"</span><span><span class="v">60 × 36</span><span class="u">in</span></span></div>
+        <div class="total"><span style="color:var(--muted);font-size:.9rem">Quote total</span><b>$1,284.00</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pilot">
+  <div class="wrap">
+    <div class="sec-kicker reveal">Ongoing project</div>
+    <h2 class="reveal">Automating a glass shop, end to end.</h2>
+    <p class="sec-sub reveal">Nivelato Labs is working with a glass shop in Puerto Rico on full automation: measuring, quoting, and everything in between. The app is the first piece. The shop is the proving ground.</p>
+    <div class="reveal"><span class="soon">●&nbsp; pilot in progress</span></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-kicker reveal">Contact</div>
+    <h2 class="reveal">Run a glass shop?</h2>
+    <p class="sec-sub reveal">Nivelato is in closed testing. Shops interested in the pilot — the inbox is open.</p>
+    <a class="mail reveal" href="mailto:lebron@nivelatolabs.com">lebron@nivelatolabs.com</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Nivelato Labs · Guaynabo, Puerto Rico</span>
+    <span class="mono">nivelatolabs.com · v1.2</span>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), {threshold: .12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+<style>
+  /* Custom dual cursor: slow outer ring + springy inner dot that can
+     overshoot (overflow) the ring on fast moves. Fine pointers only. */
+  #cur-outer, #cur-inner {
+    position: fixed; top: 0; left: 0; z-index: 9999;
+    pointer-events: none; border-radius: 50%;
+    opacity: 0; transition: opacity .25s;
+    will-change: transform;
+  }
+  #cur-outer {
+    width: 38px; height: 38px;
+    border: 1.5px solid rgba(245,165,36,.85);
+    transition: opacity .25s, width .2s, height .2s, border-color .2s;
+  }
+  #cur-outer.grow { width: 58px; height: 58px; border-color: rgba(200,245,66,.9); }
+  #cur-inner {
+    width: 8px; height: 8px;
+    background: #c8f542;
+    box-shadow: 0 0 10px rgba(200,245,66,.7);
+  }
+  body.cur-on #cur-outer, body.cur-on #cur-inner { opacity: 1; }
+</style>
+<div id="cur-outer" aria-hidden="true"></div>
+<div id="cur-inner" aria-hidden="true"></div>
+<script>
+(function () {
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var outer = document.getElementById('cur-outer');
+  var inner = document.getElementById('cur-inner');
+  var mx = -100, my = -100;          // mouse
+  var ox = -100, oy = -100;          // outer ring (slow lerp)
+  var ix = -100, iy = -100, ivx = 0, ivy = 0; // inner dot (spring)
+  var shown = false;
+  document.addEventListener('mousemove', function (e) {
+    mx = e.clientX; my = e.clientY;
+    if (!shown) {
+      shown = true;
+      ox = ix = mx; oy = iy = my;
+      document.body.classList.add('cur-on');
+    }
+  });
+  document.addEventListener('mouseleave', function () {
+    document.body.classList.remove('cur-on'); shown = false;
+  });
+  // Grow the ring over interactive elements.
+  document.addEventListener('mouseover', function (e) {
+    if (e.target.closest('a, button, .btn')) outer.classList.add('grow');
+  });
+  document.addEventListener('mouseout', function (e) {
+    if (e.target.closest('a, button, .btn')) outer.classList.remove('grow');
+  });
+  (function tick() {
+    // Outer: lazy follow, always trailing.
+    ox += (mx - ox) * 0.16;
+    oy += (my - oy) * 0.16;
+    // Inner: stiff spring, underdamped so it overshoots the cursor and can
+    // pop outside the ring for a beat on fast moves.
+    ivx = (ivx + (mx - ix) * 0.32) * 0.62;
+    ivy = (ivy + (my - iy) * 0.32) * 0.62;
+    ix += ivx; iy += ivy;
+    var ow = outer.offsetWidth, oh = outer.offsetHeight;
+    outer.style.transform = 'translate(' + (ox - ow / 2) + 'px,' + (oy - oh / 2) + 'px)';
+    inner.style.transform = 'translate(' + (ix - 4) + 'px,' + (iy - 4) + 'px)';
+    requestAnimationFrame(tick);
+  })();
+})();
+</script>
+</body>
+</html>

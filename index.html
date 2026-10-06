@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nivelato Labs — Software that measures up</title>
-<meta name="description" content="Nivelato Labs is a one-person software lab in Puerto Rico building tools for the trades. Flagship product: Nivelato, field measurement for glass shops.">
+<title>Nivelato Labs - Software that measures up</title>
+<meta name="description" content="Nivelato: field measurement for glass shops. Measure on site, sync to the shop, quote on the spot. Android + web.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -27,8 +27,8 @@
   .brand{font-family:'Space Grotesk';font-weight:700;font-size:1.15rem;letter-spacing:.02em;display:flex;align-items:center;gap:10px;text-decoration:none}
   .brand .tick{width:26px;height:26px;border:2px solid var(--amber);border-radius:6px;position:relative;flex:none}
   .brand .tick::after{content:"";position:absolute;left:5px;top:5px;width:12px;height:6px;border-left:3px solid var(--amber);border-bottom:3px solid var(--amber);transform:rotate(-45deg)}
-  nav ul{display:flex;gap:28px;list-style:none;font-size:.92rem}
-  nav ul a{text-decoration:none;color:var(--muted);transition:color .2s}
+  nav ul{display:flex;gap:24px;list-style:none;font-size:.88rem}
+  nav ul a{text-decoration:none;color:var(--muted);transition:color .2s;white-space:nowrap}
   nav ul a:hover{color:var(--ink)}
   .btn{display:inline-block;background:var(--amber);color:#141414;font-weight:600;padding:12px 26px;border-radius:999px;text-decoration:none;font-size:.95rem;transition:transform .15s,box-shadow .15s;border:none;cursor:pointer}
   .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,165,36,.35)}
@@ -38,7 +38,17 @@
   .login-link{font-size:.9rem;color:var(--muted);text-decoration:none;margin-right:18px;transition:color .2s}
   .login-link:hover{color:var(--ink)}
   .nav-actions{display:flex;align-items:center}
-  @media(max-width:720px){nav ul{display:none}}
+  @media(max-width:820px){nav ul{display:none}}
+  .nav-burger{display:none;background:none;border:1px solid var(--line);border-radius:10px;color:#fff;font-size:1.3rem;width:44px;height:44px;cursor:pointer}
+  @media(max-width:820px){.nav-burger{display:inline-flex;align-items:center;justify-content:center}}
+  .m-drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);background:#0b0b0e;border-left:1px solid var(--line);z-index:200;transform:translateX(105%);transition:transform .25s ease;padding:20px;display:flex;flex-direction:column;gap:6px}
+  body.m-nav-open .m-drawer{transform:translateX(0)}
+  .m-drawer a.m-link{display:block;padding:14px 12px;color:#fff;text-decoration:none;font-size:1.1rem;border-radius:10px}
+  .m-drawer a.m-link:hover{background:rgba(255,255,255,.06)}
+  .m-drawer .m-actions{margin-top:auto;display:flex;flex-direction:column;gap:10px;padding-top:16px;border-top:1px solid var(--line)}
+  .m-scrim{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:190;display:none}
+  body.m-nav-open .m-scrim{display:block}
+  .m-close{align-self:flex-end;background:none;border:none;color:var(--dim);font-size:1.5rem;cursor:pointer;padding:4px}
   /* hero */
   header{padding:110px 0 80px;position:relative;overflow:hidden}
   header::before{content:"";position:absolute;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(245,165,36,.14),transparent 65%);pointer-events:none}
@@ -54,15 +64,44 @@
   .sec-kicker{font-family:'JetBrains Mono';font-size:.78rem;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:14px}
   h2{font-family:'Space Grotesk';font-size:clamp(1.8rem,3.6vw,2.7rem);letter-spacing:-.01em;line-height:1.12;margin-bottom:16px}
   .sec-sub{color:var(--muted);max-width:62ch;margin-bottom:44px;font-size:1.05rem}
-  /* flagship */
-  #nivelato{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .flag-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
-  @media(max-width:880px){.flag-grid{grid-template-columns:1fr}}
-  .feat-list{list-style:none;margin:28px 0 34px;display:grid;gap:18px}
-  .feat-list li{display:flex;gap:14px;align-items:flex-start}
-  .feat-list .n{font-family:'JetBrains Mono';color:var(--amber);font-size:.85rem;border:1px solid var(--line);border-radius:8px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none}
-  .feat-list b{display:block;font-weight:600;margin-bottom:2px}
-  .feat-list p{color:var(--muted);font-size:.94rem}
+  .alt{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  /* feature tabs */
+  .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+  .tab{font-family:'Space Grotesk';font-weight:600;font-size:.95rem;background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:10px 22px;cursor:pointer;transition:all .2s}
+  .tab:hover{color:var(--ink);border-color:var(--dim)}
+  .tab.active{background:var(--amber);border-color:var(--amber);color:#141414}
+  .tabpanel{display:none;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:34px 32px}
+  .tabpanel.active{display:block}
+  .tabpanel h3{font-family:'Space Grotesk';font-size:1.4rem;margin-bottom:10px}
+  .tabpanel h3 .tick-n{color:var(--amber);font-family:'JetBrains Mono';font-size:.85rem;margin-right:10px}
+  .tabpanel p{color:var(--muted);max-width:60ch}
+  .tabpanel ul{margin-top:18px;list-style:none;display:grid;gap:10px}
+  .tabpanel ul li{color:var(--muted);font-size:.95rem;padding-left:22px;position:relative}
+  .tabpanel ul li::before{content:"✓";position:absolute;left:0;color:var(--laser);font-weight:700}
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:760px){.steps{grid-template-columns:1fr}}
+  .step{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:28px 26px}
+  .step .n{font-family:'JetBrains Mono';color:var(--amber);font-size:.8rem;letter-spacing:.2em;margin-bottom:14px}
+  .step h3{font-family:'Space Grotesk';font-size:1.25rem;margin-bottom:8px}
+  .step p{color:var(--muted);font-size:.94rem}
+  /* pricing */
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+  @media(max-width:860px){.tiers{grid-template-columns:1fr;max-width:440px;margin:0 auto}}
+  .tier{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:30px 28px;display:flex;flex-direction:column;position:relative}
+  .tier.hot{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber),0 12px 40px rgba(245,165,36,.12)}
+  .tier .tname{font-family:'Space Grotesk';font-weight:700;font-size:1.3rem;margin-bottom:4px}
+  .tier .tprice{font-family:'JetBrains Mono';font-size:.82rem;color:var(--dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}
+  .tier ul{list-style:none;display:grid;gap:10px;margin-bottom:28px;flex:1}
+  .tier ul li{color:var(--muted);font-size:.93rem;padding-left:22px;position:relative}
+  .tier ul li::before{content:"✓";position:absolute;left:0;color:var(--laser);font-weight:700}
+  .tier ul li.no{color:var(--dim)}
+  .tier ul li.no::before{content:"×";color:var(--dim)}
+  .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--amber);color:#141414;font-family:'JetBrains Mono';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:5px 16px;border-radius:999px;white-space:nowrap}
+  .tier-note{margin-top:26px;color:var(--dim);font-size:.88rem;text-align:center}
+  /* get app */
+  #get-app .app-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+  @media(max-width:880px){#get-app .app-grid{grid-template-columns:1fr}}
   .phone{border:1px solid var(--line);border-radius:28px;background:var(--card);padding:34px 30px;position:relative;overflow:hidden}
   .phone::before{content:"";position:absolute;top:0;left:10%;right:10%;height:3px;background:linear-gradient(90deg,transparent,var(--laser),transparent)}
   .phone .screen-label{font-family:'JetBrains Mono';font-size:.75rem;color:var(--dim);letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
@@ -73,8 +112,11 @@
   .phone .total{margin-top:20px;display:flex;justify-content:space-between;align-items:center}
   .phone .total b{font-family:'Space Grotesk';font-size:1.5rem}
   .soon{display:inline-block;margin-top:14px;font-family:'JetBrains Mono';font-size:.78rem;color:var(--dim);border:1px dashed var(--line);border-radius:999px;padding:8px 16px}
+  /* PR section */
+  #pr .pr-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:40px 36px;max-width:760px}
+  #pr .pr-card p{color:var(--muted);margin-bottom:16px;max-width:60ch}
+  #pr .pr-card p strong{color:var(--ink);font-weight:600}
   /* contact */
-  #pilot{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   #contact{text-align:center}
   #contact .sec-sub{margin-left:auto;margin-right:auto}
   .mail{font-family:'Space Grotesk';font-size:clamp(1.3rem,3vw,2rem);color:var(--amber2);text-decoration:none;border-bottom:2px solid var(--amber);padding-bottom:4px}
@@ -92,24 +134,43 @@
   <div class="wrap">
     <a class="brand" href="#top"><span class="tick"></span>Nivelato&nbsp;Labs</a>
     <ul>
-      <li><a href="#nivelato">Nivelato</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#get-app">Get the app</a></li>
+      <li><a href="#pr">Para clientes en PR</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav-actions">
       <a class="login-link" href="https://login.nivelatolabs.com">Log in</a>
-      <a class="btn small" href="#nivelato">Get Nivelato</a>
+      <a class="btn small" href="#get-app">Get Nivelato</a>
+      <button class="nav-burger" onclick="document.body.classList.toggle('m-nav-open')" aria-label="Menu">☰</button>
     </div>
   </div>
 </nav>
+<div class="m-scrim" onclick="document.body.classList.remove('m-nav-open')"></div>
+<aside class="m-drawer" id="m-drawer">
+  <button class="m-close" onclick="document.body.classList.remove('m-nav-open')" aria-label="Close">✕</button>
+  <a class="m-link" href="#features" onclick="document.body.classList.remove('m-nav-open')">Features</a>
+  <a class="m-link" href="#how" onclick="document.body.classList.remove('m-nav-open')">How it works</a>
+  <a class="m-link" href="#pricing" onclick="document.body.classList.remove('m-nav-open')">Pricing</a>
+  <a class="m-link" href="#get-app" onclick="document.body.classList.remove('m-nav-open')">Get the app</a>
+  <a class="m-link" href="#pr" onclick="document.body.classList.remove('m-nav-open')">Para clientes en PR</a>
+  <a class="m-link" href="#contact" onclick="document.body.classList.remove('m-nav-open')">Contact</a>
+  <div class="m-actions">
+    <a class="btn small" href="https://login.nivelatolabs.com" style="text-align:center">Log in</a>
+    <a class="btn small" href="#get-app" onclick="document.body.classList.remove('m-nav-open')" style="text-align:center">Get Nivelato</a>
+  </div>
+</aside>
 
 <header id="top">
   <div class="wrap">
     <div class="kicker reveal">Nivelato · Guaynabo, Puerto Rico</div>
     <h1 class="reveal">Software that <span class="laser">measures up.</span></h1>
-    <p class="lede reveal">Field measurement and quoting for glass shops. Walk in, measure everything, walk out with a quote — from your phone.</p>
+    <p class="lede reveal">Field measurement for glass shops. Walk in, measure everything, walk out with a quote, from your phone.</p>
     <div class="cta-row reveal">
-      <a class="btn" href="#nivelato">See Nivelato</a>
-      <a class="btn ghost" href="#contact">Contact</a>
+      <a class="btn" href="#get-app">Get the app</a>
+      <a class="btn ghost" href="#features">See features</a>
     </div>
     <div class="rule reveal">
       <span><b>01</b>&nbsp; flagship app in development</span>
@@ -119,27 +180,163 @@
   </div>
 </header>
 
-<section id="nivelato">
+<section id="features" class="alt">
   <div class="wrap">
-    <div class="sec-kicker reveal">Flagship product</div>
-    <div class="flag-grid">
-      <div>
-        <h2 class="reveal">Nivelato — field measurements, minus the paper.</h2>
-        <p class="sec-sub reveal" style="margin-bottom:0">Built for glass shops and the tradespeople who quote on site. Walk in, measure everything, walk out with a quote — from your phone.</p>
-        <ul class="feat-list">
-          <li class="reveal"><span class="n">01</span><div><b>Measure on site</b><p>Log every opening as you walk the job. No clipboards, no lost napkins.</p></div></li>
-          <li class="reveal"><span class="n">02</span><div><b>Quote on the spot</b><p>Turn measurements into a customer-ready quote before you leave the driveway.</p></div></li>
-          <li class="reveal"><span class="n">03</span><div><b>Pro &amp; Ultra tiers</b><p>Per-shop plans with dashboards, project history, and team seats that grow with the business.</p></div></li>
+    <div class="sec-kicker reveal">Features</div>
+    <h2 class="reveal">Everything the job needs, in your pocket.</h2>
+    <p class="sec-sub reveal">Nivelato covers the full field workflow, from the first measurement to the finished quote.</p>
+    <div class="tabs reveal" role="tablist" aria-label="Nivelato features">
+      <button class="tab active" role="tab" aria-selected="true" data-tab="t-measure">Field measurement</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="t-photo">Photo capture</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="t-projects">Project organization</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="t-team">Team management</button>
+    </div>
+    <div class="tabpanel active reveal" id="t-measure" role="tabpanel">
+      <h3><span class="tick-n">01</span>Field measurement</h3>
+      <p>Walk the job with your phone. Log every opening, dimension, and note as you go, room by room. No clipboards, no lost napkins, no retyping at the office.</p>
+      <ul>
+        <li>Fast dimension entry built for gloves-on work</li>
+        <li>Notes and flags right on each measurement</li>
+        <li>Works offline, syncs when you are back on signal</li>
+      </ul>
+    </div>
+    <div class="tabpanel" id="t-photo" role="tabpanel">
+      <h3><span class="tick-n">02</span>Photo capture</h3>
+      <p>Snap a photo at every measurement. Photos attach to the job automatically, so the shop sees exactly what you saw on site.</p>
+      <ul>
+        <li>One-tap photo step inside the measurement flow</li>
+        <li>Photos stored with the job, not lost in a camera roll</li>
+        <li>Review shots later from the dashboard or the app</li>
+      </ul>
+    </div>
+    <div class="tabpanel" id="t-projects" role="tabpanel">
+      <h3><span class="tick-n">03</span>Project organization</h3>
+      <p>Group measurements into projects. Track what is measured, what is quoted, and what is done, all in one place instead of scattered across chats and paper.</p>
+      <ul>
+        <li>Projects with customers, users, and measurements</li>
+        <li>Full history per project, searchable any time</li>
+        <li>Dashboard view for the whole shop pipeline</li>
+      </ul>
+    </div>
+    <div class="tabpanel" id="t-team" role="tabpanel">
+      <h3><span class="tick-n">04</span>Team management</h3>
+      <p>Invite your crew and keep everyone on the same job list. Owners control who sees what, and permissions follow each person automatically.</p>
+      <ul>
+        <li>Invite by code, approve from the dashboard</li>
+        <li>Role-based permissions: owners, supervisors, measurers</li>
+        <li>Shared projects with per-user access</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sec-kicker reveal">How it works</div>
+    <h2 class="reveal">Measure, sync, quote. Done.</h2>
+    <p class="sec-sub reveal">Three steps, one visit. That is the whole pitch.</p>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="n">STEP 01</div>
+        <h3>Measure on site</h3>
+        <p>Open Nivelato, pick the project, and log dimensions as you walk the job. Photos optional, encouraged.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n">STEP 02</div>
+        <h3>Sync to the shop</h3>
+        <p>Measurements upload automatically. The office sees the job the moment you finish, no end-of-day data entry.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n">STEP 03</div>
+        <h3>Quote and close</h3>
+        <p>Turn the measurement set into a customer-ready quote before you leave the driveway.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="alt">
+  <div class="wrap">
+    <div class="sec-kicker reveal">Pricing</div>
+    <h2 class="reveal">Start free. Grow into the shop plan.</h2>
+    <p class="sec-sub reveal">Plans are per shop and billed through Google Play. Pick the tier that matches how you work.</p>
+    <div class="tiers">
+      <div class="tier reveal">
+        <div class="tname">Free</div>
+        <div class="tprice">Try it on a real job</div>
+        <ul>
+          <li>On-phone measurement capture</li>
+          <li>Photo capture</li>
+          <li>Local job history</li>
+          <li class="no">Web dashboard</li>
+          <li class="no">Team seats</li>
         </ul>
+        <a class="btn ghost" href="#get-app" style="text-align:center">Get started</a>
+      </div>
+      <div class="tier reveal">
+        <div class="tname">Pro</div>
+        <div class="tprice">For solo techs</div>
+        <ul>
+          <li>Everything in Free</li>
+          <li>Limited dashboard access</li>
+          <li>See your own measurements online</li>
+          <li>Project history in the cloud</li>
+          <li class="no">Teammates' measurements</li>
+        </ul>
+        <a class="btn ghost" href="#get-app" style="text-align:center">Go Pro</a>
+      </div>
+      <div class="tier hot reveal">
+        <div class="badge">Most popular</div>
+        <div class="tname">Ultra</div>
+        <div class="tprice">For shops running a crew</div>
+        <ul>
+          <li>Everything in Pro</li>
+          <li>Full dashboard, no limits</li>
+          <li>View the whole team's measurements</li>
+          <li>Team seats and user management</li>
+          <li>Priority everything</li>
+        </ul>
+        <a class="btn" href="#get-app" style="text-align:center">Go Ultra</a>
+      </div>
+    </div>
+    <p class="tier-note reveal">Company accounts in Puerto Rico are currently by application only, see below.</p>
+  </div>
+</section>
+
+<section id="get-app">
+  <div class="wrap">
+    <div class="app-grid">
+      <div>
+        <div class="sec-kicker reveal">Get the app</div>
+        <h2 class="reveal">Nivelato is live. Grab it.</h2>
+        <p class="sec-sub reveal" style="margin-bottom:0">Android app in closed testing on Google Play, plus the full web app. Sign in with your shop account or a personal account and start measuring.</p>
+        <div class="cta-row reveal">
+          <a class="btn" href="https://app.nivelatolabs.com">Open the web app</a>
+          <a class="btn ghost" href="https://login.nivelatolabs.com">Log in</a>
+        </div>
         <div class="reveal"><span class="soon">●&nbsp; now in closed testing on Google Play</span></div>
       </div>
       <div class="phone reveal">
         <div class="screen-label">Nivelato · job #1042</div>
         <div class="measure"><span>Storefront window</span><span><span class="v">96.5</span><span class="u">in</span></span></div>
         <div class="measure"><span>Door glass</span><span><span class="v">34.25</span><span class="u">in</span></span></div>
-        <div class="measure"><span>Sidelite ×2</span><span><span class="v">18.0</span><span class="u">in</span></span></div>
-        <div class="measure"><span>Mirror, 1/4"</span><span><span class="v">60 × 36</span><span class="u">in</span></span></div>
+        <div class="measure"><span>Sidelite x2</span><span><span class="v">18.0</span><span class="u">in</span></span></div>
+        <div class="measure"><span>Mirror, 1/4"</span><span><span class="v">60 x 36</span><span class="u">in</span></span></div>
         <div class="total"><span style="color:var(--muted);font-size:.9rem">Quote total</span><b>$1,284.00</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pr" class="alt" lang="es">
+  <div class="wrap">
+    <div class="sec-kicker reveal">Puerto Rico</div>
+    <h2 class="reveal">Para clientes en Puerto Rico</h2>
+    <div class="pr-card reveal">
+      <p>En este momento, <strong>solo las cuentas de QGC están activas</strong> en Puerto Rico. Las demás empresas todavía no pueden crear una cuenta por su cuenta.</p>
+      <p>Si tu empresa quiere usar Nivelato, puedes <strong>solicitar acceso</strong> llenando el formulario de solicitud. Revisamos cada solicitud y te contactamos con los próximos pasos.</p>
+      <div class="cta-row" style="margin-top:28px">
+        <a class="btn" href="https://apply.nivelatolabs.com/pr/company">Solicitar una cuenta</a>
       </div>
     </div>
   </div>
@@ -158,7 +355,7 @@
   <div class="wrap">
     <div class="sec-kicker reveal">Contact</div>
     <h2 class="reveal">Run a glass shop?</h2>
-    <p class="sec-sub reveal">Nivelato is in closed testing. Shops interested in the pilot — the inbox is open.</p>
+    <p class="sec-sub reveal">Nivelato is in closed testing. Shops interested in the pilot, the inbox is open.</p>
     <a class="mail reveal" href="mailto:lebron@nivelatolabs.com">lebron@nivelatolabs.com</a>
   </div>
 </section>
@@ -166,7 +363,7 @@
 <footer>
   <div class="wrap">
     <span>© 2026 Nivelato Labs · Guaynabo, Puerto Rico</span>
-    <span class="mono">nivelatolabs.com · v1.2</span>
+    <span class="mono">nivelatolabs.com · v1.3</span>
   </div>
 </footer>
 
@@ -175,6 +372,21 @@
     if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
   }), {threshold: .12});
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Feature tabs
+  document.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.tabpanel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      const panel = document.getElementById(btn.dataset.tab);
+      if (panel) { panel.classList.add('active'); io.observe(panel); panel.classList.add('in'); }
+    });
+  });
 </script>
 <style>
   /* Custom dual cursor: slow outer ring + springy inner dot that can
@@ -223,10 +435,10 @@
   });
   // Grow the ring over interactive elements.
   document.addEventListener('mouseover', function (e) {
-    if (e.target.closest('a, button, .btn')) outer.classList.add('grow');
+    if (e.target.closest('a, button, .btn, .tab')) outer.classList.add('grow');
   });
   document.addEventListener('mouseout', function (e) {
-    if (e.target.closest('a, button, .btn')) outer.classList.remove('grow');
+    if (e.target.closest('a, button, .btn, .tab')) outer.classList.remove('grow');
   });
   (function tick() {
     // Outer: lazy follow, always trailing.
