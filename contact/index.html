@@ -239,6 +239,8 @@ const I18N = {
   "nav.login": "Log in",
   "nav.getNivelato": "Get Nivelato",
   "footer.copy": "© 2026 Nivelato Labs",
+  "meta.title": "Contact - Nivelato Labs",
+  "meta.desc": "Contact Nivelato Labs: run a glass shop? The inbox is open.",
   "page.kicker": "Nivelato",
   "page.title": "Contact",
   "contact.kicker": "Contact",
@@ -255,6 +257,8 @@ const I18N = {
   "nav.login": "Iniciar sesión",
   "nav.getNivelato": "Descargar Nivelato",
   "footer.copy": "© 2026 Nivelato Labs",
+  "meta.title": "Contacto - Nivelato Labs",
+  "meta.desc": "Contacta a Nivelato Labs: ¿tienes un taller de cristales? El buzón está abierto.",
   "page.kicker": "Nivelato",
   "page.title": "Contacto",
   "contact.kicker": "Contacto",
@@ -277,6 +281,9 @@ function currentLang() {
 function applyLang(l) {
   const dict = I18N[l] || I18N.en;
   document.documentElement.lang = l;
+  if (dict['meta.title']) document.title = dict['meta.title'];
+  const metaDescEl = document.querySelector('meta[name="description"]');
+  if (metaDescEl && dict['meta.desc']) metaDescEl.setAttribute('content', dict['meta.desc']);
   document.querySelectorAll('[data-i18n]').forEach(function (el) {
     const k = el.getAttribute('data-i18n');
     if (dict[k] !== undefined) el.innerHTML = dict[k];
@@ -332,6 +339,8 @@ const I18N = {
   "nav.login": "Log in",
   "nav.getNivelato": "Get Nivelato",
   "footer.copy": "© 2026 Nivelato Labs",
+  "meta.title": "Contact - Nivelato Labs",
+  "meta.desc": "Contact Nivelato Labs: run a glass shop? The inbox is open.",
   "hero.kicker": "Nivelato",
   "hero.title": "Software that <span class=\"laser\">measures up.</span>",
   "hero.lede": "Field measurement for glass shops. Walk in, measure everything, walk out with a quote, from your phone.",
@@ -355,6 +364,8 @@ const I18N = {
   "nav.login": "Iniciar sesión",
   "nav.getNivelato": "Descargar Nivelato",
   "footer.copy": "© 2026 Nivelato Labs",
+  "meta.title": "Contacto - Nivelato Labs",
+  "meta.desc": "Contacta a Nivelato Labs: ¿tienes un taller de cristales? El buzón está abierto.",
   "hero.kicker": "Nivelato",
   "hero.title": "Software que <span class=\"laser\">da la medida.</span>",
   "hero.lede": "Medición en campo para talleres de cristales. Entra, mide todo, sal con una cotización, desde tu teléfono.",
@@ -384,6 +395,9 @@ function currentLang() {
 function applyLang(l) {
   const dict = I18N[l] || I18N.en;
   document.documentElement.lang = l;
+  if (dict['meta.title']) document.title = dict['meta.title'];
+  const metaDescEl = document.querySelector('meta[name="description"]');
+  if (metaDescEl && dict['meta.desc']) metaDescEl.setAttribute('content', dict['meta.desc']);
   document.querySelectorAll('[data-i18n]').forEach(function (el) {
     const k = el.getAttribute('data-i18n');
     if (dict[k] !== undefined) el.innerHTML = dict[k];

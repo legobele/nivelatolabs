@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Features - Nivelato Labs</title>
+<title>What it does - Nivelato Labs</title>
 <meta name="description" content="Nivelato features: field measurement, photo capture, project organization, team management.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -280,6 +280,8 @@ const I18N = {
   "nav.login": "Log in",
   "nav.getNivelato": "Get Nivelato",
   "footer.copy": "© 2026 Nivelato Labs",
+  "meta.title": "What it does - Nivelato Labs",
+  "meta.desc": "Nivelato features: field measurement, photo capture, project organization, team management.",
   "page.kicker": "Nivelato",
   "page.title": "What it does",
   "features.kicker": "What it does",
@@ -320,6 +322,8 @@ const I18N = {
   "nav.login": "Iniciar sesión",
   "nav.getNivelato": "Descargar Nivelato",
   "footer.copy": "© 2026 Nivelato Labs",
+  "meta.title": "Qué hace - Nivelato Labs",
+  "meta.desc": "Funciones de Nivelato: medición en campo, captura de fotos, organización de proyectos, gestión de equipo.",
   "page.kicker": "Nivelato",
   "page.title": "Qué hace",
   "features.kicker": "Qué hace",
@@ -366,6 +370,9 @@ function currentLang() {
 function applyLang(l) {
   const dict = I18N[l] || I18N.en;
   document.documentElement.lang = l;
+  if (dict['meta.title']) document.title = dict['meta.title'];
+  const metaDescEl = document.querySelector('meta[name="description"]');
+  if (metaDescEl && dict['meta.desc']) metaDescEl.setAttribute('content', dict['meta.desc']);
   document.querySelectorAll('[data-i18n]').forEach(function (el) {
     const k = el.getAttribute('data-i18n');
     if (dict[k] !== undefined) el.innerHTML = dict[k];
@@ -421,6 +428,8 @@ const I18N = {
   "nav.login": "Log in",
   "nav.getNivelato": "Get Nivelato",
   "footer.copy": "© 2026 Nivelato Labs",
+  "meta.title": "What it does - Nivelato Labs",
+  "meta.desc": "Nivelato features: field measurement, photo capture, project organization, team management.",
   "hero.kicker": "Nivelato",
   "hero.title": "Software that <span class=\"laser\">measures up.</span>",
   "hero.lede": "Field measurement for glass shops. Walk in, measure everything, walk out with a quote, from your phone.",
@@ -444,6 +453,8 @@ const I18N = {
   "nav.login": "Iniciar sesión",
   "nav.getNivelato": "Descargar Nivelato",
   "footer.copy": "© 2026 Nivelato Labs",
+  "meta.title": "Qué hace - Nivelato Labs",
+  "meta.desc": "Funciones de Nivelato: medición en campo, captura de fotos, organización de proyectos, gestión de equipo.",
   "hero.kicker": "Nivelato",
   "hero.title": "Software que <span class=\"laser\">da la medida.</span>",
   "hero.lede": "Medición en campo para talleres de cristales. Entra, mide todo, sal con una cotización, desde tu teléfono.",
@@ -473,6 +484,9 @@ function currentLang() {
 function applyLang(l) {
   const dict = I18N[l] || I18N.en;
   document.documentElement.lang = l;
+  if (dict['meta.title']) document.title = dict['meta.title'];
+  const metaDescEl = document.querySelector('meta[name="description"]');
+  if (metaDescEl && dict['meta.desc']) metaDescEl.setAttribute('content', dict['meta.desc']);
   document.querySelectorAll('[data-i18n]').forEach(function (el) {
     const k = el.getAttribute('data-i18n');
     if (dict[k] !== undefined) el.innerHTML = dict[k];

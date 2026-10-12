@@ -255,6 +255,8 @@ const I18N = {
   "nav.login": "Log in",
   "nav.getNivelato": "Get Nivelato",
   "footer.copy": "© 2026 Nivelato Labs",
+  "meta.title": "How it works - Nivelato Labs",
+  "meta.desc": "How Nivelato works: measure on site, sync to the shop, quote and close.",
   "page.kicker": "Nivelato",
   "page.title": "How it works",
   "how.kicker": "How it works",
@@ -280,6 +282,8 @@ const I18N = {
   "nav.login": "Iniciar sesión",
   "nav.getNivelato": "Descargar Nivelato",
   "footer.copy": "© 2026 Nivelato Labs",
+  "meta.title": "Cómo funciona - Nivelato Labs",
+  "meta.desc": "Cómo funciona Nivelato: mide en el sitio, sincroniza con el taller, cotiza y cierra.",
   "page.kicker": "Nivelato",
   "page.title": "Cómo funciona",
   "how.kicker": "Cómo funciona",
@@ -311,6 +315,9 @@ function currentLang() {
 function applyLang(l) {
   const dict = I18N[l] || I18N.en;
   document.documentElement.lang = l;
+  if (dict['meta.title']) document.title = dict['meta.title'];
+  const metaDescEl = document.querySelector('meta[name="description"]');
+  if (metaDescEl && dict['meta.desc']) metaDescEl.setAttribute('content', dict['meta.desc']);
   document.querySelectorAll('[data-i18n]').forEach(function (el) {
     const k = el.getAttribute('data-i18n');
     if (dict[k] !== undefined) el.innerHTML = dict[k];
@@ -366,6 +373,8 @@ const I18N = {
   "nav.login": "Log in",
   "nav.getNivelato": "Get Nivelato",
   "footer.copy": "© 2026 Nivelato Labs",
+  "meta.title": "How it works - Nivelato Labs",
+  "meta.desc": "How Nivelato works: measure on site, sync to the shop, quote and close.",
   "hero.kicker": "Nivelato",
   "hero.title": "Software that <span class=\"laser\">measures up.</span>",
   "hero.lede": "Field measurement for glass shops. Walk in, measure everything, walk out with a quote, from your phone.",
@@ -389,6 +398,8 @@ const I18N = {
   "nav.login": "Iniciar sesión",
   "nav.getNivelato": "Descargar Nivelato",
   "footer.copy": "© 2026 Nivelato Labs",
+  "meta.title": "Cómo funciona - Nivelato Labs",
+  "meta.desc": "Cómo funciona Nivelato: mide en el sitio, sincroniza con el taller, cotiza y cierra.",
   "hero.kicker": "Nivelato",
   "hero.title": "Software que <span class=\"laser\">da la medida.</span>",
   "hero.lede": "Medición en campo para talleres de cristales. Entra, mide todo, sal con una cotización, desde tu teléfono.",
@@ -418,6 +429,9 @@ function currentLang() {
 function applyLang(l) {
   const dict = I18N[l] || I18N.en;
   document.documentElement.lang = l;
+  if (dict['meta.title']) document.title = dict['meta.title'];
+  const metaDescEl = document.querySelector('meta[name="description"]');
+  if (metaDescEl && dict['meta.desc']) metaDescEl.setAttribute('content', dict['meta.desc']);
   document.querySelectorAll('[data-i18n]').forEach(function (el) {
     const k = el.getAttribute('data-i18n');
     if (dict[k] !== undefined) el.innerHTML = dict[k];

@@ -244,6 +244,8 @@ const I18N = {
   "nav.login": "Log in",
   "nav.getNivelato": "Get Nivelato",
   "footer.copy": "© 2026 Nivelato Labs",
+  "meta.title": "For customers in Puerto Rico - Nivelato Labs",
+  "meta.desc": "Business accounts in Puerto Rico: request access to Nivelato.",
   "page.kicker": "Puerto Rico",
   "page.title": "For customers in Puerto Rico",
   "pr.kicker": "Puerto Rico",
@@ -262,6 +264,8 @@ const I18N = {
   "nav.login": "Iniciar sesión",
   "nav.getNivelato": "Descargar Nivelato",
   "footer.copy": "© 2026 Nivelato Labs",
+  "meta.title": "Para clientes en Puerto Rico - Nivelato Labs",
+  "meta.desc": "Cuentas de empresa en Puerto Rico: solicita acceso a Nivelato.",
   "page.kicker": "Puerto Rico",
   "page.title": "Para clientes en Puerto Rico",
   "pr.kicker": "Puerto Rico",
@@ -286,6 +290,9 @@ function currentLang() {
 function applyLang(l) {
   const dict = I18N[l] || I18N.en;
   document.documentElement.lang = l;
+  if (dict['meta.title']) document.title = dict['meta.title'];
+  const metaDescEl = document.querySelector('meta[name="description"]');
+  if (metaDescEl && dict['meta.desc']) metaDescEl.setAttribute('content', dict['meta.desc']);
   document.querySelectorAll('[data-i18n]').forEach(function (el) {
     const k = el.getAttribute('data-i18n');
     if (dict[k] !== undefined) el.innerHTML = dict[k];
@@ -341,6 +348,8 @@ const I18N = {
   "nav.login": "Log in",
   "nav.getNivelato": "Get Nivelato",
   "footer.copy": "© 2026 Nivelato Labs",
+  "meta.title": "For customers in Puerto Rico - Nivelato Labs",
+  "meta.desc": "Business accounts in Puerto Rico: request access to Nivelato.",
   "hero.kicker": "Nivelato",
   "hero.title": "Software that <span class=\"laser\">measures up.</span>",
   "hero.lede": "Field measurement for glass shops. Walk in, measure everything, walk out with a quote, from your phone.",
@@ -364,6 +373,8 @@ const I18N = {
   "nav.login": "Iniciar sesión",
   "nav.getNivelato": "Descargar Nivelato",
   "footer.copy": "© 2026 Nivelato Labs",
+  "meta.title": "Para clientes en Puerto Rico - Nivelato Labs",
+  "meta.desc": "Cuentas de empresa en Puerto Rico: solicita acceso a Nivelato.",
   "hero.kicker": "Nivelato",
   "hero.title": "Software que <span class=\"laser\">da la medida.</span>",
   "hero.lede": "Medición en campo para talleres de cristales. Entra, mide todo, sal con una cotización, desde tu teléfono.",
@@ -393,6 +404,9 @@ function currentLang() {
 function applyLang(l) {
   const dict = I18N[l] || I18N.en;
   document.documentElement.lang = l;
+  if (dict['meta.title']) document.title = dict['meta.title'];
+  const metaDescEl = document.querySelector('meta[name="description"]');
+  if (metaDescEl && dict['meta.desc']) metaDescEl.setAttribute('content', dict['meta.desc']);
   document.querySelectorAll('[data-i18n]').forEach(function (el) {
     const k = el.getAttribute('data-i18n');
     if (dict[k] !== undefined) el.innerHTML = dict[k];
