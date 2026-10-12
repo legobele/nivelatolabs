@@ -104,7 +104,7 @@
 
 <header id="top">
   <div class="wrap">
-    <div class="kicker reveal">Nivelato · Guaynabo, Puerto Rico</div>
+    <div class="kicker reveal">Nivelato</div>
     <h1 class="reveal">Software that <span class="laser">measures up.</span></h1>
     <p class="lede reveal">Field measurement and quoting for glass shops. Walk in, measure everything, walk out with a quote — from your phone.</p>
     <div class="cta-row reveal">
@@ -165,7 +165,7 @@
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Nivelato Labs · Guaynabo, Puerto Rico</span>
+    <span>© 2026 Nivelato Labs</span>
     <span class="mono">nivelatolabs.com · v1.2</span>
   </div>
 </footer>
