@@ -86,6 +86,12 @@
   .step .n{font-family:'JetBrains Mono';color:var(--amber);font-size:.8rem;letter-spacing:.2em;margin-bottom:14px}
   .step h3{font-family:'Space Grotesk';font-size:1.25rem;margin-bottom:8px}
   .step p{color:var(--muted);font-size:.94rem}
+  /* faq */
+  .faq{display:grid;gap:14px;max-width:840px}
+  .faq-item{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:24px 26px}
+  .faq-item h3{font-family:'Space Grotesk';font-size:1.12rem;margin-bottom:8px}
+  .faq-item p{color:var(--muted);font-size:.96rem}
+  .faq-item a{color:var(--amber2)}
   /* pricing */
   .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
   @media(max-width:860px){.tiers{grid-template-columns:1fr;max-width:440px;margin:0 auto}}
@@ -153,8 +159,8 @@
   <div class="wrap">
     <a class="brand" href="/"><span class="tick"></span>Nivelato&nbsp;Labs</a>
     <ul>
-      <li><a href="/features/" data-i18n="nav.features">Features</a></li>
-      <li><a href="/how/" data-i18n="nav.how">How it works</a></li>
+      <li><a href="#features" data-i18n="nav.features">Features</a></li>
+      <li><a href="#how" data-i18n="nav.how">How it works</a></li>
       <li><a href="/pricing/" data-i18n="nav.pricing">Pricing</a></li>
       <li><a href="/get/" data-i18n="nav.get">Get the app</a></li>
       <li><a href="/pr/about/" data-i18n="nav.pr">Para clientes en PR</a></li>
@@ -171,8 +177,8 @@
 <div class="m-scrim" onclick="document.body.classList.remove('m-nav-open')"></div>
 <aside class="m-drawer" id="m-drawer">
   <button class="m-close" onclick="document.body.classList.remove('m-nav-open')" aria-label="Close">✕</button>
-  <a class="m-link" href="/features/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.features">Features</a>
-  <a class="m-link" href="/how/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.how">How it works</a>
+  <a class="m-link" href="#features" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.features">Features</a>
+  <a class="m-link" href="#how" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.how">How it works</a>
   <a class="m-link" href="/pricing/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.pricing">Pricing</a>
   <a class="m-link" href="/get/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.get">Get the app</a>
   <a class="m-link" href="/pr/about/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.pr">Para clientes en PR</a>
@@ -191,7 +197,7 @@
     <p class="lede reveal" data-i18n="hero.lede">Field measurement for glass shops. Walk in, measure everything, walk out with a quote, from your phone.</p>
     <div class="cta-row reveal">
       <a class="btn" href="/get/" data-i18n="hero.cta1">Get the app</a>
-      <a class="btn ghost" href="/features/" data-i18n="hero.cta2">See features</a>
+      <a class="btn ghost" href="#features" data-i18n="hero.cta2">See features</a>
     </div>
     <div class="rule reveal">
       <span data-i18n="hero.rule1"><b>01</b>&nbsp; flagship app in development</span>
@@ -201,12 +207,125 @@
   </div>
 </header>
 
+<section id="features" class="alt">
+  <div class="wrap">
+    <div class="sec-kicker reveal" data-i18n="features.kicker">Features</div>
+    <h2 class="reveal" data-i18n="features.title">Everything the job needs, in your pocket.</h2>
+    <p class="sec-sub reveal" data-i18n="features.sub">Nivelato covers the full field workflow, from the first measurement to the finished quote.</p>
+    <div class="tabs reveal" role="tablist" aria-label="Nivelato features">
+      <button class="tab active" role="tab" aria-selected="true" data-tab="t-measure" data-i18n="tab.measure">Field measurement</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="t-photo" data-i18n="tab.photo">Photo capture</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="t-projects" data-i18n="tab.projects">Project organization</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="t-team" data-i18n="tab.team">Team management</button>
+    </div>
+    <div class="tabpanel active reveal" id="t-measure" role="tabpanel">
+      <h3 data-i18n="panel.measure.h"><span class="tick-n">01</span>Field measurement</h3>
+      <p data-i18n="panel.measure.p">Walk the job with your phone. Log every opening, dimension, and note as you go, room by room. No clipboards, no lost napkins, no retyping at the office.</p>
+      <ul>
+        <li data-i18n="panel.measure.li1">Fast dimension entry built for gloves-on work</li>
+        <li data-i18n="panel.measure.li2">Notes and flags right on each measurement</li>
+        <li data-i18n="panel.measure.li3">Works offline, syncs when you are back on signal</li>
+      </ul>
+    </div>
+    <div class="tabpanel" id="t-photo" role="tabpanel">
+      <h3 data-i18n="panel.photo.h"><span class="tick-n">02</span>Photo capture</h3>
+      <p data-i18n="panel.photo.p">Snap a photo at every measurement. Photos attach to the job automatically, so the shop sees exactly what you saw on site.</p>
+      <ul>
+        <li data-i18n="panel.photo.li1">One-tap photo step inside the measurement flow</li>
+        <li data-i18n="panel.photo.li2">Photos stored with the job, not lost in a camera roll</li>
+        <li data-i18n="panel.photo.li3">Review shots later from the dashboard or the app</li>
+      </ul>
+    </div>
+    <div class="tabpanel" id="t-projects" role="tabpanel">
+      <h3 data-i18n="panel.projects.h"><span class="tick-n">03</span>Project organization</h3>
+      <p data-i18n="panel.projects.p">Group measurements into projects. Track what is measured, what is quoted, and what is done, all in one place instead of scattered across chats and paper.</p>
+      <ul>
+        <li data-i18n="panel.projects.li1">Projects with customers, users, and measurements</li>
+        <li data-i18n="panel.projects.li2">Full history per project, searchable any time</li>
+        <li data-i18n="panel.projects.li3">Dashboard view for the whole shop pipeline</li>
+      </ul>
+    </div>
+    <div class="tabpanel" id="t-team" role="tabpanel">
+      <h3 data-i18n="panel.team.h"><span class="tick-n">04</span>Team management</h3>
+      <p data-i18n="panel.team.p">Invite your crew and keep everyone on the same job list. Owners control who sees what, and permissions follow each person automatically.</p>
+      <ul>
+        <li data-i18n="panel.team.li1">Invite by code, approve from the dashboard</li>
+        <li data-i18n="panel.team.li2">Role-based permissions: owners, supervisors, measurers</li>
+        <li data-i18n="panel.team.li3">Shared projects with per-user access</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sec-kicker reveal" data-i18n="how.kicker">How it works</div>
+    <h2 class="reveal" data-i18n="how.title">Measure, sync, quote. Done.</h2>
+    <p class="sec-sub reveal" data-i18n="how.sub">Three steps, one visit. That is the whole pitch.</p>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="n" data-i18n="step1.n">STEP 01</div>
+        <h3 data-i18n="step1.h">Measure on site</h3>
+        <p data-i18n="step1.p">Open Nivelato, pick the project, and log dimensions as you walk the job. Photos optional, encouraged.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n" data-i18n="step2.n">STEP 02</div>
+        <h3 data-i18n="step2.h">Sync to the shop</h3>
+        <p data-i18n="step2.p">Measurements upload automatically. The office sees the job the moment you finish, no end-of-day data entry.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n" data-i18n="step3.n">STEP 03</div>
+        <h3 data-i18n="step3.h">Quote and close</h3>
+        <p data-i18n="step3.p">Turn the measurement set into a customer-ready quote before you leave the driveway.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="pilot">
   <div class="wrap">
     <div class="sec-kicker reveal" data-i18n="pilot.kicker">Ongoing project</div>
     <h2 class="reveal" data-i18n="pilot.title">Automating a glass shop, end to end.</h2>
     <p class="sec-sub reveal" data-i18n="pilot.sub">Nivelato Labs is working with a glass shop in Puerto Rico on full automation: measuring, quoting, and everything in between. The app is the first piece. The shop is the proving ground.</p>
     <div class="reveal"><span class="soon" data-i18n="pilot.soon">●&nbsp; pilot in progress</span></div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-kicker reveal" data-i18n="faq.kicker">FAQ</div>
+    <h2 class="reveal" data-i18n="faq.title">Questions, answered.</h2>
+    <p class="sec-sub reveal" data-i18n="faq.sub">Quick answers about the app, how it works, and the plans.</p>
+    <div class="faq">
+      <div class="faq-item reveal">
+        <h3 data-i18n="faq.q1">What is Nivelato?</h3>
+        <p data-i18n="faq.a1">Nivelato is a field measurement app for glass shops. You measure openings on site with your phone, the job syncs back to the shop, and you can quote on the spot instead of retyping notes at the office.</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3 data-i18n="faq.q2">How does Nivelato work?</h3>
+        <p data-i18n="faq.a2">Three steps. Measure on site, let the measurements sync to the shop automatically, then turn the measurement set into a customer-ready quote before you leave.</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3 data-i18n="faq.q3">Is Nivelato available now?</h3>
+        <p data-i18n="faq.a3">Nivelato is in closed testing on Google Play, and the full web app is available now. Sign in with your shop account or a personal account and start measuring.</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3 data-i18n="faq.q4">Does Nivelato work without a signal?</h3>
+        <p data-i18n="faq.a4">Yes. Field measurement works offline, and everything syncs when you are back on signal.</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3 data-i18n="faq.q5">Can my whole team use it?</h3>
+        <p data-i18n="faq.a5">Yes. Invite your crew by code, approve them from the dashboard, and use role-based permissions for owners, supervisors, and measurers. Projects are shared with per-user access.</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3 data-i18n="faq.q6">How much does it cost?</h3>
+        <p data-i18n="faq.a6">There are Free, Pro, and Ultra plans. Plans are per shop and billed through Google Play. See the <a href="/pricing/">pricing page</a> for what each tier includes.</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3 data-i18n="faq.q7">How do I get in touch?</h3>
+        <p data-i18n="faq.a7">Email <a href="mailto:lebron@nivelatolabs.com">lebron@nivelatolabs.com</a> or use the <a href="/contact/">contact page</a>.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -261,7 +380,63 @@ const I18N = {
   "pilot.kicker": "Ongoing project",
   "pilot.title": "Automating a glass shop, end to end.",
   "pilot.sub": "Nivelato Labs is working with a glass shop in Puerto Rico on full automation: measuring, quoting, and everything in between. The app is the first piece. The shop is the proving ground.",
-  "pilot.soon": "●&nbsp; pilot in progress"
+  "pilot.soon": "●&nbsp; pilot in progress",
+  "features.kicker": "Features",
+  "features.title": "Everything the job needs, in your pocket.",
+  "features.sub": "Nivelato covers the full field workflow, from the first measurement to the finished quote.",
+  "tab.measure": "Field measurement",
+  "tab.photo": "Photo capture",
+  "tab.projects": "Project organization",
+  "tab.team": "Team management",
+  "panel.measure.h": "<span class=\"tick-n\">01</span>Field measurement",
+  "panel.measure.p": "Walk the job with your phone. Log every opening, dimension, and note as you go, room by room. No clipboards, no lost napkins, no retyping at the office.",
+  "panel.measure.li1": "Fast dimension entry built for gloves-on work",
+  "panel.measure.li2": "Notes and flags right on each measurement",
+  "panel.measure.li3": "Works offline, syncs when you are back on signal",
+  "panel.photo.h": "<span class=\"tick-n\">02</span>Photo capture",
+  "panel.photo.p": "Snap a photo at every measurement. Photos attach to the job automatically, so the shop sees exactly what you saw on site.",
+  "panel.photo.li1": "One-tap photo step inside the measurement flow",
+  "panel.photo.li2": "Photos stored with the job, not lost in a camera roll",
+  "panel.photo.li3": "Review shots later from the dashboard or the app",
+  "panel.projects.h": "<span class=\"tick-n\">03</span>Project organization",
+  "panel.projects.p": "Group measurements into projects. Track what is measured, what is quoted, and what is done, all in one place instead of scattered across chats and paper.",
+  "panel.projects.li1": "Projects with customers, users, and measurements",
+  "panel.projects.li2": "Full history per project, searchable any time",
+  "panel.projects.li3": "Dashboard view for the whole shop pipeline",
+  "panel.team.h": "<span class=\"tick-n\">04</span>Team management",
+  "panel.team.p": "Invite your crew and keep everyone on the same job list. Owners control who sees what, and permissions follow each person automatically.",
+  "panel.team.li1": "Invite by code, approve from the dashboard",
+  "panel.team.li2": "Role-based permissions: owners, supervisors, measurers",
+  "panel.team.li3": "Shared projects with per-user access",
+  "how.kicker": "How it works",
+  "how.title": "Measure, sync, quote. Done.",
+  "how.sub": "Three steps, one visit. That is the whole pitch.",
+  "step1.n": "STEP 01",
+  "step1.h": "Measure on site",
+  "step1.p": "Open Nivelato, pick the project, and log dimensions as you walk the job. Photos optional, encouraged.",
+  "step2.n": "STEP 02",
+  "step2.h": "Sync to the shop",
+  "step2.p": "Measurements upload automatically. The office sees the job the moment you finish, no end-of-day data entry.",
+  "step3.n": "STEP 03",
+  "step3.h": "Quote and close",
+  "step3.p": "Turn the measurement set into a customer-ready quote before you leave the driveway.",
+  "faq.kicker": "FAQ",
+  "faq.title": "Questions, answered.",
+  "faq.sub": "Quick answers about the app, how it works, and the plans.",
+  "faq.q1": "What is Nivelato?",
+  "faq.a1": "Nivelato is a field measurement app for glass shops. You measure openings on site with your phone, the job syncs back to the shop, and you can quote on the spot instead of retyping notes at the office.",
+  "faq.q2": "How does Nivelato work?",
+  "faq.a2": "Three steps. Measure on site, let the measurements sync to the shop automatically, then turn the measurement set into a customer-ready quote before you leave.",
+  "faq.q3": "Is Nivelato available now?",
+  "faq.a3": "Nivelato is in closed testing on Google Play, and the full web app is available now. Sign in with your shop account or a personal account and start measuring.",
+  "faq.q4": "Does Nivelato work without a signal?",
+  "faq.a4": "Yes. Field measurement works offline, and everything syncs when you are back on signal.",
+  "faq.q5": "Can my whole team use it?",
+  "faq.a5": "Yes. Invite your crew by code, approve them from the dashboard, and use role-based permissions for owners, supervisors, and measurers. Projects are shared with per-user access.",
+  "faq.q6": "How much does it cost?",
+  "faq.a6": "There are Free, Pro, and Ultra plans. Plans are per shop and billed through Google Play. See the <a href=\"/pricing/\">pricing page</a> for what each tier includes.",
+  "faq.q7": "How do I get in touch?",
+  "faq.a7": "Email <a href=\"mailto:lebron@nivelatolabs.com\">lebron@nivelatolabs.com</a> or use the <a href=\"/contact/\">contact page</a>."
 },
   es: {
   "nav.features": "Funciones",
@@ -284,7 +459,63 @@ const I18N = {
   "pilot.kicker": "Proyecto en curso",
   "pilot.title": "Automatizando un taller de cristales, de principio a fin.",
   "pilot.sub": "Nivelato Labs trabaja con un taller de cristales en Puerto Rico en automatización total: medición, cotización y todo lo demás. La app es la primera pieza. El taller es el campo de pruebas.",
-  "pilot.soon": "●&nbsp; piloto en curso"
+  "pilot.soon": "●&nbsp; piloto en curso",
+  "features.kicker": "Funciones",
+  "features.title": "Todo lo que el trabajo necesita, en tu bolsillo.",
+  "features.sub": "Nivelato cubre todo el flujo de trabajo en campo, desde la primera medida hasta la cotización final.",
+  "tab.measure": "Medición en campo",
+  "tab.photo": "Captura de fotos",
+  "tab.projects": "Organización de proyectos",
+  "tab.team": "Gestión de equipo",
+  "panel.measure.h": "<span class=\"tick-n\">01</span>Medición en campo",
+  "panel.measure.p": "Recorre el trabajo con tu teléfono. Registra cada abertura, dimensión y nota sobre la marcha, cuarto por cuarto. Sin portapapeles, sin servilletas perdidas, sin reescribir en la oficina.",
+  "panel.measure.li1": "Entrada rápida de dimensiones, pensada para trabajar con guantes",
+  "panel.measure.li2": "Notas y marcas directo en cada medida",
+  "panel.measure.li3": "Funciona sin conexión, sincroniza al volver la señal",
+  "panel.photo.h": "<span class=\"tick-n\">02</span>Captura de fotos",
+  "panel.photo.p": "Toma una foto en cada medida. Las fotos se adjuntan al trabajo automáticamente, para que el taller vea exactamente lo que viste en el sitio.",
+  "panel.photo.li1": "Paso de foto con un toque dentro del flujo de medición",
+  "panel.photo.li2": "Fotos guardadas con el trabajo, no perdidas en el carrete",
+  "panel.photo.li3": "Revisa las fotos después desde el panel o la app",
+  "panel.projects.h": "<span class=\"tick-n\">03</span>Organización de proyectos",
+  "panel.projects.p": "Agrupa medidas en proyectos. Sigue lo medido, lo cotizado y lo terminado, todo en un lugar en vez de regado entre chats y papel.",
+  "panel.projects.li1": "Proyectos con clientes, usuarios y medidas",
+  "panel.projects.li2": "Historial completo por proyecto, buscable en todo momento",
+  "panel.projects.li3": "Vista de panel para todo el flujo del taller",
+  "panel.team.h": "<span class=\"tick-n\">04</span>Gestión de equipo",
+  "panel.team.p": "Invita a tu equipo y mantén a todos en la misma lista de trabajos. Los dueños controlan quién ve qué, y los permisos siguen a cada persona automáticamente.",
+  "panel.team.li1": "Invita por código, aprueba desde el panel",
+  "panel.team.li2": "Permisos por rol: dueños, supervisores, medidores",
+  "panel.team.li3": "Proyectos compartidos con acceso por usuario",
+  "how.kicker": "Cómo funciona",
+  "how.title": "Mide, sincroniza, cotiza. Listo.",
+  "how.sub": "Tres pasos, una visita. Esa es toda la propuesta.",
+  "step1.n": "PASO 01",
+  "step1.h": "Mide en el sitio",
+  "step1.p": "Abre Nivelato, elige el proyecto y registra dimensiones mientras recorres el trabajo. Fotos opcionales, recomendadas.",
+  "step2.n": "PASO 02",
+  "step2.h": "Sincroniza con el taller",
+  "step2.p": "Las medidas se suben automáticamente. La oficina ve el trabajo en cuanto terminas, sin captura de datos al final del día.",
+  "step3.n": "PASO 03",
+  "step3.h": "Cotiza y cierra",
+  "step3.p": "Convierte el juego de medidas en una cotización lista para el cliente antes de salir del sitio.",
+  "faq.kicker": "Preguntas frecuentes",
+  "faq.title": "Preguntas, respondidas.",
+  "faq.sub": "Respuestas rápidas sobre la app, cómo funciona y los planes.",
+  "faq.q1": "¿Qué es Nivelato?",
+  "faq.a1": "Nivelato es una app de medición en campo para talleres de cristales. Mides las aberturas en el sitio con tu teléfono, el trabajo se sincroniza con el taller y puedes cotizar en el momento en vez de reescribir notas en la oficina.",
+  "faq.q2": "¿Cómo funciona Nivelato?",
+  "faq.a2": "Tres pasos. Mide en el sitio, deja que las medidas se sincronicen con el taller automáticamente y convierte el juego de medidas en una cotización lista para el cliente antes de salir.",
+  "faq.q3": "¿Nivelato ya está disponible?",
+  "faq.a3": "Nivelato está en prueba cerrada en Google Play, y la app web completa ya está disponible. Inicia sesión con la cuenta de tu taller o una cuenta personal y empieza a medir.",
+  "faq.q4": "¿Nivelato funciona sin señal?",
+  "faq.a4": "Sí. La medición en campo funciona sin conexión y todo se sincroniza cuando vuelve la señal.",
+  "faq.q5": "¿Puede usarlo todo mi equipo?",
+  "faq.a5": "Sí. Invita a tu equipo por código, apruébalos desde el panel y usa permisos por rol para dueños, supervisores y medidores. Los proyectos se comparten con acceso por usuario.",
+  "faq.q6": "¿Cuánto cuesta?",
+  "faq.a6": "Hay planes Free, Pro y Ultra. Los planes son por taller y se facturan a través de Google Play. Mira la <a href=\"/pricing/\">página de precios</a> para ver qué incluye cada plan.",
+  "faq.q7": "¿Cómo me comunico con Nivelato Labs?",
+  "faq.a7": "Escríbenos a <a href=\"mailto:lebron@nivelatolabs.com\">lebron@nivelatolabs.com</a> o usa la <a href=\"/contact/\">página de contacto</a>."
 }
 };
 const FORCED_LANG = null;
@@ -368,7 +599,63 @@ const I18N = {
   "pilot.kicker": "Ongoing project",
   "pilot.title": "Automating a glass shop, end to end.",
   "pilot.sub": "Nivelato Labs is working with a glass shop in Puerto Rico on full automation: measuring, quoting, and everything in between. The app is the first piece. The shop is the proving ground.",
-  "pilot.soon": "●&nbsp; pilot in progress"
+  "pilot.soon": "●&nbsp; pilot in progress",
+  "features.kicker": "Features",
+  "features.title": "Everything the job needs, in your pocket.",
+  "features.sub": "Nivelato covers the full field workflow, from the first measurement to the finished quote.",
+  "tab.measure": "Field measurement",
+  "tab.photo": "Photo capture",
+  "tab.projects": "Project organization",
+  "tab.team": "Team management",
+  "panel.measure.h": "<span class=\"tick-n\">01</span>Field measurement",
+  "panel.measure.p": "Walk the job with your phone. Log every opening, dimension, and note as you go, room by room. No clipboards, no lost napkins, no retyping at the office.",
+  "panel.measure.li1": "Fast dimension entry built for gloves-on work",
+  "panel.measure.li2": "Notes and flags right on each measurement",
+  "panel.measure.li3": "Works offline, syncs when you are back on signal",
+  "panel.photo.h": "<span class=\"tick-n\">02</span>Photo capture",
+  "panel.photo.p": "Snap a photo at every measurement. Photos attach to the job automatically, so the shop sees exactly what you saw on site.",
+  "panel.photo.li1": "One-tap photo step inside the measurement flow",
+  "panel.photo.li2": "Photos stored with the job, not lost in a camera roll",
+  "panel.photo.li3": "Review shots later from the dashboard or the app",
+  "panel.projects.h": "<span class=\"tick-n\">03</span>Project organization",
+  "panel.projects.p": "Group measurements into projects. Track what is measured, what is quoted, and what is done, all in one place instead of scattered across chats and paper.",
+  "panel.projects.li1": "Projects with customers, users, and measurements",
+  "panel.projects.li2": "Full history per project, searchable any time",
+  "panel.projects.li3": "Dashboard view for the whole shop pipeline",
+  "panel.team.h": "<span class=\"tick-n\">04</span>Team management",
+  "panel.team.p": "Invite your crew and keep everyone on the same job list. Owners control who sees what, and permissions follow each person automatically.",
+  "panel.team.li1": "Invite by code, approve from the dashboard",
+  "panel.team.li2": "Role-based permissions: owners, supervisors, measurers",
+  "panel.team.li3": "Shared projects with per-user access",
+  "how.kicker": "How it works",
+  "how.title": "Measure, sync, quote. Done.",
+  "how.sub": "Three steps, one visit. That is the whole pitch.",
+  "step1.n": "STEP 01",
+  "step1.h": "Measure on site",
+  "step1.p": "Open Nivelato, pick the project, and log dimensions as you walk the job. Photos optional, encouraged.",
+  "step2.n": "STEP 02",
+  "step2.h": "Sync to the shop",
+  "step2.p": "Measurements upload automatically. The office sees the job the moment you finish, no end-of-day data entry.",
+  "step3.n": "STEP 03",
+  "step3.h": "Quote and close",
+  "step3.p": "Turn the measurement set into a customer-ready quote before you leave the driveway.",
+  "faq.kicker": "FAQ",
+  "faq.title": "Questions, answered.",
+  "faq.sub": "Quick answers about the app, how it works, and the plans.",
+  "faq.q1": "What is Nivelato?",
+  "faq.a1": "Nivelato is a field measurement app for glass shops. You measure openings on site with your phone, the job syncs back to the shop, and you can quote on the spot instead of retyping notes at the office.",
+  "faq.q2": "How does Nivelato work?",
+  "faq.a2": "Three steps. Measure on site, let the measurements sync to the shop automatically, then turn the measurement set into a customer-ready quote before you leave.",
+  "faq.q3": "Is Nivelato available now?",
+  "faq.a3": "Nivelato is in closed testing on Google Play, and the full web app is available now. Sign in with your shop account or a personal account and start measuring.",
+  "faq.q4": "Does Nivelato work without a signal?",
+  "faq.a4": "Yes. Field measurement works offline, and everything syncs when you are back on signal.",
+  "faq.q5": "Can my whole team use it?",
+  "faq.a5": "Yes. Invite your crew by code, approve them from the dashboard, and use role-based permissions for owners, supervisors, and measurers. Projects are shared with per-user access.",
+  "faq.q6": "How much does it cost?",
+  "faq.a6": "There are Free, Pro, and Ultra plans. Plans are per shop and billed through Google Play. See the <a href=\"/pricing/\">pricing page</a> for what each tier includes.",
+  "faq.q7": "How do I get in touch?",
+  "faq.a7": "Email <a href=\"mailto:lebron@nivelatolabs.com\">lebron@nivelatolabs.com</a> or use the <a href=\"/contact/\">contact page</a>."
 },
   es: {
   "nav.features": "Funciones",
@@ -391,7 +678,63 @@ const I18N = {
   "pilot.kicker": "Proyecto en curso",
   "pilot.title": "Automatizando un taller de cristales, de principio a fin.",
   "pilot.sub": "Nivelato Labs trabaja con un taller de cristales en Puerto Rico en automatización total: medición, cotización y todo lo demás. La app es la primera pieza. El taller es el campo de pruebas.",
-  "pilot.soon": "●&nbsp; piloto en curso"
+  "pilot.soon": "●&nbsp; piloto en curso",
+  "features.kicker": "Funciones",
+  "features.title": "Todo lo que el trabajo necesita, en tu bolsillo.",
+  "features.sub": "Nivelato cubre todo el flujo de trabajo en campo, desde la primera medida hasta la cotización final.",
+  "tab.measure": "Medición en campo",
+  "tab.photo": "Captura de fotos",
+  "tab.projects": "Organización de proyectos",
+  "tab.team": "Gestión de equipo",
+  "panel.measure.h": "<span class=\"tick-n\">01</span>Medición en campo",
+  "panel.measure.p": "Recorre el trabajo con tu teléfono. Registra cada abertura, dimensión y nota sobre la marcha, cuarto por cuarto. Sin portapapeles, sin servilletas perdidas, sin reescribir en la oficina.",
+  "panel.measure.li1": "Entrada rápida de dimensiones, pensada para trabajar con guantes",
+  "panel.measure.li2": "Notas y marcas directo en cada medida",
+  "panel.measure.li3": "Funciona sin conexión, sincroniza al volver la señal",
+  "panel.photo.h": "<span class=\"tick-n\">02</span>Captura de fotos",
+  "panel.photo.p": "Toma una foto en cada medida. Las fotos se adjuntan al trabajo automáticamente, para que el taller vea exactamente lo que viste en el sitio.",
+  "panel.photo.li1": "Paso de foto con un toque dentro del flujo de medición",
+  "panel.photo.li2": "Fotos guardadas con el trabajo, no perdidas en el carrete",
+  "panel.photo.li3": "Revisa las fotos después desde el panel o la app",
+  "panel.projects.h": "<span class=\"tick-n\">03</span>Organización de proyectos",
+  "panel.projects.p": "Agrupa medidas en proyectos. Sigue lo medido, lo cotizado y lo terminado, todo en un lugar en vez de regado entre chats y papel.",
+  "panel.projects.li1": "Proyectos con clientes, usuarios y medidas",
+  "panel.projects.li2": "Historial completo por proyecto, buscable en todo momento",
+  "panel.projects.li3": "Vista de panel para todo el flujo del taller",
+  "panel.team.h": "<span class=\"tick-n\">04</span>Gestión de equipo",
+  "panel.team.p": "Invita a tu equipo y mantén a todos en la misma lista de trabajos. Los dueños controlan quién ve qué, y los permisos siguen a cada persona automáticamente.",
+  "panel.team.li1": "Invita por código, aprueba desde el panel",
+  "panel.team.li2": "Permisos por rol: dueños, supervisores, medidores",
+  "panel.team.li3": "Proyectos compartidos con acceso por usuario",
+  "how.kicker": "Cómo funciona",
+  "how.title": "Mide, sincroniza, cotiza. Listo.",
+  "how.sub": "Tres pasos, una visita. Esa es toda la propuesta.",
+  "step1.n": "PASO 01",
+  "step1.h": "Mide en el sitio",
+  "step1.p": "Abre Nivelato, elige el proyecto y registra dimensiones mientras recorres el trabajo. Fotos opcionales, recomendadas.",
+  "step2.n": "PASO 02",
+  "step2.h": "Sincroniza con el taller",
+  "step2.p": "Las medidas se suben automáticamente. La oficina ve el trabajo en cuanto terminas, sin captura de datos al final del día.",
+  "step3.n": "PASO 03",
+  "step3.h": "Cotiza y cierra",
+  "step3.p": "Convierte el juego de medidas en una cotización lista para el cliente antes de salir del sitio.",
+  "faq.kicker": "Preguntas frecuentes",
+  "faq.title": "Preguntas, respondidas.",
+  "faq.sub": "Respuestas rápidas sobre la app, cómo funciona y los planes.",
+  "faq.q1": "¿Qué es Nivelato?",
+  "faq.a1": "Nivelato es una app de medición en campo para talleres de cristales. Mides las aberturas en el sitio con tu teléfono, el trabajo se sincroniza con el taller y puedes cotizar en el momento en vez de reescribir notas en la oficina.",
+  "faq.q2": "¿Cómo funciona Nivelato?",
+  "faq.a2": "Tres pasos. Mide en el sitio, deja que las medidas se sincronicen con el taller automáticamente y convierte el juego de medidas en una cotización lista para el cliente antes de salir.",
+  "faq.q3": "¿Nivelato ya está disponible?",
+  "faq.a3": "Nivelato está en prueba cerrada en Google Play, y la app web completa ya está disponible. Inicia sesión con la cuenta de tu taller o una cuenta personal y empieza a medir.",
+  "faq.q4": "¿Nivelato funciona sin señal?",
+  "faq.a4": "Sí. La medición en campo funciona sin conexión y todo se sincroniza cuando vuelve la señal.",
+  "faq.q5": "¿Puede usarlo todo mi equipo?",
+  "faq.a5": "Sí. Invita a tu equipo por código, apruébalos desde el panel y usa permisos por rol para dueños, supervisores y medidores. Los proyectos se comparten con acceso por usuario.",
+  "faq.q6": "¿Cuánto cuesta?",
+  "faq.a6": "Hay planes Free, Pro y Ultra. Los planes son por taller y se facturan a través de Google Play. Mira la <a href=\"/pricing/\">página de precios</a> para ver qué incluye cada plan.",
+  "faq.q7": "¿Cómo me comunico con Nivelato Labs?",
+  "faq.a7": "Escríbenos a <a href=\"mailto:lebron@nivelatolabs.com\">lebron@nivelatolabs.com</a> o usa la <a href=\"/contact/\">página de contacto</a>."
 }
 };
 const FORCED_LANG = null;
