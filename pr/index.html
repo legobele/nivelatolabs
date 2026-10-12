@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
+    color-scheme:dark;
     --bg:#0b0b0e; --bg2:#121216; --card:#16161c; --line:#232329;
     --ink:#f2f1ec; --muted:#a7a7b3; --dim:#6d6d78;
     --amber:#f5a524; --amber2:#ffcf5c; --laser:#c8f542;
@@ -19,6 +20,12 @@
   html{scroll-behavior:smooth}
   body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
   ::selection{background:var(--amber);color:#111}
+  /* scrollbar */
+  html{scrollbar-width:thin;scrollbar-color:#2e2e38 var(--bg)}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:#2e2e38;border-radius:8px;border:2px solid var(--bg)}
+  ::-webkit-scrollbar-thumb:hover{background:#3f3f4c}
   a{color:inherit}
   .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
   /* nav */
