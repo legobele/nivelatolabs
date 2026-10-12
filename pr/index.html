@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para clientes en Puerto Rico - Nivelato Labs</title>
+<meta name="description" content="Cuentas de empresa en Puerto Rico: solicita acceso a Nivelato.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b0e; --bg2:#121216; --card:#16161c; --line:#232329;
+    --ink:#f2f1ec; --muted:#a7a7b3; --dim:#6d6d78;
+    --amber:#f5a524; --amber2:#ffcf5c; --laser:#c8f542;
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--amber);color:#111}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  /* nav */
+  nav{position:sticky;top:0;left:0;right:0;width:100%;z-index:50;background:rgba(11,11,14,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-family:'Space Grotesk';font-weight:700;font-size:1.15rem;letter-spacing:.02em;display:flex;align-items:center;gap:10px;text-decoration:none;flex:none;margin-right:16px}
+  .brand .tick{width:26px;height:26px;border:2px solid var(--amber);border-radius:6px;position:relative;flex:none}
+  .brand .tick::after{content:"";position:absolute;left:5px;top:5px;width:12px;height:6px;border-left:3px solid var(--amber);border-bottom:3px solid var(--amber);transform:rotate(-45deg)}
+  nav ul{display:flex;gap:15px;list-style:none;font-size:.85rem}
+  nav ul a{text-decoration:none;color:var(--muted);transition:color .2s;white-space:nowrap}
+  nav ul a:hover{color:var(--ink)}
+  .btn{display:inline-block;background:var(--amber);color:#141414;font-weight:600;padding:12px 26px;border-radius:999px;text-decoration:none;font-size:.95rem;transition:transform .15s,box-shadow .15s;border:none;cursor:pointer}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,165,36,.35)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn.ghost:hover{box-shadow:none;border-color:var(--amber)}
+  .btn.small{padding:9px 20px;font-size:.85rem}
+  .login-link{font-size:.9rem;color:var(--muted);text-decoration:none;margin-right:11px;transition:color .2s;white-space:nowrap}
+  .login-link:hover{color:var(--ink)}
+  .nav-actions{display:flex;align-items:center;flex:none}
+  nav .btn{white-space:nowrap}nav .lang-toggle{margin-right:10px}
+  @media(max-width:1060px){nav ul{display:none}}
+  @media(max-width:1100px) and (min-width:1061px){nav ul{gap:11px;font-size:.80rem}.brand{font-size:1.02rem;margin-right:10px}.login-link{margin-right:10px;font-size:.84rem}.lang-toggle{margin-right:9px;padding:7px 13px}nav .btn.small{padding:8px 14px}}
+  .nav-burger{display:none;background:none;border:1px solid var(--line);border-radius:10px;color:#fff;font-size:1.3rem;width:44px;height:44px;cursor:pointer}
+  @media(max-width:1060px){.nav-burger{display:inline-flex;align-items:center;justify-content:center}}
+  @media(max-width:1060px){.brand{font-size:0}.brand .tick{font-size:1.2rem}.nav-actions .login-link{display:none}nav .wrap{gap:10px}}
+  .m-drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);background:#0b0b0e;border-left:1px solid var(--line);z-index:200;transform:translateX(105%);transition:transform .25s ease;padding:20px;display:flex;flex-direction:column;gap:6px}
+  body.m-nav-open .m-drawer{transform:translateX(0)}
+  .m-drawer a.m-link{display:block;padding:14px 12px;color:#fff;text-decoration:none;font-size:1.1rem;border-radius:10px}
+  .m-drawer a.m-link:hover{background:rgba(255,255,255,.06)}
+  .m-drawer .m-actions{margin-top:auto;display:flex;flex-direction:column;gap:10px;padding-top:16px;border-top:1px solid var(--line)}
+  .m-scrim{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:190;display:none}
+  body.m-nav-open .m-scrim{display:block}
+  .m-close{align-self:flex-end;background:none;border:none;color:var(--dim);font-size:1.5rem;cursor:pointer;padding:4px}
+  /* hero */
+  header{padding:110px 0 80px;position:relative;overflow:hidden}
+  header::before{content:"";position:absolute;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(245,165,36,.14),transparent 65%);pointer-events:none}
+  .kicker{font-family:'JetBrains Mono';font-size:.8rem;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:22px}
+  h1{font-family:'Space Grotesk';font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.04;font-weight:700;letter-spacing:-.02em;max-width:16ch}
+  h1 .laser{color:var(--laser)}
+  .lede{margin-top:22px;font-size:1.15rem;color:var(--muted);max-width:56ch}
+  .cta-row{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
+  .rule{margin-top:70px;border-top:1px solid var(--line);padding-top:26px;display:flex;gap:36px;flex-wrap:wrap;font-family:'JetBrains Mono';font-size:.82rem;color:var(--dim)}
+  .rule b{color:var(--amber);font-weight:500}
+  /* sections */
+  section{padding:84px 0}
+  .sec-kicker{font-family:'JetBrains Mono';font-size:.78rem;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:14px}
+  h2{font-family:'Space Grotesk';font-size:clamp(1.8rem,3.6vw,2.7rem);letter-spacing:-.01em;line-height:1.12;margin-bottom:16px}
+  .sec-sub{color:var(--muted);max-width:62ch;margin-bottom:44px;font-size:1.05rem}
+  .alt{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  /* feature tabs */
+  .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+  .tab{font-family:'Space Grotesk';font-weight:600;font-size:.95rem;background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:10px 22px;cursor:pointer;transition:all .2s}
+  .tab:hover{color:var(--ink);border-color:var(--dim)}
+  .tab.active{background:var(--amber);border-color:var(--amber);color:#141414}
+  .tabpanel{display:none;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:34px 32px}
+  .tabpanel.active{display:block}
+  .tabpanel h3{font-family:'Space Grotesk';font-size:1.4rem;margin-bottom:10px}
+  .tabpanel h3 .tick-n{color:var(--amber);font-family:'JetBrains Mono';font-size:.85rem;margin-right:10px}
+  .tabpanel p{color:var(--muted);max-width:60ch}
+  .tabpanel ul{margin-top:18px;list-style:none;display:grid;gap:10px}
+  .tabpanel ul li{color:var(--muted);font-size:.95rem;padding-left:22px;position:relative}
+  .tabpanel ul li::before{content:"✓";position:absolute;left:0;color:var(--laser);font-weight:700}
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:760px){.steps{grid-template-columns:1fr}}
+  .step{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:28px 26px}
+  .step .n{font-family:'JetBrains Mono';color:var(--amber);font-size:.8rem;letter-spacing:.2em;margin-bottom:14px}
+  .step h3{font-family:'Space Grotesk';font-size:1.25rem;margin-bottom:8px}
+  .step p{color:var(--muted);font-size:.94rem}
+  /* pricing */
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+  @media(max-width:860px){.tiers{grid-template-columns:1fr;max-width:440px;margin:0 auto}}
+  .tier{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:30px 28px;display:flex;flex-direction:column;position:relative}
+  .tier.hot{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber),0 12px 40px rgba(245,165,36,.12)}
+  .tier .tname{font-family:'Space Grotesk';font-weight:700;font-size:1.3rem;margin-bottom:4px}
+  .tier .tprice{font-family:'JetBrains Mono';font-size:.82rem;color:var(--dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}
+  .tier ul{list-style:none;display:grid;gap:10px;margin-bottom:28px;flex:1}
+  .tier ul li{color:var(--muted);font-size:.93rem;padding-left:22px;position:relative}
+  .tier ul li::before{content:"✓";position:absolute;left:0;color:var(--laser);font-weight:700}
+  .tier ul li.no{color:var(--dim)}
+  .tier ul li.no::before{content:"×";color:var(--dim)}
+  .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--amber);color:#141414;font-family:'JetBrains Mono';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:5px 16px;border-radius:999px;white-space:nowrap}
+  .tier-note{margin-top:26px;color:var(--dim);font-size:.88rem;text-align:center}
+  /* get app */
+  #get-app .app-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+  @media(max-width:880px){#get-app .app-grid{grid-template-columns:1fr}}
+  .phone{border:1px solid var(--line);border-radius:28px;background:var(--card);padding:34px 30px;position:relative;overflow:hidden}
+  .phone::before{content:"";position:absolute;top:0;left:10%;right:10%;height:3px;background:linear-gradient(90deg,transparent,var(--laser),transparent)}
+  .phone .screen-label{font-family:'JetBrains Mono';font-size:.75rem;color:var(--dim);letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+  .measure{font-family:'JetBrains Mono';padding:16px 0;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;font-size:.95rem}
+  .measure:last-of-type{border-bottom:none}
+  .measure .v{color:var(--laser)}
+  .measure .u{color:var(--dim);font-size:.8rem;margin-left:6px}
+  .phone .total{margin-top:20px;display:flex;justify-content:space-between;align-items:center}
+  .phone .total b{font-family:'Space Grotesk';font-size:1.5rem}
+  .soon{display:inline-block;margin-top:14px;font-family:'JetBrains Mono';font-size:.78rem;color:var(--dim);border:1px dashed var(--line);border-radius:999px;padding:8px 16px}
+  /* PR section */
+  #pr .pr-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:40px 36px;max-width:760px}
+  #pr .pr-card p{color:var(--muted);margin-bottom:16px;max-width:60ch}
+  #pr .pr-card p strong{color:var(--ink);font-weight:600}
+  /* contact */
+  #contact{text-align:center}
+  #contact .sec-sub{margin-left:auto;margin-right:auto}
+  .mail{font-family:'Space Grotesk';font-size:clamp(1.3rem,3vw,2rem);color:var(--amber2);text-decoration:none;border-bottom:2px solid var(--amber);padding-bottom:4px}
+  .mail:hover{color:var(--amber)}
+  footer{border-top:1px solid var(--line);padding:34px 0;color:var(--dim);font-size:.85rem}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer .mono{font-family:'JetBrains Mono';font-size:.76rem}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  /* page header */
+  .page-head{padding:72px 0 4px}
+  .page-head h1{font-family:'Space Grotesk';font-size:clamp(2.2rem,5vw,3.4rem);letter-spacing:-.02em;line-height:1.05;margin-top:12px}
+  /* language toggle */
+  .lang-toggle{background:transparent;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-family:'JetBrains Mono';font-size:.78rem;letter-spacing:.08em;padding:8px 16px;cursor:pointer;margin-right:14px;transition:all .2s;text-align:center;text-indent:.08em}
+  .lang-toggle:hover{color:var(--ink);border-color:var(--amber)}
+  @media(max-width:1060px){.nav-actions .lang-toggle{display:none}}
+  .m-drawer .lang-toggle{margin:0 0 6px;align-self:flex-start}
+
+  /* page header */
+  .page-head{padding:72px 0 4px}
+  .page-head h1{font-family:'Space Grotesk';font-size:clamp(2.2rem,5vw,3.4rem);letter-spacing:-.02em;line-height:1.05;margin-top:12px}
+  /* language toggle */
+  .lang-toggle{background:transparent;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-family:'JetBrains Mono';font-size:.78rem;letter-spacing:.08em;padding:8px 16px;cursor:pointer;margin-right:14px;transition:all .2s;text-align:center;text-indent:.08em}
+  .lang-toggle:hover{color:var(--ink);border-color:var(--amber)}
+  @media(max-width:1060px){.nav-actions .lang-toggle{display:none}}
+  .m-drawer .lang-toggle{margin:0 0 6px;align-self:flex-start}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="/"><span class="tick"></span>Nivelato&nbsp;Labs</a>
+    <ul>
+      <li><a href="/#features" data-i18n="nav.features">What it does</a></li>
+      <li><a href="/#how" data-i18n="nav.how">How it works</a></li>
+      <li><a href="/pricing/" data-i18n="nav.pricing">Pricing</a></li>
+      <li><a href="/get/" data-i18n="nav.get">Get the app</a></li>
+      <li><a href="/pr/" data-i18n="nav.pr">Para clientes en PR</a></li>
+      <li><a href="/contact/" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="lang-toggle" aria-label="Switch language / Cambiar idioma">ES</button>
+      <a class="login-link" href="https://login.nivelatolabs.com" data-i18n="nav.login">Log in</a>
+      <a class="btn small" href="/get/" data-i18n="nav.getNivelato">Get Nivelato</a>
+      <button class="nav-burger" onclick="document.body.classList.toggle('m-nav-open')" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</nav>
+<div class="m-scrim" onclick="document.body.classList.remove('m-nav-open')"></div>
+<aside class="m-drawer" id="m-drawer">
+  <button class="m-close" onclick="document.body.classList.remove('m-nav-open')" aria-label="Close">✕</button>
+  <a class="m-link" href="/#features" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.features">What it does</a>
+  <a class="m-link" href="/#how" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.how">How it works</a>
+  <a class="m-link" href="/pricing/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.pricing">Pricing</a>
+  <a class="m-link" href="/get/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.get">Get the app</a>
+  <a class="m-link" href="/pr/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.pr">Para clientes en PR</a>
+  <a class="m-link" href="/contact/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.contact">Contact</a>
+  <div class="m-actions">
+    <button class="lang-toggle" aria-label="Switch language / Cambiar idioma">ES</button>
+    <a class="btn small" href="https://login.nivelatolabs.com" style="text-align:center" data-i18n="nav.login">Log in</a>
+    <a class="btn small" href="/get/" onclick="document.body.classList.remove('m-nav-open')" style="text-align:center" data-i18n="nav.getNivelato">Get Nivelato</a>
+  </div>
+</aside>
+
+<div class="page-head"><div class="wrap">
+  <div class="kicker reveal" data-i18n="page.kicker">Puerto Rico</div>
+  <h1 class="reveal" data-i18n="page.title">For customers in Puerto Rico</h1>
+</div></div>
+<section id="pr" class="alt" lang="es">
+  <div class="wrap">
+    <div class="sec-kicker reveal" data-i18n="pr.kicker">Puerto Rico</div>
+    <h2 class="reveal" data-i18n="pr.title">Para clientes en Puerto Rico</h2>
+    <div class="pr-card reveal">
+      <p data-i18n="pr.p1">En este momento, <strong>solo las cuentas de QGC están activas</strong> en Puerto Rico. Las demás empresas todavía no pueden crear una cuenta por su cuenta.</p>
+      <p data-i18n="pr.p2">Si tu empresa quiere usar Nivelato, puedes <strong>solicitar acceso</strong> llenando el formulario de solicitud. Revisamos cada solicitud y te contactamos con los próximos pasos.</p>
+      <div class="cta-row" style="margin-top:28px">
+        <a class="btn" href="https://apply.nivelatolabs.com/pr/company" data-i18n="pr.cta">Solicitar una cuenta</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span data-i18n="footer.copy">© 2026 Nivelato Labs</span>
+    <span class="mono">nivelatolabs.com · v1.3</span>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), {threshold: .12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Feature tabs
+  document.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.tabpanel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      const panel = document.getElementById(btn.dataset.tab);
+      if (panel) { panel.classList.add('active'); io.observe(panel); panel.classList.add('in'); }
+    });
+  });
+</script>
+<script>
+const I18N = {
+  en: {
+  "nav.features": "What it does",
+  "nav.how": "How it works",
+  "nav.pricing": "Pricing",
+  "nav.get": "Get the app",
+  "nav.pr": "Para clientes en PR",
+  "nav.contact": "Contact",
+  "nav.login": "Log in",
+  "nav.getNivelato": "Get Nivelato",
+  "footer.copy": "© 2026 Nivelato Labs",
+  "meta.title": "For customers in Puerto Rico - Nivelato Labs",
+  "meta.desc": "Business accounts in Puerto Rico: request access to Nivelato.",
+  "page.kicker": "Puerto Rico",
+  "page.title": "For customers in Puerto Rico",
+  "pr.kicker": "Puerto Rico",
+  "pr.title": "For customers in Puerto Rico",
+  "pr.p1": "Right now, <strong>only QGC accounts are active</strong> in Puerto Rico. Other companies cannot create an account on their own yet.",
+  "pr.p2": "If your company wants to use Nivelato, you can <strong>request access</strong> by filling out the application form. We review every application and contact you with next steps.",
+  "pr.cta": "Request an account"
+},
+  es: {
+  "nav.features": "Qué hace",
+  "nav.how": "Cómo funciona",
+  "nav.pricing": "Precios",
+  "nav.get": "Descarga la app",
+  "nav.pr": "Para clientes en PR",
+  "nav.contact": "Contacto",
+  "nav.login": "Iniciar sesión",
+  "nav.getNivelato": "Descargar Nivelato",
+  "footer.copy": "© 2026 Nivelato Labs",
+  "meta.title": "Para clientes en Puerto Rico - Nivelato Labs",
+  "meta.desc": "Cuentas de empresa en Puerto Rico: solicita acceso a Nivelato.",
+  "page.kicker": "Puerto Rico",
+  "page.title": "Para clientes en Puerto Rico",
+  "pr.kicker": "Puerto Rico",
+  "pr.title": "Para clientes en Puerto Rico",
+  "pr.p1": "En este momento, <strong>solo las cuentas de QGC están activas</strong> en Puerto Rico. Las demás empresas todavía no pueden crear una cuenta por su cuenta.",
+  "pr.p2": "Si tu empresa quiere usar Nivelato, puedes <strong>solicitar acceso</strong> llenando el formulario de solicitud. Revisamos cada solicitud y te contactamos con los próximos pasos.",
+  "pr.cta": "Solicitar una cuenta"
+}
+};
+const FORCED_LANG = "es";
+
+const LANG_KEY = 'nivelato-lang';
+function currentLang() {
+  try {
+    const saved = localStorage.getItem(LANG_KEY);
+    if (saved === 'en' || saved === 'es') return saved;
+  } catch (e) {}
+  if (FORCED_LANG) return FORCED_LANG;
+  const nav = (navigator.language || 'en').toLowerCase();
+  return nav.indexOf('es') === 0 ? 'es' : 'en';
+}
+function applyLang(l) {
+  const dict = I18N[l] || I18N.en;
+  document.documentElement.lang = l;
+  if (dict['meta.title']) document.title = dict['meta.title'];
+  const metaDescEl = document.querySelector('meta[name="description"]');
+  if (metaDescEl && dict['meta.desc']) metaDescEl.setAttribute('content', dict['meta.desc']);
+  document.querySelectorAll('[data-i18n]').forEach(function (el) {
+    const k = el.getAttribute('data-i18n');
+    if (dict[k] !== undefined) el.innerHTML = dict[k];
+  });
+  document.querySelectorAll('.lang-toggle').forEach(function (b) {
+    b.textContent = (l === 'en') ? 'ES' : 'EN';
+  });
+  try { localStorage.setItem(LANG_KEY, l); } catch (e) {}
+}
+document.querySelectorAll('.lang-toggle').forEach(function (b) {
+  b.addEventListener('click', function () {
+    const cur = document.documentElement.lang === 'es' ? 'es' : 'en';
+    applyLang(cur === 'en' ? 'es' : 'en');
+  });
+});
+applyLang(currentLang());
+
+</script>
+<style>
+  /* Custom dual cursor: slow outer ring + springy inner dot that can
+     overshoot (overflow) the ring on fast moves. Fine pointers only. */
+  #cur-outer, #cur-inner {
+    position: fixed; top: 0; left: 0; z-index: 9999;
+    pointer-events: none; border-radius: 50%;
+    opacity: 0; transition: opacity .25s;
+    will-change: transform;
+  }
+  #cur-outer {
+    width: 38px; height: 38px;
+    border: 1.5px solid rgba(245,165,36,.85);
+    transition: opacity .25s, width .2s, height .2s, border-color .2s;
+  }
+  #cur-outer.grow { width: 58px; height: 58px; border-color: rgba(200,245,66,.9); }
+  #cur-inner {
+    width: 8px; height: 8px;
+    background: #c8f542;
+    box-shadow: 0 0 10px rgba(200,245,66,.7);
+  }
+  body.cur-on #cur-outer, body.cur-on #cur-inner { opacity: 1; }
+
+</style>
+<div id="cur-outer" aria-hidden="true"></div>
+<div id="cur-inner" aria-hidden="true"></div>
+<script>
+const I18N = {
+  en: {
+  "nav.features": "What it does",
+  "nav.how": "How it works",
+  "nav.pricing": "Pricing",
+  "nav.get": "Get the app",
+  "nav.pr": "Para clientes en PR",
+  "nav.contact": "Contact",
+  "nav.login": "Log in",
+  "nav.getNivelato": "Get Nivelato",
+  "footer.copy": "© 2026 Nivelato Labs",
+  "meta.title": "For customers in Puerto Rico - Nivelato Labs",
+  "meta.desc": "Business accounts in Puerto Rico: request access to Nivelato.",
+  "hero.kicker": "Nivelato",
+  "hero.title": "Software that <span class=\"laser\">measures up.</span>",
+  "hero.lede": "Field measurement for glass shops. Walk in, measure everything, walk out with a quote, from your phone.",
+  "hero.cta1": "Get the app",
+  "hero.cta2": "See what it does",
+  "hero.rule1": "<b>01</b>&nbsp; flagship app in development",
+  "hero.rule2": "<b>02</b>&nbsp; platforms: Android + web",
+  "hero.rule3": "<b>00</b>&nbsp; clipboards required",
+  "pilot.kicker": "Ongoing project",
+  "pilot.title": "Automating a glass shop, end to end.",
+  "pilot.sub": "Nivelato Labs is working with a glass shop in Puerto Rico on full automation: measuring, quoting, and everything in between. The app is the first piece. The shop is the proving ground.",
+  "pilot.soon": "●&nbsp; pilot in progress"
+},
+  es: {
+  "nav.features": "Qué hace",
+  "nav.how": "Cómo funciona",
+  "nav.pricing": "Precios",
+  "nav.get": "Descarga la app",
+  "nav.pr": "Para clientes en PR",
+  "nav.contact": "Contacto",
+  "nav.login": "Iniciar sesión",
+  "nav.getNivelato": "Descargar Nivelato",
+  "footer.copy": "© 2026 Nivelato Labs",
+  "meta.title": "Para clientes en Puerto Rico - Nivelato Labs",
+  "meta.desc": "Cuentas de empresa en Puerto Rico: solicita acceso a Nivelato.",
+  "hero.kicker": "Nivelato",
+  "hero.title": "Software que <span class=\"laser\">da la medida.</span>",
+  "hero.lede": "Medición en campo para talleres de cristales. Entra, mide todo, sal con una cotización, desde tu teléfono.",
+  "hero.cta1": "Descarga la app",
+  "hero.cta2": "Ver qué hace",
+  "hero.rule1": "<b>01</b>&nbsp; app principal en desarrollo",
+  "hero.rule2": "<b>02</b>&nbsp; plataformas: Android + web",
+  "hero.rule3": "<b>00</b>&nbsp; portapapeles necesarios",
+  "pilot.kicker": "Proyecto en curso",
+  "pilot.title": "Automatizando un taller de cristales, de principio a fin.",
+  "pilot.sub": "Nivelato Labs trabaja con un taller de cristales en Puerto Rico en automatización total: medición, cotización y todo lo demás. La app es la primera pieza. El taller es el campo de pruebas.",
+  "pilot.soon": "●&nbsp; piloto en curso"
+}
+};
+const FORCED_LANG = null;
+
+const LANG_KEY = 'nivelato-lang';
+function currentLang() {
+  try {
+    const saved = localStorage.getItem(LANG_KEY);
+    if (saved === 'en' || saved === 'es') return saved;
+  } catch (e) {}
+  if (FORCED_LANG) return FORCED_LANG;
+  const nav = (navigator.language || 'en').toLowerCase();
+  return nav.indexOf('es') === 0 ? 'es' : 'en';
+}
+function applyLang(l) {
+  const dict = I18N[l] || I18N.en;
+  document.documentElement.lang = l;
+  if (dict['meta.title']) document.title = dict['meta.title'];
+  const metaDescEl = document.querySelector('meta[name="description"]');
+  if (metaDescEl && dict['meta.desc']) metaDescEl.setAttribute('content', dict['meta.desc']);
+  document.querySelectorAll('[data-i18n]').forEach(function (el) {
+    const k = el.getAttribute('data-i18n');
+    if (dict[k] !== undefined) el.innerHTML = dict[k];
+  });
+  document.querySelectorAll('.lang-toggle').forEach(function (b) {
+    b.textContent = (l === 'en') ? 'ES' : 'EN';
+  });
+  try { localStorage.setItem(LANG_KEY, l); } catch (e) {}
+}
+document.querySelectorAll('.lang-toggle').forEach(function (b) {
+  b.addEventListener('click', function () {
+    const cur = document.documentElement.lang === 'es' ? 'es' : 'en';
+    applyLang(cur === 'en' ? 'es' : 'en');
+  });
+});
+applyLang(currentLang());
+
+</script>
+</body>
+</html>
