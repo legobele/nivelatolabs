@@ -132,6 +132,9 @@
   #pr .pr-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:40px 36px;max-width:760px}
   #pr .pr-card p{color:var(--muted);margin-bottom:16px;max-width:60ch}
   #pr .pr-card p strong{color:var(--ink);font-weight:600}
+  /* phonebench */
+  #phonebench .step.live{border-color:var(--laser);box-shadow:0 0 0 1px var(--laser),0 12px 40px rgba(200,245,66,.10)}
+  #phonebench .credit{margin-top:32px;color:var(--dim);font-family:'JetBrains Mono';font-size:.82rem}
   /* contact */
   #contact{text-align:center}
   #contact .sec-sub{margin-left:auto;margin-right:auto}
@@ -215,6 +218,51 @@
     </div>
   </div>
 </header>
+
+<section id="phonebench" class="alt">
+  <div class="wrap">
+    <div class="sec-kicker reveal" data-i18n="pb.kicker">From the lab · October 2026</div>
+    <h2 class="reveal" data-i18n="pb.title">PhoneBench: the first benchmark for fully autonomous skilled work.</h2>
+    <p class="sec-sub reveal" data-i18n="pb.sub">PhoneBench hands a model a robotic arm, a bench of powered tools, and a broken phone, no script, no human hands, and scores the repair on time, efficiency, and accuracy against three quality tiers. Its extreme scenario, THE FREEZER, runs a phone battery swap inside a walk-in freezer while the phone, the arm, and the bench batteries race to die of the cold. Every run below was operated end to end by a single model, zero-shot.</p>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="n">THE FREEZER v1 · −40°F</div>
+        <h3>PASS</h3>
+        <p>Galaxy Note7 battery replacement in a walk-in freezer. All three quality tiers passed.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n">THE FREEZER v2 · −40°F</div>
+        <h3>PASS</h3>
+        <p>Cold start, no warm standby, no free look. All three quality tiers passed again.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n">iPad Pro 11″ M1 · Diagnosis</div>
+        <h3>PASS</h3>
+        <p>A dead iPad that would not boot. The agent diagnosed a failed, mildly swollen battery it was never told about, then replaced it. Clean sweep at every tier.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n">THE FREEZER v5 · −55°F</div>
+        <h3>FAIL</h3>
+        <p>Deep cold. Stage-3 arm stiffening by minute 15; the arm seized at 22 minutes with the old battery still in the phone.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n">THE PUNISHMENT · 400°F oven</div>
+        <h3>FAIL</h3>
+        <p>A Note7 battery swap inside a lit oven, while charging. Two runs: one phone launched out unsealed, one cooked where it sat.</p>
+      </div>
+      <div class="step live reveal">
+        <div class="n">THE FREEZER v9 · −245°F · LIVE</div>
+        <h3>RUNNING</h3>
+        <p>Thermal-shock marathon: hardware starts hot at 59.9°C, plunges, and the floor falls to −245°F while the agent swaps an iPhone 14 Pro Max display, then does the Note7. Estimated survival: under 1%.</p>
+      </div>
+    </div>
+    <p class="credit reveal" data-i18n="pb.credit">All runs operated by Muse Wonder (via Muse harness).</p>
+    <div class="cta-row reveal">
+      <a class="btn" href="https://freezer.nivelatolabs.com" data-i18n="pb.watch">Watch the freezer live</a>
+      <a class="btn ghost" href="https://github.com/legobele/phonebench" data-i18n="pb.github">PhoneBench on GitHub</a>
+    </div>
+  </div>
+</section>
 
 <section id="features" class="alt">
   <div class="wrap">
@@ -392,6 +440,12 @@ const I18N = {
   "pilot.title": "Automating a glass shop, end to end.",
   "pilot.sub": "Nivelato Labs is working with a glass shop in Puerto Rico on full automation: measuring, quoting, and everything in between. The app is the first piece. The shop is the proving ground.",
   "pilot.soon": "●&nbsp; pilot in progress",
+  "pb.kicker": "From the lab · October 2026",
+  "pb.title": "PhoneBench: the first benchmark for fully autonomous skilled work.",
+  "pb.sub": "PhoneBench hands a model a robotic arm, a bench of powered tools, and a broken phone, no script, no human hands, and scores the repair on time, efficiency, and accuracy against three quality tiers. Its extreme scenario, THE FREEZER, runs a phone battery swap inside a walk-in freezer while the phone, the arm, and the bench batteries race to die of the cold. Every run below was operated end to end by a single model, zero-shot.",
+  "pb.credit": "All runs operated by Muse Wonder (via Muse harness).",
+  "pb.watch": "Watch the freezer live",
+  "pb.github": "PhoneBench on GitHub",
   "features.kicker": "What it does",
   "features.title": "Everything the job needs, in your pocket.",
   "features.sub": "Four capabilities in one app: field measurement, photo capture, project organization, and team management.",
@@ -473,6 +527,12 @@ const I18N = {
   "pilot.title": "Automatizando un taller de cristales, de principio a fin.",
   "pilot.sub": "Nivelato Labs trabaja con un taller de cristales en Puerto Rico en automatización total: medición, cotización y todo lo demás. La app es la primera pieza. El taller es el campo de pruebas.",
   "pilot.soon": "●&nbsp; piloto en curso",
+  "pb.kicker": "Desde el laboratorio · octubre de 2026",
+  "pb.title": "PhoneBench: el primer benchmark de trabajo especializado totalmente autónomo.",
+  "pb.sub": "PhoneBench le entrega a un modelo un brazo robótico, un banco de herramientas eléctricas y un teléfono roto, sin guion y sin manos humanas, y evalúa la reparación en tiempo, eficiencia y precisión contra tres niveles de calidad. Su escenario extremo, THE FREEZER, hace un cambio de batería dentro de un congelador industrial mientras el teléfono, el brazo y las baterías del banco compiten por morir de frío. Cada corrida a continuación fue operada de principio a fin por un solo modelo, sin entrenamiento específico.",
+  "pb.credit": "Todas las corridas operadas por Muse Wonder (mediante el harness de Muse).",
+  "pb.watch": "Ver el freezer en vivo",
+  "pb.github": "PhoneBench en GitHub",
   "features.kicker": "Qué hace",
   "features.title": "Todo lo que el trabajo necesita, en tu bolsillo.",
   "features.sub": "Cuatro capacidades en una sola app: medición en campo, captura de fotos, organización de proyectos y gestión de equipo.",
@@ -618,6 +678,12 @@ const I18N = {
   "pilot.title": "Automating a glass shop, end to end.",
   "pilot.sub": "Nivelato Labs is working with a glass shop in Puerto Rico on full automation: measuring, quoting, and everything in between. The app is the first piece. The shop is the proving ground.",
   "pilot.soon": "●&nbsp; pilot in progress",
+  "pb.kicker": "From the lab · October 2026",
+  "pb.title": "PhoneBench: the first benchmark for fully autonomous skilled work.",
+  "pb.sub": "PhoneBench hands a model a robotic arm, a bench of powered tools, and a broken phone, no script, no human hands, and scores the repair on time, efficiency, and accuracy against three quality tiers. Its extreme scenario, THE FREEZER, runs a phone battery swap inside a walk-in freezer while the phone, the arm, and the bench batteries race to die of the cold. Every run below was operated end to end by a single model, zero-shot.",
+  "pb.credit": "All runs operated by Muse Wonder (via Muse harness).",
+  "pb.watch": "Watch the freezer live",
+  "pb.github": "PhoneBench on GitHub",
   "features.kicker": "What it does",
   "features.title": "Everything the job needs, in your pocket.",
   "features.sub": "Four capabilities in one app: field measurement, photo capture, project organization, and team management.",
@@ -699,6 +765,12 @@ const I18N = {
   "pilot.title": "Automatizando un taller de cristales, de principio a fin.",
   "pilot.sub": "Nivelato Labs trabaja con un taller de cristales en Puerto Rico en automatización total: medición, cotización y todo lo demás. La app es la primera pieza. El taller es el campo de pruebas.",
   "pilot.soon": "●&nbsp; piloto en curso",
+  "pb.kicker": "Desde el laboratorio · octubre de 2026",
+  "pb.title": "PhoneBench: el primer benchmark de trabajo especializado totalmente autónomo.",
+  "pb.sub": "PhoneBench le entrega a un modelo un brazo robótico, un banco de herramientas eléctricas y un teléfono roto, sin guion y sin manos humanas, y evalúa la reparación en tiempo, eficiencia y precisión contra tres niveles de calidad. Su escenario extremo, THE FREEZER, hace un cambio de batería dentro de un congelador industrial mientras el teléfono, el brazo y las baterías del banco compiten por morir de frío. Cada corrida a continuación fue operada de principio a fin por un solo modelo, sin entrenamiento específico.",
+  "pb.credit": "Todas las corridas operadas por Muse Wonder (mediante el harness de Muse).",
+  "pb.watch": "Ver el freezer en vivo",
+  "pb.github": "PhoneBench en GitHub",
   "features.kicker": "Qué hace",
   "features.title": "Todo lo que el trabajo necesita, en tu bolsillo.",
   "features.sub": "Cuatro capacidades en una sola app: medición en campo, captura de fotos, organización de proyectos y gestión de equipo.",
