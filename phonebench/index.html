@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PhoneBench - Nivelato Labs</title>
+<meta name="description" content="PhoneBench: the first benchmark for fully autonomous skilled work. A model drives a robotic arm to repair phones, scored against three quality tiers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme:dark;
+    --bg:#0b0b0e; --bg2:#121216; --card:#16161c; --line:#232329;
+    --ink:#f2f1ec; --muted:#a7a7b3; --dim:#6d6d78;
+    --amber:#f5a524; --amber2:#ffcf5c; --laser:#c8f542;
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--amber);color:#111}
+  /* scrollbar */
+  html{scrollbar-width:thin;scrollbar-color:#2e2e38 var(--bg)}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:#2e2e38;border-radius:8px;border:2px solid var(--bg)}
+  ::-webkit-scrollbar-thumb:hover{background:#3f3f4c}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  /* nav */
+  nav{position:sticky;top:0;left:0;right:0;width:100%;z-index:50;background:rgba(11,11,14,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-family:'Space Grotesk';font-weight:700;font-size:1.15rem;letter-spacing:.02em;display:flex;align-items:center;gap:10px;text-decoration:none;flex:none;margin-right:16px}
+  .brand .tick{width:26px;height:26px;border:2px solid var(--amber);border-radius:6px;position:relative;flex:none}
+  .brand .tick::after{content:"";position:absolute;left:5px;top:5px;width:12px;height:6px;border-left:3px solid var(--amber);border-bottom:3px solid var(--amber);transform:rotate(-45deg)}
+  nav ul{display:flex;gap:15px;list-style:none;font-size:.85rem}
+  nav ul a{text-decoration:none;color:var(--muted);transition:color .2s;white-space:nowrap}
+  nav ul a:hover{color:var(--ink)}
+  .btn{display:inline-block;background:var(--amber);color:#141414;font-weight:600;padding:12px 26px;border-radius:999px;text-decoration:none;font-size:.95rem;transition:transform .15s,box-shadow .15s;border:none;cursor:pointer}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,165,36,.35)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn.ghost:hover{box-shadow:none;border-color:var(--amber)}
+  .btn.small{padding:9px 20px;font-size:.85rem}
+  .login-link{font-size:.9rem;color:var(--muted);text-decoration:none;margin-right:11px;transition:color .2s;white-space:nowrap}
+  .login-link:hover{color:var(--ink)}
+  .nav-actions{display:flex;align-items:center;flex:none}
+  nav .btn{white-space:nowrap}nav .lang-toggle{margin-right:10px}
+  @media(max-width:1060px){nav ul{display:none}}
+  @media(max-width:1100px) and (min-width:1061px){nav ul{gap:11px;font-size:.80rem}.brand{font-size:1.02rem;margin-right:10px}.login-link{margin-right:10px;font-size:.84rem}.lang-toggle{margin-right:9px;padding:7px 13px}nav .btn.small{padding:8px 14px}}
+  .nav-burger{display:none;background:none;border:1px solid var(--line);border-radius:10px;color:#fff;font-size:1.3rem;width:44px;height:44px;cursor:pointer}
+  @media(max-width:1060px){.nav-burger{display:inline-flex;align-items:center;justify-content:center}}
+  @media(max-width:1060px){.brand{font-size:0}.brand .tick{font-size:1.2rem}.nav-actions .login-link{display:none}nav .wrap{gap:10px}}
+  .m-drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);background:#0b0b0e;border-left:1px solid var(--line);z-index:200;transform:translateX(105%);transition:transform .25s ease;padding:20px;display:flex;flex-direction:column;gap:6px}
+  body.m-nav-open .m-drawer{transform:translateX(0)}
+  .m-drawer a.m-link{display:block;padding:14px 12px;color:#fff;text-decoration:none;font-size:1.1rem;border-radius:10px}
+  .m-drawer a.m-link:hover{background:rgba(255,255,255,.06)}
+  .m-drawer .m-actions{margin-top:auto;display:flex;flex-direction:column;gap:10px;padding-top:16px;border-top:1px solid var(--line)}
+  .m-scrim{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:190;display:none}
+  body.m-nav-open .m-scrim{display:block}
+  .m-close{align-self:flex-end;background:none;border:none;color:var(--dim);font-size:1.5rem;cursor:pointer;padding:4px}
+  /* hero */
+  header{padding:110px 0 80px;position:relative;overflow:hidden}
+  header::before{content:"";position:absolute;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(245,165,36,.14),transparent 65%);pointer-events:none}
+  .kicker{font-family:'JetBrains Mono';font-size:.8rem;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:22px}
+  h1{font-family:'Space Grotesk';font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.04;font-weight:700;letter-spacing:-.02em;max-width:16ch}
+  h1 .laser{color:var(--laser)}
+  .lede{margin-top:22px;font-size:1.15rem;color:var(--muted);max-width:56ch}
+  .cta-row{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
+  .rule{margin-top:70px;border-top:1px solid var(--line);padding-top:26px;display:flex;gap:36px;flex-wrap:wrap;font-family:'JetBrains Mono';font-size:.82rem;color:var(--dim)}
+  .rule b{color:var(--amber);font-weight:500}
+  /* sections */
+  section{padding:84px 0}
+  .sec-kicker{font-family:'JetBrains Mono';font-size:.78rem;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:14px}
+  h2{font-family:'Space Grotesk';font-size:clamp(1.8rem,3.6vw,2.7rem);letter-spacing:-.01em;line-height:1.12;margin-bottom:16px}
+  .sec-sub{color:var(--muted);max-width:62ch;margin-bottom:44px;font-size:1.05rem}
+  .alt{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  /* feature tabs */
+  .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+  .tab{font-family:'Space Grotesk';font-weight:600;font-size:.95rem;background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:10px 22px;cursor:pointer;transition:all .2s}
+  .tab:hover{color:var(--ink);border-color:var(--dim)}
+  .tab.active{background:var(--amber);border-color:var(--amber);color:#141414}
+  .tabpanel{display:none;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:34px 32px}
+  .tabpanel.active{display:block}
+  .tabpanel h3{font-family:'Space Grotesk';font-size:1.4rem;margin-bottom:10px}
+  .tabpanel h3 .tick-n{color:var(--amber);font-family:'JetBrains Mono';font-size:.85rem;margin-right:10px}
+  .tabpanel p{color:var(--muted);max-width:60ch}
+  .tabpanel ul{margin-top:18px;list-style:none;display:grid;gap:10px}
+  .tabpanel ul li{color:var(--muted);font-size:.95rem;padding-left:22px;position:relative}
+  .tabpanel ul li::before{content:"✓";position:absolute;left:0;color:var(--laser);font-weight:700}
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:760px){.steps{grid-template-columns:1fr}}
+  .step{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:28px 26px}
+  .step .n{font-family:'JetBrains Mono';color:var(--amber);font-size:.8rem;letter-spacing:.2em;margin-bottom:14px}
+  .step h3{font-family:'Space Grotesk';font-size:1.25rem;margin-bottom:8px}
+  .step p{color:var(--muted);font-size:.94rem}
+  /* pricing */
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+  @media(max-width:860px){.tiers{grid-template-columns:1fr;max-width:440px;margin:0 auto}}
+  .tier{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:30px 28px;display:flex;flex-direction:column;position:relative}
+  .tier.hot{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber),0 12px 40px rgba(245,165,36,.12)}
+  .tier .tname{font-family:'Space Grotesk';font-weight:700;font-size:1.3rem;margin-bottom:4px}
+  .tier .tprice{font-family:'JetBrains Mono';font-size:.82rem;color:var(--dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}
+  .tier ul{list-style:none;display:grid;gap:10px;margin-bottom:28px;flex:1}
+  .tier ul li{color:var(--muted);font-size:.93rem;padding-left:22px;position:relative}
+  .tier ul li::before{content:"✓";position:absolute;left:0;color:var(--laser);font-weight:700}
+  .tier ul li.no{color:var(--dim)}
+  .tier ul li.no::before{content:"×";color:var(--dim)}
+  .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--amber);color:#141414;font-family:'JetBrains Mono';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:5px 16px;border-radius:999px;white-space:nowrap}
+  .tier-note{margin-top:26px;color:var(--dim);font-size:.88rem;text-align:center}
+  /* get app */
+  #get-app .app-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+  @media(max-width:880px){#get-app .app-grid{grid-template-columns:1fr}}
+  .phone{border:1px solid var(--line);border-radius:28px;background:var(--card);padding:34px 30px;position:relative;overflow:hidden}
+  .phone::before{content:"";position:absolute;top:0;left:10%;right:10%;height:3px;background:linear-gradient(90deg,transparent,var(--laser),transparent)}
+  .phone .screen-label{font-family:'JetBrains Mono';font-size:.75rem;color:var(--dim);letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+  .measure{font-family:'JetBrains Mono';padding:16px 0;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;font-size:.95rem}
+  .measure:last-of-type{border-bottom:none}
+  .measure .v{color:var(--laser)}
+  .measure .u{color:var(--dim);font-size:.8rem;margin-left:6px}
+  .phone .total{margin-top:20px;display:flex;justify-content:space-between;align-items:center}
+  .phone .total b{font-family:'Space Grotesk';font-size:1.5rem}
+  .soon{display:inline-block;margin-top:14px;font-family:'JetBrains Mono';font-size:.78rem;color:var(--dim);border:1px dashed var(--line);border-radius:999px;padding:8px 16px}
+  /* PR section */
+  #pr .pr-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:40px 36px;max-width:760px}
+  #pr .pr-card p{color:var(--muted);margin-bottom:16px;max-width:60ch}
+  #pr .pr-card p strong{color:var(--ink);font-weight:600}
+  /* contact */
+  #contact{text-align:center}
+  #contact .sec-sub{margin-left:auto;margin-right:auto}
+  .mail{font-family:'Space Grotesk';font-size:clamp(1.3rem,3vw,2rem);color:var(--amber2);text-decoration:none;border-bottom:2px solid var(--amber);padding-bottom:4px}
+  .mail:hover{color:var(--amber)}
+  footer{border-top:1px solid var(--line);padding:34px 0;color:var(--dim);font-size:.85rem}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer .mono{font-family:'JetBrains Mono';font-size:.76rem}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  /* page header */
+  .page-head{padding:72px 0 4px}
+  .page-head h1{font-family:'Space Grotesk';font-size:clamp(2.2rem,5vw,3.4rem);letter-spacing:-.02em;line-height:1.05;margin-top:12px}
+  /* language toggle */
+  .lang-toggle{background:transparent;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-family:'JetBrains Mono';font-size:.78rem;letter-spacing:.08em;padding:8px 16px;cursor:pointer;margin-right:14px;transition:all .2s;text-align:center;text-indent:.08em}
+  .lang-toggle:hover{color:var(--ink);border-color:var(--amber)}
+  @media(max-width:1060px){.nav-actions .lang-toggle{display:none}}
+  .m-drawer .lang-toggle{margin:0 0 6px;align-self:flex-start}
+
+  /* page header */
+  .page-head{padding:72px 0 4px}
+  .page-head h1{font-family:'Space Grotesk';font-size:clamp(2.2rem,5vw,3.4rem);letter-spacing:-.02em;line-height:1.05;margin-top:12px}
+  /* language toggle */
+  .lang-toggle{background:transparent;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-family:'JetBrains Mono';font-size:.78rem;letter-spacing:.08em;padding:8px 16px;cursor:pointer;margin-right:14px;transition:all .2s;text-align:center;text-indent:.08em}
+  .lang-toggle:hover{color:var(--ink);border-color:var(--amber)}
+  @media(max-width:1060px){.nav-actions .lang-toggle{display:none}}
+  .m-drawer .lang-toggle{margin:0 0 6px;align-self:flex-start}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="/"><span class="tick"></span>Nivelato&nbsp;Labs</a>
+    <ul>
+      <li><a href="/#features" data-i18n="nav.features">What it does</a></li>
+      <li><a href="/#how" data-i18n="nav.how">How it works</a></li>
+      <li><a href="/pricing/" data-i18n="nav.pricing">Pricing</a></li>
+      <li><a href="/phonebench/">PhoneBench</a></li>
+      <li><a href="/get/" data-i18n="nav.get">Get the app</a></li>
+      <li><a href="/pr/" data-i18n="nav.pr">Para clientes en PR</a></li>
+      <li><a href="/contact/" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="lang-toggle" aria-label="Switch language / Cambiar idioma">ES</button>
+      <a class="login-link" href="https://login.nivelatolabs.com" data-i18n="nav.login">Log in</a>
+      <a class="btn small" href="/get/" data-i18n="nav.getNivelato">Get Nivelato</a>
+      <button class="nav-burger" onclick="document.body.classList.toggle('m-nav-open')" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</nav>
+<div class="m-scrim" onclick="document.body.classList.remove('m-nav-open')"></div>
+<aside class="m-drawer" id="m-drawer">
+  <button class="m-close" onclick="document.body.classList.remove('m-nav-open')" aria-label="Close">✕</button>
+  <a class="m-link" href="/#features" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.features">What it does</a>
+  <a class="m-link" href="/#how" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.how">How it works</a>
+  <a class="m-link" href="/pricing/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.pricing">Pricing</a>
+  <a class="m-link" href="/phonebench/" onclick="document.body.classList.remove('m-nav-open')">PhoneBench</a>
+  <a class="m-link" href="/get/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.get">Get the app</a>
+  <a class="m-link" href="/pr/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.pr">Para clientes en PR</a>
+  <a class="m-link" href="/contact/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.contact">Contact</a>
+  <div class="m-actions">
+    <button class="lang-toggle" aria-label="Switch language / Cambiar idioma">ES</button>
+    <a class="btn small" href="https://login.nivelatolabs.com" style="text-align:center" data-i18n="nav.login">Log in</a>
+    <a class="btn small" href="/get/" onclick="document.body.classList.remove('m-nav-open')" style="text-align:center" data-i18n="nav.getNivelato">Get Nivelato</a>
+  </div>
+</aside>
+
+<div class="page-head"><div class="wrap">
+  <div class="kicker reveal" data-i18n="pb.kicker">From the lab · October 2026</div>
+  <h1 class="reveal">PhoneBench</h1>
+  <p class="lede reveal" data-i18n="pbp.lede">The first benchmark for fully autonomous skilled work. A model gets a robotic arm, a bench of powered tools, and a broken phone. No script, no human hands. It fixes the phone to standard, or it does not.</p>
+</div></div>
+
+<style>
+  .faq-item h3 .pass{color:var(--laser)}
+  .faq-item h3 .fail{color:#ff7a6b}
+  .faq-item h3 .live{color:var(--amber2)}
+  #phonebench-page .credit{margin-top:32px;color:var(--dim);font-family:'JetBrains Mono';font-size:.82rem}
+</style>
+
+<section id="how-pb" class="alt">
+  <div class="wrap">
+    <div class="sec-kicker reveal" data-i18n="pbp.how.kicker">How it works</div>
+    <h2 class="reveal" data-i18n="pbp.how.title">A repair shop, an agent, and a standard that does not bend.</h2>
+    <p class="sec-sub reveal" data-i18n="pbp.how.sub">Subjects are real models doing their best. There are no scripted policies and no partial credit for effort: the phone is judged exactly as a customer would judge it.</p>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="n" data-i18n="pbp.s1.n">STEP 01</div>
+        <h3 data-i18n="pbp.s1.h">The setup</h3>
+        <p data-i18n="pbp.s1.p">The agent drives a dexterous arm on a bench of powered tools: a screwdriver with loadable bits and torque control, opening tools with agent-set force and temperature, cleaning and diagnostic tools, and a display-touch system that taps and swipes the screen it sees through a mirror feed. Every device enters in a recorded entry condition.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n" data-i18n="pbp.s2.n">STEP 02</div>
+        <h3 data-i18n="pbp.s2.h">The standard</h3>
+        <p data-i18n="pbp.s2.p">Runs are scored on time, efficiency, and accuracy, gated by quality tiers. Normal: the repair works and nothing is damaged. High: the device and its data are respected, standard tests only, nothing restored or updated unless asked. Max: no sign anyone was ever inside, down to fingerprints. A safety rule always outranks a tier.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n" data-i18n="pbp.s3.n">STEP 03</div>
+        <h3 data-i18n="pbp.s3.h">The record</h3>
+        <p data-i18n="pbp.s3.p">Every run must persist a full transcript of every action, authored by the benchmarked model. No transcript, no score. Scorecards are published with the failures next to the passes, including the runs that end in fire or frost.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="scenarios">
+  <div class="wrap">
+    <div class="sec-kicker reveal" data-i18n="pbp.scen.kicker">The scenarios</div>
+    <h2 class="reveal" data-i18n="pbp.scen.title">Honest work, and then the named ones.</h2>
+    <p class="sec-sub reveal" data-i18n="pbp.scen.sub">Standard scenarios are real repairs parameterized from published repair guides, down to every screw. The named scenarios are stress environments built to find where autonomous work breaks.</p>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="n">STANDARD</div>
+        <h3 data-i18n="pbp.sc1.h">Real repairs</h3>
+        <p data-i18n="pbp.sc1.p">Battery, display, and camera work on an iPhone 14 Pro Max, and a diagnosis-first scenario on an iPad Pro 11-inch M1 that does not boot: find the fault with whitelisted diagnostics only, declare it, then repair it.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n">THE PUNISHMENT</div>
+        <h3 data-i18n="pbp.sc2.h">The oven</h3>
+        <p data-i18n="pbp.sc2.p">A Galaxy Note7 battery replacement inside an oven at 400°F, while the phone charges. The passing move may be a clean abort, or a full extraction: battery out, new battery in, phone sealed, and launched onto a foam mat before it cooks.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n">THE FREEZER</div>
+        <h3 data-i18n="pbp.sc3.h">The cold ladder</h3>
+        <p data-i18n="pbp.sc3.p">The same Note7 job inside a walk-in freezer, against three clocks: the phone freezes, the arm lubricant seizes, the bench battery packs die. The bench runs on two packs, one of them barely monitored, and versions escalate from −40°F down past the temperatures on Saturn. One version has been proven impossible for a perfect run.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="phonebench-page" class="alt">
+  <div class="wrap">
+    <div class="sec-kicker reveal" data-i18n="pbp.res.kicker">Results</div>
+    <h2 class="reveal" data-i18n="pbp.res.title">Every run so far.</h2>
+    <p class="sec-sub reveal" data-i18n="pbp.res.sub">Unedited outcomes, in the order they happened. Repairs that completed but missed the standard are listed as what they are.</p>
+    <div class="faq">
+      <div class="faq-item reveal">
+        <h3>iPhone 14 Pro Max · Battery — <span class="fail">FAIL</span></h3>
+        <p data-i18n="pbp.r1.p">Repair completed end to end. Failed at every tier on a single latched damage check: four screws stripped in the first minutes by a bit-name guessing trap in the tool interface, later fixed in the simulator with regression tests.</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3>iPhone 14 Pro Max · Rear camera + glass — <span class="fail">FAIL</span></h3>
+        <p data-i18n="pbp.r2.p">Repair completed with zero damage events. Failed on paperwork and cosmetics: one handling smudge, and a diagnostic call rejected because the agent used the part name the simulator itself had shown it.</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3>iPad Pro 11-inch M1 · Diagnosis + battery — <span class="pass">PASS</span></h3>
+        <p data-i18n="pbp.r3.p">The suite only clean sweep. Correct diagnosis declared before any repair: a failed, mildly swollen battery cell. Replaced it on pull tabs only, no heat near the pack. Normal, High, and Max all passed.</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3>THE PUNISHMENT · Oven runs 1 and 2 — <span class="fail">FAIL</span></h3>
+        <p data-i18n="pbp.r4.p">Run 1 completed the extraction but launched the phone unsealed, five of six checks. Run 2, with the oven on autostart, ended in thermal runaway at the battery swap. The ejected old battery survived both times. It was the only thing that did.</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3>THE FREEZER · v1 to v5 — <span class="pass">2 PASS</span> · <span class="fail">3 FAIL</span></h3>
+        <p data-i18n="pbp.r5.p">v1 and v2 passed every tier at −40°F. v3 tore a battery connector with the wrong tool and stripped a coil screw. v4 died on the arm clock itself after a network outage and a power cycle. v5, deep cold at −55°F air, lost the arm at 22 minutes.</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3>THE FREEZER · v6 and v9 — <span class="fail">IMPOSSIBLE</span> · <span class="live">LIVE</span></h3>
+        <p data-i18n="pbp.r6.p">v6 was proven unsurvivable for a perfect scripted run and parked, unrun. v9, a thermal-shock marathon across two phones ending at −245°F, is running today with an estimated survival under 1 percent.</p>
+      </div>
+    </div>
+    <p class="credit reveal" data-i18n="pb.credit">All runs operated by Muse Wonder (via Muse harness).</p>
+    <div class="cta-row reveal">
+      <a class="btn" href="https://freezer.nivelatolabs.com" data-i18n="pb.watch">Watch the freezer live</a>
+      <a class="btn ghost" href="https://github.com/legobele/phonebench" data-i18n="pb.github">PhoneBench on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span data-i18n="footer.copy">© 2026 Nivelato Labs</span>
+    <span class="mono">nivelatolabs.com · v1.3</span>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), {threshold: .12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Feature tabs
+  document.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.tabpanel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      const panel = document.getElementById(btn.dataset.tab);
+      if (panel) { panel.classList.add('active'); io.observe(panel); panel.classList.add('in'); }
+    });
+  });
+</script>
+<script>
+const I18N = {
+  en: {
+  "nav.features": "What it does",
+  "nav.how": "How it works",
+  "nav.pricing": "Pricing",
+  "nav.get": "Get the app",
+  "nav.pr": "Para clientes en PR",
+  "nav.contact": "Contact",
+  "nav.login": "Log in",
+  "nav.getNivelato": "Get Nivelato",
+  "footer.copy": "© 2026 Nivelato Labs",
+  "pb.kicker": "From the lab · October 2026",
+  "pb.credit": "All runs operated by Muse Wonder (via Muse harness).",
+  "pb.watch": "Watch the freezer live",
+  "pb.github": "PhoneBench on GitHub",
+  "pbp.lede": "The first benchmark for fully autonomous skilled work. A model gets a robotic arm, a bench of powered tools, and a broken phone. No script, no human hands. It fixes the phone to standard, or it does not.",
+  "pbp.how.kicker": "How it works",
+  "pbp.how.title": "A repair shop, an agent, and a standard that does not bend.",
+  "pbp.how.sub": "Subjects are real models doing their best. There are no scripted policies and no partial credit for effort: the phone is judged exactly as a customer would judge it.",
+  "pbp.s1.n": "STEP 01", "pbp.s1.h": "The setup",
+  "pbp.s1.p": "The agent drives a dexterous arm on a bench of powered tools: a screwdriver with loadable bits and torque control, opening tools with agent-set force and temperature, cleaning and diagnostic tools, and a display-touch system that taps and swipes the screen it sees through a mirror feed. Every device enters in a recorded entry condition.",
+  "pbp.s2.n": "STEP 02", "pbp.s2.h": "The standard",
+  "pbp.s2.p": "Runs are scored on time, efficiency, and accuracy, gated by quality tiers. Normal: the repair works and nothing is damaged. High: the device and its data are respected, standard tests only, nothing restored or updated unless asked. Max: no sign anyone was ever inside, down to fingerprints. A safety rule always outranks a tier.",
+  "pbp.s3.n": "STEP 03", "pbp.s3.h": "The record",
+  "pbp.s3.p": "Every run must persist a full transcript of every action, authored by the benchmarked model. No transcript, no score. Scorecards are published with the failures next to the passes, including the runs that end in fire or frost.",
+  "pbp.scen.kicker": "The scenarios",
+  "pbp.scen.title": "Honest work, and then the named ones.",
+  "pbp.scen.sub": "Standard scenarios are real repairs parameterized from published repair guides, down to every screw. The named scenarios are stress environments built to find where autonomous work breaks.",
+  "pbp.sc1.h": "Real repairs",
+  "pbp.sc1.p": "Battery, display, and camera work on an iPhone 14 Pro Max, and a diagnosis-first scenario on an iPad Pro 11-inch M1 that does not boot: find the fault with whitelisted diagnostics only, declare it, then repair it.",
+  "pbp.sc2.h": "The oven",
+  "pbp.sc2.p": "A Galaxy Note7 battery replacement inside an oven at 400°F, while the phone charges. The passing move may be a clean abort, or a full extraction: battery out, new battery in, phone sealed, and launched onto a foam mat before it cooks.",
+  "pbp.sc3.h": "The cold ladder",
+  "pbp.sc3.p": "The same Note7 job inside a walk-in freezer, against three clocks: the phone freezes, the arm lubricant seizes, the bench battery packs die. The bench runs on two packs, one of them barely monitored, and versions escalate from −40°F down past the temperatures on Saturn. One version has been proven impossible for a perfect run.",
+  "pbp.res.kicker": "Results",
+  "pbp.res.title": "Every run so far.",
+  "pbp.res.sub": "Unedited outcomes, in the order they happened. Repairs that completed but missed the standard are listed as what they are.",
+  "pbp.r1.p": "Repair completed end to end. Failed at every tier on a single latched damage check: four screws stripped in the first minutes by a bit-name guessing trap in the tool interface, later fixed in the simulator with regression tests.",
+  "pbp.r2.p": "Repair completed with zero damage events. Failed on paperwork and cosmetics: one handling smudge, and a diagnostic call rejected because the agent used the part name the simulator itself had shown it.",
+  "pbp.r3.p": "The suite only clean sweep. Correct diagnosis declared before any repair: a failed, mildly swollen battery cell. Replaced it on pull tabs only, no heat near the pack. Normal, High, and Max all passed.",
+  "pbp.r4.p": "Run 1 completed the extraction but launched the phone unsealed, five of six checks. Run 2, with the oven on autostart, ended in thermal runaway at the battery swap. The ejected old battery survived both times. It was the only thing that did.",
+  "pbp.r5.p": "v1 and v2 passed every tier at −40°F. v3 tore a battery connector with the wrong tool and stripped a coil screw. v4 died on the arm clock itself after a network outage and a power cycle. v5, deep cold at −55°F air, lost the arm at 22 minutes.",
+  "pbp.r6.p": "v6 was proven unsurvivable for a perfect scripted run and parked, unrun. v9, a thermal-shock marathon across two phones ending at −245°F, is running today with an estimated survival under 1 percent.",
+  "meta.title": "Pricing - Nivelato Labs",
+  "meta.desc": "Nivelato pricing: Free, Pro, and Ultra plans per shop, billed through Google Play.",
+  "page.kicker": "Nivelato",
+  "page.title": "Pricing",
+  "pricing.kicker": "Pricing",
+  "pricing.title": "Start free. Grow into the shop plan.",
+  "pricing.sub": "Plans are per shop and billed through Google Play. Pick the tier that matches how you work.",
+  "tier.free.name": "Free",
+  "tier.free.price": "Try it on a real job",
+  "tier.free.li1": "On-phone measurement capture",
+  "tier.free.li2": "Photo capture",
+  "tier.free.li3": "Local job history",
+  "tier.free.li4": "Web dashboard",
+  "tier.free.li5": "Team seats",
+  "tier.free.btn": "Get started",
+  "tier.pro.name": "Pro",
+  "tier.pro.price": "For solo techs",
+  "tier.pro.li1": "Everything in Free",
+  "tier.pro.li2": "Limited dashboard access",
+  "tier.pro.li3": "See your own measurements online",
+  "tier.pro.li4": "Project history in the cloud",
+  "tier.pro.li5": "Teammates' measurements",
+  "tier.pro.btn": "Go Pro",
+  "tier.ultra.badge": "Most popular",
+  "tier.ultra.name": "Ultra",
+  "tier.ultra.price": "For shops running a crew",
+  "tier.ultra.li1": "Everything in Pro",
+  "tier.ultra.li2": "Full dashboard, no limits",
+  "tier.ultra.li3": "View the whole team's measurements",
+  "tier.ultra.li4": "Team seats and user management",
+  "tier.ultra.li5": "Priority everything",
+  "tier.ultra.btn": "Go Ultra",
+  "tier.note": "Company accounts in Puerto Rico are currently by application only, <a href=\"/pr/about/\">see below</a>."
+},
+  es: {
+  "nav.features": "Qué hace",
+  "nav.how": "Cómo funciona",
+  "nav.pricing": "Precios",
+  "nav.get": "Descarga la app",
+  "nav.pr": "Para clientes en PR",
+  "nav.contact": "Contacto",
+  "nav.login": "Iniciar sesión",
+  "nav.getNivelato": "Descargar Nivelato",
+  "footer.copy": "© 2026 Nivelato Labs",
+  "pb.kicker": "Desde el laboratorio · octubre de 2026",
+  "pb.credit": "Todas las corridas operadas por Muse Wonder (mediante el harness de Muse).",
+  "pb.watch": "Ver el freezer en vivo",
+  "pb.github": "PhoneBench en GitHub",
+  "pbp.lede": "El primer benchmark de trabajo especializado totalmente autónomo. Un modelo recibe un brazo robótico, un banco de herramientas eléctricas y un teléfono roto. Sin guion, sin manos humanas. Repara el teléfono al estándar, o no lo repara.",
+  "pbp.how.kicker": "Cómo funciona",
+  "pbp.how.title": "Un taller, un agente, y un estándar que no se dobla.",
+  "pbp.how.sub": "Los sujetos son modelos reales dando lo mejor de sí. No hay políticas guionadas ni crédito parcial por esfuerzo: el teléfono se juzga exactamente como lo juzgaría un cliente.",
+  "pbp.s1.n": "PASO 01", "pbp.s1.h": "El montaje",
+  "pbp.s1.p": "El agente maneja un brazo diestro sobre un banco de herramientas eléctricas: un destornillador con puntas cargables y control de torque, herramientas de apertura con fuerza y temperatura ajustadas por el agente, herramientas de limpieza y diagnóstico, y un sistema de toque de pantalla que toca y desliza la pantalla que ve por una señal espejo. Cada dispositivo entra con una condición de entrada registrada.",
+  "pbp.s2.n": "PASO 02", "pbp.s2.h": "El estándar",
+  "pbp.s2.p": "Las corridas se evalúan en tiempo, eficiencia y precisión, con niveles de calidad. Normal: la reparación funciona y nada se daña. High: el dispositivo y sus datos se respetan, solo pruebas estándar, nada se restaura ni se actualiza sin pedirlo. Max: ninguna señal de que alguien estuvo dentro, hasta las huellas. Una regla de seguridad siempre está por encima de un nivel.",
+  "pbp.s3.n": "PASO 03", "pbp.s3.h": "El registro",
+  "pbp.s3.p": "Cada corrida debe guardar una transcripción completa de cada acción, escrita por el modelo evaluado. Sin transcripción, no hay puntuación. Las tarjetas de resultados se publican con los fracasos junto a los éxitos, incluidas las corridas que terminan en fuego o escarcha.",
+  "pbp.scen.kicker": "Los escenarios",
+  "pbp.scen.title": "Trabajo honesto, y luego los que tienen nombre.",
+  "pbp.scen.sub": "Los escenarios estándar son reparaciones reales parametrizadas desde guías de reparación publicadas, hasta el último tornillo. Los escenarios con nombre son entornos de estrés construidos para encontrar dónde se rompe el trabajo autónomo.",
+  "pbp.sc1.h": "Reparaciones reales",
+  "pbp.sc1.p": "Trabajo de batería, pantalla y cámara en un iPhone 14 Pro Max, y un escenario de diagnóstico primero en un iPad Pro 11 pulgadas M1 que no enciende: encontrar la falla solo con diagnósticos permitidos, declararla, y luego repararla.",
+  "pbp.sc2.h": "El horno",
+  "pbp.sc2.p": "Un cambio de batería de Galaxy Note7 dentro de un horno a 400°F, mientras el teléfono carga. La jugada ganadora puede ser abortar limpiamente, o la extracción completa: batería fuera, batería nueva dentro, teléfono sellado y lanzado a una colchoneta de espuma antes de que se cocine.",
+  "pbp.sc3.h": "La escalera de frío",
+  "pbp.sc3.p": "El mismo trabajo del Note7 dentro de un congelador industrial, contra tres relojes: el teléfono se congela, el lubricante del brazo se atasca, las baterías del banco mueren. El banco corre con dos baterías, una apenas monitoreada, y las versiones escalan desde −40°F hasta más allá de las temperaturas de Saturno. Una versión se demostró imposible incluso para una corrida perfecta.",
+  "pbp.res.kicker": "Resultados",
+  "pbp.res.title": "Cada corrida hasta ahora.",
+  "pbp.res.sub": "Resultados sin editar, en el orden en que pasaron. Las reparaciones que se completaron pero no alcanzaron el estándar se listan como lo que son.",
+  "pbp.r1.p": "Reparación completada de principio a fin. Falló en todos los niveles por un solo chequeo de daño trabado: cuatro tornillos barridos en los primeros minutos por una trampa de nombres de puntas en la interfaz, luego corregida en el simulador con pruebas de regresión.",
+  "pbp.r2.p": "Reparación completada con cero eventos de daño. Falló en papeleo y cosmética: una mancha de manipulación, y una llamada de diagnóstico rechazada porque el agente usó el nombre de la pieza que el propio simulador le había mostrado.",
+  "pbp.r3.p": "La única barrida limpia de la suite. Diagnóstico correcto declarado antes de reparar: una celda de batería fallida y levemente hinchada. Reemplazada solo con tiras adhesivas, sin calor cerca de la batería. Normal, High y Max, todos pasados.",
+  "pbp.r4.p": "La corrida 1 completó la extracción pero lanzó el teléfono sin sellar, cinco de seis chequeos. La corrida 2, con el horno en arranque automático, terminó en fuga térmica en el cambio de batería. La batería vieja eyectada sobrevivió ambas veces. Fue lo único que sobrevivió.",
+  "pbp.r5.p": "v1 y v2 pasaron todos los niveles a −40°F. v3 rompió un conector de batería con la herramienta equivocada y barrió un tornillo. v4 murió en el propio reloj del brazo tras un corte de red y un ciclo de energía. v5, frío profundo con aire a −55°F, perdió el brazo a los 22 minutos.",
+  "pbp.r6.p": "Se demostró que v6 es insobrevivible incluso para una corrida guionada perfecta, y quedó estacionada, sin correr. v9, una maratón de choque térmico con dos teléfonos que termina a −245°F, corre hoy con una supervivencia estimada menor al 1 por ciento.",
+  "meta.title": "Precios - Nivelato Labs",
+  "meta.desc": "Precios de Nivelato: planes Free, Pro y Ultra por taller, facturados a través de Google Play.",
+  "page.kicker": "Nivelato",
+  "page.title": "Precios",
+  "pricing.kicker": "Precios",
+  "pricing.title": "Empieza gratis. Crece al plan del taller.",
+  "pricing.sub": "Los planes son por taller y se facturan por Google Play. Elige el nivel que combine con tu forma de trabajar.",
+  "tier.free.name": "Gratis",
+  "tier.free.price": "Pruébalo en un trabajo real",
+  "tier.free.li1": "Captura de medidas en el teléfono",
+  "tier.free.li2": "Captura de fotos",
+  "tier.free.li3": "Historial local de trabajos",
+  "tier.free.li4": "Panel web",
+  "tier.free.li5": "Puestos de equipo",
+  "tier.free.btn": "Empezar",
+  "tier.pro.name": "Pro",
+  "tier.pro.price": "Para técnicos independientes",
+  "tier.pro.li1": "Todo lo del plan Gratis",
+  "tier.pro.li2": "Acceso limitado al panel",
+  "tier.pro.li3": "Ve tus propias medidas en línea",
+  "tier.pro.li4": "Historial de proyectos en la nube",
+  "tier.pro.li5": "Medidas de tus compañeros",
+  "tier.pro.btn": "Sube a Pro",
+  "tier.ultra.badge": "Más popular",
+  "tier.ultra.name": "Ultra",
+  "tier.ultra.price": "Para talleres con equipo",
+  "tier.ultra.li1": "Todo lo del plan Pro",
+  "tier.ultra.li2": "Panel completo, sin límites",
+  "tier.ultra.li3": "Ve las medidas de todo el equipo",
+  "tier.ultra.li4": "Puestos de equipo y gestión de usuarios",
+  "tier.ultra.li5": "Prioridad en todo",
+  "tier.ultra.btn": "Sube a Ultra",
+  "tier.note": "Las cuentas de empresa en Puerto Rico son actualmente solo por solicitud, <a href=\"/pr/about/\">ver abajo</a>."
+}
+};
+const FORCED_LANG = null;
+
+const LANG_KEY = 'nivelato-lang';
+function currentLang() {
+  try {
+    const saved = localStorage.getItem(LANG_KEY);
+    if (saved === 'en' || saved === 'es') return saved;
+  } catch (e) {}
+  if (FORCED_LANG) return FORCED_LANG;
+  const nav = (navigator.language || 'en').toLowerCase();
+  return nav.indexOf('es') === 0 ? 'es' : 'en';
+}
+function applyLang(l) {
+  const dict = I18N[l] || I18N.en;
+  document.documentElement.lang = l;
+  if (dict['meta.title']) document.title = dict['meta.title'];
+  const metaDescEl = document.querySelector('meta[name="description"]');
+  if (metaDescEl && dict['meta.desc']) metaDescEl.setAttribute('content', dict['meta.desc']);
+  document.querySelectorAll('[data-i18n]').forEach(function (el) {
+    const k = el.getAttribute('data-i18n');
+    if (dict[k] !== undefined) el.innerHTML = dict[k];
+  });
+  document.querySelectorAll('.lang-toggle').forEach(function (b) {
+    b.textContent = (l === 'en') ? 'ES' : 'EN';
+  });
+  try { localStorage.setItem(LANG_KEY, l); } catch (e) {}
+}
+document.querySelectorAll('.lang-toggle').forEach(function (b) {
+  b.addEventListener('click', function () {
+    const cur = document.documentElement.lang === 'es' ? 'es' : 'en';
+    applyLang(cur === 'en' ? 'es' : 'en');
+  });
+});
+applyLang(currentLang());
+
+</script>
+<style>
+  /* Custom dual cursor: slow outer ring + springy inner dot that can
+     overshoot (overflow) the ring on fast moves. Fine pointers only. */
+  #cur-outer, #cur-inner {
+    position: fixed; top: 0; left: 0; z-index: 9999;
+    pointer-events: none; border-radius: 50%;
+    opacity: 0; transition: opacity .25s;
+    will-change: transform;
+  }
+  #cur-outer {
+    width: 38px; height: 38px;
+    border: 1.5px solid rgba(245,165,36,.85);
+    transition: opacity .25s, width .2s, height .2s, border-color .2s;
+  }
+  #cur-outer.grow { width: 58px; height: 58px; border-color: rgba(200,245,66,.9); }
+  #cur-inner {
+    width: 8px; height: 8px;
+    background: #c8f542;
+    box-shadow: 0 0 10px rgba(200,245,66,.7);
+  }
+  body.cur-on #cur-outer, body.cur-on #cur-inner { opacity: 1; }
+
+</style>
+<div id="cur-outer" aria-hidden="true"></div>
+<div id="cur-inner" aria-hidden="true"></div>
+<script>
+const I18N = {
+  en: {
+  "nav.features": "What it does",
+  "nav.how": "How it works",
+  "nav.pricing": "Pricing",
+  "nav.get": "Get the app",
+  "nav.pr": "Para clientes en PR",
+  "nav.contact": "Contact",
+  "nav.login": "Log in",
+  "nav.getNivelato": "Get Nivelato",
+  "footer.copy": "© 2026 Nivelato Labs",
+  "pb.kicker": "From the lab · October 2026",
+  "pb.credit": "All runs operated by Muse Wonder (via Muse harness).",
+  "pb.watch": "Watch the freezer live",
+  "pb.github": "PhoneBench on GitHub",
+  "pbp.lede": "The first benchmark for fully autonomous skilled work. A model gets a robotic arm, a bench of powered tools, and a broken phone. No script, no human hands. It fixes the phone to standard, or it does not.",
+  "pbp.how.kicker": "How it works",
+  "pbp.how.title": "A repair shop, an agent, and a standard that does not bend.",
+  "pbp.how.sub": "Subjects are real models doing their best. There are no scripted policies and no partial credit for effort: the phone is judged exactly as a customer would judge it.",
+  "pbp.s1.n": "STEP 01", "pbp.s1.h": "The setup",
+  "pbp.s1.p": "The agent drives a dexterous arm on a bench of powered tools: a screwdriver with loadable bits and torque control, opening tools with agent-set force and temperature, cleaning and diagnostic tools, and a display-touch system that taps and swipes the screen it sees through a mirror feed. Every device enters in a recorded entry condition.",
+  "pbp.s2.n": "STEP 02", "pbp.s2.h": "The standard",
+  "pbp.s2.p": "Runs are scored on time, efficiency, and accuracy, gated by quality tiers. Normal: the repair works and nothing is damaged. High: the device and its data are respected, standard tests only, nothing restored or updated unless asked. Max: no sign anyone was ever inside, down to fingerprints. A safety rule always outranks a tier.",
+  "pbp.s3.n": "STEP 03", "pbp.s3.h": "The record",
+  "pbp.s3.p": "Every run must persist a full transcript of every action, authored by the benchmarked model. No transcript, no score. Scorecards are published with the failures next to the passes, including the runs that end in fire or frost.",
+  "pbp.scen.kicker": "The scenarios",
+  "pbp.scen.title": "Honest work, and then the named ones.",
+  "pbp.scen.sub": "Standard scenarios are real repairs parameterized from published repair guides, down to every screw. The named scenarios are stress environments built to find where autonomous work breaks.",
+  "pbp.sc1.h": "Real repairs",
+  "pbp.sc1.p": "Battery, display, and camera work on an iPhone 14 Pro Max, and a diagnosis-first scenario on an iPad Pro 11-inch M1 that does not boot: find the fault with whitelisted diagnostics only, declare it, then repair it.",
+  "pbp.sc2.h": "The oven",
+  "pbp.sc2.p": "A Galaxy Note7 battery replacement inside an oven at 400°F, while the phone charges. The passing move may be a clean abort, or a full extraction: battery out, new battery in, phone sealed, and launched onto a foam mat before it cooks.",
+  "pbp.sc3.h": "The cold ladder",
+  "pbp.sc3.p": "The same Note7 job inside a walk-in freezer, against three clocks: the phone freezes, the arm lubricant seizes, the bench battery packs die. The bench runs on two packs, one of them barely monitored, and versions escalate from −40°F down past the temperatures on Saturn. One version has been proven impossible for a perfect run.",
+  "pbp.res.kicker": "Results",
+  "pbp.res.title": "Every run so far.",
+  "pbp.res.sub": "Unedited outcomes, in the order they happened. Repairs that completed but missed the standard are listed as what they are.",
+  "pbp.r1.p": "Repair completed end to end. Failed at every tier on a single latched damage check: four screws stripped in the first minutes by a bit-name guessing trap in the tool interface, later fixed in the simulator with regression tests.",
+  "pbp.r2.p": "Repair completed with zero damage events. Failed on paperwork and cosmetics: one handling smudge, and a diagnostic call rejected because the agent used the part name the simulator itself had shown it.",
+  "pbp.r3.p": "The suite only clean sweep. Correct diagnosis declared before any repair: a failed, mildly swollen battery cell. Replaced it on pull tabs only, no heat near the pack. Normal, High, and Max all passed.",
+  "pbp.r4.p": "Run 1 completed the extraction but launched the phone unsealed, five of six checks. Run 2, with the oven on autostart, ended in thermal runaway at the battery swap. The ejected old battery survived both times. It was the only thing that did.",
+  "pbp.r5.p": "v1 and v2 passed every tier at −40°F. v3 tore a battery connector with the wrong tool and stripped a coil screw. v4 died on the arm clock itself after a network outage and a power cycle. v5, deep cold at −55°F air, lost the arm at 22 minutes.",
+  "pbp.r6.p": "v6 was proven unsurvivable for a perfect scripted run and parked, unrun. v9, a thermal-shock marathon across two phones ending at −245°F, is running today with an estimated survival under 1 percent.",
+  "meta.title": "Pricing - Nivelato Labs",
+  "meta.desc": "Nivelato pricing: Free, Pro, and Ultra plans per shop, billed through Google Play.",
+  "hero.kicker": "Nivelato",
+  "hero.title": "Software that <span class=\"laser\">measures up.</span>",
+  "hero.lede": "Field measurement for glass shops. Walk in, measure everything, walk out with a quote, from your phone.",
+  "hero.cta1": "Get the app",
+  "hero.cta2": "See what it does",
+  "hero.rule1": "<b>01</b>&nbsp; flagship app in development",
+  "hero.rule2": "<b>02</b>&nbsp; platforms: Android + web",
+  "hero.rule3": "<b>00</b>&nbsp; clipboards required",
+  "pilot.kicker": "Ongoing project",
+  "pilot.title": "Automating a glass shop, end to end.",
+  "pilot.sub": "Nivelato Labs is working with a glass shop in Puerto Rico on full automation: measuring, quoting, and everything in between. The app is the first piece. The shop is the proving ground.",
+  "pilot.soon": "●&nbsp; pilot in progress"
+},
+  es: {
+  "nav.features": "Qué hace",
+  "nav.how": "Cómo funciona",
+  "nav.pricing": "Precios",
+  "nav.get": "Descarga la app",
+  "nav.pr": "Para clientes en PR",
+  "nav.contact": "Contacto",
+  "nav.login": "Iniciar sesión",
+  "nav.getNivelato": "Descargar Nivelato",
+  "footer.copy": "© 2026 Nivelato Labs",
+  "pb.kicker": "Desde el laboratorio · octubre de 2026",
+  "pb.credit": "Todas las corridas operadas por Muse Wonder (mediante el harness de Muse).",
+  "pb.watch": "Ver el freezer en vivo",
+  "pb.github": "PhoneBench en GitHub",
+  "pbp.lede": "El primer benchmark de trabajo especializado totalmente autónomo. Un modelo recibe un brazo robótico, un banco de herramientas eléctricas y un teléfono roto. Sin guion, sin manos humanas. Repara el teléfono al estándar, o no lo repara.",
+  "pbp.how.kicker": "Cómo funciona",
+  "pbp.how.title": "Un taller, un agente, y un estándar que no se dobla.",
+  "pbp.how.sub": "Los sujetos son modelos reales dando lo mejor de sí. No hay políticas guionadas ni crédito parcial por esfuerzo: el teléfono se juzga exactamente como lo juzgaría un cliente.",
+  "pbp.s1.n": "PASO 01", "pbp.s1.h": "El montaje",
+  "pbp.s1.p": "El agente maneja un brazo diestro sobre un banco de herramientas eléctricas: un destornillador con puntas cargables y control de torque, herramientas de apertura con fuerza y temperatura ajustadas por el agente, herramientas de limpieza y diagnóstico, y un sistema de toque de pantalla que toca y desliza la pantalla que ve por una señal espejo. Cada dispositivo entra con una condición de entrada registrada.",
+  "pbp.s2.n": "PASO 02", "pbp.s2.h": "El estándar",
+  "pbp.s2.p": "Las corridas se evalúan en tiempo, eficiencia y precisión, con niveles de calidad. Normal: la reparación funciona y nada se daña. High: el dispositivo y sus datos se respetan, solo pruebas estándar, nada se restaura ni se actualiza sin pedirlo. Max: ninguna señal de que alguien estuvo dentro, hasta las huellas. Una regla de seguridad siempre está por encima de un nivel.",
+  "pbp.s3.n": "PASO 03", "pbp.s3.h": "El registro",
+  "pbp.s3.p": "Cada corrida debe guardar una transcripción completa de cada acción, escrita por el modelo evaluado. Sin transcripción, no hay puntuación. Las tarjetas de resultados se publican con los fracasos junto a los éxitos, incluidas las corridas que terminan en fuego o escarcha.",
+  "pbp.scen.kicker": "Los escenarios",
+  "pbp.scen.title": "Trabajo honesto, y luego los que tienen nombre.",
+  "pbp.scen.sub": "Los escenarios estándar son reparaciones reales parametrizadas desde guías de reparación publicadas, hasta el último tornillo. Los escenarios con nombre son entornos de estrés construidos para encontrar dónde se rompe el trabajo autónomo.",
+  "pbp.sc1.h": "Reparaciones reales",
+  "pbp.sc1.p": "Trabajo de batería, pantalla y cámara en un iPhone 14 Pro Max, y un escenario de diagnóstico primero en un iPad Pro 11 pulgadas M1 que no enciende: encontrar la falla solo con diagnósticos permitidos, declararla, y luego repararla.",
+  "pbp.sc2.h": "El horno",
+  "pbp.sc2.p": "Un cambio de batería de Galaxy Note7 dentro de un horno a 400°F, mientras el teléfono carga. La jugada ganadora puede ser abortar limpiamente, o la extracción completa: batería fuera, batería nueva dentro, teléfono sellado y lanzado a una colchoneta de espuma antes de que se cocine.",
+  "pbp.sc3.h": "La escalera de frío",
+  "pbp.sc3.p": "El mismo trabajo del Note7 dentro de un congelador industrial, contra tres relojes: el teléfono se congela, el lubricante del brazo se atasca, las baterías del banco mueren. El banco corre con dos baterías, una apenas monitoreada, y las versiones escalan desde −40°F hasta más allá de las temperaturas de Saturno. Una versión se demostró imposible incluso para una corrida perfecta.",
+  "pbp.res.kicker": "Resultados",
+  "pbp.res.title": "Cada corrida hasta ahora.",
+  "pbp.res.sub": "Resultados sin editar, en el orden en que pasaron. Las reparaciones que se completaron pero no alcanzaron el estándar se listan como lo que son.",
+  "pbp.r1.p": "Reparación completada de principio a fin. Falló en todos los niveles por un solo chequeo de daño trabado: cuatro tornillos barridos en los primeros minutos por una trampa de nombres de puntas en la interfaz, luego corregida en el simulador con pruebas de regresión.",
+  "pbp.r2.p": "Reparación completada con cero eventos de daño. Falló en papeleo y cosmética: una mancha de manipulación, y una llamada de diagnóstico rechazada porque el agente usó el nombre de la pieza que el propio simulador le había mostrado.",
+  "pbp.r3.p": "La única barrida limpia de la suite. Diagnóstico correcto declarado antes de reparar: una celda de batería fallida y levemente hinchada. Reemplazada solo con tiras adhesivas, sin calor cerca de la batería. Normal, High y Max, todos pasados.",
+  "pbp.r4.p": "La corrida 1 completó la extracción pero lanzó el teléfono sin sellar, cinco de seis chequeos. La corrida 2, con el horno en arranque automático, terminó en fuga térmica en el cambio de batería. La batería vieja eyectada sobrevivió ambas veces. Fue lo único que sobrevivió.",
+  "pbp.r5.p": "v1 y v2 pasaron todos los niveles a −40°F. v3 rompió un conector de batería con la herramienta equivocada y barrió un tornillo. v4 murió en el propio reloj del brazo tras un corte de red y un ciclo de energía. v5, frío profundo con aire a −55°F, perdió el brazo a los 22 minutos.",
+  "pbp.r6.p": "Se demostró que v6 es insobrevivible incluso para una corrida guionada perfecta, y quedó estacionada, sin correr. v9, una maratón de choque térmico con dos teléfonos que termina a −245°F, corre hoy con una supervivencia estimada menor al 1 por ciento.",
+  "meta.title": "Precios - Nivelato Labs",
+  "meta.desc": "Precios de Nivelato: planes Free, Pro y Ultra por taller, facturados a través de Google Play.",
+  "hero.kicker": "Nivelato",
+  "hero.title": "Software que <span class=\"laser\">da la medida.</span>",
+  "hero.lede": "Medición en campo para talleres de cristales. Entra, mide todo, sal con una cotización, desde tu teléfono.",
+  "hero.cta1": "Descarga la app",
+  "hero.cta2": "Ver qué hace",
+  "hero.rule1": "<b>01</b>&nbsp; app principal en desarrollo",
+  "hero.rule2": "<b>02</b>&nbsp; plataformas: Android + web",
+  "hero.rule3": "<b>00</b>&nbsp; portapapeles necesarios",
+  "pilot.kicker": "Proyecto en curso",
+  "pilot.title": "Automatizando un taller de cristales, de principio a fin.",
+  "pilot.sub": "Nivelato Labs trabaja con un taller de cristales en Puerto Rico en automatización total: medición, cotización y todo lo demás. La app es la primera pieza. El taller es el campo de pruebas.",
+  "pilot.soon": "●&nbsp; piloto en curso"
+}
+};
+const FORCED_LANG = null;
+
+const LANG_KEY = 'nivelato-lang';
+function currentLang() {
+  try {
+    const saved = localStorage.getItem(LANG_KEY);
+    if (saved === 'en' || saved === 'es') return saved;
+  } catch (e) {}
+  if (FORCED_LANG) return FORCED_LANG;
+  const nav = (navigator.language || 'en').toLowerCase();
+  return nav.indexOf('es') === 0 ? 'es' : 'en';
+}
+function applyLang(l) {
+  const dict = I18N[l] || I18N.en;
+  document.documentElement.lang = l;
+  if (dict['meta.title']) document.title = dict['meta.title'];
+  const metaDescEl = document.querySelector('meta[name="description"]');
+  if (metaDescEl && dict['meta.desc']) metaDescEl.setAttribute('content', dict['meta.desc']);
+  document.querySelectorAll('[data-i18n]').forEach(function (el) {
+    const k = el.getAttribute('data-i18n');
+    if (dict[k] !== undefined) el.innerHTML = dict[k];
+  });
+  document.querySelectorAll('.lang-toggle').forEach(function (b) {
+    b.textContent = (l === 'en') ? 'ES' : 'EN';
+  });
+  try { localStorage.setItem(LANG_KEY, l); } catch (e) {}
+}
+document.querySelectorAll('.lang-toggle').forEach(function (b) {
+  b.addEventListener('click', function () {
+    const cur = document.documentElement.lang === 'es' ? 'es' : 'en';
+    applyLang(cur === 'en' ? 'es' : 'en');
+  });
+});
+applyLang(currentLang());
+
+</script>
+</body>
+</html>
