@@ -124,6 +124,31 @@ body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events
 .variant-menu .lang-toggle{align-self:center;margin:0 0 10px}
 @media(max-width:480px){.variant-nav{min-height:116px;padding:20px 16px 14px}.variant-mark{width:30px;height:30px}.variant-wordmark{font-size:.88rem}.variant-menu-button{top:20px;right:12px}.variant-menu-close{top:20px;right:12px}.variant-menu-inner{padding-top:112px}}
 @media(prefers-reduced-motion:reduce){.variant-menu{transition:none}}
+
+/* ---- Homepage hero: mountain treatment (the login hero grammar) ----
+   Full-bleed Oeschinensee photo, monochrome and darkened under a scrim,
+   HUD eyebrow, and the lab claim set huge and stacked — the treatment
+   the app login proved out. The hero box pulls up under the transparent
+   Variant B header so the photo runs behind the centered lockup; the
+   header's own top scrim keeps the lockup legible over the photo.
+   The blueprint grid retires from the hero and stays in the sections
+   below. Photo: Günter Seggebäing, CC BY-SA 3.0 (credit at the foot of
+   the hero; docs/asset-credits.md). */
+header{--navh:126px;margin-top:calc(var(--navh) * -1);padding:calc(var(--navh) + 92px) 0 108px;background-image:none}
+header::before{inset:0;background:url('/assets/mountains-oeschinensee.jpg') center 30%/cover no-repeat;filter:grayscale(1) contrast(1.07) brightness(.6)}
+header::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(5,5,5,.42) 0%,rgba(5,5,5,.16) 34%,rgba(5,5,5,.52) 70%,#050505 100%);pointer-events:none}
+header .wrap{position:relative;z-index:2}
+header .kicker{color:#fafafa;letter-spacing:.3em;text-shadow:0 1px 12px rgba(0,0,0,.55)}
+header h1{font-size:clamp(2.35rem,8vw,5.7rem);line-height:1.0;letter-spacing:-.015em;text-transform:uppercase;max-width:14ch;text-shadow:0 2px 34px rgba(0,0,0,.5)}
+header .lede{color:#cfcfd6;text-shadow:0 1px 16px rgba(0,0,0,.6)}
+header .btn.ghost{background:rgba(5,5,5,.35);border-color:rgba(255,255,255,.35);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+header .rule{border-top-color:rgba(255,255,255,.28);color:#b9b9c0}
+header .rule b{color:#fff}
+header .photo-credit{margin-top:54px;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;color:rgba(250,250,250,.55)}
+header .photo-credit a{color:rgba(250,250,250,.78);text-decoration:none}
+header .photo-credit a:hover{color:#fff}
+section{background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:54px 54px}
+@media(max-width:480px){header{--navh:116px;padding:calc(var(--navh) + 54px) 0 76px}}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -157,8 +182,8 @@ body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events
   </div>
 </div>
 <header><div class="wrap">
-<div class="kicker">Nivelato Labs</div>
-<h1>Software that <span class="laser">measures up</span>, built at agent speed.</h1>
+<div class="kicker">[ Nivelato Labs ]</div>
+<h1>Software that<br><span class="laser">measures up</span>,<br>built at<br>agent speed.</h1>
 <p class="lede">Nivelato Labs is an AI-driven software lab. A human sets the standard and directs the work; coordinated AI agents design, build, test, and document at a pace a traditional team cannot match. The result is production software, shipped end to end, that holds up in the field.</p>
 <div class="cta-row">
 <a class="btn" href="/products/">Explore the products</a>
@@ -169,6 +194,7 @@ body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events
 <span><b>Research</b> PhoneBench, a robotics AI benchmark for autonomous skilled work</span>
 <span><b>Method</b> Multi-agent development, human directed</span>
 </div>
+<div class="photo-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:20190725_Oeschinensee-Panorama,_Kandersteg_(06540-42_stitch).jpg" target="_blank" rel="noopener noreferrer">© Günter Seggebäing, Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></div>
 </div></header>
 
 <section class="alt reveal"><div class="wrap">
@@ -204,5 +230,8 @@ var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isInt
 els.forEach(function(e){io.observe(e)});
 }catch(err){document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in')});}})();
 </script>
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ba83c66be7af41d899cb499dfa1442c8"}'></script>
+<!-- End Cloudflare Web Analytics -->
 </body>
 </html>
