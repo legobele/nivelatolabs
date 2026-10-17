@@ -151,6 +151,44 @@ body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events
 ]}
 </script>
 <link rel="alternate" type="text/markdown" title="AGENTS.md" href="/AGENTS.md">
+<style>
+/* ---- MOTION SYSTEM (Oct 2026, "zero jump-cuts"; docs/motion-system.md) ----
+   One motion language across Nivelato Labs surfaces; tokens are shared
+   with the app (canonical doc: DESIGN_SYSTEM_LABS.md in the app repo).
+   Additive only: entrances stay keyframe-based and content is visible
+   with no JS (the reveal system still only hides under html.js).
+   Everything collapses under prefers-reduced-motion. */
+:root{
+  --niv-mo-ease:cubic-bezier(.22,1,.36,1);
+  --niv-mo-micro:160ms;
+  --niv-mo-view:300ms;
+  --niv-mo-enter:560ms;
+}
+@keyframes niv-mo-menu-in{from{opacity:0;transform:translateY(10px)}}
+.btn{transition:background-color var(--niv-mo-micro) var(--niv-mo-ease),color var(--niv-mo-micro) var(--niv-mo-ease),border-color var(--niv-mo-micro) var(--niv-mo-ease),transform var(--niv-mo-micro) var(--niv-mo-ease)}
+.btn:active{transform:scale(.98)}
+nav a,footer a{transition:color var(--niv-mo-micro) var(--niv-mo-ease),background-color var(--niv-mo-micro) var(--niv-mo-ease)}
+header .kicker,header h1,header .lede,header .cta-row,header .rule{animation-duration:var(--niv-mo-enter);animation-timing-function:var(--niv-mo-ease)}
+html.js .reveal{transition:opacity var(--niv-mo-enter) var(--niv-mo-ease),transform var(--niv-mo-enter) var(--niv-mo-ease)}
+.variant-menu{transition:opacity var(--niv-mo-view) var(--niv-mo-ease),visibility 0s linear var(--niv-mo-view)}
+body.variant-menu-open .variant-menu{transition:opacity var(--niv-mo-view) var(--niv-mo-ease)}
+body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo-view) var(--niv-mo-ease)}
+.variant-menu-inner>a{transition:background-color var(--niv-mo-micro) var(--niv-mo-ease),color var(--niv-mo-micro) var(--niv-mo-ease)}
+.variant-lang-list:not([hidden]){animation:niv-mo-menu-in var(--niv-mo-view) var(--niv-mo-ease)}
+.variant-lang-chev{display:inline-block;transition:transform var(--niv-mo-micro) var(--niv-mo-ease)}
+.variant-lang-current[aria-expanded="true"] .variant-lang-chev{transform:rotate(180deg)}
+.variant-lang-current{transition:border-color var(--niv-mo-micro) var(--niv-mo-ease)}
+.variant-lang-option{transition:background-color var(--niv-mo-micro) var(--niv-mo-ease),border-color var(--niv-mo-micro) var(--niv-mo-ease)}
+.lang-toggle{transition:background-color var(--niv-mo-micro) var(--niv-mo-ease),color var(--niv-mo-micro) var(--niv-mo-ease),border-color var(--niv-mo-micro) var(--niv-mo-ease)}
+.card{transition:border-color var(--niv-mo-micro) var(--niv-mo-ease),background-color var(--niv-mo-micro) var(--niv-mo-ease)}
+@media(prefers-reduced-motion:reduce){
+  .variant-menu{transition:none}
+  html.js .reveal{transition:none}
+  body.variant-menu-open .variant-menu-inner,.variant-lang-list:not([hidden]){animation:none}
+  .btn,.variant-menu-inner>a,.variant-lang-current,.variant-lang-option,.lang-toggle,.card,nav a,footer a{transition:none}
+  .btn:active{transform:none}
+}
+</style>
 </head>
 <body>
 <div class="intro" aria-hidden="true"><svg class="intro-mark" viewBox="-5 -5 110 110" fill="none" stroke="currentColor" stroke-width="6.5" aria-hidden="true" focusable="false"><path d="M55 20 H20 V84 H84 V43" stroke-linejoin="miter"/><path d="M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z" stroke-linejoin="bevel"/></svg><span>Nivelato Labs</span></div>
