@@ -192,6 +192,14 @@ body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events
 .variant-menu-actions .btn{text-align:center;justify-content:center}
 .variant-menu-close{position:absolute;top:26px;right:20px;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:transparent;color:#fff;font-size:1.35rem;line-height:1;cursor:pointer}
 .variant-menu .lang-toggle{align-self:center;margin:0 0 10px}
+.variant-lang{display:flex;flex-direction:column;gap:8px;margin:0 0 10px}
+.variant-lang-current{display:flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:10px 18px;background:transparent;border:1px solid var(--line);border-radius:999px;color:#fff;font-family:'JetBrains Mono',monospace;font-size:.85rem;letter-spacing:.08em;cursor:pointer}
+.variant-lang-current:hover{border-color:#fff}
+.variant-lang-list{display:flex;flex-direction:column;gap:6px}
+.variant-lang-list[hidden]{display:none}
+.variant-lang-option{min-height:46px;padding:10px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:12px;color:#fff;font:600 .98rem 'Inter',system-ui,sans-serif;cursor:pointer;text-align:center}
+.variant-lang-option:hover{background:rgba(255,255,255,.09)}
+.variant-lang-option[aria-selected="true"]{border-color:#fff;background:rgba(255,255,255,.12)}
 @media(max-width:480px){.variant-nav{min-height:116px;padding:20px 16px 14px}.variant-mark{width:30px;height:30px}.variant-wordmark{font-size:.88rem}.variant-menu-button{top:20px;right:12px}.variant-menu-close{top:20px;right:12px}.variant-menu-inner{padding-top:112px}}
 @media(prefers-reduced-motion:reduce){.variant-menu{transition:none}}
 </style>
@@ -220,7 +228,10 @@ body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events
     <a href="/pr/" data-i18n="nav.pr" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Para clientes en PR</a>
     <a href="/contact/" data-i18n="nav.contact" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Contact</a>
     <div class="variant-menu-actions">
-      <button class="lang-toggle" type="button" aria-label="Switch language / Cambiar idioma">ES</button>
+      <div class="variant-lang" id="variant-lang">
+        <button class="variant-lang-current" type="button" aria-expanded="false" aria-controls="variant-lang-list"><span class="variant-lang-current-label">English</span><span class="variant-lang-chev" aria-hidden="true">▾</span></button>
+        <div class="variant-lang-list" id="variant-lang-list" role="listbox" aria-label="Language" hidden></div>
+      </div>
       <a class="btn small variant-menu-action" href="https://login.nivelatolabs.com" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')" data-i18n="nav.login">Log in</a>
       <a class="btn small variant-menu-action" href="/get/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')" data-i18n="nav.getNivelato">Get Nivelato</a>
     </div>
@@ -479,11 +490,12 @@ const LANG_KEY = 'nivelato-lang';
 function currentLang() {
   try {
     const saved = localStorage.getItem(LANG_KEY);
-    if (saved === 'en' || saved === 'es') return saved;
+    if (saved && I18N[saved]) return saved;
   } catch (e) {}
   if (FORCED_LANG) return FORCED_LANG;
   const nav = (navigator.language || 'en').toLowerCase();
-  return nav.indexOf('es') === 0 ? 'es' : 'en';
+  const base = nav.split('-')[0];
+  return I18N[base] ? base : 'en';
 }
 function applyLang(l) {
   const dict = I18N[l] || I18N.en;
@@ -641,11 +653,12 @@ const LANG_KEY = 'nivelato-lang';
 function currentLang() {
   try {
     const saved = localStorage.getItem(LANG_KEY);
-    if (saved === 'en' || saved === 'es') return saved;
+    if (saved && I18N[saved]) return saved;
   } catch (e) {}
   if (FORCED_LANG) return FORCED_LANG;
   const nav = (navigator.language || 'en').toLowerCase();
-  return nav.indexOf('es') === 0 ? 'es' : 'en';
+  const base = nav.split('-')[0];
+  return I18N[base] ? base : 'en';
 }
 function applyLang(l) {
   const dict = I18N[l] || I18N.en;
@@ -670,6 +683,55 @@ document.querySelectorAll('.lang-toggle').forEach(function (b) {
 });
 applyLang(currentLang());
 
+</script>
+<script>
+/* Language selector for the Variant B menu overlay. The available
+   languages are a registry, not a hard-coded toggle: the list is
+   built from the page's I18N dictionaries. To add a language, add
+   its dictionary to I18N and one label line to LANG_LABELS below;
+   the selector, detection, and persistence pick it up with no UI
+   changes. Switching reuses the existing applyLang(). */
+(function () {
+  var LANG_LABELS = { en: 'English', es: 'Español' };
+  var wrap = document.getElementById('variant-lang');
+  if (!wrap || typeof I18N === 'undefined' || typeof applyLang !== 'function') return;
+  var currentBtn = wrap.querySelector('.variant-lang-current');
+  var currentLabel = wrap.querySelector('.variant-lang-current-label');
+  var list = document.getElementById('variant-lang-list');
+  var registry = Object.keys(I18N).map(function (code) {
+    return { code: code, label: LANG_LABELS[code] || code.toUpperCase(), dictionary: I18N[code] };
+  });
+  function paint() {
+    var cur = document.documentElement.lang || 'en';
+    registry.forEach(function (entry) {
+      if (entry.code === cur) currentLabel.textContent = entry.label;
+    });
+    list.querySelectorAll('.variant-lang-option').forEach(function (opt) {
+      opt.setAttribute('aria-selected', opt.getAttribute('data-lang') === cur ? 'true' : 'false');
+    });
+  }
+  registry.forEach(function (entry) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'variant-lang-option';
+    b.setAttribute('role', 'option');
+    b.setAttribute('data-lang', entry.code);
+    b.textContent = entry.label;
+    b.addEventListener('click', function () {
+      applyLang(entry.code);
+      paint();
+      list.hidden = true;
+      currentBtn.setAttribute('aria-expanded', 'false');
+    });
+    list.appendChild(b);
+  });
+  currentBtn.addEventListener('click', function () {
+    var willOpen = list.hidden;
+    list.hidden = !willOpen;
+    currentBtn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+  });
+  paint();
+})();
 </script>
 </body>
 </html>
