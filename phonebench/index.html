@@ -3,8 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PhoneBench - Nivelato Labs</title>
-<meta name="description" content="PhoneBench: the first benchmark for fully autonomous skilled work. A model drives a robotic arm to repair phones, scored against three quality tiers.">
+<title>PhoneBench - Robotics AI Benchmark - Nivelato Labs</title>
+<meta name="description" content="PhoneBench is a robotics AI benchmark for autonomous skilled work: an AI agent drives a robotic arm to repair phones, scored against three quality tiers.">
+<link rel="canonical" href="https://nivelatolabs.com/phonebench/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nivelato Labs">
+<meta property="og:title" content="PhoneBench - Robotics AI Benchmark - Nivelato Labs">
+<meta property="og:description" content="PhoneBench is a robotics AI benchmark for autonomous skilled work: an AI agent drives a robotic arm to repair phones, scored against three quality tiers.">
+<meta property="og:url" content="https://nivelatolabs.com/phonebench/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PhoneBench - Robotics AI Benchmark - Nivelato Labs">
+<meta name="twitter:description" content="An agentic robotics benchmark: a model drives a robot arm to repair phones, scored against three quality tiers, with full transcripts published.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ResearchProject","@id":"https://nivelatolabs.com/phonebench/#project","name":"PhoneBench","url":"https://nivelatolabs.com/phonebench/","parentOrganization":{"@id":"https://nivelatolabs.com/#org"},"description":"PhoneBench is a robotics AI benchmark for autonomous skilled work. An AI agent operates a robotic arm on a bench of powered tools and repairs a phone, scored on time, efficiency, and accuracy against three quality tiers, with a full transcript published for every run."}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -13,7 +25,7 @@
     color-scheme:dark;
     --bg:#0b0b0e; --bg2:#121216; --card:#16161c; --line:#232329;
     --ink:#f2f1ec; --muted:#a7a7b3; --dim:#6d6d78;
-    --amber:#f5a524; --amber2:#ffcf5c; --laser:#c8f542;
+    --amber:#ffffff; --amber2:#e6e6e9; --laser:#ffffff;
     --radius:14px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -38,7 +50,7 @@
   nav ul a{text-decoration:none;color:var(--muted);transition:color .2s;white-space:nowrap}
   nav ul a:hover{color:var(--ink)}
   .btn{display:inline-block;background:var(--amber);color:#141414;font-weight:600;padding:12px 26px;border-radius:999px;text-decoration:none;font-size:.95rem;transition:transform .15s,box-shadow .15s;border:none;cursor:pointer}
-  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,165,36,.35)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,255,255,.35)}
   .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
   .btn.ghost:hover{box-shadow:none;border-color:var(--amber)}
   .btn.small{padding:9px 20px;font-size:.85rem}
@@ -61,7 +73,7 @@
   .m-close{align-self:flex-end;background:none;border:none;color:var(--dim);font-size:1.5rem;cursor:pointer;padding:4px}
   /* hero */
   header{padding:110px 0 80px;position:relative;overflow:hidden}
-  header::before{content:"";position:absolute;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(245,165,36,.14),transparent 65%);pointer-events:none}
+  header::before{content:"";position:absolute;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(255,255,255,.14),transparent 65%);pointer-events:none}
   .kicker{font-family:'JetBrains Mono';font-size:.8rem;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:22px}
   h1{font-family:'Space Grotesk';font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.04;font-weight:700;letter-spacing:-.02em;max-width:16ch}
   h1 .laser{color:var(--laser)}
@@ -99,7 +111,7 @@
   .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
   @media(max-width:860px){.tiers{grid-template-columns:1fr;max-width:440px;margin:0 auto}}
   .tier{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:30px 28px;display:flex;flex-direction:column;position:relative}
-  .tier.hot{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber),0 12px 40px rgba(245,165,36,.12)}
+  .tier.hot{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber),0 12px 40px rgba(255,255,255,.12)}
   .tier .tname{font-family:'Space Grotesk';font-weight:700;font-size:1.3rem;margin-bottom:4px}
   .tier .tprice{font-family:'JetBrains Mono';font-size:.82rem;color:var(--dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}
   .tier ul{list-style:none;display:grid;gap:10px;margin-bottom:28px;flex:1}
@@ -154,56 +166,87 @@
   @media(max-width:1060px){.nav-actions .lang-toggle{display:none}}
   .m-drawer .lang-toggle{margin:0 0 6px;align-self:flex-start}
 
+
+/* ---- Variant B header (EDOLUS concept, chosen Oct 2026) ----
+   One centered lockup over a transparent header: Breakout outline
+   mark above the wide wordmark, with a minimal menu glyph at the
+   right. The wordmark family lives in a single token so a later
+   font decision is a one-line change. Anybody is set at weight 900
+   and 150% width; .08em spacing keeps the EDOLUS air without
+   weakening the already-expanded letterforms. */
+@font-face{font-family:'Anybody';src:url('/assets/fonts/Anybody-Variable.ttf') format('truetype');font-weight:100 900;font-stretch:50% 150%;font-display:swap}
+.variant-nav{--wordmark-font:'Anybody','Archivo Black',system-ui,sans-serif;--wordmark-spacing:.08em;position:relative;top:auto;z-index:80;min-height:126px;padding:24px 20px 18px;background:transparent;border:0;-webkit-backdrop-filter:none;backdrop-filter:none;display:flex;align-items:flex-start;justify-content:center;overflow:visible}
+.variant-nav::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.46),rgba(0,0,0,0) 88%);pointer-events:none}
+.variant-nav .variant-lockup{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:9px;max-width:calc(100vw - 112px);color:#fff;text-decoration:none}
+.variant-mark{width:34px;height:34px;color:#fff;flex:none}
+.variant-mark svg{display:block;width:100%;height:100%}
+.variant-wordmark{font-family:var(--wordmark-font);font-weight:900;font-stretch:150%;font-size:clamp(.92rem,2.2vw,1.18rem);line-height:1;letter-spacing:var(--wordmark-spacing);text-indent:var(--wordmark-spacing);text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 14px rgba(0,0,0,.35)}
+.variant-menu-button{position:absolute;top:26px;right:20px;z-index:2;width:44px;height:44px;padding:0 10px;border:0;background:transparent;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer}
+.variant-menu-button i{display:block;width:22px;height:2.5px;border-radius:2px;background:currentColor}
+.variant-menu{position:fixed;inset:0;z-index:400;background:rgba(3,3,4,.96);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s ease,visibility 0s linear .25s;overflow-y:auto}
+body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .25s ease}
+.variant-menu-inner{width:min(440px,calc(100vw - 48px));margin:0 auto;padding:126px 0 44px;display:flex;flex-direction:column;gap:2px}
+.variant-menu-inner>a{min-height:54px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(255,255,255,.10);color:#fff;text-decoration:none;font-size:1.08rem;font-weight:600;text-align:center}
+.variant-menu-inner>a:hover,.variant-menu-inner>a:focus-visible{color:#fff;background:rgba(255,255,255,.06)}
+.variant-menu-actions{margin-top:24px;display:grid;gap:10px}
+.variant-menu-actions .btn{text-align:center;justify-content:center}
+.variant-menu-close{position:absolute;top:26px;right:20px;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:transparent;color:#fff;font-size:1.35rem;line-height:1;cursor:pointer}
+.variant-menu .lang-toggle{align-self:center;margin:0 0 10px}
+.variant-lang{display:flex;flex-direction:column;gap:8px;margin:0 0 10px}
+.variant-lang-current{display:flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:10px 18px;background:transparent;border:1px solid var(--line);border-radius:999px;color:#fff;font-family:'JetBrains Mono',monospace;font-size:.85rem;letter-spacing:.08em;cursor:pointer}
+.variant-lang-current:hover{border-color:#fff}
+.variant-lang-list{display:flex;flex-direction:column;gap:6px}
+.variant-lang-list[hidden]{display:none}
+.variant-lang-option{min-height:46px;padding:10px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:12px;color:#fff;font:600 .98rem 'Inter',system-ui,sans-serif;cursor:pointer;text-align:center}
+.variant-lang-option:hover{background:rgba(255,255,255,.09)}
+.variant-lang-option[aria-selected="true"]{border-color:#fff;background:rgba(255,255,255,.12)}
+@media(max-width:480px){.variant-nav{min-height:116px;padding:20px 16px 14px}.variant-mark{width:30px;height:30px}.variant-wordmark{font-size:.88rem}.variant-menu-button{top:20px;right:12px}.variant-menu-close{top:20px;right:12px}.variant-menu-inner{padding-top:112px}}
+@media(prefers-reduced-motion:reduce){.variant-menu{transition:none}}
 </style>
+<link rel="alternate" type="text/markdown" title="AGENTS.md" href="/AGENTS.md">
 </head>
 <body>
 
-<nav>
-  <div class="wrap">
-    <a class="brand" href="/"><span class="tick"></span>Nivelato&nbsp;Labs</a>
-    <ul>
-      <li><a href="/#features" data-i18n="nav.features">What it does</a></li>
-      <li><a href="/#how" data-i18n="nav.how">How it works</a></li>
-      <li><a href="/pricing/" data-i18n="nav.pricing">Pricing</a></li>
-      <li><a href="/phonebench/">PhoneBench</a></li>
-      <li><a href="/get/" data-i18n="nav.get">Get the app</a></li>
-      <li><a href="/pr/" data-i18n="nav.pr">Para clientes en PR</a></li>
-      <li><a href="/contact/" data-i18n="nav.contact">Contact</a></li>
-    </ul>
-    <div class="nav-actions">
-      <button class="lang-toggle" aria-label="Switch language / Cambiar idioma">ES</button>
-      <a class="login-link" href="https://login.nivelatolabs.com" data-i18n="nav.login">Log in</a>
-      <a class="btn small" href="/get/" data-i18n="nav.getNivelato">Get Nivelato</a>
-      <button class="nav-burger" onclick="document.body.classList.toggle('m-nav-open')" aria-label="Menu">☰</button>
+<nav class="variant-nav" aria-label="Main">
+  <a class="variant-lockup" href="/" aria-label="Nivelato Labs home">
+    <span class="variant-mark"><svg viewBox="-5 -5 110 110" fill="none" stroke="currentColor" stroke-width="6.5" aria-hidden="true" focusable="false"><path d="M55 20 H20 V84 H84 V43" stroke-linejoin="miter"/><path d="M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z" stroke-linejoin="bevel"/></svg></span>
+    <span class="variant-wordmark">Nivelato Labs</span>
+  </a>
+  <button class="variant-menu-button" type="button" onclick="document.body.classList.add('variant-menu-open');this.setAttribute('aria-expanded','true')" aria-label="Open menu" aria-expanded="false" aria-controls="variant-menu"><i></i><i></i><i></i></button>
+</nav>
+<div class="variant-menu" id="variant-menu">
+  <button class="variant-menu-close" type="button" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')" aria-label="Close menu">×</button>
+  <div class="variant-menu-inner">
+    <a href="/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Home</a>
+    <a href="/#features" data-i18n="nav.features" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">What it does</a>
+    <a href="/#how" data-i18n="nav.how" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">How it works</a>
+    <a href="/pricing/" data-i18n="nav.pricing" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Pricing</a>
+    <a href="/products/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Products</a>
+    <a href="/about/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">About</a>
+    <a href="/phonebench/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">PhoneBench</a>
+    <a href="/get/" data-i18n="nav.get" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Get the app</a>
+    <a href="/pr/" data-i18n="nav.pr" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Para clientes en PR</a>
+    <a href="/contact/" data-i18n="nav.contact" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Contact</a>
+    <div class="variant-menu-actions">
+      <div class="variant-lang" id="variant-lang">
+        <button class="variant-lang-current" type="button" aria-expanded="false" aria-controls="variant-lang-list"><span class="variant-lang-current-label">English</span><span class="variant-lang-chev" aria-hidden="true">▾</span></button>
+        <div class="variant-lang-list" id="variant-lang-list" role="listbox" aria-label="Language" hidden></div>
+      </div>
+      <a class="btn small variant-menu-action" href="https://login.nivelatolabs.com" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')" data-i18n="nav.login">Log in</a>
+      <a class="btn small variant-menu-action" href="/get/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')" data-i18n="nav.getNivelato">Get Nivelato</a>
     </div>
   </div>
-</nav>
-<div class="m-scrim" onclick="document.body.classList.remove('m-nav-open')"></div>
-<aside class="m-drawer" id="m-drawer">
-  <button class="m-close" onclick="document.body.classList.remove('m-nav-open')" aria-label="Close">✕</button>
-  <a class="m-link" href="/#features" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.features">What it does</a>
-  <a class="m-link" href="/#how" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.how">How it works</a>
-  <a class="m-link" href="/pricing/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.pricing">Pricing</a>
-  <a class="m-link" href="/phonebench/" onclick="document.body.classList.remove('m-nav-open')">PhoneBench</a>
-  <a class="m-link" href="/get/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.get">Get the app</a>
-  <a class="m-link" href="/pr/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.pr">Para clientes en PR</a>
-  <a class="m-link" href="/contact/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.contact">Contact</a>
-  <div class="m-actions">
-    <button class="lang-toggle" aria-label="Switch language / Cambiar idioma">ES</button>
-    <a class="btn small" href="https://login.nivelatolabs.com" style="text-align:center" data-i18n="nav.login">Log in</a>
-    <a class="btn small" href="/get/" onclick="document.body.classList.remove('m-nav-open')" style="text-align:center" data-i18n="nav.getNivelato">Get Nivelato</a>
-  </div>
-</aside>
+</div>
 
 <div class="page-head"><div class="wrap">
   <div class="kicker reveal" data-i18n="pb.kicker">From the lab · October 2026</div>
   <h1 class="reveal">PhoneBench</h1>
-  <p class="lede reveal" data-i18n="pbp.lede">The first benchmark for fully autonomous skilled work. A model gets a robotic arm, a bench of powered tools, and a broken phone. No script, no human hands. It fixes the phone to standard, or it does not.</p>
+  <p class="lede reveal" data-i18n="pbp.lede">A robotics AI benchmark for autonomous skilled work, and the first benchmark for fully autonomous skilled work. A model gets a robotic arm, a bench of powered tools, and a broken phone. No script, no human hands. It fixes the phone to standard, or it does not.</p>
 </div></div>
 
 <style>
   .faq-item h3 .pass{color:var(--laser)}
-  .faq-item h3 .fail{color:#ff7a6b}
+  .faq-item h3 .fail{color:#9a9aa3}
   .faq-item h3 .live{color:var(--amber2)}
   #phonebench-page .credit{margin-top:32px;color:var(--dim);font-family:'JetBrains Mono';font-size:.82rem}
 </style>
@@ -255,15 +298,15 @@
     <p class="sec-sub reveal" data-i18n="pbp.res.sub">Unedited outcomes, in the order they happened. Repairs that completed but missed the standard are listed as what they are.</p>
     <div class="faq">
       <div class="faq-item reveal">
-        <h3>iPhone 14 Pro Max · Battery — <span class="fail">FAIL</span></h3>
+        <h3>iPhone 14 Pro Max · Battery · <span class="fail">FAIL</span></h3>
         <p data-i18n="pbp.r1.p">Repair completed end to end. Failed at every tier on a single latched damage check: four screws stripped in the first minutes by a bit-name guessing trap in the tool interface, later fixed in the simulator with regression tests.</p>
       </div>
       <div class="faq-item reveal">
-        <h3>iPhone 14 Pro Max · Rear camera + glass — <span class="fail">FAIL</span></h3>
+        <h3>iPhone 14 Pro Max · Rear camera + glass · <span class="fail">FAIL</span></h3>
         <p data-i18n="pbp.r2.p">Repair completed with zero damage events. Failed on paperwork and cosmetics: one handling smudge, and a diagnostic call rejected because the agent used the part name the simulator itself had shown it.</p>
       </div>
       <div class="faq-item reveal">
-        <h3>iPad Pro 11-inch M1 · Diagnosis + battery — <span class="pass">PASS</span></h3>
+        <h3>iPad Pro 11-inch M1 · Diagnosis + battery · <span class="pass">PASS</span></h3>
         <p data-i18n="pbp.r3.p">The suite only clean sweep. Correct diagnosis declared before any repair: a failed, mildly swollen battery cell. Replaced it on pull tabs only, no heat near the pack. Normal, High, and Max all passed.</p>
       </div>
     </div>
@@ -317,7 +360,7 @@ const I18N = {
   "pb.kicker": "From the lab · October 2026",
   "pb.credit": "All runs operated by Muse Wonder (via Muse harness).",
   "pb.github": "PhoneBench on GitHub",
-  "pbp.lede": "The first benchmark for fully autonomous skilled work. A model gets a robotic arm, a bench of powered tools, and a broken phone. No script, no human hands. It fixes the phone to standard, or it does not.",
+  "pbp.lede": "A robotics AI benchmark for autonomous skilled work, and the first benchmark for fully autonomous skilled work. A model gets a robotic arm, a bench of powered tools, and a broken phone. No script, no human hands. It fixes the phone to standard, or it does not.",
   "pbp.how.kicker": "How it works",
   "pbp.how.title": "A repair shop, an agent, and a standard that does not bend.",
   "pbp.how.sub": "Subjects are real models doing their best. There are no scripted policies and no partial credit for effort: the phone is judged exactly as a customer would judge it.",
@@ -339,7 +382,7 @@ const I18N = {
   "pbp.r2.p": "Repair completed with zero damage events. Failed on paperwork and cosmetics: one handling smudge, and a diagnostic call rejected because the agent used the part name the simulator itself had shown it.",
   "pbp.r3.p": "The suite only clean sweep. Correct diagnosis declared before any repair: a failed, mildly swollen battery cell. Replaced it on pull tabs only, no heat near the pack. Normal, High, and Max all passed.",
   "meta.title": "PhoneBench - Robotics AI Benchmark - Nivelato Labs",
-  "meta.desc": "Nivelato pricing: Free, Pro, and Ultra plans per shop, billed through Google Play.",
+  "meta.desc": "PhoneBench is a robotics AI benchmark for autonomous skilled work: an AI agent drives a robotic arm to repair phones, scored against three quality tiers.",
   "page.kicker": "Nivelato",
   "page.title": "PhoneBench",
   "pricing.kicker": "Pricing",
@@ -385,7 +428,7 @@ const I18N = {
   "pb.kicker": "Desde el laboratorio · octubre de 2026",
   "pb.credit": "Todas las corridas operadas por Muse Wonder (mediante el harness de Muse).",
   "pb.github": "PhoneBench en GitHub",
-  "pbp.lede": "El primer benchmark de trabajo especializado totalmente autónomo. Un modelo recibe un brazo robótico, un banco de herramientas eléctricas y un teléfono roto. Sin guion, sin manos humanas. Repara el teléfono al estándar, o no lo repara.",
+  "pbp.lede": "Un benchmark de IA robótica para el trabajo especializado autónomo, y el primer benchmark de trabajo especializado totalmente autónomo. Un modelo recibe un brazo robótico, un banco de herramientas eléctricas y un teléfono roto. Sin guion, sin manos humanas. Repara el teléfono al estándar, o no lo repara.",
   "pbp.how.kicker": "Cómo funciona",
   "pbp.how.title": "Un taller, un agente, y un estándar que no se dobla.",
   "pbp.how.sub": "Los sujetos son modelos reales dando lo mejor de sí. No hay políticas guionadas ni crédito parcial por esfuerzo: el teléfono se juzga exactamente como lo juzgaría un cliente.",
@@ -407,7 +450,7 @@ const I18N = {
   "pbp.r2.p": "Reparación completada con cero eventos de daño. Falló en papeleo y cosmética: una mancha de manipulación, y una llamada de diagnóstico rechazada porque el agente usó el nombre de la pieza que el propio simulador le había mostrado.",
   "pbp.r3.p": "La única barrida limpia de la suite. Diagnóstico correcto declarado antes de reparar: una celda de batería fallida y levemente hinchada. Reemplazada solo con tiras adhesivas, sin calor cerca de la batería. Normal, High y Max, todos pasados.",
   "meta.title": "PhoneBench - Benchmark de IA robótica - Nivelato Labs",
-  "meta.desc": "Precios de Nivelato: planes Free, Pro y Ultra por taller, facturados a través de Google Play.",
+  "meta.desc": "PhoneBench es un benchmark de IA robótica para el trabajo especializado autónomo: un agente de IA maneja un brazo robótico para reparar teléfonos, evaluado en tres niveles de calidad.",
   "page.kicker": "Nivelato",
   "page.title": "PhoneBench",
   "pricing.kicker": "Precios",
@@ -447,11 +490,12 @@ const LANG_KEY = 'nivelato-lang';
 function currentLang() {
   try {
     const saved = localStorage.getItem(LANG_KEY);
-    if (saved === 'en' || saved === 'es') return saved;
+    if (saved && I18N[saved]) return saved;
   } catch (e) {}
   if (FORCED_LANG) return FORCED_LANG;
   const nav = (navigator.language || 'en').toLowerCase();
-  return nav.indexOf('es') === 0 ? 'es' : 'en';
+  const base = nav.split('-')[0];
+  return I18N[base] ? base : 'en';
 }
 function applyLang(l) {
   const dict = I18N[l] || I18N.en;
@@ -488,14 +532,14 @@ applyLang(currentLang());
   }
   #cur-outer {
     width: 38px; height: 38px;
-    border: 1.5px solid rgba(245,165,36,.85);
+    border: 1.5px solid rgba(255,255,255,.85);
     transition: opacity .25s, width .2s, height .2s, border-color .2s;
   }
-  #cur-outer.grow { width: 58px; height: 58px; border-color: rgba(200,245,66,.9); }
+  #cur-outer.grow { width: 58px; height: 58px; border-color: rgba(255,255,255,.9); }
   #cur-inner {
     width: 8px; height: 8px;
-    background: #c8f542;
-    box-shadow: 0 0 10px rgba(200,245,66,.7);
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(255,255,255,.7);
   }
   body.cur-on #cur-outer, body.cur-on #cur-inner { opacity: 1; }
 
@@ -517,7 +561,7 @@ const I18N = {
   "pb.kicker": "From the lab · October 2026",
   "pb.credit": "All runs operated by Muse Wonder (via Muse harness).",
   "pb.github": "PhoneBench on GitHub",
-  "pbp.lede": "The first benchmark for fully autonomous skilled work. A model gets a robotic arm, a bench of powered tools, and a broken phone. No script, no human hands. It fixes the phone to standard, or it does not.",
+  "pbp.lede": "A robotics AI benchmark for autonomous skilled work, and the first benchmark for fully autonomous skilled work. A model gets a robotic arm, a bench of powered tools, and a broken phone. No script, no human hands. It fixes the phone to standard, or it does not.",
   "pbp.how.kicker": "How it works",
   "pbp.how.title": "A repair shop, an agent, and a standard that does not bend.",
   "pbp.how.sub": "Subjects are real models doing their best. There are no scripted policies and no partial credit for effort: the phone is judged exactly as a customer would judge it.",
@@ -539,7 +583,7 @@ const I18N = {
   "pbp.r2.p": "Repair completed with zero damage events. Failed on paperwork and cosmetics: one handling smudge, and a diagnostic call rejected because the agent used the part name the simulator itself had shown it.",
   "pbp.r3.p": "The suite only clean sweep. Correct diagnosis declared before any repair: a failed, mildly swollen battery cell. Replaced it on pull tabs only, no heat near the pack. Normal, High, and Max all passed.",
   "meta.title": "PhoneBench - Robotics AI Benchmark - Nivelato Labs",
-  "meta.desc": "Nivelato pricing: Free, Pro, and Ultra plans per shop, billed through Google Play.",
+  "meta.desc": "PhoneBench is a robotics AI benchmark for autonomous skilled work: an AI agent drives a robotic arm to repair phones, scored against three quality tiers.",
   "hero.kicker": "Nivelato",
   "hero.title": "Software that <span class=\"laser\">measures up.</span>",
   "hero.lede": "Field measurement for glass shops. Walk in, measure everything, walk out with a quote, from your phone.",
@@ -566,7 +610,7 @@ const I18N = {
   "pb.kicker": "Desde el laboratorio · octubre de 2026",
   "pb.credit": "Todas las corridas operadas por Muse Wonder (mediante el harness de Muse).",
   "pb.github": "PhoneBench en GitHub",
-  "pbp.lede": "El primer benchmark de trabajo especializado totalmente autónomo. Un modelo recibe un brazo robótico, un banco de herramientas eléctricas y un teléfono roto. Sin guion, sin manos humanas. Repara el teléfono al estándar, o no lo repara.",
+  "pbp.lede": "Un benchmark de IA robótica para el trabajo especializado autónomo, y el primer benchmark de trabajo especializado totalmente autónomo. Un modelo recibe un brazo robótico, un banco de herramientas eléctricas y un teléfono roto. Sin guion, sin manos humanas. Repara el teléfono al estándar, o no lo repara.",
   "pbp.how.kicker": "Cómo funciona",
   "pbp.how.title": "Un taller, un agente, y un estándar que no se dobla.",
   "pbp.how.sub": "Los sujetos son modelos reales dando lo mejor de sí. No hay políticas guionadas ni crédito parcial por esfuerzo: el teléfono se juzga exactamente como lo juzgaría un cliente.",
@@ -588,7 +632,7 @@ const I18N = {
   "pbp.r2.p": "Reparación completada con cero eventos de daño. Falló en papeleo y cosmética: una mancha de manipulación, y una llamada de diagnóstico rechazada porque el agente usó el nombre de la pieza que el propio simulador le había mostrado.",
   "pbp.r3.p": "La única barrida limpia de la suite. Diagnóstico correcto declarado antes de reparar: una celda de batería fallida y levemente hinchada. Reemplazada solo con tiras adhesivas, sin calor cerca de la batería. Normal, High y Max, todos pasados.",
   "meta.title": "PhoneBench - Benchmark de IA robótica - Nivelato Labs",
-  "meta.desc": "Precios de Nivelato: planes Free, Pro y Ultra por taller, facturados a través de Google Play.",
+  "meta.desc": "PhoneBench es un benchmark de IA robótica para el trabajo especializado autónomo: un agente de IA maneja un brazo robótico para reparar teléfonos, evaluado en tres niveles de calidad.",
   "hero.kicker": "Nivelato",
   "hero.title": "Software que <span class=\"laser\">da la medida.</span>",
   "hero.lede": "Medición en campo para talleres de cristales. Entra, mide todo, sal con una cotización, desde tu teléfono.",
@@ -609,11 +653,12 @@ const LANG_KEY = 'nivelato-lang';
 function currentLang() {
   try {
     const saved = localStorage.getItem(LANG_KEY);
-    if (saved === 'en' || saved === 'es') return saved;
+    if (saved && I18N[saved]) return saved;
   } catch (e) {}
   if (FORCED_LANG) return FORCED_LANG;
   const nav = (navigator.language || 'en').toLowerCase();
-  return nav.indexOf('es') === 0 ? 'es' : 'en';
+  const base = nav.split('-')[0];
+  return I18N[base] ? base : 'en';
 }
 function applyLang(l) {
   const dict = I18N[l] || I18N.en;
@@ -639,5 +684,57 @@ document.querySelectorAll('.lang-toggle').forEach(function (b) {
 applyLang(currentLang());
 
 </script>
+<script>
+/* Language selector for the Variant B menu overlay. The available
+   languages are a registry, not a hard-coded toggle: the list is
+   built from the page's I18N dictionaries. To add a language, add
+   its dictionary to I18N and one label line to LANG_LABELS below;
+   the selector, detection, and persistence pick it up with no UI
+   changes. Switching reuses the existing applyLang(). */
+(function () {
+  var LANG_LABELS = { en: 'English', es: 'Español' };
+  var wrap = document.getElementById('variant-lang');
+  if (!wrap || typeof I18N === 'undefined' || typeof applyLang !== 'function') return;
+  var currentBtn = wrap.querySelector('.variant-lang-current');
+  var currentLabel = wrap.querySelector('.variant-lang-current-label');
+  var list = document.getElementById('variant-lang-list');
+  var registry = Object.keys(I18N).map(function (code) {
+    return { code: code, label: LANG_LABELS[code] || code.toUpperCase(), dictionary: I18N[code] };
+  });
+  function paint() {
+    var cur = document.documentElement.lang || 'en';
+    registry.forEach(function (entry) {
+      if (entry.code === cur) currentLabel.textContent = entry.label;
+    });
+    list.querySelectorAll('.variant-lang-option').forEach(function (opt) {
+      opt.setAttribute('aria-selected', opt.getAttribute('data-lang') === cur ? 'true' : 'false');
+    });
+  }
+  registry.forEach(function (entry) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'variant-lang-option';
+    b.setAttribute('role', 'option');
+    b.setAttribute('data-lang', entry.code);
+    b.textContent = entry.label;
+    b.addEventListener('click', function () {
+      applyLang(entry.code);
+      paint();
+      list.hidden = true;
+      currentBtn.setAttribute('aria-expanded', 'false');
+    });
+    list.appendChild(b);
+  });
+  currentBtn.addEventListener('click', function () {
+    var willOpen = list.hidden;
+    list.hidden = !willOpen;
+    currentBtn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+  });
+  paint();
+})();
+</script>
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ba83c66be7af41d899cb499dfa1442c8"}'></script>
+<!-- End Cloudflare Web Analytics -->
 </body>
 </html>

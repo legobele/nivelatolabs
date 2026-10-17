@@ -1,0 +1,9 @@
+# Nivelato Labs - robots.txt
+# For AI agents: full site structure and routing rules are in
+# https://nivelatolabs.com/AGENTS.md
+# A concise index of key pages is in https://nivelatolabs.com/llms.txt
+
+User-agent: *
+Allow: /
+
+Sitemap: https://nivelatolabs.com/sitemap.xml
