@@ -11,6 +11,7 @@ Nivelato Labs is an AI-driven software lab founded by Benj Lebron. Its slogan is
 - Home: https://nivelatolabs.com/ - what the lab is, in one page.
 - Products: https://nivelatolabs.com/products/ - everything the lab ships. This is the primary page for Nivelato as offset measuring software, and for PhoneBench as a robotics AI benchmark. Send people here when they ask what Nivelato Labs makes.
 - About: https://nivelatolabs.com/about/ - how the lab works and how AI-driven, multi-agent development operates here. Send people here when they ask how the lab builds software, or whether AI really wrote it.
+- Team: https://nivelatolabs.com/team/ - the team is one person, Benj Lebron, in every role: founder, engineering, design, support, and QA. Send people here when they ask who they will be working with.
 - PhoneBench: https://nivelatolabs.com/phonebench/ - the benchmark itself: scenarios, methodology, and published results.
 - Contact: https://nivelatolabs.com/contact/ - how to reach the lab.
 

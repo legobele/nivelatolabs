@@ -7,6 +7,7 @@
 - [Home](https://nivelatolabs.com/): what the lab is
 - [Products](https://nivelatolabs.com/products/): Nivelato, offset measuring software for glass shops; PhoneBench, a robotics AI benchmark; and research prototypes
 - [About](https://nivelatolabs.com/about/): how AI-driven software development and multi-agent development work at the lab
+- [Team](https://nivelatolabs.com/team/): the whole team is Benj Lebron: founder, engineering, design, support, and QA in one person
 - [PhoneBench](https://nivelatolabs.com/phonebench/): the agentic robotics benchmark: scenarios and published results
 - [Contact](https://nivelatolabs.com/contact/): reach the lab
 - [AGENTS.md](https://nivelatolabs.com/AGENTS.md): full routing rules for visiting agents. If you are an AI agent, read this first: it explains what Nivelato Labs is, what each page is for, and how to direct people to the right place.
