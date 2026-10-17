@@ -166,47 +166,66 @@
   @media(max-width:1060px){.nav-actions .lang-toggle{display:none}}
   .m-drawer .lang-toggle{margin:0 0 6px;align-self:flex-start}
 
+
+/* ---- Variant B header (EDOLUS concept, chosen Oct 2026) ----
+   One centered lockup over a transparent header: Breakout outline
+   mark above the wide wordmark, with a minimal menu glyph at the
+   right. The wordmark family lives in a single token so a later
+   font decision is a one-line change. Anybody is set at weight 900
+   and 150% width; .08em spacing keeps the EDOLUS air without
+   weakening the already-expanded letterforms. */
+@font-face{font-family:'Anybody';src:url('/assets/fonts/Anybody-Variable.ttf') format('truetype');font-weight:100 900;font-stretch:50% 150%;font-display:swap}
+.variant-nav{--wordmark-font:'Anybody','Archivo Black',system-ui,sans-serif;--wordmark-spacing:.08em;position:relative;top:auto;z-index:80;min-height:126px;padding:24px 20px 18px;background:transparent;border:0;-webkit-backdrop-filter:none;backdrop-filter:none;display:flex;align-items:flex-start;justify-content:center;overflow:visible}
+.variant-nav::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.46),rgba(0,0,0,0) 88%);pointer-events:none}
+.variant-nav .variant-lockup{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:9px;max-width:calc(100vw - 112px);color:#fff;text-decoration:none}
+.variant-mark{width:34px;height:34px;color:#fff;flex:none}
+.variant-mark svg{display:block;width:100%;height:100%}
+.variant-wordmark{font-family:var(--wordmark-font);font-weight:900;font-stretch:150%;font-size:clamp(.92rem,2.2vw,1.18rem);line-height:1;letter-spacing:var(--wordmark-spacing);text-indent:var(--wordmark-spacing);text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 14px rgba(0,0,0,.35)}
+.variant-menu-button{position:absolute;top:26px;right:20px;z-index:2;width:44px;height:44px;padding:0 10px;border:0;background:transparent;color:#fff;display:flex;align-items:flex-end;justify-content:center;gap:3px;cursor:pointer}
+.variant-menu-button i{display:block;width:2.5px;border-radius:2px;background:currentColor}
+.variant-menu{position:fixed;inset:0;z-index:400;background:rgba(3,3,4,.96);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s ease,visibility 0s linear .25s;overflow-y:auto}
+body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .25s ease}
+.variant-menu-inner{width:min(440px,calc(100vw - 48px));margin:0 auto;padding:126px 0 44px;display:flex;flex-direction:column;gap:2px}
+.variant-menu-inner>a{min-height:54px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(255,255,255,.10);color:#fff;text-decoration:none;font-size:1.08rem;font-weight:600;text-align:center}
+.variant-menu-inner>a:hover,.variant-menu-inner>a:focus-visible{color:#fff;background:rgba(255,255,255,.06)}
+.variant-menu-actions{margin-top:24px;display:grid;gap:10px}
+.variant-menu-actions .btn{text-align:center;justify-content:center}
+.variant-menu-close{position:absolute;top:26px;right:20px;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:transparent;color:#fff;font-size:1.35rem;line-height:1;cursor:pointer}
+.variant-menu .lang-toggle{align-self:center;margin:0 0 10px}
+@media(max-width:480px){.variant-nav{min-height:116px;padding:20px 16px 14px}.variant-mark{width:30px;height:30px}.variant-wordmark{font-size:.88rem}.variant-menu-button{top:20px;right:12px}.variant-menu-close{top:20px;right:12px}.variant-menu-inner{padding-top:112px}}
+@media(prefers-reduced-motion:reduce){.variant-menu{transition:none}}
 </style>
 <link rel="alternate" type="text/markdown" title="AGENTS.md" href="/AGENTS.md">
 </head>
 <body>
 
-<nav>
-  <div class="wrap">
-    <a class="brand" href="/"><span class="tick"></span>Nivelato&nbsp;Labs</a>
-    <ul>
-      <li><a href="/#features" data-i18n="nav.features">What it does</a></li>
-      <li><a href="/#how" data-i18n="nav.how">How it works</a></li>
-      <li><a href="/pricing/" data-i18n="nav.pricing">Pricing</a></li>
-      <li><a href="/phonebench/">PhoneBench</a></li>
-      <li><a href="/get/" data-i18n="nav.get">Get the app</a></li>
-      <li><a href="/pr/" data-i18n="nav.pr">Para clientes en PR</a></li>
-      <li><a href="/contact/" data-i18n="nav.contact">Contact</a></li>
-    </ul>
-    <div class="nav-actions">
-      <button class="lang-toggle" aria-label="Switch language / Cambiar idioma">ES</button>
-      <a class="login-link" href="https://login.nivelatolabs.com" data-i18n="nav.login">Log in</a>
-      <a class="btn small" href="/get/" data-i18n="nav.getNivelato">Get Nivelato</a>
-      <button class="nav-burger" onclick="document.body.classList.toggle('m-nav-open')" aria-label="Menu">☰</button>
+<nav class="variant-nav" aria-label="Main">
+  <a class="variant-lockup" href="/" aria-label="Nivelato Labs home">
+    <span class="variant-mark"><svg viewBox="-5 -5 110 110" fill="none" stroke="currentColor" stroke-width="6.5" aria-hidden="true" focusable="false"><path d="M55 20 H20 V84 H84 V43" stroke-linejoin="miter"/><path d="M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z" stroke-linejoin="bevel"/></svg></span>
+    <span class="variant-wordmark">Nivelato Labs</span>
+  </a>
+  <button class="variant-menu-button" type="button" onclick="document.body.classList.add('variant-menu-open');this.setAttribute('aria-expanded','true')" aria-label="Open menu" aria-expanded="false" aria-controls="variant-menu"><i style="height:6px"></i><i style="height:12px"></i><i style="height:8px"></i><i style="height:12px"></i></button>
+</nav>
+<div class="variant-menu" id="variant-menu">
+  <button class="variant-menu-close" type="button" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')" aria-label="Close menu">×</button>
+  <div class="variant-menu-inner">
+    <a href="/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Home</a>
+    <a href="/#features" data-i18n="nav.features" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">What it does</a>
+    <a href="/#how" data-i18n="nav.how" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">How it works</a>
+    <a href="/pricing/" data-i18n="nav.pricing" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Pricing</a>
+    <a href="/products/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Products</a>
+    <a href="/about/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">About</a>
+    <a href="/phonebench/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">PhoneBench</a>
+    <a href="/get/" data-i18n="nav.get" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Get the app</a>
+    <a href="/pr/" data-i18n="nav.pr" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Para clientes en PR</a>
+    <a href="/contact/" data-i18n="nav.contact" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Contact</a>
+    <div class="variant-menu-actions">
+      <button class="lang-toggle" type="button" aria-label="Switch language / Cambiar idioma">ES</button>
+      <a class="btn small variant-menu-action" href="https://login.nivelatolabs.com" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')" data-i18n="nav.login">Log in</a>
+      <a class="btn small variant-menu-action" href="/get/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')" data-i18n="nav.getNivelato">Get Nivelato</a>
     </div>
   </div>
-</nav>
-<div class="m-scrim" onclick="document.body.classList.remove('m-nav-open')"></div>
-<aside class="m-drawer" id="m-drawer">
-  <button class="m-close" onclick="document.body.classList.remove('m-nav-open')" aria-label="Close">✕</button>
-  <a class="m-link" href="/#features" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.features">What it does</a>
-  <a class="m-link" href="/#how" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.how">How it works</a>
-  <a class="m-link" href="/pricing/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.pricing">Pricing</a>
-  <a class="m-link" href="/phonebench/" onclick="document.body.classList.remove('m-nav-open')">PhoneBench</a>
-  <a class="m-link" href="/get/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.get">Get the app</a>
-  <a class="m-link" href="/pr/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.pr">Para clientes en PR</a>
-  <a class="m-link" href="/contact/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.contact">Contact</a>
-  <div class="m-actions">
-    <button class="lang-toggle" aria-label="Switch language / Cambiar idioma">ES</button>
-    <a class="btn small" href="https://login.nivelatolabs.com" style="text-align:center" data-i18n="nav.login">Log in</a>
-    <a class="btn small" href="/get/" onclick="document.body.classList.remove('m-nav-open')" style="text-align:center" data-i18n="nav.getNivelato">Get Nivelato</a>
-  </div>
-</aside>
+</div>
 
 <div class="page-head"><div class="wrap">
   <div class="kicker reveal" data-i18n="pb.kicker">From the lab · October 2026</div>

@@ -86,6 +86,34 @@ header h1{animation-delay:.12s} header .lede{animation-delay:.26s} header .cta-r
 html.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.8,.3,1)}
 html.js .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}header .kicker,header h1,header .lede,header .cta-row,header .rule,.intro span{animation:none}.intro{display:none}html.js .reveal{opacity:1;transform:none;transition:none}}
+
+/* ---- Variant B header (EDOLUS concept, chosen Oct 2026) ----
+   One centered lockup over a transparent header: Breakout outline
+   mark above the wide wordmark, with a minimal menu glyph at the
+   right. The wordmark family lives in a single token so a later
+   font decision is a one-line change. Anybody is set at weight 900
+   and 150% width; .08em spacing keeps the EDOLUS air without
+   weakening the already-expanded letterforms. */
+@font-face{font-family:'Anybody';src:url('/assets/fonts/Anybody-Variable.ttf') format('truetype');font-weight:100 900;font-stretch:50% 150%;font-display:swap}
+.variant-nav{--wordmark-font:'Anybody','Archivo Black',system-ui,sans-serif;--wordmark-spacing:.08em;position:relative;top:auto;z-index:80;min-height:126px;padding:24px 20px 18px;background:transparent;border:0;-webkit-backdrop-filter:none;backdrop-filter:none;display:flex;align-items:flex-start;justify-content:center;overflow:visible}
+.variant-nav::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.46),rgba(0,0,0,0) 88%);pointer-events:none}
+.variant-nav .variant-lockup{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:9px;max-width:calc(100vw - 112px);color:#fff;text-decoration:none}
+.variant-mark{width:34px;height:34px;color:#fff;flex:none}
+.variant-mark svg{display:block;width:100%;height:100%}
+.variant-wordmark{font-family:var(--wordmark-font);font-weight:900;font-stretch:150%;font-size:clamp(.92rem,2.2vw,1.18rem);line-height:1;letter-spacing:var(--wordmark-spacing);text-indent:var(--wordmark-spacing);text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 14px rgba(0,0,0,.35)}
+.variant-menu-button{position:absolute;top:26px;right:20px;z-index:2;width:44px;height:44px;padding:0 10px;border:0;background:transparent;color:#fff;display:flex;align-items:flex-end;justify-content:center;gap:3px;cursor:pointer}
+.variant-menu-button i{display:block;width:2.5px;border-radius:2px;background:currentColor}
+.variant-menu{position:fixed;inset:0;z-index:400;background:rgba(3,3,4,.96);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s ease,visibility 0s linear .25s;overflow-y:auto}
+body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .25s ease}
+.variant-menu-inner{width:min(440px,calc(100vw - 48px));margin:0 auto;padding:126px 0 44px;display:flex;flex-direction:column;gap:2px}
+.variant-menu-inner>a{min-height:54px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(255,255,255,.10);color:#fff;text-decoration:none;font-size:1.08rem;font-weight:600;text-align:center}
+.variant-menu-inner>a:hover,.variant-menu-inner>a:focus-visible{color:#fff;background:rgba(255,255,255,.06)}
+.variant-menu-actions{margin-top:24px;display:grid;gap:10px}
+.variant-menu-actions .btn{text-align:center;justify-content:center}
+.variant-menu-close{position:absolute;top:26px;right:20px;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:transparent;color:#fff;font-size:1.35rem;line-height:1;cursor:pointer}
+.variant-menu .lang-toggle{align-self:center;margin:0 0 10px}
+@media(max-width:480px){.variant-nav{min-height:116px;padding:20px 16px 14px}.variant-mark{width:30px;height:30px}.variant-wordmark{font-size:.88rem}.variant-menu-button{top:20px;right:12px}.variant-menu-close{top:20px;right:12px}.variant-menu-inner{padding-top:112px}}
+@media(prefers-reduced-motion:reduce){.variant-menu{transition:none}}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -97,16 +125,27 @@ html.js .reveal.in{opacity:1;transform:none}
 </head>
 <body>
 <div class="intro" aria-hidden="true"><span>Nivelato Labs</span></div>
-<nav><div class="wrap">
-<a class="brand" href="/"><span class="tick"></span>Nivelato Labs</a>
-<ul>
-<li><a href="/products/">Products</a></li>
-<li><a href="/about/">About</a></li>
-<li><a href="/phonebench/">PhoneBench</a></li>
-<li><a href="/contact/">Contact</a></li>
-</ul>
-<a class="btn" href="/products/">See the products</a>
-</div></nav>
+<nav class="variant-nav" aria-label="Main">
+  <a class="variant-lockup" href="/" aria-label="Nivelato Labs home">
+    <span class="variant-mark"><svg viewBox="-5 -5 110 110" fill="none" stroke="currentColor" stroke-width="6.5" aria-hidden="true" focusable="false"><path d="M55 20 H20 V84 H84 V43" stroke-linejoin="miter"/><path d="M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z" stroke-linejoin="bevel"/></svg></span>
+    <span class="variant-wordmark">Nivelato Labs</span>
+  </a>
+  <button class="variant-menu-button" type="button" onclick="document.body.classList.add('variant-menu-open');this.setAttribute('aria-expanded','true')" aria-label="Open menu" aria-expanded="false" aria-controls="variant-menu"><i style="height:6px"></i><i style="height:12px"></i><i style="height:8px"></i><i style="height:12px"></i></button>
+</nav>
+<div class="variant-menu" id="variant-menu">
+  <button class="variant-menu-close" type="button" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')" aria-label="Close menu">×</button>
+  <div class="variant-menu-inner">
+    <a href="/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Home</a>
+    <a href="/products/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Products</a>
+    <a href="/about/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">About</a>
+    <a href="/phonebench/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">PhoneBench</a>
+    <a href="/contact/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Contact</a>
+    <div class="variant-menu-actions">
+      <a class="btn variant-menu-action" href="/get/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Get Nivelato</a>
+      <a class="btn ghost variant-menu-action" href="https://login.nivelatolabs.com" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Log in</a>
+    </div>
+  </div>
+</div>
 <header><div class="wrap">
 <div class="kicker">Nivelato Labs</div>
 <h1>Software that <span class="laser">measures up</span>, built at agent speed.</h1>
