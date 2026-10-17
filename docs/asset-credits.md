@@ -1,6 +1,6 @@
 # Asset credits
 
-## Mountain photo (intro overlay backdrop, login)
+## Mountain photo (intro overlay backdrop, login, homepage hero)
 
 - File: `assets/mountains-oeschinensee.jpg` (1600x855)
 - Subject: Oeschinensee / Blüemlisalp massif, Kandersteg, Switzerland
