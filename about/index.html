@@ -158,6 +158,14 @@ body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events
 .variant-menu-actions .btn{text-align:center;justify-content:center}
 .variant-menu-close{position:absolute;top:26px;right:20px;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:transparent;color:#fff;font-size:1.35rem;line-height:1;cursor:pointer}
 .variant-menu .lang-toggle{align-self:center;margin:0 0 10px}
+.variant-lang{display:flex;flex-direction:column;gap:8px;margin:0 0 10px}
+.variant-lang-current{display:flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:10px 18px;background:transparent;border:1px solid var(--line);border-radius:999px;color:#fff;font-family:'JetBrains Mono',monospace;font-size:.85rem;letter-spacing:.08em;cursor:pointer}
+.variant-lang-current:hover{border-color:#fff}
+.variant-lang-list{display:flex;flex-direction:column;gap:6px}
+.variant-lang-list[hidden]{display:none}
+.variant-lang-option{min-height:46px;padding:10px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:12px;color:#fff;font:600 .98rem 'Inter',system-ui,sans-serif;cursor:pointer;text-align:center}
+.variant-lang-option:hover{background:rgba(255,255,255,.09)}
+.variant-lang-option[aria-selected="true"]{border-color:#fff;background:rgba(255,255,255,.12)}
 @media(max-width:480px){.variant-nav{min-height:116px;padding:20px 16px 14px}.variant-mark{width:30px;height:30px}.variant-wordmark{font-size:.88rem}.variant-menu-button{top:20px;right:12px}.variant-menu-close{top:20px;right:12px}.variant-menu-inner{padding-top:112px}}
 @media(prefers-reduced-motion:reduce){.variant-menu{transition:none}}
 </style>
@@ -221,97 +229,101 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 <div class="variant-menu" id="variant-menu">
   <button class="variant-menu-close" type="button" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')" aria-label="Close menu">×</button>
   <div class="variant-menu-inner">
-    <a href="/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Home</a>
+    <a href="/" data-i18n="nav.home" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Home</a>
     <div class="variant-menu-item">
       <div class="variant-menu-row">
-        <a href="/products/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Products</a>
+        <a href="/products/" data-i18n="nav.products" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Products</a>
         <button class="variant-sub-toggle" type="button" aria-expanded="false" aria-controls="variant-sub-products" aria-label="Toggle Products submenu"><span class="variant-sub-chev" aria-hidden="true">▾</span></button>
       </div>
       <div class="variant-submenu" id="variant-sub-products">
         <div class="variant-submenu-in">
-          <a href="/products/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Nivelato</a>
-          <a href="/phonebench/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">PhoneBench</a>
-          <a href="/pricing/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Pricing</a>
+          <a href="/products/" data-i18n="nav.sub.nivelato" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Nivelato</a>
+          <a href="/phonebench/" data-i18n="nav.sub.phonebench" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">PhoneBench</a>
+          <a href="/pricing/" data-i18n="nav.sub.pricing" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Pricing</a>
         </div>
       </div>
     </div>
     <div class="variant-menu-item">
       <div class="variant-menu-row">
-        <a href="/about/" aria-current="page" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">About</a>
+        <a href="/about/" aria-current="page" data-i18n="nav.about" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">About</a>
         <button class="variant-sub-toggle" type="button" aria-expanded="false" aria-controls="variant-sub-about" aria-label="Toggle About submenu"><span class="variant-sub-chev" aria-hidden="true">▾</span></button>
       </div>
       <div class="variant-submenu" id="variant-sub-about">
         <div class="variant-submenu-in">
-          <a href="/about/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">About</a>
-          <a href="/about/#mission" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Mission</a>
-          <a href="/about/#vision" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Vision</a>
-          <a href="/about/#values" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Core Values</a>
-          <a href="/team/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Team</a>
+          <a href="/about/" data-i18n="nav.about" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">About</a>
+          <a href="/about/#mission" data-i18n="nav.sub.mission" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Mission</a>
+          <a href="/about/#vision" data-i18n="nav.sub.vision" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Vision</a>
+          <a href="/about/#values" data-i18n="nav.sub.values" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Core Values</a>
+          <a href="/team/" data-i18n="nav.team" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Team</a>
         </div>
       </div>
     </div>
-    <a href="/contact/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Contact</a>
+    <a href="/contact/" data-i18n="nav.contact" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Contact</a>
     <div class="variant-menu-actions">
-      <a class="btn variant-menu-action" href="/get/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Get Nivelato</a>
-      <a class="btn ghost variant-menu-action" href="https://login.nivelatolabs.com" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Log in</a>
+      <div class="variant-lang" id="variant-lang">
+        <button class="variant-lang-current" type="button" aria-expanded="false" aria-controls="variant-lang-list"><span class="variant-lang-current-label">English</span><span class="variant-lang-chev" aria-hidden="true">▾</span></button>
+        <div class="variant-lang-list" id="variant-lang-list" role="listbox" aria-label="Language" hidden></div>
+      </div>
+      <a class="btn variant-menu-action" href="/get/" data-i18n="nav.get" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Get Nivelato</a>
+      <a class="btn ghost variant-menu-action" href="https://login.nivelatolabs.com" data-i18n="nav.login" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Log in</a>
     </div>
   </div>
 </div>
 <header><div class="wrap">
-<div class="kicker">About</div>
-<h1>An AI-driven lab, on purpose.</h1>
-<p class="lede">Nivelato Labs is a software lab founded by <a href="/team/">Benj Lebron</a>. It runs on a simple bet: a small lab that masters agentic development will out-ship a large team that does not.</p>
+<div class="kicker" data-i18n="about.kicker">About</div>
+<h1 data-i18n="about.h1">An AI-driven lab, on purpose.</h1>
+<p class="lede" data-i18n="about.lede">Nivelato Labs is a software lab founded by <a href="/team/">Benj Lebron</a>. It runs on a simple bet: a small lab that masters agentic development will out-ship a large team that does not.</p>
 </div></header>
 <button type="button" class="scroll-cue" aria-label="Scroll down to content">[ SCROLL ]<span class="cue-line" aria-hidden="true"></span></button>
 
 <section class="alt reveal"><div class="wrap">
-<div class="sec-kicker">The model</div>
-<h2>Agents build. A human directs.</h2>
+<div class="sec-kicker" data-i18n="about.model.kicker">The model</div>
+<h2 data-i18n="about.model.h2">Agents build. A human directs.</h2>
 <div class="prose">
-<p><strong>Multi-agent development is the production line.</strong> Instead of one assistant answering one prompt at a time, the lab runs coordinated agents in parallel: one implements, one tests, one reviews, one documents. Work that used to queue up now compounds.</p>
-<p><strong>Direction stays human.</strong> Product calls, quality standards, and release decisions are made by a person who uses the software and answers for it. Agents propose and execute; the human disposes. Every release passes a human review, and every public claim traces back to a verifiable result.</p>
-<p><strong>Verification is a feature, not a chore.</strong> Agents check each other's work against source data before anything ships. Benchmarks like PhoneBench exist because the lab measures its own tools the same way it measures everyone else's: against a standard that does not bend.</p>
-<p><strong>The research loop is real too.</strong> PhoneBench, the lab's robotics AI benchmark, is autonomous agents research run on the lab's own methods: agents doing skilled physical work, scored in public. What the benchmark learns about agents feeds straight back into how the lab builds with them.</p>
-<p><strong>The output is real.</strong> Nivelato, the lab's offset measuring software, runs in production at real glass shops. PhoneBench publishes full transcripts, including the failures. The lab's credibility is its distribution: do the work in public, show the receipts, and let the results rank.</p>
+<p data-i18n="about.model.p1"><strong>Multi-agent development is the production line.</strong> Instead of one assistant answering one prompt at a time, the lab runs coordinated agents in parallel: one implements, one tests, one reviews, one documents. Work that used to queue up now compounds.</p>
+<p data-i18n="about.model.p2"><strong>Direction stays human.</strong> Product calls, quality standards, and release decisions are made by a person who uses the software and answers for it. Agents propose and execute; the human disposes. Every release passes a human review, and every public claim traces back to a verifiable result.</p>
+<p data-i18n="about.model.p3"><strong>Verification is a feature, not a chore.</strong> Agents check each other's work against source data before anything ships. Benchmarks like PhoneBench exist because the lab measures its own tools the same way it measures everyone else's: against a standard that does not bend.</p>
+<p data-i18n="about.model.p4"><strong>The research loop is real too.</strong> PhoneBench, the lab's robotics AI benchmark, is autonomous agents research run on the lab's own methods: agents doing skilled physical work, scored in public. What the benchmark learns about agents feeds straight back into how the lab builds with them.</p>
+<p data-i18n="about.model.p5"><strong>The output is real.</strong> Nivelato, the lab's offset measuring software, runs in production at real glass shops. PhoneBench publishes full transcripts, including the failures. The lab's credibility is its distribution: do the work in public, show the receipts, and let the results rank.</p>
 </div>
 <div class="cta-row">
-<a class="btn" href="/products/">See what the lab ships</a>
-<a class="btn ghost" href="/contact/">Get in touch</a>
+<a class="btn" href="/products/" data-i18n="about.model.cta1">See what the lab ships</a>
+<a class="btn ghost" href="/contact/" data-i18n="about.model.cta2">Get in touch</a>
 </div>
 </div></section>
 
 <section class="reveal" id="mission"><div class="wrap">
-<div class="sec-kicker">Mission</div>
-<h2>Software that measures up, for the trades that get ignored.</h2>
+<div class="sec-kicker" data-i18n="about.mission.kicker">Mission</div>
+<h2 data-i18n="about.mission.h2">Software that measures up, for the trades that get ignored.</h2>
 <div class="prose">
-<p><strong>Nivelato Labs exists to build the software the big platforms never get around to:</strong> precise, field-ready tools for small shops doing skilled, physical work. Nivelato turns field measurements into quotes without the paper chase. PhoneBench keeps the lab honest about what its own methods can and cannot do.</p>
-<p><strong>The method is part of the mission.</strong> The work is built by coordinated AI agents, directed by a human who uses the software and answers for it, and verified against real results before it ships. If a product does not earn its place in the field, it does not ship.</p>
+<p data-i18n="about.mission.p1"><strong>Nivelato Labs exists to build the software the big platforms never get around to:</strong> precise, field-ready tools for small shops doing skilled, physical work. Nivelato turns field measurements into quotes without the paper chase. PhoneBench keeps the lab honest about what its own methods can and cannot do.</p>
+<p data-i18n="about.mission.p2"><strong>The method is part of the mission.</strong> The work is built by coordinated AI agents, directed by a human who uses the software and answers for it, and verified against real results before it ships. If a product does not earn its place in the field, it does not ship.</p>
 </div>
 </div></section>
 
 <section class="alt reveal" id="vision"><div class="wrap">
-<div class="sec-kicker">Vision</div>
-<h2>A one-person lab that out-ships companies.</h2>
+<div class="sec-kicker" data-i18n="about.vision.kicker">Vision</div>
+<h2 data-i18n="about.vision.h2">A one-person lab that out-ships companies.</h2>
 <div class="prose">
-<p><strong>We see a near future where team size stops predicting software quality.</strong> A small lab with a directed agent fleet, honest benchmarks, and one accountable name on every release sets the pace: faster shipping, published evidence, and tools that respect the people who use them.</p>
-<p><strong>Nivelato is the proof of concept,</strong> already running in real shops. <strong>PhoneBench is the measuring stick,</strong> publishing what autonomous agents can actually do, failures included. The vision is not a bigger company. It is a better ratio of output to overhead, demonstrated in public.</p>
+<p data-i18n="about.vision.p1"><strong>We see a near future where team size stops predicting software quality.</strong> A small lab with a directed agent fleet, honest benchmarks, and one accountable name on every release sets the pace: faster shipping, published evidence, and tools that respect the people who use them.</p>
+<p data-i18n="about.vision.p2"><strong>Nivelato is the proof of concept,</strong> already running in real shops. <strong>PhoneBench is the measuring stick,</strong> publishing what autonomous agents can actually do, failures included. The vision is not a bigger company. It is a better ratio of output to overhead, demonstrated in public.</p>
 </div>
 </div></section>
 
 <section class="reveal" id="values"><div class="wrap">
-<div class="sec-kicker">Core values</div>
-<h2>What the lab holds to.</h2>
-<p class="sec-sub">Four rules run every decision here, from what gets built to what gets published.</p>
+<div class="sec-kicker" data-i18n="about.values.kicker">Core values</div>
+<h2 data-i18n="about.values.h2">What the lab holds to.</h2>
+<p class="sec-sub" data-i18n="about.values.sub">Four rules run every decision here, from what gets built to what gets published.</p>
 <div class="cards values-grid">
-<div class="card"><div class="n">01 · MEASURE</div><h3>Measure honestly</h3><p>Numbers are the product. The lab benchmarks against standards that do not bend, and reports what the benchmark says, especially when it is unflattering.</p></div>
-<div class="card"><div class="n">02 · PUBLISH</div><h3>Publish the failures</h3><p>Transcripts, scorecards, failures and all. Credibility comes from receipts, not claims, so the work happens in public wherever it can.</p></div>
-<div class="card"><div class="n">03 · ANSWER</div><h3>The builder supports it</h3><p>The person who writes the software answers the ticket. No handoffs, and no account managers standing between a problem and the person who can fix it.</p></div>
-<div class="card"><div class="n">04 · STAY SMALL</div><h3>Small on purpose</h3><p>One accountable name on every release. Staying small keeps every standard personal: if it ships, a human here read it, tested it, and signed it.</p></div>
+<div class="card"><div class="n" data-i18n="about.v1.n">01 · MEASURE</div><h3 data-i18n="about.v1.h">Measure honestly</h3><p data-i18n="about.v1.p">Numbers are the product. The lab benchmarks against standards that do not bend, and reports what the benchmark says, especially when it is unflattering.</p></div>
+<div class="card"><div class="n" data-i18n="about.v2.n">02 · PUBLISH</div><h3 data-i18n="about.v2.h">Publish the failures</h3><p data-i18n="about.v2.p">Transcripts, scorecards, failures and all. Credibility comes from receipts, not claims, so the work happens in public wherever it can.</p></div>
+<div class="card"><div class="n" data-i18n="about.v3.n">03 · ANSWER</div><h3 data-i18n="about.v3.h">The builder supports it</h3><p data-i18n="about.v3.p">The person who writes the software answers the ticket. No handoffs, and no account managers standing between a problem and the person who can fix it.</p></div>
+<div class="card"><div class="n" data-i18n="about.v4.n">04 · STAY SMALL</div><h3 data-i18n="about.v4.h">Small on purpose</h3><p data-i18n="about.v4.p">One accountable name on every release. Staying small keeps every standard personal: if it ships, a human here read it, tested it, and signed it.</p></div>
 </div>
 </div></section>
 <footer><div class="wrap">
-<div>Nivelato Labs. Software that measures up.</div>
-<div><a href="/products/">Products</a><a href="/about/">About</a><a href="/contact/">Contact</a></div>
+<div data-i18n="footer.tag">Nivelato Labs. Software that measures up.</div>
+<div><a href="/products/" data-i18n="nav.products">Products</a><a href="/about/" data-i18n="nav.about">About</a><a href="/contact/" data-i18n="nav.contact">Contact</a></div>
 </div></footer>
 <script>
 document.documentElement.classList.add('js');
@@ -321,6 +333,193 @@ if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add(
 var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}})},{threshold:.12});
 els.forEach(function(e){io.observe(e)});
 }catch(err){document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in')});}})();
+</script>
+<script>
+const I18N = {
+  en: {
+  "meta.title": "About Nivelato Labs - AI-Driven Software Development",
+  "meta.desc": "Nivelato Labs builds software with AI-driven, multi-agent development: coordinated AI agents implement, test, and review Nivelato and PhoneBench.",
+  "nav.home": "Home",
+  "nav.products": "Products",
+  "nav.about": "About",
+  "nav.team": "Team",
+  "nav.contact": "Contact",
+  "nav.get": "Get Nivelato",
+  "nav.login": "Log in",
+  "nav.sub.nivelato": "Nivelato",
+  "nav.sub.phonebench": "PhoneBench",
+  "nav.sub.pricing": "Pricing",
+  "nav.sub.mission": "Mission",
+  "nav.sub.vision": "Vision",
+  "nav.sub.values": "Core Values",
+  "footer.tag": "Nivelato Labs. Software that measures up.",
+  "about.kicker": "About",
+  "about.h1": "An AI-driven lab, on purpose.",
+  "about.lede": "Nivelato Labs is a software lab founded by <a href=\"/team/\">Benj Lebron</a>. It runs on a simple bet: a small lab that masters agentic development will out-ship a large team that does not.",
+  "about.model.kicker": "The model",
+  "about.model.h2": "Agents build. A human directs.",
+  "about.model.p1": "<strong>Multi-agent development is the production line.</strong> Instead of one assistant answering one prompt at a time, the lab runs coordinated agents in parallel: one implements, one tests, one reviews, one documents. Work that used to queue up now compounds.",
+  "about.model.p2": "<strong>Direction stays human.</strong> Product calls, quality standards, and release decisions are made by a person who uses the software and answers for it. Agents propose and execute; the human disposes. Every release passes a human review, and every public claim traces back to a verifiable result.",
+  "about.model.p3": "<strong>Verification is a feature, not a chore.</strong> Agents check each other's work against source data before anything ships. Benchmarks like PhoneBench exist because the lab measures its own tools the same way it measures everyone else's: against a standard that does not bend.",
+  "about.model.p4": "<strong>The research loop is real too.</strong> PhoneBench, the lab's robotics AI benchmark, is autonomous agents research run on the lab's own methods: agents doing skilled physical work, scored in public. What the benchmark learns about agents feeds straight back into how the lab builds with them.",
+  "about.model.p5": "<strong>The output is real.</strong> Nivelato, the lab's offset measuring software, runs in production at real glass shops. PhoneBench publishes full transcripts, including the failures. The lab's credibility is its distribution: do the work in public, show the receipts, and let the results rank.",
+  "about.model.cta1": "See what the lab ships",
+  "about.model.cta2": "Get in touch",
+  "about.mission.kicker": "Mission",
+  "about.mission.h2": "Software that measures up, for the trades that get ignored.",
+  "about.mission.p1": "<strong>Nivelato Labs exists to build the software the big platforms never get around to:</strong> precise, field-ready tools for small shops doing skilled, physical work. Nivelato turns field measurements into quotes without the paper chase. PhoneBench keeps the lab honest about what its own methods can and cannot do.",
+  "about.mission.p2": "<strong>The method is part of the mission.</strong> The work is built by coordinated AI agents, directed by a human who uses the software and answers for it, and verified against real results before it ships. If a product does not earn its place in the field, it does not ship.",
+  "about.vision.kicker": "Vision",
+  "about.vision.h2": "A one-person lab that out-ships companies.",
+  "about.vision.p1": "<strong>We see a near future where team size stops predicting software quality.</strong> A small lab with a directed agent fleet, honest benchmarks, and one accountable name on every release sets the pace: faster shipping, published evidence, and tools that respect the people who use them.",
+  "about.vision.p2": "<strong>Nivelato is the proof of concept,</strong> already running in real shops. <strong>PhoneBench is the measuring stick,</strong> publishing what autonomous agents can actually do, failures included. The vision is not a bigger company. It is a better ratio of output to overhead, demonstrated in public.",
+  "about.values.kicker": "Core values",
+  "about.values.h2": "What the lab holds to.",
+  "about.values.sub": "Four rules run every decision here, from what gets built to what gets published.",
+  "about.v1.n": "01 · MEASURE", "about.v1.h": "Measure honestly",
+  "about.v1.p": "Numbers are the product. The lab benchmarks against standards that do not bend, and reports what the benchmark says, especially when it is unflattering.",
+  "about.v2.n": "02 · PUBLISH", "about.v2.h": "Publish the failures",
+  "about.v2.p": "Transcripts, scorecards, failures and all. Credibility comes from receipts, not claims, so the work happens in public wherever it can.",
+  "about.v3.n": "03 · ANSWER", "about.v3.h": "The builder supports it",
+  "about.v3.p": "The person who writes the software answers the ticket. No handoffs, and no account managers standing between a problem and the person who can fix it.",
+  "about.v4.n": "04 · STAY SMALL", "about.v4.h": "Small on purpose",
+  "about.v4.p": "One accountable name on every release. Staying small keeps every standard personal: if it ships, a human here read it, tested it, and signed it."
+},
+  es: {
+  "meta.title": "Sobre Nivelato Labs - Desarrollo de software impulsado por IA",
+  "meta.desc": "Nivelato Labs construye software con desarrollo multiagente impulsado por IA: agentes de IA coordinados implementan, prueban y revisan Nivelato y PhoneBench.",
+  "nav.home": "Inicio",
+  "nav.products": "Productos",
+  "nav.about": "Nosotros",
+  "nav.team": "Equipo",
+  "nav.contact": "Contacto",
+  "nav.get": "Descargar Nivelato",
+  "nav.login": "Iniciar sesión",
+  "nav.sub.nivelato": "Nivelato",
+  "nav.sub.phonebench": "PhoneBench",
+  "nav.sub.pricing": "Precios",
+  "nav.sub.mission": "Misión",
+  "nav.sub.vision": "Visión",
+  "nav.sub.values": "Valores",
+  "footer.tag": "Nivelato Labs. Software que da la medida.",
+  "about.kicker": "Nosotros",
+  "about.h1": "Un laboratorio impulsado por IA, a propósito.",
+  "about.lede": "Nivelato Labs es un laboratorio de software fundado por <a href=\"/team/\">Benj Lebron</a>. Se sostiene sobre una apuesta simple: un laboratorio pequeño que domina el desarrollo agéntico entrega más que un equipo grande que no lo domina.",
+  "about.model.kicker": "El modelo",
+  "about.model.h2": "Los agentes construyen. Un humano dirige.",
+  "about.model.p1": "<strong>El desarrollo multiagente es la línea de producción.</strong> En vez de un asistente respondiendo una instrucción a la vez, el laboratorio corre agentes coordinados en paralelo: uno implementa, uno prueba, uno revisa, uno documenta. El trabajo que antes hacía fila ahora se multiplica.",
+  "about.model.p2": "<strong>La dirección sigue siendo humana.</strong> Las decisiones de producto, los estándares de calidad y las decisiones de lanzamiento las toma una persona que usa el software y responde por él. Los agentes proponen y ejecutan; el humano dispone. Cada lanzamiento pasa una revisión humana, y cada afirmación pública se rastrea hasta un resultado verificable.",
+  "about.model.p3": "<strong>La verificación es una función, no una tarea.</strong> Los agentes revisan el trabajo de los demás contra los datos de origen antes de que algo se lance. Los benchmarks como PhoneBench existen porque el laboratorio mide sus propias herramientas de la misma manera que mide las de los demás: contra un estándar que no se dobla.",
+  "about.model.p4": "<strong>El ciclo de investigación también es real.</strong> PhoneBench, el benchmark de IA robótica del laboratorio, es investigación en agentes autónomos ejecutada con los métodos del propio laboratorio: agentes haciendo trabajo físico especializado, evaluados en público. Lo que el benchmark aprende sobre los agentes regresa directo a cómo el laboratorio construye con ellos.",
+  "about.model.p5": "<strong>El resultado es real.</strong> Nivelato, el software de medición con desfases del laboratorio, corre en producción en talleres de cristales reales. PhoneBench publica las transcripciones completas, incluidos los fracasos. La credibilidad del laboratorio es su distribución: hacer el trabajo en público, mostrar la evidencia y dejar que los resultados se ganen su lugar.",
+  "about.model.cta1": "Ver lo que el laboratorio entrega",
+  "about.model.cta2": "Contáctanos",
+  "about.mission.kicker": "Misión",
+  "about.mission.h2": "Software que da la medida, para los oficios que nadie atiende.",
+  "about.mission.p1": "<strong>Nivelato Labs existe para construir el software que las plataformas grandes nunca llegan a construir:</strong> herramientas precisas, listas para el campo, para talleres pequeños que hacen trabajo físico especializado. Nivelato convierte las mediciones de campo en cotizaciones sin perseguir papeles. PhoneBench mantiene honesto al laboratorio sobre lo que sus propios métodos pueden y no pueden hacer.",
+  "about.mission.p2": "<strong>El método es parte de la misión.</strong> El trabajo lo construyen agentes de IA coordinados, dirigidos por un humano que usa el software y responde por él, y se verifica contra resultados reales antes de lanzarse. Si un producto no se gana su lugar en el campo, no se lanza.",
+  "about.vision.kicker": "Visión",
+  "about.vision.h2": "Un laboratorio de una persona que supera en entregas a las compañías.",
+  "about.vision.p1": "<strong>Vemos un futuro cercano donde el tamaño del equipo deja de predecir la calidad del software.</strong> Un laboratorio pequeño con una flota de agentes dirigida, benchmarks honestos y un nombre responsable en cada lanzamiento marca el paso: entregas más rápidas, evidencia publicada y herramientas que respetan a las personas que las usan.",
+  "about.vision.p2": "<strong>Nivelato es la prueba de concepto,</strong> ya corriendo en talleres reales. <strong>PhoneBench es la vara de medir,</strong> publicando lo que los agentes autónomos realmente pueden hacer, fracasos incluidos. La visión no es una compañía más grande. Es una mejor proporción entre lo que se produce y los gastos de operación, demostrada en público.",
+  "about.values.kicker": "Valores fundamentales",
+  "about.values.h2": "Lo que el laboratorio defiende.",
+  "about.values.sub": "Cuatro reglas rigen cada decisión aquí, desde lo que se construye hasta lo que se publica.",
+  "about.v1.n": "01 · MEDIR", "about.v1.h": "Medir con honestidad",
+  "about.v1.p": "Los números son el producto. El laboratorio se mide contra estándares que no se doblan, y reporta lo que el benchmark dice, especialmente cuando no favorece.",
+  "about.v2.n": "02 · PUBLICAR", "about.v2.h": "Publicar los fracasos",
+  "about.v2.p": "Transcripciones, resultados, fracasos y todo. La credibilidad viene de la evidencia, no de las afirmaciones, así que el trabajo se hace en público siempre que se puede.",
+  "about.v3.n": "03 · RESPONDER", "about.v3.h": "Quien lo construye le da soporte",
+  "about.v3.p": "La persona que escribe el software responde el ticket. Sin traspasos, y sin gerentes de cuenta entre un problema y la persona que puede resolverlo.",
+  "about.v4.n": "04 · MANTENERSE PEQUEÑO", "about.v4.h": "Pequeño a propósito",
+  "about.v4.p": "Un nombre responsable en cada lanzamiento. Mantenerse pequeño mantiene personal cada estándar: si algo se lanza, un humano aquí lo leyó, lo probó y lo firmó."
+}
+};
+const FORCED_LANG = null;
+
+const LANG_KEY = 'nivelato-lang';
+function currentLang() {
+  try {
+    const saved = localStorage.getItem(LANG_KEY);
+    if (saved && I18N[saved]) return saved;
+  } catch (e) {}
+  if (FORCED_LANG) return FORCED_LANG;
+  const nav = (navigator.language || 'en').toLowerCase();
+  const base = nav.split('-')[0];
+  return I18N[base] ? base : 'en';
+}
+function applyLang(l) {
+  const dict = I18N[l] || I18N.en;
+  document.documentElement.lang = l;
+  if (dict['meta.title']) document.title = dict['meta.title'];
+  const metaDescEl = document.querySelector('meta[name="description"]');
+  if (metaDescEl && dict['meta.desc']) metaDescEl.setAttribute('content', dict['meta.desc']);
+  document.querySelectorAll('[data-i18n]').forEach(function (el) {
+    const k = el.getAttribute('data-i18n');
+    if (dict[k] !== undefined) el.innerHTML = dict[k];
+  });
+  document.querySelectorAll('.lang-toggle').forEach(function (b) {
+    b.textContent = (l === 'en') ? 'ES' : 'EN';
+  });
+  try { localStorage.setItem(LANG_KEY, l); } catch (e) {}
+}
+document.querySelectorAll('.lang-toggle').forEach(function (b) {
+  b.addEventListener('click', function () {
+    const cur = document.documentElement.lang === 'es' ? 'es' : 'en';
+    applyLang(cur === 'en' ? 'es' : 'en');
+  });
+});
+applyLang(currentLang());
+
+</script>
+<script>
+/* Language selector for the Variant B menu overlay. The available
+   languages are a registry, not a hard-coded toggle: the list is
+   built from the page's I18N dictionaries. To add a language, add
+   its dictionary to I18N and one label line to LANG_LABELS below;
+   the selector, detection, and persistence pick it up with no UI
+   changes. Switching reuses the existing applyLang(). */
+(function () {
+  var LANG_LABELS = { en: 'English', es: 'Español' };
+  var wrap = document.getElementById('variant-lang');
+  if (!wrap || typeof I18N === 'undefined' || typeof applyLang !== 'function') return;
+  var currentBtn = wrap.querySelector('.variant-lang-current');
+  var currentLabel = wrap.querySelector('.variant-lang-current-label');
+  var list = document.getElementById('variant-lang-list');
+  var registry = Object.keys(I18N).map(function (code) {
+    return { code: code, label: LANG_LABELS[code] || code.toUpperCase(), dictionary: I18N[code] };
+  });
+  function paint() {
+    var cur = document.documentElement.lang || 'en';
+    registry.forEach(function (entry) {
+      if (entry.code === cur) currentLabel.textContent = entry.label;
+    });
+    list.querySelectorAll('.variant-lang-option').forEach(function (opt) {
+      opt.setAttribute('aria-selected', opt.getAttribute('data-lang') === cur ? 'true' : 'false');
+    });
+  }
+  registry.forEach(function (entry) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'variant-lang-option';
+    b.setAttribute('role', 'option');
+    b.setAttribute('data-lang', entry.code);
+    b.textContent = entry.label;
+    b.addEventListener('click', function () {
+      applyLang(entry.code);
+      paint();
+      list.hidden = true;
+      currentBtn.setAttribute('aria-expanded', 'false');
+    });
+    list.appendChild(b);
+  });
+  currentBtn.addEventListener('click', function () {
+    var willOpen = list.hidden;
+    list.hidden = !willOpen;
+    currentBtn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+  });
+  paint();
+})();
 </script>
 <script>
 /* Scroll cue behavior: visible at the top of the page, retired for good
