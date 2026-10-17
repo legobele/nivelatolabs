@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{if('scrollRestoration' in history){history.scrollRestoration='manual'}if(!window.location.hash){window.scrollTo(0,0);document.addEventListener('DOMContentLoaded',function(){if(!window.__nlUserScroll){window.scrollTo(0,0)}});window.addEventListener('scroll',function(){window.__nlUserScroll=1},{once:true,passive:true})}}catch(e){}</script>
 <title>PhoneBench - Robotics AI Benchmark - Nivelato Labs</title>
 <meta name="description" content="PhoneBench is a robotics AI benchmark for autonomous skilled work: an AI agent drives a robotic arm to repair phones, scored against three quality tiers.">
 <link rel="canonical" href="https://nivelatolabs.com/phonebench/">
@@ -74,6 +75,18 @@
   /* hero */
   header{padding:110px 0 80px;position:relative;overflow:hidden}
   header::before{content:"";position:absolute;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(255,255,255,.14),transparent 65%);pointer-events:none}
+  /* Scroll cue: a small glass HUD pill fixed at the bottom of the first
+     viewport while the page sits at the top. The behavior script at the
+     end of the body adds .cue-on and retires it for good (this page view)
+     once the reader scrolls past 40px. Whisper-level: white at low opacity,
+     mono HUD type, thin falling line. */
+  .scroll-cue{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:90;display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 16px 7px;background:rgba(8,8,10,.72);border:1px solid rgba(255,255,255,.14);border-radius:999px;cursor:pointer;color:#fafafa;font-family:'JetBrains Mono',monospace;font-size:.64rem;letter-spacing:.34em;text-indent:.34em;opacity:0;visibility:hidden;transition:opacity .45s ease,visibility 0s linear .45s}
+  @supports((-webkit-backdrop-filter:blur(10px)) or (backdrop-filter:blur(10px))){.scroll-cue{background:rgba(8,8,10,.38);-webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%)}}
+  .scroll-cue.cue-on{opacity:.62;visibility:visible;transition:opacity .45s ease}
+  .scroll-cue:hover{opacity:.95}
+  .scroll-cue .cue-line{display:block;width:1px;height:22px;background:linear-gradient(180deg,rgba(250,250,250,.85),rgba(250,250,250,0));animation:cue-drift 2.4s ease-in-out infinite}
+  @keyframes cue-drift{0%,100%{transform:translateY(0);opacity:.45}50%{transform:translateY(5px);opacity:1}}
+  @media(prefers-reduced-motion:reduce){.scroll-cue,.scroll-cue.cue-on{transition:none}.scroll-cue .cue-line{animation:none}}
   .kicker{font-family:'JetBrains Mono';font-size:.8rem;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:22px}
   h1{font-family:'Space Grotesk';font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.04;font-weight:700;letter-spacing:-.02em;max-width:16ch}
   h1 .laser{color:var(--laser)}
@@ -243,6 +256,7 @@ body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events
   <h1 class="reveal">PhoneBench</h1>
   <p class="lede reveal" data-i18n="pbp.lede">A robotics AI benchmark for autonomous skilled work, and the first benchmark for fully autonomous skilled work. A model gets a robotic arm, a bench of powered tools, and a broken phone. No script, no human hands. It fixes the phone to standard, or it does not.</p>
 </div></div>
+<button type="button" class="scroll-cue" aria-label="Scroll down to content">[ SCROLL ]<span class="cue-line" aria-hidden="true"></span></button>
 
 <style>
   .faq-item h3 .pass{color:var(--laser)}
@@ -732,6 +746,28 @@ applyLang(currentLang());
   });
   paint();
 })();
+</script>
+<script>
+/* Scroll cue behavior: visible at the top of the page, retired for good
+   (this page view) after the first scroll past 40px. A tap glides to the
+   first section below the hero; reduced motion jumps instantly. */
+(function(){try{
+var cue=document.querySelector('.scroll-cue');if(!cue)return;
+var hero=document.querySelector('header')||document.querySelector('.page-head');
+var next=hero?hero.nextElementSibling:null;
+while(next&&(next.tagName==='STYLE'||next.classList.contains('scroll-cue'))){next=next.nextElementSibling;}
+var gone=false;
+function hide(){gone=true;cue.classList.remove('cue-on');}
+if(window.scrollY<=40){cue.classList.add('cue-on');}
+window.addEventListener('scroll',function(){if(window.scrollY>40&&!gone){hide();}},{passive:true});
+cue.addEventListener('click',function(){
+hide();
+if(!next){return;}
+var y=next.getBoundingClientRect().top+window.scrollY;
+var rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+try{window.scrollTo({top:y,behavior:rm?'instant':'smooth'});}catch(e){window.scrollTo(0,y);}
+});
+}catch(e){}})();
 </script>
 <!-- Cloudflare Web Analytics -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ba83c66be7af41d899cb499dfa1442c8"}'></script>
