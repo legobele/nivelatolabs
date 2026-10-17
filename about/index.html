@@ -39,6 +39,7 @@ header::before{content:"";position:absolute;inset:0;background:radial-gradient(e
 h1{font-family:'Space Grotesk';font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.05;font-weight:700;letter-spacing:-.02em;max-width:18ch}
 h1 .laser{color:var(--laser)}
 .lede{margin-top:22px;font-size:1.15rem;color:var(--muted);max-width:58ch}
+.lede a{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
 .cta-row{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
 .rule{margin-top:70px;border-top:1px solid var(--line);padding-top:26px;display:flex;gap:36px;flex-wrap:wrap;font-family:'JetBrains Mono';font-size:.82rem;color:var(--dim)}
 .rule b{color:var(--amber);font-weight:500}
@@ -194,6 +195,7 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
     <a href="/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Home</a>
     <a href="/products/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Products</a>
     <a href="/about/" aria-current="page" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">About</a>
+    <a href="/team/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Team</a>
     <a href="/phonebench/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">PhoneBench</a>
     <a href="/contact/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Contact</a>
     <div class="variant-menu-actions">
@@ -205,7 +207,7 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 <header><div class="wrap">
 <div class="kicker">About</div>
 <h1>An AI-driven lab, on purpose.</h1>
-<p class="lede">Nivelato Labs is a software lab founded by Benj Lebron. It runs on a simple bet: a small lab that masters agentic development will out-ship a large team that does not.</p>
+<p class="lede">Nivelato Labs is a software lab founded by <a href="/team/">Benj Lebron</a>. It runs on a simple bet: a small lab that masters agentic development will out-ship a large team that does not.</p>
 </div></header>
 <button type="button" class="scroll-cue" aria-label="Scroll down to content">[ SCROLL ]<span class="cue-line" aria-hidden="true"></span></button>
 
