@@ -1,0 +1,12 @@
+# Nivelato Labs
+
+> Nivelato Labs is an AI-driven software lab in San Juan, Puerto Rico, founded by Benj Lebron. Slogan: Software that measures up. It ships Nivelato (field measurement and quoting software for glass shops) and PhoneBench (the benchmark for fully autonomous skilled work), built with multi-agent development workflows under human direction.
+
+## Key pages
+
+- [Home](https://nivelatolabs.com/): what the lab is
+- [Products](https://nivelatolabs.com/products/): Nivelato, PhoneBench, and research prototypes
+- [About](https://nivelatolabs.com/about/): how AI-driven development works at the lab
+- [PhoneBench](https://nivelatolabs.com/phonebench/): benchmark scenarios and published results
+- [Contact](https://nivelatolabs.com/contact/): reach the lab
+- [AGENTS.md](https://nivelatolabs.com/AGENTS.md): instructions for visiting agents

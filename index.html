@@ -4,834 +4,118 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nivelato Labs - Software that measures up</title>
-<meta name="description" content="Nivelato: field measurement for glass shops. Measure on site, sync to the shop, quote on the spot. Android + web.">
+<meta name="description" content="Nivelato Labs is an AI-driven software lab in Puerto Rico. We design, build, and ship real products with agentic development workflows: Nivelato for glass shops, and PhoneBench, the benchmark for autonomous skilled work.">
+<link rel="canonical" href="https://nivelatolabs.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nivelato Labs">
+<meta property="og:title" content="Nivelato Labs - Software that measures up">
+<meta property="og:description" content="An AI-driven software lab shipping real products: field software for glass shops, and a benchmark for autonomous skilled work.">
+<meta property="og:url" content="https://nivelatolabs.com/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nivelato Labs - Software that measures up">
+<meta name="twitter:description" content="An AI-driven software lab shipping real products with agentic development workflows.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    color-scheme:dark;
-    --bg:#0b0b0e; --bg2:#121216; --card:#16161c; --line:#232329;
-    --ink:#f2f1ec; --muted:#a7a7b3; --dim:#6d6d78;
-    --amber:#f5a524; --amber2:#ffcf5c; --laser:#c8f542;
-    --radius:14px;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-  ::selection{background:var(--amber);color:#111}
-  /* scrollbar */
-  html{scrollbar-width:thin;scrollbar-color:#2e2e38 var(--bg)}
-  ::-webkit-scrollbar{width:10px;height:10px}
-  ::-webkit-scrollbar-track{background:var(--bg)}
-  ::-webkit-scrollbar-thumb{background:#2e2e38;border-radius:8px;border:2px solid var(--bg)}
-  ::-webkit-scrollbar-thumb:hover{background:#3f3f4c}
-  a{color:inherit}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-  /* nav */
-  nav{position:sticky;top:0;left:0;right:0;width:100%;z-index:50;background:rgba(11,11,14,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .brand{font-family:'Space Grotesk';font-weight:700;font-size:1.15rem;letter-spacing:.02em;display:flex;align-items:center;gap:10px;text-decoration:none;flex:none;margin-right:16px}
-  .brand .tick{width:26px;height:26px;border:2px solid var(--amber);border-radius:6px;position:relative;flex:none}
-  .brand .tick::after{content:"";position:absolute;left:5px;top:5px;width:12px;height:6px;border-left:3px solid var(--amber);border-bottom:3px solid var(--amber);transform:rotate(-45deg)}
-  nav ul{display:flex;gap:15px;list-style:none;font-size:.85rem}
-  nav ul a{text-decoration:none;color:var(--muted);transition:color .2s;white-space:nowrap}
-  nav ul a:hover{color:var(--ink)}
-  .btn{display:inline-block;background:var(--amber);color:#141414;font-weight:600;padding:12px 26px;border-radius:999px;text-decoration:none;font-size:.95rem;transition:transform .15s,box-shadow .15s;border:none;cursor:pointer}
-  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,165,36,.35)}
-  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-  .btn.ghost:hover{box-shadow:none;border-color:var(--amber)}
-  .btn.small{padding:9px 20px;font-size:.85rem}
-  .login-link{font-size:.9rem;color:var(--muted);text-decoration:none;margin-right:11px;transition:color .2s;white-space:nowrap}
-  .login-link:hover{color:var(--ink)}
-  .nav-actions{display:flex;align-items:center;flex:none}
-  nav .btn{white-space:nowrap}nav .lang-toggle{margin-right:10px}
-  @media(max-width:1060px){nav ul{display:none}}
-  @media(max-width:1100px) and (min-width:1061px){nav ul{gap:11px;font-size:.80rem}.brand{font-size:1.02rem;margin-right:10px}.login-link{margin-right:10px;font-size:.84rem}.lang-toggle{margin-right:9px;padding:7px 13px}nav .btn.small{padding:8px 14px}}
-  .nav-burger{display:none;background:none;border:1px solid var(--line);border-radius:10px;color:#fff;font-size:1.3rem;width:44px;height:44px;cursor:pointer}
-  @media(max-width:1060px){.nav-burger{display:inline-flex;align-items:center;justify-content:center}}
-  @media(max-width:1060px){.brand{font-size:0}.brand .tick{font-size:1.2rem}.nav-actions .login-link{display:none}nav .wrap{gap:10px}}
-  .m-drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);background:#0b0b0e;border-left:1px solid var(--line);z-index:200;transform:translateX(105%);transition:transform .25s ease;padding:20px;display:flex;flex-direction:column;gap:6px}
-  body.m-nav-open .m-drawer{transform:translateX(0)}
-  .m-drawer a.m-link{display:block;padding:14px 12px;color:#fff;text-decoration:none;font-size:1.1rem;border-radius:10px}
-  .m-drawer a.m-link:hover{background:rgba(255,255,255,.06)}
-  .m-drawer .m-actions{margin-top:auto;display:flex;flex-direction:column;gap:10px;padding-top:16px;border-top:1px solid var(--line)}
-  .m-scrim{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:190;display:none}
-  body.m-nav-open .m-scrim{display:block}
-  .m-close{align-self:flex-end;background:none;border:none;color:var(--dim);font-size:1.5rem;cursor:pointer;padding:4px}
-  /* hero */
-  header{padding:110px 0 80px;position:relative;overflow:hidden}
-  header::before{content:"";position:absolute;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(245,165,36,.14),transparent 65%);pointer-events:none}
-  .kicker{font-family:'JetBrains Mono';font-size:.8rem;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:22px}
-  h1{font-family:'Space Grotesk';font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.04;font-weight:700;letter-spacing:-.02em;max-width:16ch}
-  h1 .laser{color:var(--laser)}
-  .lede{margin-top:22px;font-size:1.15rem;color:var(--muted);max-width:56ch}
-  .cta-row{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
-  .rule{margin-top:70px;border-top:1px solid var(--line);padding-top:26px;display:flex;gap:36px;flex-wrap:wrap;font-family:'JetBrains Mono';font-size:.82rem;color:var(--dim)}
-  .rule b{color:var(--amber);font-weight:500}
-  /* sections */
-  section{padding:84px 0}
-  .sec-kicker{font-family:'JetBrains Mono';font-size:.78rem;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:14px}
-  h2{font-family:'Space Grotesk';font-size:clamp(1.8rem,3.6vw,2.7rem);letter-spacing:-.01em;line-height:1.12;margin-bottom:16px}
-  .sec-sub{color:var(--muted);max-width:62ch;margin-bottom:44px;font-size:1.05rem}
-  .alt{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  /* feature tabs */
-  .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
-  .tab{font-family:'Space Grotesk';font-weight:600;font-size:.95rem;background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:10px 22px;cursor:pointer;transition:all .2s}
-  .tab:hover{color:var(--ink);border-color:var(--dim)}
-  .tab.active{background:var(--amber);border-color:var(--amber);color:#141414}
-  .tabpanel{display:none;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:34px 32px}
-  .tabpanel.active{display:block}
-  .tabpanel h3{font-family:'Space Grotesk';font-size:1.4rem;margin-bottom:10px}
-  .tabpanel h3 .tick-n{color:var(--amber);font-family:'JetBrains Mono';font-size:.85rem;margin-right:10px}
-  .tabpanel p{color:var(--muted);max-width:60ch}
-  .tabpanel ul{margin-top:18px;list-style:none;display:grid;gap:10px}
-  .tabpanel ul li{color:var(--muted);font-size:.95rem;padding-left:22px;position:relative}
-  .tabpanel ul li::before{content:"✓";position:absolute;left:0;color:var(--laser);font-weight:700}
-  /* steps */
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  @media(max-width:760px){.steps{grid-template-columns:1fr}}
-  .step{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:28px 26px}
-  .step .n{font-family:'JetBrains Mono';color:var(--amber);font-size:.8rem;letter-spacing:.2em;margin-bottom:14px}
-  .step h3{font-family:'Space Grotesk';font-size:1.25rem;margin-bottom:8px}
-  .step p{color:var(--muted);font-size:.94rem}
-  /* faq */
-  .faq{display:grid;gap:14px;max-width:840px}
-  .faq-item{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:24px 26px}
-  .faq-item h3{font-family:'Space Grotesk';font-size:1.12rem;margin-bottom:8px}
-  .faq-item p{color:var(--muted);font-size:.96rem}
-  .faq-item a{color:var(--amber2)}
-  /* pricing */
-  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
-  @media(max-width:860px){.tiers{grid-template-columns:1fr;max-width:440px;margin:0 auto}}
-  .tier{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:30px 28px;display:flex;flex-direction:column;position:relative}
-  .tier.hot{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber),0 12px 40px rgba(245,165,36,.12)}
-  .tier .tname{font-family:'Space Grotesk';font-weight:700;font-size:1.3rem;margin-bottom:4px}
-  .tier .tprice{font-family:'JetBrains Mono';font-size:.82rem;color:var(--dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}
-  .tier ul{list-style:none;display:grid;gap:10px;margin-bottom:28px;flex:1}
-  .tier ul li{color:var(--muted);font-size:.93rem;padding-left:22px;position:relative}
-  .tier ul li::before{content:"✓";position:absolute;left:0;color:var(--laser);font-weight:700}
-  .tier ul li.no{color:var(--dim)}
-  .tier ul li.no::before{content:"×";color:var(--dim)}
-  .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--amber);color:#141414;font-family:'JetBrains Mono';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:5px 16px;border-radius:999px;white-space:nowrap}
-  .tier-note{margin-top:26px;color:var(--dim);font-size:.88rem;text-align:center}
-  /* get app */
-  #get-app .app-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
-  @media(max-width:880px){#get-app .app-grid{grid-template-columns:1fr}}
-  .phone{border:1px solid var(--line);border-radius:28px;background:var(--card);padding:34px 30px;position:relative;overflow:hidden}
-  .phone::before{content:"";position:absolute;top:0;left:10%;right:10%;height:3px;background:linear-gradient(90deg,transparent,var(--laser),transparent)}
-  .phone .screen-label{font-family:'JetBrains Mono';font-size:.75rem;color:var(--dim);letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
-  .measure{font-family:'JetBrains Mono';padding:16px 0;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;font-size:.95rem}
-  .measure:last-of-type{border-bottom:none}
-  .measure .v{color:var(--laser)}
-  .measure .u{color:var(--dim);font-size:.8rem;margin-left:6px}
-  .phone .total{margin-top:20px;display:flex;justify-content:space-between;align-items:center}
-  .phone .total b{font-family:'Space Grotesk';font-size:1.5rem}
-  .soon{display:inline-block;margin-top:14px;font-family:'JetBrains Mono';font-size:.78rem;color:var(--dim);border:1px dashed var(--line);border-radius:999px;padding:8px 16px}
-  /* PR section */
-  #pr .pr-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:40px 36px;max-width:760px}
-  #pr .pr-card p{color:var(--muted);margin-bottom:16px;max-width:60ch}
-  #pr .pr-card p strong{color:var(--ink);font-weight:600}
-  /* phonebench */
-  #phonebench .step.live{border-color:var(--laser);box-shadow:0 0 0 1px var(--laser),0 12px 40px rgba(200,245,66,.10)}
-  #phonebench .credit{margin-top:32px;color:var(--dim);font-family:'JetBrains Mono';font-size:.82rem}
-  /* contact */
-  #contact{text-align:center}
-  #contact .sec-sub{margin-left:auto;margin-right:auto}
-  .mail{font-family:'Space Grotesk';font-size:clamp(1.3rem,3vw,2rem);color:var(--amber2);text-decoration:none;border-bottom:2px solid var(--amber);padding-bottom:4px}
-  .mail:hover{color:var(--amber)}
-  footer{border-top:1px solid var(--line);padding:34px 0;color:var(--dim);font-size:.85rem}
-  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-  footer .mono{font-family:'JetBrains Mono';font-size:.76rem}
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
-  .reveal.in{opacity:1;transform:none}
-  /* page header */
-  .page-head{padding:72px 0 4px}
-  .page-head h1{font-family:'Space Grotesk';font-size:clamp(2.2rem,5vw,3.4rem);letter-spacing:-.02em;line-height:1.05;margin-top:12px}
-  /* language toggle */
-  .lang-toggle{background:transparent;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-family:'JetBrains Mono';font-size:.78rem;letter-spacing:.08em;padding:8px 16px;cursor:pointer;margin-right:14px;transition:all .2s;text-align:center;text-indent:.08em}
-  .lang-toggle:hover{color:var(--ink);border-color:var(--amber)}
-  @media(max-width:1060px){.nav-actions .lang-toggle{display:none}}
-  .m-drawer .lang-toggle{margin:0 0 6px;align-self:flex-start}
-
-  /* page header */
-  .page-head{padding:72px 0 4px}
-  .page-head h1{font-family:'Space Grotesk';font-size:clamp(2.2rem,5vw,3.4rem);letter-spacing:-.02em;line-height:1.05;margin-top:12px}
-  /* language toggle */
-  .lang-toggle{background:transparent;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-family:'JetBrains Mono';font-size:.78rem;letter-spacing:.08em;padding:8px 16px;cursor:pointer;margin-right:14px;transition:all .2s;text-align:center;text-indent:.08em}
-  .lang-toggle:hover{color:var(--ink);border-color:var(--amber)}
-  @media(max-width:1060px){.nav-actions .lang-toggle{display:none}}
-  .m-drawer .lang-toggle{margin:0 0 6px;align-self:flex-start}
-
+:root{color-scheme:dark;--bg:#0b0b0e;--bg2:#121216;--card:#16161c;--line:#232329;--ink:#f2f1ec;--muted:#a7a7b3;--dim:#6d6d78;--amber:#f5a524;--amber2:#ffcf5c;--laser:#c8f542;--radius:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+nav{position:sticky;top:0;z-index:50;background:rgba(11,11,14,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-family:'Space Grotesk';font-weight:700;font-size:1.15rem;text-decoration:none;display:flex;align-items:center;gap:10px}
+.brand .tick{width:26px;height:26px;border:2px solid var(--amber);border-radius:6px;position:relative;flex:none}
+.brand .tick::after{content:"";position:absolute;left:5px;top:5px;width:12px;height:6px;border-left:3px solid var(--amber);border-bottom:3px solid var(--amber);transform:rotate(-45deg)}
+nav ul{display:flex;gap:22px;list-style:none;font-size:.92rem}
+nav ul a{text-decoration:none;color:var(--muted)} nav ul a:hover,nav ul a[aria-current]{color:var(--ink)}
+.btn{display:inline-block;background:var(--amber);color:#141414;font-weight:600;padding:12px 26px;border-radius:999px;text-decoration:none;font-size:.95rem;border:none;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+header{padding:110px 0 84px;position:relative;overflow:hidden}
+header::before{content:"";position:absolute;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(245,165,36,.14),transparent 65%);pointer-events:none}
+.kicker{font-family:'JetBrains Mono';font-size:.8rem;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:22px}
+h1{font-family:'Space Grotesk';font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.05;font-weight:700;letter-spacing:-.02em;max-width:18ch}
+h1 .laser{color:var(--laser)}
+.lede{margin-top:22px;font-size:1.15rem;color:var(--muted);max-width:58ch}
+.cta-row{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
+.rule{margin-top:70px;border-top:1px solid var(--line);padding-top:26px;display:flex;gap:36px;flex-wrap:wrap;font-family:'JetBrains Mono';font-size:.82rem;color:var(--dim)}
+.rule b{color:var(--amber);font-weight:500}
+section{padding:84px 0}
+.alt{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sec-kicker{font-family:'JetBrains Mono';font-size:.78rem;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:14px}
+h2{font-family:'Space Grotesk';font-size:clamp(1.8rem,3.6vw,2.7rem);line-height:1.12;margin-bottom:16px}
+.sec-sub{color:var(--muted);max-width:62ch;margin-bottom:44px;font-size:1.05rem}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:820px){.cards{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:28px 26px}
+.card .n{font-family:'JetBrains Mono';color:var(--amber);font-size:.8rem;letter-spacing:.2em;margin-bottom:14px}
+.card h3{font-family:'Space Grotesk';font-size:1.3rem;margin-bottom:8px}
+.card p{color:var(--muted);font-size:.95rem}
+.card a.more{color:var(--amber2);text-decoration:none;font-weight:600;display:inline-block;margin-top:14px}
+.prose{max-width:70ch;color:var(--muted);font-size:1.05rem}
+.prose p{margin-bottom:18px}
+.prose strong{color:var(--ink)}
+footer{padding:44px 0;border-top:1px solid var(--line);color:var(--dim);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer a{color:var(--muted);text-decoration:none;margin-right:18px}
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://nivelatolabs.com/#org","name":"Nivelato Labs","url":"https://nivelatolabs.com/","slogan":"Software that measures up","description":"Nivelato Labs is an AI-driven software lab. It designs, builds, and ships products with multi-agent development workflows, with a human directing every release.","founder":{"@type":"Person","name":"Benj Lebron"}},
+{"@type":"WebSite","@id":"https://nivelatolabs.com/#site","url":"https://nivelatolabs.com/","name":"Nivelato Labs","publisher":{"@id":"https://nivelatolabs.com/#org"}}
+]}
+</script>
 </head>
 <body>
+<nav><div class="wrap">
+<a class="brand" href="/"><span class="tick"></span>Nivelato Labs</a>
+<ul>
+<li><a href="/products/">Products</a></li>
+<li><a href="/about/">About</a></li>
+<li><a href="/phonebench/">PhoneBench</a></li>
+<li><a href="/contact/">Contact</a></li>
+</ul>
+<a class="btn" href="/products/">See the products</a>
+</div></nav>
+<header><div class="wrap">
+<div class="kicker">Nivelato Labs · San Juan, Puerto Rico</div>
+<h1>Software that <span class="laser">measures up</span>, built at agent speed.</h1>
+<p class="lede">Nivelato Labs is an AI-driven software lab. A human sets the standard and directs the work; coordinated AI agents design, build, test, and document at a pace a traditional team cannot match. The result is production software, shipped end to end, that holds up in the field.</p>
+<div class="cta-row">
+<a class="btn" href="/products/">Explore the products</a>
+<a class="btn ghost" href="/about/">How the lab works</a>
+</div>
+<div class="rule">
+<span><b>Flagship</b> Nivelato, field software for glass shops</span>
+<span><b>Research</b> PhoneBench, the benchmark for autonomous skilled work</span>
+<span><b>Method</b> Multi-agent development, human directed</span>
+</div>
+</div></header>
 
-<nav>
-  <div class="wrap">
-    <a class="brand" href="/"><span class="tick"></span>Nivelato&nbsp;Labs</a>
-    <ul>
-      <li><a href="#features" data-i18n="nav.features">What it does</a></li>
-      <li><a href="#how" data-i18n="nav.how">How it works</a></li>
-      <li><a href="/pricing/" data-i18n="nav.pricing">Pricing</a></li>
-      <li><a href="/phonebench/">PhoneBench</a></li>
-      <li><a href="/get/" data-i18n="nav.get">Get the app</a></li>
-      <li><a href="/pr/" data-i18n="nav.pr">Para clientes en PR</a></li>
-      <li><a href="/contact/" data-i18n="nav.contact">Contact</a></li>
-    </ul>
-    <div class="nav-actions">
-      <button class="lang-toggle" aria-label="Switch language / Cambiar idioma">ES</button>
-      <a class="login-link" href="https://login.nivelatolabs.com" data-i18n="nav.login">Log in</a>
-      <a class="btn small" href="/get/" data-i18n="nav.getNivelato">Get Nivelato</a>
-      <button class="nav-burger" onclick="document.body.classList.toggle('m-nav-open')" aria-label="Menu">☰</button>
-    </div>
-  </div>
-</nav>
-<div class="m-scrim" onclick="document.body.classList.remove('m-nav-open')"></div>
-<aside class="m-drawer" id="m-drawer">
-  <button class="m-close" onclick="document.body.classList.remove('m-nav-open')" aria-label="Close">✕</button>
-  <a class="m-link" href="#features" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.features">What it does</a>
-  <a class="m-link" href="#how" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.how">How it works</a>
-  <a class="m-link" href="/pricing/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.pricing">Pricing</a>
-  <a class="m-link" href="/phonebench/" onclick="document.body.classList.remove('m-nav-open')">PhoneBench</a>
-  <a class="m-link" href="/get/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.get">Get the app</a>
-  <a class="m-link" href="/pr/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.pr">Para clientes en PR</a>
-  <a class="m-link" href="/contact/" onclick="document.body.classList.remove('m-nav-open')" data-i18n="nav.contact">Contact</a>
-  <div class="m-actions">
-    <button class="lang-toggle" aria-label="Switch language / Cambiar idioma">ES</button>
-    <a class="btn small" href="https://login.nivelatolabs.com" style="text-align:center" data-i18n="nav.login">Log in</a>
-    <a class="btn small" href="/get/" onclick="document.body.classList.remove('m-nav-open')" style="text-align:center" data-i18n="nav.getNivelato">Get Nivelato</a>
-  </div>
-</aside>
+<section class="alt"><div class="wrap">
+<div class="sec-kicker">What we do</div>
+<h2>A lab, not a portfolio.</h2>
+<p class="sec-sub">Everything here is a working product with real users, real constraints, and a public record. We build vertical software for trades that big platforms ignore, and we publish the research that comes out of building it.</p>
+<div class="cards">
+<div class="card"><div class="n">01 · BUILD</div><h3>Products that ship</h3><p>Field-ready software for measurement, quoting, and operations, designed with the people who use it every day and priced for small shops.</p></div>
+<div class="card"><div class="n">02 · RESEARCH</div><h3>Benchmarks that tell the truth</h3><p>PhoneBench measures what AI agents can actually do when the work is physical, sequential, and judged against an unforgiving standard.</p></div>
+<div class="card"><div class="n">03 · METHOD</div><h3>AI-driven development</h3><p>Multi-agent workflows handle implementation, testing, and verification in parallel, while direction, taste, and final calls stay human.</p></div>
+</div>
+</div></section>
 
-<header>
-  <div class="wrap">
-    <div class="kicker reveal" data-i18n="hero.kicker">Nivelato</div>
-    <h1 class="reveal" data-i18n="hero.title">Software that <span class="laser">measures up.</span></h1>
-    <p class="lede reveal" data-i18n="hero.lede">Field measurement for glass shops. Walk in, measure everything, walk out with a quote, from your phone.</p>
-    <div class="cta-row reveal">
-      <a class="btn" href="/get/" data-i18n="hero.cta1">Get the app</a>
-      <a class="btn ghost" href="#features" data-i18n="hero.cta2">See what it does</a>
-    </div>
-    <div class="rule reveal">
-      <span data-i18n="hero.rule1"><b>01</b>&nbsp; flagship app in development</span>
-      <span data-i18n="hero.rule2"><b>02</b>&nbsp; platforms: Android + web</span>
-      <span data-i18n="hero.rule3"><b>00</b>&nbsp; clipboards required</span>
-    </div>
-  </div>
-</header>
-
-<section id="phonebench" class="alt">
-  <div class="wrap">
-    <div class="sec-kicker reveal" data-i18n="pb.kicker">From the lab · October 2026</div>
-    <h2 class="reveal" data-i18n="pb.title">PhoneBench: the first benchmark for fully autonomous skilled work.</h2>
-    <p class="sec-sub reveal" data-i18n="pb.sub">PhoneBench hands a model a robotic arm, a bench of powered tools, and a broken phone, and scores the repair against three quality tiers. Every scenario is a real repair, parameterized from published repair guides down to the last screw.</p>
-    <div class="cta-row reveal">
-      <a class="btn" href="/phonebench/" data-i18n="pb.more">Read more</a>
-    </div>
-  </div>
-</section>
-
-<section id="features" class="alt">
-  <div class="wrap">
-    <div class="sec-kicker reveal" data-i18n="features.kicker">What it does</div>
-    <h2 class="reveal" data-i18n="features.title">Everything the job needs, in your pocket.</h2>
-    <p class="sec-sub reveal" data-i18n="features.sub">Four capabilities in one app: field measurement, photo capture, project organization, and team management.</p>
-    <div class="tabs reveal" role="tablist" aria-label="Nivelato features">
-      <button class="tab active" role="tab" aria-selected="true" data-tab="t-measure" data-i18n="tab.measure">Field measurement</button>
-      <button class="tab" role="tab" aria-selected="false" data-tab="t-photo" data-i18n="tab.photo">Photo capture</button>
-      <button class="tab" role="tab" aria-selected="false" data-tab="t-projects" data-i18n="tab.projects">Project organization</button>
-      <button class="tab" role="tab" aria-selected="false" data-tab="t-team" data-i18n="tab.team">Team management</button>
-    </div>
-    <div class="tabpanel active reveal" id="t-measure" role="tabpanel">
-      <h3 data-i18n="panel.measure.h">Field measurement</h3>
-      <p data-i18n="panel.measure.p">Digital capture for every opening, dimension, and note, room by room, right on your phone. No clipboards, no lost napkins, no retyping at the office.</p>
-      <ul>
-        <li data-i18n="panel.measure.li1">Fast dimension entry built for gloves-on work</li>
-        <li data-i18n="panel.measure.li2">Notes and flags right on each measurement</li>
-        <li data-i18n="panel.measure.li3">Works offline, syncs when you are back on signal</li>
-      </ul>
-    </div>
-    <div class="tabpanel" id="t-photo" role="tabpanel">
-      <h3 data-i18n="panel.photo.h">Photo capture</h3>
-      <p data-i18n="panel.photo.p">Photos attach to each measurement automatically and stay with the job, so the shop sees exactly what you saw on site.</p>
-      <ul>
-        <li data-i18n="panel.photo.li1">One-tap photo step inside the measurement flow</li>
-        <li data-i18n="panel.photo.li2">Photos stored with the job, not lost in a camera roll</li>
-        <li data-i18n="panel.photo.li3">Review shots later from the dashboard or the app</li>
-      </ul>
-    </div>
-    <div class="tabpanel" id="t-projects" role="tabpanel">
-      <h3 data-i18n="panel.projects.h">Project organization</h3>
-      <p data-i18n="panel.projects.p">Group measurements into projects. Track what is measured, what is quoted, and what is done, all in one place instead of scattered across chats and paper.</p>
-      <ul>
-        <li data-i18n="panel.projects.li1">Projects with customers, users, and measurements</li>
-        <li data-i18n="panel.projects.li2">Full history per project, searchable any time</li>
-        <li data-i18n="panel.projects.li3">Dashboard view for the whole shop pipeline</li>
-      </ul>
-    </div>
-    <div class="tabpanel" id="t-team" role="tabpanel">
-      <h3 data-i18n="panel.team.h">Team management</h3>
-      <p data-i18n="panel.team.p">Invite your crew and keep everyone on the same job list. Owners control who sees what, and permissions follow each person automatically.</p>
-      <ul>
-        <li data-i18n="panel.team.li1">Invite by code, approve from the dashboard</li>
-        <li data-i18n="panel.team.li2">Role-based permissions: owners, supervisors, measurers</li>
-        <li data-i18n="panel.team.li3">Shared projects with per-user access</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section id="how">
-  <div class="wrap">
-    <div class="sec-kicker reveal" data-i18n="how.kicker">How it works</div>
-    <h2 class="reveal" data-i18n="how.title">Measure, sync, quote. Done.</h2>
-    <p class="sec-sub reveal" data-i18n="how.sub">A process, not a pile of tools: three steps in order, from the job site to the finished quote, in a single visit.</p>
-    <div class="steps">
-      <div class="step reveal">
-        <div class="n" data-i18n="step1.n">STEP 01</div>
-        <h3 data-i18n="step1.h">Measure on site</h3>
-        <p data-i18n="step1.p">Open Nivelato, pick the project, and log dimensions as you walk the job. Photos optional, encouraged.</p>
-      </div>
-      <div class="step reveal">
-        <div class="n" data-i18n="step2.n">STEP 02</div>
-        <h3 data-i18n="step2.h">Sync to the shop</h3>
-        <p data-i18n="step2.p">Measurements upload automatically. The office sees the job the moment you finish, no end-of-day data entry.</p>
-      </div>
-      <div class="step reveal">
-        <div class="n" data-i18n="step3.n">STEP 03</div>
-        <h3 data-i18n="step3.h">Quote and close</h3>
-        <p data-i18n="step3.p">Turn the measurement set into a customer-ready quote before you leave the driveway.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="pilot">
-  <div class="wrap">
-    <div class="sec-kicker reveal" data-i18n="pilot.kicker">Ongoing project</div>
-    <h2 class="reveal" data-i18n="pilot.title">Automating a glass shop, end to end.</h2>
-    <p class="sec-sub reveal" data-i18n="pilot.sub">Nivelato Labs is working with a glass shop in Puerto Rico on full automation: measuring, quoting, and everything in between. The app is the first piece. The shop is the proving ground.</p>
-    <div class="reveal"><span class="soon" data-i18n="pilot.soon">●&nbsp; pilot in progress</span></div>
-  </div>
-</section>
-
-<section id="faq">
-  <div class="wrap">
-    <div class="sec-kicker reveal" data-i18n="faq.kicker">FAQ</div>
-    <h2 class="reveal" data-i18n="faq.title">Questions, answered.</h2>
-    <p class="sec-sub reveal" data-i18n="faq.sub">Quick answers about the app, how it works, and the plans.</p>
-    <div class="faq">
-      <div class="faq-item reveal">
-        <h3 data-i18n="faq.q1">What is Nivelato?</h3>
-        <p data-i18n="faq.a1">Nivelato is a field measurement app for glass shops. You measure openings on site with your phone, the job syncs back to the shop, and you can quote on the spot instead of retyping notes at the office.</p>
-      </div>
-      <div class="faq-item reveal">
-        <h3 data-i18n="faq.q2">How does Nivelato work?</h3>
-        <p data-i18n="faq.a2">Three steps. Measure on site, let the measurements sync to the shop automatically, then turn the measurement set into a customer-ready quote before you leave.</p>
-      </div>
-      <div class="faq-item reveal">
-        <h3 data-i18n="faq.q3">Is Nivelato available now?</h3>
-        <p data-i18n="faq.a3">Nivelato is in closed testing on Google Play, and the full web app is available now. Sign in with your shop account or a personal account and start measuring.</p>
-      </div>
-      <div class="faq-item reveal">
-        <h3 data-i18n="faq.q4">Does Nivelato work without a signal?</h3>
-        <p data-i18n="faq.a4">Yes. Field measurement works offline, and everything syncs when you are back on signal.</p>
-      </div>
-      <div class="faq-item reveal">
-        <h3 data-i18n="faq.q5">Can my whole team use it?</h3>
-        <p data-i18n="faq.a5">Yes. Invite your crew by code, approve them from the dashboard, and use role-based permissions for owners, supervisors, and measurers. Projects are shared with per-user access.</p>
-      </div>
-      <div class="faq-item reveal">
-        <h3 data-i18n="faq.q6">How much does it cost?</h3>
-        <p data-i18n="faq.a6">There are Free, Pro, and Ultra plans. Plans are per shop and billed through Google Play. See the <a href="/pricing/">pricing page</a> for what each tier includes.</p>
-      </div>
-      <div class="faq-item reveal">
-        <h3 data-i18n="faq.q7">How do I get in touch?</h3>
-        <p data-i18n="faq.a7">Email <a href="mailto:lebron@nivelatolabs.com">lebron@nivelatolabs.com</a> or use the <a href="/contact/">contact page</a>.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <span data-i18n="footer.copy">© 2026 Nivelato Labs</span>
-    <span class="mono">nivelatolabs.com · v1.3</span>
-  </div>
-</footer>
-
-<script>
-  const io = new IntersectionObserver(es => es.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-  }), {threshold: .12});
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  // Feature tabs
-  document.querySelectorAll('.tab').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.tab').forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      document.querySelectorAll('.tabpanel').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-      const panel = document.getElementById(btn.dataset.tab);
-      if (panel) { panel.classList.add('active'); io.observe(panel); panel.classList.add('in'); }
-    });
-  });
-</script>
-<script>
-const I18N = {
-  en: {
-  "nav.features": "What it does",
-  "nav.how": "How it works",
-  "nav.pricing": "Pricing",
-  "nav.get": "Get the app",
-  "nav.pr": "Para clientes en PR",
-  "nav.contact": "Contact",
-  "nav.login": "Log in",
-  "nav.getNivelato": "Get Nivelato",
-  "footer.copy": "© 2026 Nivelato Labs",
-  "meta.title": "Nivelato Labs - Software that measures up",
-  "meta.desc": "Nivelato: field measurement for glass shops. Measure on site, sync to the shop, quote on the spot. Android + web.",
-  "hero.kicker": "Nivelato",
-  "hero.title": "Software that <span class=\"laser\">measures up.</span>",
-  "hero.lede": "Field measurement for glass shops. Walk in, measure everything, walk out with a quote, from your phone.",
-  "hero.cta1": "Get the app",
-  "hero.cta2": "See what it does",
-  "hero.rule1": "<b>01</b>&nbsp; flagship app in development",
-  "hero.rule2": "<b>02</b>&nbsp; platforms: Android + web",
-  "hero.rule3": "<b>00</b>&nbsp; clipboards required",
-  "pilot.kicker": "Ongoing project",
-  "pilot.title": "Automating a glass shop, end to end.",
-  "pilot.sub": "Nivelato Labs is working with a glass shop in Puerto Rico on full automation: measuring, quoting, and everything in between. The app is the first piece. The shop is the proving ground.",
-  "pilot.soon": "●&nbsp; pilot in progress",
-  "pb.kicker": "From the lab · October 2026",
-  "pb.title": "PhoneBench: the first benchmark for fully autonomous skilled work.",
-  "pb.sub": "PhoneBench hands a model a robotic arm, a bench of powered tools, and a broken phone, and scores the repair against three quality tiers. Every scenario is a real repair, parameterized from published repair guides down to the last screw.",
-  "pb.credit": "All runs operated by Muse Wonder (via Muse harness).",
-  "pb.github": "PhoneBench on GitHub",
-  "pb.more": "Read more",
-  "features.kicker": "What it does",
-  "features.title": "Everything the job needs, in your pocket.",
-  "features.sub": "Four capabilities in one app: field measurement, photo capture, project organization, and team management.",
-  "tab.measure": "Field measurement",
-  "tab.photo": "Photo capture",
-  "tab.projects": "Project organization",
-  "tab.team": "Team management",
-  "panel.measure.h": "Field measurement",
-  "panel.measure.p": "Digital capture for every opening, dimension, and note, room by room, right on your phone. No clipboards, no lost napkins, no retyping at the office.",
-  "panel.measure.li1": "Fast dimension entry built for gloves-on work",
-  "panel.measure.li2": "Notes and flags right on each measurement",
-  "panel.measure.li3": "Works offline, syncs when you are back on signal",
-  "panel.photo.h": "Photo capture",
-  "panel.photo.p": "Photos attach to each measurement automatically and stay with the job, so the shop sees exactly what you saw on site.",
-  "panel.photo.li1": "One-tap photo step inside the measurement flow",
-  "panel.photo.li2": "Photos stored with the job, not lost in a camera roll",
-  "panel.photo.li3": "Review shots later from the dashboard or the app",
-  "panel.projects.h": "Project organization",
-  "panel.projects.p": "Group measurements into projects. Track what is measured, what is quoted, and what is done, all in one place instead of scattered across chats and paper.",
-  "panel.projects.li1": "Projects with customers, users, and measurements",
-  "panel.projects.li2": "Full history per project, searchable any time",
-  "panel.projects.li3": "Dashboard view for the whole shop pipeline",
-  "panel.team.h": "Team management",
-  "panel.team.p": "Invite your crew and keep everyone on the same job list. Owners control who sees what, and permissions follow each person automatically.",
-  "panel.team.li1": "Invite by code, approve from the dashboard",
-  "panel.team.li2": "Role-based permissions: owners, supervisors, measurers",
-  "panel.team.li3": "Shared projects with per-user access",
-  "how.kicker": "How it works",
-  "how.title": "Measure, sync, quote. Done.",
-  "how.sub": "A process, not a pile of tools: three steps in order, from the job site to the finished quote, in a single visit.",
-  "step1.n": "STEP 01",
-  "step1.h": "Measure on site",
-  "step1.p": "Open Nivelato, pick the project, and log dimensions as you walk the job. Photos optional, encouraged.",
-  "step2.n": "STEP 02",
-  "step2.h": "Sync to the shop",
-  "step2.p": "Measurements upload automatically. The office sees the job the moment you finish, no end-of-day data entry.",
-  "step3.n": "STEP 03",
-  "step3.h": "Quote and close",
-  "step3.p": "Turn the measurement set into a customer-ready quote before you leave the driveway.",
-  "faq.kicker": "FAQ",
-  "faq.title": "Questions, answered.",
-  "faq.sub": "Quick answers about the app, how it works, and the plans.",
-  "faq.q1": "What is Nivelato?",
-  "faq.a1": "Nivelato is a field measurement app for glass shops. You measure openings on site with your phone, the job syncs back to the shop, and you can quote on the spot instead of retyping notes at the office.",
-  "faq.q2": "How does Nivelato work?",
-  "faq.a2": "Three steps. Measure on site, let the measurements sync to the shop automatically, then turn the measurement set into a customer-ready quote before you leave.",
-  "faq.q3": "Is Nivelato available now?",
-  "faq.a3": "Nivelato is in closed testing on Google Play, and the full web app is available now. Sign in with your shop account or a personal account and start measuring.",
-  "faq.q4": "Does Nivelato work without a signal?",
-  "faq.a4": "Yes. Field measurement works offline, and everything syncs when you are back on signal.",
-  "faq.q5": "Can my whole team use it?",
-  "faq.a5": "Yes. Invite your crew by code, approve them from the dashboard, and use role-based permissions for owners, supervisors, and measurers. Projects are shared with per-user access.",
-  "faq.q6": "How much does it cost?",
-  "faq.a6": "There are Free, Pro, and Ultra plans. Plans are per shop and billed through Google Play. See the <a href=\"/pricing/\">pricing page</a> for what each tier includes.",
-  "faq.q7": "How do I get in touch?",
-  "faq.a7": "Email <a href=\"mailto:lebron@nivelatolabs.com\">lebron@nivelatolabs.com</a> or use the <a href=\"/contact/\">contact page</a>."
-},
-  es: {
-  "nav.features": "Qué hace",
-  "nav.how": "Cómo funciona",
-  "nav.pricing": "Precios",
-  "nav.get": "Descarga la app",
-  "nav.pr": "Para clientes en PR",
-  "nav.contact": "Contacto",
-  "nav.login": "Iniciar sesión",
-  "nav.getNivelato": "Descarga Nivelato",
-  "footer.copy": "© 2026 Nivelato Labs",
-  "meta.title": "Nivelato Labs - Software que da la medida",
-  "meta.desc": "Nivelato: medición en campo para talleres de cristales. Mide en el sitio, sincroniza con el taller y cotiza en el momento. Android + web.",
-  "hero.kicker": "Nivelato",
-  "hero.title": "Software que <span class=\"laser\">da la medida.</span>",
-  "hero.lede": "Medición en campo para talleres de cristales. Entra, mide todo, sal con una cotización, desde tu teléfono.",
-  "hero.cta1": "Descarga la app",
-  "hero.cta2": "Ver qué hace",
-  "hero.rule1": "<b>01</b>&nbsp; app principal en desarrollo",
-  "hero.rule2": "<b>02</b>&nbsp; plataformas: Android + web",
-  "hero.rule3": "<b>00</b>&nbsp; portapapeles necesarios",
-  "pilot.kicker": "Proyecto en curso",
-  "pilot.title": "Automatizando un taller de cristales, de principio a fin.",
-  "pilot.sub": "Nivelato Labs trabaja con un taller de cristales en Puerto Rico en automatización total: medición, cotización y todo lo demás. La app es la primera pieza. El taller es el campo de pruebas.",
-  "pilot.soon": "●&nbsp; piloto en curso",
-  "pb.kicker": "Desde el laboratorio · octubre de 2026",
-  "pb.title": "PhoneBench: el primer benchmark de trabajo especializado totalmente autónomo.",
-  "pb.sub": "PhoneBench le entrega a un modelo un brazo robótico, un banco de herramientas eléctricas y un teléfono roto, y evalúa la reparación contra tres niveles de calidad. Cada escenario es una reparación real, parametrizada desde guías de reparación publicadas hasta el último tornillo.",
-  "pb.credit": "Todas las corridas operadas por Muse Wonder (mediante el harness de Muse).",
-  "pb.github": "PhoneBench en GitHub",
-  "pb.more": "Leer más",
-  "features.kicker": "Qué hace",
-  "features.title": "Todo lo que el trabajo necesita, en tu bolsillo.",
-  "features.sub": "Cuatro capacidades en una sola app: medición en campo, captura de fotos, organización de proyectos y gestión de equipo.",
-  "tab.measure": "Medición en campo",
-  "tab.photo": "Captura de fotos",
-  "tab.projects": "Organización de proyectos",
-  "tab.team": "Gestión de equipo",
-  "panel.measure.h": "Medición en campo",
-  "panel.measure.p": "Captura digital de cada abertura, dimensión y nota, cuarto por cuarto, directamente en tu teléfono. Sin portapapeles, sin servilletas perdidas, sin reescribir en la oficina.",
-  "panel.measure.li1": "Entrada rápida de dimensiones, pensada para trabajar con guantes",
-  "panel.measure.li2": "Notas y marcas directamente en cada medida",
-  "panel.measure.li3": "Funciona sin conexión, sincroniza cuando vuelve la señal",
-  "panel.photo.h": "Captura de fotos",
-  "panel.photo.p": "Las fotos se adjuntan a cada medida automáticamente y quedan con el trabajo, para que el taller vea exactamente lo que viste en el sitio.",
-  "panel.photo.li1": "Paso de foto con un toque dentro del flujo de medición",
-  "panel.photo.li2": "Fotos guardadas con el trabajo, no perdidas en el carrete",
-  "panel.photo.li3": "Revisa las fotos después desde el panel o la app",
-  "panel.projects.h": "Organización de proyectos",
-  "panel.projects.p": "Agrupa medidas en proyectos. Sigue lo medido, lo cotizado y lo terminado, todo en un lugar en vez de regado entre chats y papel.",
-  "panel.projects.li1": "Proyectos con clientes, usuarios y medidas",
-  "panel.projects.li2": "Historial completo por proyecto, buscable en todo momento",
-  "panel.projects.li3": "Vista de panel para todo el flujo del taller",
-  "panel.team.h": "Gestión de equipo",
-  "panel.team.p": "Invita a tu equipo y mantén a todos en la misma lista de trabajos. Los dueños controlan quién ve qué, y los permisos siguen a cada persona automáticamente.",
-  "panel.team.li1": "Invita por código, aprueba desde el panel",
-  "panel.team.li2": "Permisos por rol: dueños, supervisores, medidores",
-  "panel.team.li3": "Proyectos compartidos con acceso por usuario",
-  "how.kicker": "Cómo funciona",
-  "how.title": "Mide, sincroniza, cotiza. Listo.",
-  "how.sub": "Un proceso, no una pila de herramientas: tres pasos en orden, desde el sitio de trabajo hasta la cotización final, en una sola visita.",
-  "step1.n": "PASO 01",
-  "step1.h": "Mide en el sitio",
-  "step1.p": "Abre Nivelato, elige el proyecto y registra dimensiones mientras recorres el trabajo. Fotos opcionales, recomendadas.",
-  "step2.n": "PASO 02",
-  "step2.h": "Sincroniza con el taller",
-  "step2.p": "Las medidas se suben automáticamente. La oficina ve el trabajo en cuanto terminas, sin captura de datos al final del día.",
-  "step3.n": "PASO 03",
-  "step3.h": "Cotiza y cierra",
-  "step3.p": "Convierte el conjunto de medidas en una cotización lista para el cliente antes de salir del sitio.",
-  "faq.kicker": "Preguntas frecuentes",
-  "faq.title": "Preguntas, respondidas.",
-  "faq.sub": "Respuestas rápidas sobre la app, cómo funciona y los planes.",
-  "faq.q1": "¿Qué es Nivelato?",
-  "faq.a1": "Nivelato es una app de medición en campo para talleres de cristales. Mides las aberturas en el sitio con tu teléfono, el trabajo se sincroniza con el taller y puedes cotizar en el momento en vez de reescribir notas en la oficina.",
-  "faq.q2": "¿Cómo funciona Nivelato?",
-  "faq.a2": "Tres pasos. Mide en el sitio, deja que las medidas se sincronicen con el taller automáticamente y convierte el conjunto de medidas en una cotización lista para el cliente antes de salir.",
-  "faq.q3": "¿Nivelato ya está disponible?",
-  "faq.a3": "Nivelato está en prueba cerrada en Google Play, y la app web completa ya está disponible. Inicia sesión con la cuenta de tu taller o una cuenta personal y empieza a medir.",
-  "faq.q4": "¿Nivelato funciona sin señal?",
-  "faq.a4": "Sí. La medición en campo funciona sin conexión y todo se sincroniza cuando vuelve la señal.",
-  "faq.q5": "¿Puede usarlo todo mi equipo?",
-  "faq.a5": "Sí. Invita a tu equipo por código, apruébalos desde el panel y usa permisos por rol para dueños, supervisores y medidores. Los proyectos se comparten con acceso por usuario.",
-  "faq.q6": "¿Cuánto cuesta?",
-  "faq.a6": "Hay planes Free, Pro y Ultra. Los planes son por taller y se facturan a través de Google Play. Mira la <a href=\"/pricing/\">página de precios</a> para ver qué incluye cada plan.",
-  "faq.q7": "¿Cómo me comunico con Nivelato Labs?",
-  "faq.a7": "Escríbenos a <a href=\"mailto:lebron@nivelatolabs.com\">lebron@nivelatolabs.com</a> o usa la <a href=\"/contact/\">página de contacto</a>."
-}
-};
-const FORCED_LANG = null;
-
-const LANG_KEY = 'nivelato-lang';
-function currentLang() {
-  try {
-    const saved = localStorage.getItem(LANG_KEY);
-    if (saved === 'en' || saved === 'es') return saved;
-  } catch (e) {}
-  if (FORCED_LANG) return FORCED_LANG;
-  const nav = (navigator.language || 'en').toLowerCase();
-  return nav.indexOf('es') === 0 ? 'es' : 'en';
-}
-function applyLang(l) {
-  const dict = I18N[l] || I18N.en;
-  document.documentElement.lang = l;
-  if (dict['meta.title']) document.title = dict['meta.title'];
-  const metaDescEl = document.querySelector('meta[name="description"]');
-  if (metaDescEl && dict['meta.desc']) metaDescEl.setAttribute('content', dict['meta.desc']);
-  document.querySelectorAll('[data-i18n]').forEach(function (el) {
-    const k = el.getAttribute('data-i18n');
-    if (dict[k] !== undefined) el.innerHTML = dict[k];
-  });
-  document.querySelectorAll('.lang-toggle').forEach(function (b) {
-    b.textContent = (l === 'en') ? 'ES' : 'EN';
-  });
-  try { localStorage.setItem(LANG_KEY, l); } catch (e) {}
-}
-document.querySelectorAll('.lang-toggle').forEach(function (b) {
-  b.addEventListener('click', function () {
-    const cur = document.documentElement.lang === 'es' ? 'es' : 'en';
-    applyLang(cur === 'en' ? 'es' : 'en');
-  });
-});
-applyLang(currentLang());
-
-</script>
-<style>
-  /* Custom dual cursor: slow outer ring + springy inner dot that can
-     overshoot (overflow) the ring on fast moves. Fine pointers only. */
-  #cur-outer, #cur-inner {
-    position: fixed; top: 0; left: 0; z-index: 9999;
-    pointer-events: none; border-radius: 50%;
-    opacity: 0; transition: opacity .25s;
-    will-change: transform;
-  }
-  #cur-outer {
-    width: 38px; height: 38px;
-    border: 1.5px solid rgba(245,165,36,.85);
-    transition: opacity .25s, width .2s, height .2s, border-color .2s;
-  }
-  #cur-outer.grow { width: 58px; height: 58px; border-color: rgba(200,245,66,.9); }
-  #cur-inner {
-    width: 8px; height: 8px;
-    background: #c8f542;
-    box-shadow: 0 0 10px rgba(200,245,66,.7);
-  }
-  body.cur-on #cur-outer, body.cur-on #cur-inner { opacity: 1; }
-
-</style>
-<div id="cur-outer" aria-hidden="true"></div>
-<div id="cur-inner" aria-hidden="true"></div>
-<script>
-const I18N = {
-  en: {
-  "nav.features": "What it does",
-  "nav.how": "How it works",
-  "nav.pricing": "Pricing",
-  "nav.get": "Get the app",
-  "nav.pr": "Para clientes en PR",
-  "nav.contact": "Contact",
-  "nav.login": "Log in",
-  "nav.getNivelato": "Get Nivelato",
-  "footer.copy": "© 2026 Nivelato Labs",
-  "meta.title": "Nivelato Labs - Software that measures up",
-  "meta.desc": "Nivelato: field measurement for glass shops. Measure on site, sync to the shop, quote on the spot. Android + web.",
-  "hero.kicker": "Nivelato",
-  "hero.title": "Software that <span class=\"laser\">measures up.</span>",
-  "hero.lede": "Field measurement for glass shops. Walk in, measure everything, walk out with a quote, from your phone.",
-  "hero.cta1": "Get the app",
-  "hero.cta2": "See what it does",
-  "hero.rule1": "<b>01</b>&nbsp; flagship app in development",
-  "hero.rule2": "<b>02</b>&nbsp; platforms: Android + web",
-  "hero.rule3": "<b>00</b>&nbsp; clipboards required",
-  "pilot.kicker": "Ongoing project",
-  "pilot.title": "Automating a glass shop, end to end.",
-  "pilot.sub": "Nivelato Labs is working with a glass shop in Puerto Rico on full automation: measuring, quoting, and everything in between. The app is the first piece. The shop is the proving ground.",
-  "pilot.soon": "●&nbsp; pilot in progress",
-  "pb.kicker": "From the lab · October 2026",
-  "pb.title": "PhoneBench: the first benchmark for fully autonomous skilled work.",
-  "pb.sub": "PhoneBench hands a model a robotic arm, a bench of powered tools, and a broken phone, and scores the repair against three quality tiers. Every scenario is a real repair, parameterized from published repair guides down to the last screw.",
-  "pb.credit": "All runs operated by Muse Wonder (via Muse harness).",
-  "pb.github": "PhoneBench on GitHub",
-  "pb.more": "Read more",
-  "features.kicker": "What it does",
-  "features.title": "Everything the job needs, in your pocket.",
-  "features.sub": "Four capabilities in one app: field measurement, photo capture, project organization, and team management.",
-  "tab.measure": "Field measurement",
-  "tab.photo": "Photo capture",
-  "tab.projects": "Project organization",
-  "tab.team": "Team management",
-  "panel.measure.h": "Field measurement",
-  "panel.measure.p": "Digital capture for every opening, dimension, and note, room by room, right on your phone. No clipboards, no lost napkins, no retyping at the office.",
-  "panel.measure.li1": "Fast dimension entry built for gloves-on work",
-  "panel.measure.li2": "Notes and flags right on each measurement",
-  "panel.measure.li3": "Works offline, syncs when you are back on signal",
-  "panel.photo.h": "Photo capture",
-  "panel.photo.p": "Photos attach to each measurement automatically and stay with the job, so the shop sees exactly what you saw on site.",
-  "panel.photo.li1": "One-tap photo step inside the measurement flow",
-  "panel.photo.li2": "Photos stored with the job, not lost in a camera roll",
-  "panel.photo.li3": "Review shots later from the dashboard or the app",
-  "panel.projects.h": "Project organization",
-  "panel.projects.p": "Group measurements into projects. Track what is measured, what is quoted, and what is done, all in one place instead of scattered across chats and paper.",
-  "panel.projects.li1": "Projects with customers, users, and measurements",
-  "panel.projects.li2": "Full history per project, searchable any time",
-  "panel.projects.li3": "Dashboard view for the whole shop pipeline",
-  "panel.team.h": "Team management",
-  "panel.team.p": "Invite your crew and keep everyone on the same job list. Owners control who sees what, and permissions follow each person automatically.",
-  "panel.team.li1": "Invite by code, approve from the dashboard",
-  "panel.team.li2": "Role-based permissions: owners, supervisors, measurers",
-  "panel.team.li3": "Shared projects with per-user access",
-  "how.kicker": "How it works",
-  "how.title": "Measure, sync, quote. Done.",
-  "how.sub": "A process, not a pile of tools: three steps in order, from the job site to the finished quote, in a single visit.",
-  "step1.n": "STEP 01",
-  "step1.h": "Measure on site",
-  "step1.p": "Open Nivelato, pick the project, and log dimensions as you walk the job. Photos optional, encouraged.",
-  "step2.n": "STEP 02",
-  "step2.h": "Sync to the shop",
-  "step2.p": "Measurements upload automatically. The office sees the job the moment you finish, no end-of-day data entry.",
-  "step3.n": "STEP 03",
-  "step3.h": "Quote and close",
-  "step3.p": "Turn the measurement set into a customer-ready quote before you leave the driveway.",
-  "faq.kicker": "FAQ",
-  "faq.title": "Questions, answered.",
-  "faq.sub": "Quick answers about the app, how it works, and the plans.",
-  "faq.q1": "What is Nivelato?",
-  "faq.a1": "Nivelato is a field measurement app for glass shops. You measure openings on site with your phone, the job syncs back to the shop, and you can quote on the spot instead of retyping notes at the office.",
-  "faq.q2": "How does Nivelato work?",
-  "faq.a2": "Three steps. Measure on site, let the measurements sync to the shop automatically, then turn the measurement set into a customer-ready quote before you leave.",
-  "faq.q3": "Is Nivelato available now?",
-  "faq.a3": "Nivelato is in closed testing on Google Play, and the full web app is available now. Sign in with your shop account or a personal account and start measuring.",
-  "faq.q4": "Does Nivelato work without a signal?",
-  "faq.a4": "Yes. Field measurement works offline, and everything syncs when you are back on signal.",
-  "faq.q5": "Can my whole team use it?",
-  "faq.a5": "Yes. Invite your crew by code, approve them from the dashboard, and use role-based permissions for owners, supervisors, and measurers. Projects are shared with per-user access.",
-  "faq.q6": "How much does it cost?",
-  "faq.a6": "There are Free, Pro, and Ultra plans. Plans are per shop and billed through Google Play. See the <a href=\"/pricing/\">pricing page</a> for what each tier includes.",
-  "faq.q7": "How do I get in touch?",
-  "faq.a7": "Email <a href=\"mailto:lebron@nivelatolabs.com\">lebron@nivelatolabs.com</a> or use the <a href=\"/contact/\">contact page</a>."
-},
-  es: {
-  "nav.features": "Qué hace",
-  "nav.how": "Cómo funciona",
-  "nav.pricing": "Precios",
-  "nav.get": "Descarga la app",
-  "nav.pr": "Para clientes en PR",
-  "nav.contact": "Contacto",
-  "nav.login": "Iniciar sesión",
-  "nav.getNivelato": "Descarga Nivelato",
-  "footer.copy": "© 2026 Nivelato Labs",
-  "meta.title": "Nivelato Labs - Software que da la medida",
-  "meta.desc": "Nivelato: medición en campo para talleres de cristales. Mide en el sitio, sincroniza con el taller y cotiza en el momento. Android + web.",
-  "hero.kicker": "Nivelato",
-  "hero.title": "Software que <span class=\"laser\">da la medida.</span>",
-  "hero.lede": "Medición en campo para talleres de cristales. Entra, mide todo, sal con una cotización, desde tu teléfono.",
-  "hero.cta1": "Descarga la app",
-  "hero.cta2": "Ver qué hace",
-  "hero.rule1": "<b>01</b>&nbsp; app principal en desarrollo",
-  "hero.rule2": "<b>02</b>&nbsp; plataformas: Android + web",
-  "hero.rule3": "<b>00</b>&nbsp; portapapeles necesarios",
-  "pilot.kicker": "Proyecto en curso",
-  "pilot.title": "Automatizando un taller de cristales, de principio a fin.",
-  "pilot.sub": "Nivelato Labs trabaja con un taller de cristales en Puerto Rico en automatización total: medición, cotización y todo lo demás. La app es la primera pieza. El taller es el campo de pruebas.",
-  "pilot.soon": "●&nbsp; piloto en curso",
-  "pb.kicker": "Desde el laboratorio · octubre de 2026",
-  "pb.title": "PhoneBench: el primer benchmark de trabajo especializado totalmente autónomo.",
-  "pb.sub": "PhoneBench le entrega a un modelo un brazo robótico, un banco de herramientas eléctricas y un teléfono roto, y evalúa la reparación contra tres niveles de calidad. Cada escenario es una reparación real, parametrizada desde guías de reparación publicadas hasta el último tornillo.",
-  "pb.credit": "Todas las corridas operadas por Muse Wonder (mediante el harness de Muse).",
-  "pb.github": "PhoneBench en GitHub",
-  "pb.more": "Leer más",
-  "features.kicker": "Qué hace",
-  "features.title": "Todo lo que el trabajo necesita, en tu bolsillo.",
-  "features.sub": "Cuatro capacidades en una sola app: medición en campo, captura de fotos, organización de proyectos y gestión de equipo.",
-  "tab.measure": "Medición en campo",
-  "tab.photo": "Captura de fotos",
-  "tab.projects": "Organización de proyectos",
-  "tab.team": "Gestión de equipo",
-  "panel.measure.h": "Medición en campo",
-  "panel.measure.p": "Captura digital de cada abertura, dimensión y nota, cuarto por cuarto, directamente en tu teléfono. Sin portapapeles, sin servilletas perdidas, sin reescribir en la oficina.",
-  "panel.measure.li1": "Entrada rápida de dimensiones, pensada para trabajar con guantes",
-  "panel.measure.li2": "Notas y marcas directamente en cada medida",
-  "panel.measure.li3": "Funciona sin conexión, sincroniza cuando vuelve la señal",
-  "panel.photo.h": "Captura de fotos",
-  "panel.photo.p": "Las fotos se adjuntan a cada medida automáticamente y quedan con el trabajo, para que el taller vea exactamente lo que viste en el sitio.",
-  "panel.photo.li1": "Paso de foto con un toque dentro del flujo de medición",
-  "panel.photo.li2": "Fotos guardadas con el trabajo, no perdidas en el carrete",
-  "panel.photo.li3": "Revisa las fotos después desde el panel o la app",
-  "panel.projects.h": "Organización de proyectos",
-  "panel.projects.p": "Agrupa medidas en proyectos. Sigue lo medido, lo cotizado y lo terminado, todo en un lugar en vez de regado entre chats y papel.",
-  "panel.projects.li1": "Proyectos con clientes, usuarios y medidas",
-  "panel.projects.li2": "Historial completo por proyecto, buscable en todo momento",
-  "panel.projects.li3": "Vista de panel para todo el flujo del taller",
-  "panel.team.h": "Gestión de equipo",
-  "panel.team.p": "Invita a tu equipo y mantén a todos en la misma lista de trabajos. Los dueños controlan quién ve qué, y los permisos siguen a cada persona automáticamente.",
-  "panel.team.li1": "Invita por código, aprueba desde el panel",
-  "panel.team.li2": "Permisos por rol: dueños, supervisores, medidores",
-  "panel.team.li3": "Proyectos compartidos con acceso por usuario",
-  "how.kicker": "Cómo funciona",
-  "how.title": "Mide, sincroniza, cotiza. Listo.",
-  "how.sub": "Un proceso, no una pila de herramientas: tres pasos en orden, desde el sitio de trabajo hasta la cotización final, en una sola visita.",
-  "step1.n": "PASO 01",
-  "step1.h": "Mide en el sitio",
-  "step1.p": "Abre Nivelato, elige el proyecto y registra dimensiones mientras recorres el trabajo. Fotos opcionales, recomendadas.",
-  "step2.n": "PASO 02",
-  "step2.h": "Sincroniza con el taller",
-  "step2.p": "Las medidas se suben automáticamente. La oficina ve el trabajo en cuanto terminas, sin captura de datos al final del día.",
-  "step3.n": "PASO 03",
-  "step3.h": "Cotiza y cierra",
-  "step3.p": "Convierte el conjunto de medidas en una cotización lista para el cliente antes de salir del sitio.",
-  "faq.kicker": "Preguntas frecuentes",
-  "faq.title": "Preguntas, respondidas.",
-  "faq.sub": "Respuestas rápidas sobre la app, cómo funciona y los planes.",
-  "faq.q1": "¿Qué es Nivelato?",
-  "faq.a1": "Nivelato es una app de medición en campo para talleres de cristales. Mides las aberturas en el sitio con tu teléfono, el trabajo se sincroniza con el taller y puedes cotizar en el momento en vez de reescribir notas en la oficina.",
-  "faq.q2": "¿Cómo funciona Nivelato?",
-  "faq.a2": "Tres pasos. Mide en el sitio, deja que las medidas se sincronicen con el taller automáticamente y convierte el conjunto de medidas en una cotización lista para el cliente antes de salir.",
-  "faq.q3": "¿Nivelato ya está disponible?",
-  "faq.a3": "Nivelato está en prueba cerrada en Google Play, y la app web completa ya está disponible. Inicia sesión con la cuenta de tu taller o una cuenta personal y empieza a medir.",
-  "faq.q4": "¿Nivelato funciona sin señal?",
-  "faq.a4": "Sí. La medición en campo funciona sin conexión y todo se sincroniza cuando vuelve la señal.",
-  "faq.q5": "¿Puede usarlo todo mi equipo?",
-  "faq.a5": "Sí. Invita a tu equipo por código, apruébalos desde el panel y usa permisos por rol para dueños, supervisores y medidores. Los proyectos se comparten con acceso por usuario.",
-  "faq.q6": "¿Cuánto cuesta?",
-  "faq.a6": "Hay planes Free, Pro y Ultra. Los planes son por taller y se facturan a través de Google Play. Mira la <a href=\"/pricing/\">página de precios</a> para ver qué incluye cada plan.",
-  "faq.q7": "¿Cómo me comunico con Nivelato Labs?",
-  "faq.a7": "Escríbenos a <a href=\"mailto:lebron@nivelatolabs.com\">lebron@nivelatolabs.com</a> o usa la <a href=\"/contact/\">página de contacto</a>."
-}
-};
-const FORCED_LANG = null;
-
-const LANG_KEY = 'nivelato-lang';
-function currentLang() {
-  try {
-    const saved = localStorage.getItem(LANG_KEY);
-    if (saved === 'en' || saved === 'es') return saved;
-  } catch (e) {}
-  if (FORCED_LANG) return FORCED_LANG;
-  const nav = (navigator.language || 'en').toLowerCase();
-  return nav.indexOf('es') === 0 ? 'es' : 'en';
-}
-function applyLang(l) {
-  const dict = I18N[l] || I18N.en;
-  document.documentElement.lang = l;
-  if (dict['meta.title']) document.title = dict['meta.title'];
-  const metaDescEl = document.querySelector('meta[name="description"]');
-  if (metaDescEl && dict['meta.desc']) metaDescEl.setAttribute('content', dict['meta.desc']);
-  document.querySelectorAll('[data-i18n]').forEach(function (el) {
-    const k = el.getAttribute('data-i18n');
-    if (dict[k] !== undefined) el.innerHTML = dict[k];
-  });
-  document.querySelectorAll('.lang-toggle').forEach(function (b) {
-    b.textContent = (l === 'en') ? 'ES' : 'EN';
-  });
-  try { localStorage.setItem(LANG_KEY, l); } catch (e) {}
-}
-document.querySelectorAll('.lang-toggle').forEach(function (b) {
-  b.addEventListener('click', function () {
-    const cur = document.documentElement.lang === 'es' ? 'es' : 'en';
-    applyLang(cur === 'en' ? 'es' : 'en');
-  });
-});
-applyLang(currentLang());
-
-</script>
+<section><div class="wrap">
+<div class="sec-kicker">Start here</div>
+<h2>Two doors in.</h2>
+<p class="sec-sub">Looking for the software? The products live on one page. Curious how a lab this small ships this much? The About page explains the operating model.</p>
+<div class="cta-row">
+<a class="btn" href="/products/">See the products</a>
+<a class="btn ghost" href="/about/">Read the About page</a>
+</div>
+</div></section>
+<footer><div class="wrap">
+<div>Nivelato Labs. Software that measures up.</div>
+<div><a href="/products/">Products</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/AGENTS.md">AGENTS.md</a></div>
+</div></footer>
 </body>
 </html>
