@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>try{if(sessionStorage.getItem('nl-intro-seen')){document.documentElement.classList.add('intro-seen')}else{sessionStorage.setItem('nl-intro-seen','1')}}catch(e){document.documentElement.classList.add('intro-seen')}</script>
+<script>try{if('scrollRestoration' in history){history.scrollRestoration='manual'}if(!window.location.hash){window.scrollTo(0,0);document.addEventListener('DOMContentLoaded',function(){if(!window.__nlUserScroll){window.scrollTo(0,0)}});window.addEventListener('scroll',function(){window.__nlUserScroll=1},{once:true,passive:true})}}catch(e){}try{if(sessionStorage.getItem('nl-intro-seen')){document.documentElement.classList.add('intro-seen')}else{sessionStorage.setItem('nl-intro-seen','1')}}catch(e){document.documentElement.classList.add('intro-seen')}</script>
 <title>Offset Measuring Software for Glass Shops - Nivelato Labs</title>
 <meta name="description" content="Nivelato is offset measuring software for glass shops: capture field measurements and offsets on site, sync to the shop, and turn measures into quotes.">
 <link rel="canonical" href="https://nivelatolabs.com/products/">
@@ -100,6 +100,18 @@ html.intro-seen .intro{display:none}
 .ticks li::before{content:"\2713";position:absolute;left:0;color:#fff;font-weight:700}
 .f-meta{font-family:'JetBrains Mono';font-size:.8rem;color:var(--dim);letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
 @keyframes introout{to{opacity:0;visibility:hidden}}
+/* Scroll cue: a small glass HUD pill fixed at the bottom of the first
+   viewport while the page sits at the top. The behavior script at the
+   end of the body adds .cue-on and retires it for good (this page view)
+   once the reader scrolls past 40px. Whisper-level: white at low opacity,
+   mono HUD type, thin falling line. */
+.scroll-cue{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:90;display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 16px 7px;background:rgba(8,8,10,.72);border:1px solid rgba(255,255,255,.14);border-radius:999px;cursor:pointer;color:#fafafa;font-family:'JetBrains Mono',monospace;font-size:.64rem;letter-spacing:.34em;text-indent:.34em;opacity:0;visibility:hidden;transition:opacity .45s ease,visibility 0s linear .45s}
+@supports((-webkit-backdrop-filter:blur(10px)) or (backdrop-filter:blur(10px))){.scroll-cue{background:rgba(8,8,10,.38);-webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%)}}
+.scroll-cue.cue-on{opacity:.62;visibility:visible;transition:opacity .45s ease}
+.scroll-cue:hover{opacity:.95}
+.scroll-cue .cue-line{display:block;width:1px;height:22px;background:linear-gradient(180deg,rgba(250,250,250,.85),rgba(250,250,250,0));animation:cue-drift 2.4s ease-in-out infinite}
+@keyframes cue-drift{0%,100%{transform:translateY(0);opacity:.45}50%{transform:translateY(5px);opacity:1}}
+@media(prefers-reduced-motion:reduce){.scroll-cue,.scroll-cue.cue-on{transition:none}.scroll-cue .cue-line{animation:none}}
 html.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.8,.3,1)}
 html.js .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}header .kicker,header h1,header .lede,header .cta-row,header .rule,.intro span{animation:none}.intro{display:none}html.js .reveal{opacity:1;transform:none;transition:none}}
@@ -168,6 +180,7 @@ body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events
 <h1>Built to measure. <span class="laser">Built to be measured.</span></h1>
 <p class="lede">The homepage is the lab. This page is the work: offset measuring software that real glass shops run on, and the robotics AI benchmark that keeps the lab honest.</p>
 </div></header>
+<button type="button" class="scroll-cue" aria-label="Scroll down to content">[ SCROLL ]<span class="cue-line" aria-hidden="true"></span></button>
 
 <section class="alt feature reveal"><div class="wrap">
 <div class="f-meta">Flagship · Nivelato</div>
@@ -209,6 +222,28 @@ if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add(
 var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}})},{threshold:.12});
 els.forEach(function(e){io.observe(e)});
 }catch(err){document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in')});}})();
+</script>
+<script>
+/* Scroll cue behavior: visible at the top of the page, retired for good
+   (this page view) after the first scroll past 40px. A tap glides to the
+   first section below the hero; reduced motion jumps instantly. */
+(function(){try{
+var cue=document.querySelector('.scroll-cue');if(!cue)return;
+var hero=document.querySelector('header')||document.querySelector('.page-head');
+var next=hero?hero.nextElementSibling:null;
+while(next&&(next.tagName==='STYLE'||next.classList.contains('scroll-cue'))){next=next.nextElementSibling;}
+var gone=false;
+function hide(){gone=true;cue.classList.remove('cue-on');}
+if(window.scrollY<=40){cue.classList.add('cue-on');}
+window.addEventListener('scroll',function(){if(window.scrollY>40&&!gone){hide();}},{passive:true});
+cue.addEventListener('click',function(){
+hide();
+if(!next){return;}
+var y=next.getBoundingClientRect().top+window.scrollY;
+var rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+try{window.scrollTo({top:y,behavior:rm?'instant':'smooth'});}catch(e){window.scrollTo(0,y);}
+});
+}catch(e){}})();
 </script>
 <!-- Cloudflare Web Analytics -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ba83c66be7af41d899cb499dfa1442c8"}'></script>
