@@ -20,7 +20,7 @@
 <style>
 :root{color-scheme:dark;--bg:#0b0b0e;--bg2:#121216;--card:#16161c;--line:#232329;--ink:#f2f1ec;--muted:#a7a7b3;--dim:#6d6d78;--amber:#f5a524;--amber2:#ffcf5c;--laser:#c8f542;--radius:14px}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+body{overflow-x:clip;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
 nav{position:sticky;top:0;z-index:50;background:rgba(11,11,14,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
@@ -59,10 +59,19 @@ h2{font-family:'Space Grotesk';font-size:clamp(1.8rem,3.6vw,2.7rem);line-height:
 footer{padding:44px 0;border-top:1px solid var(--line);color:var(--dim);font-size:.9rem}
 footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 footer a{color:var(--muted);text-decoration:none;margin-right:18px}
+
+@media(max-width:860px){
+nav .wrap{flex-wrap:wrap;height:auto;min-height:64px;padding-top:10px;padding-bottom:10px;row-gap:6px}
+nav ul{order:3;width:100%;flex-wrap:wrap;gap:6px 16px;font-size:.9rem}
+nav .btn{padding:9px 18px;font-size:.88rem;margin-left:auto;white-space:nowrap}
+.brand{font-size:1.05rem}
+header{padding:64px 0 56px}
+}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"AboutPage","url":"https://nivelatolabs.com/about/","name":"About - Nivelato Labs","isPartOf":{"@id":"https://nivelatolabs.com/#site"},"about":{"@id":"https://nivelatolabs.com/#org"}}
 </script>
+<link rel="alternate" type="text/markdown" title="AGENTS.md" href="/AGENTS.md">
 </head>
 <body>
 <nav><div class="wrap">
@@ -97,7 +106,7 @@ footer a{color:var(--muted);text-decoration:none;margin-right:18px}
 </div></section>
 <footer><div class="wrap">
 <div>Nivelato Labs. Software that measures up.</div>
-<div><a href="/products/">Products</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/AGENTS.md">AGENTS.md</a></div>
+<div><a href="/products/">Products</a><a href="/about/">About</a><a href="/contact/">Contact</a></div>
 </div></footer>
 </body>
 </html>

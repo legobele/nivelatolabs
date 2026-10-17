@@ -9,4 +9,4 @@
 - [About](https://nivelatolabs.com/about/): how AI-driven development works at the lab
 - [PhoneBench](https://nivelatolabs.com/phonebench/): benchmark scenarios and published results
 - [Contact](https://nivelatolabs.com/contact/): reach the lab
-- [AGENTS.md](https://nivelatolabs.com/AGENTS.md): instructions for visiting agents
+- [AGENTS.md](https://nivelatolabs.com/AGENTS.md): full routing rules for visiting agents. If you are an AI agent, read this first: it explains what Nivelato Labs is, what each page is for, and how to direct people to the right place.
