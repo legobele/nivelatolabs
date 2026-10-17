@@ -5,21 +5,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nivelato Labs - Software that measures up</title>
-<meta name="description" content="Nivelato Labs is an AI-driven software lab in Puerto Rico. We design, build, and ship real products with agentic development workflows: Nivelato for glass shops, and PhoneBench, the benchmark for autonomous skilled work.">
+<meta name="description" content="Nivelato Labs is an AI-driven software lab. We build Nivelato, offset measuring software for glass shops, and PhoneBench, a robotics AI benchmark for autonomous skilled work, using multi-agent development workflows.">
 <link rel="canonical" href="https://nivelatolabs.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Nivelato Labs">
 <meta property="og:title" content="Nivelato Labs - Software that measures up">
-<meta property="og:description" content="An AI-driven software lab shipping real products: field software for glass shops, and a benchmark for autonomous skilled work.">
+<meta property="og:description" content="An AI-driven software lab shipping real products: offset measuring software for glass shops, and a robotics AI benchmark for autonomous skilled work.">
 <meta property="og:url" content="https://nivelatolabs.com/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nivelato Labs - Software that measures up">
-<meta name="twitter:description" content="An AI-driven software lab shipping real products with agentic development workflows.">
+<meta name="twitter:description" content="An AI-driven software lab shipping offset measuring software and a robotics AI benchmark, built with multi-agent development workflows.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--bg:#0b0b0e;--bg2:#121216;--card:#16161c;--line:#232329;--ink:#f2f1ec;--muted:#a7a7b3;--dim:#6d6d78;--amber:#f5a524;--amber2:#ffcf5c;--laser:#c8f542;--radius:14px}
+:root{color-scheme:dark;--bg:#050505;--bg2:#0a0a0b;--card:#0e0e10;--line:#26262b;--ink:#fafafa;--muted:#a8a8b0;--dim:#6f6f77;--amber:#ffffff;--amber2:#e6e6e9;--laser:#ffffff;--radius:6px}
 *{margin:0;padding:0;box-sizing:border-box}
 body{overflow-x:clip;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:inherit}
@@ -34,7 +34,7 @@ nav ul a{text-decoration:none;color:var(--muted)} nav ul a:hover,nav ul a[aria-c
 .btn{display:inline-block;background:var(--amber);color:#141414;font-weight:600;padding:12px 26px;border-radius:999px;text-decoration:none;font-size:.95rem;border:none;cursor:pointer}
 .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
 header{padding:110px 0 84px;position:relative;overflow:hidden}
-header::before{content:"";position:absolute;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(245,165,36,.14),transparent 65%);pointer-events:none}
+header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 70% 0%,rgba(255,255,255,.09),transparent 65%);pointer-events:none}
 .kicker{font-family:'JetBrains Mono';font-size:.8rem;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:22px}
 h1{font-family:'Space Grotesk';font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.05;font-weight:700;letter-spacing:-.02em;max-width:18ch}
 h1 .laser{color:var(--laser)}
@@ -68,16 +68,35 @@ nav .btn{padding:9px 18px;font-size:.88rem;margin-left:auto;white-space:nowrap}
 .brand{font-size:1.05rem}
 header{padding:64px 0 56px}
 }
+html{scroll-behavior:smooth}
+.btn{border-radius:4px;letter-spacing:.01em}
+.btn:hover{background:#e6e6e9}
+.btn.ghost:hover{background:rgba(255,255,255,.08)}
+header{background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:54px 54px}
+.brand .tick{border-radius:2px}
+.card{border-radius:var(--radius)}
+.card a.more{text-decoration:underline;text-underline-offset:4px}
+@supports((-webkit-text-stroke:1px #fff)){h1 .laser{color:transparent;-webkit-text-stroke:2px var(--ink)}}
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+header .kicker,header h1,header .lede,header .cta-row,header .rule{animation:rise .95s cubic-bezier(.22,.8,.3,1) both}
+header h1{animation-delay:.12s} header .lede{animation-delay:.26s} header .cta-row{animation-delay:.4s} header .rule{animation-delay:.54s}
+.intro{position:fixed;inset:0;z-index:300;background:#050505;display:flex;align-items:center;justify-content:center;pointer-events:none;animation:introout .8s ease 1.05s forwards}
+.intro span{font-family:'Space Grotesk';font-weight:700;letter-spacing:.42em;font-size:clamp(.95rem,3.4vw,1.6rem);color:#fafafa;text-transform:uppercase;animation:rise .8s ease both}
+@keyframes introout{to{opacity:0;visibility:hidden}}
+html.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.8,.3,1)}
+html.js .reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}header .kicker,header h1,header .lede,header .cta-row,header .rule,.intro span{animation:none}.intro{display:none}html.js .reveal{opacity:1;transform:none;transition:none}}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-{"@type":"Organization","@id":"https://nivelatolabs.com/#org","name":"Nivelato Labs","url":"https://nivelatolabs.com/","slogan":"Software that measures up","description":"Nivelato Labs is an AI-driven software lab. It designs, builds, and ships products with multi-agent development workflows, with a human directing every release.","founder":{"@type":"Person","name":"Benj Lebron"}},
+{"@type":"Organization","@id":"https://nivelatolabs.com/#org","name":"Nivelato Labs","url":"https://nivelatolabs.com/","slogan":"Software that measures up","description":"Nivelato Labs is an AI-driven software lab. It builds Nivelato, offset measuring software for glass shops, and PhoneBench, a robotics AI benchmark for autonomous skilled work, using multi-agent development workflows with a human directing every release.","knowsAbout":["offset measuring software","field measurement software for glass shops","glass shop quoting software","robotics AI benchmarks","AI-driven software development","multi-agent development","autonomous agents research"],"founder":{"@type":"Person","name":"Benj Lebron"}},
 {"@type":"WebSite","@id":"https://nivelatolabs.com/#site","url":"https://nivelatolabs.com/","name":"Nivelato Labs","publisher":{"@id":"https://nivelatolabs.com/#org"}}
 ]}
 </script>
 <link rel="alternate" type="text/markdown" title="AGENTS.md" href="/AGENTS.md">
 </head>
 <body>
+<div class="intro" aria-hidden="true"><span>Nivelato Labs</span></div>
 <nav><div class="wrap">
 <a class="brand" href="/"><span class="tick"></span>Nivelato Labs</a>
 <ul>
@@ -89,7 +108,7 @@ header{padding:64px 0 56px}
 <a class="btn" href="/products/">See the products</a>
 </div></nav>
 <header><div class="wrap">
-<div class="kicker">Nivelato Labs · San Juan, Puerto Rico</div>
+<div class="kicker">Nivelato Labs</div>
 <h1>Software that <span class="laser">measures up</span>, built at agent speed.</h1>
 <p class="lede">Nivelato Labs is an AI-driven software lab. A human sets the standard and directs the work; coordinated AI agents design, build, test, and document at a pace a traditional team cannot match. The result is production software, shipped end to end, that holds up in the field.</p>
 <div class="cta-row">
@@ -97,24 +116,24 @@ header{padding:64px 0 56px}
 <a class="btn ghost" href="/about/">How the lab works</a>
 </div>
 <div class="rule">
-<span><b>Flagship</b> Nivelato, field software for glass shops</span>
-<span><b>Research</b> PhoneBench, the benchmark for autonomous skilled work</span>
+<span><b>Flagship</b> Nivelato, offset measuring software for glass shops</span>
+<span><b>Research</b> PhoneBench, a robotics AI benchmark for autonomous skilled work</span>
 <span><b>Method</b> Multi-agent development, human directed</span>
 </div>
 </div></header>
 
-<section class="alt"><div class="wrap">
+<section class="alt reveal"><div class="wrap">
 <div class="sec-kicker">What we do</div>
 <h2>A lab, not a portfolio.</h2>
 <p class="sec-sub">Everything here is a working product with real users, real constraints, and a public record. We build vertical software for trades that big platforms ignore, and we publish the research that comes out of building it.</p>
 <div class="cards">
-<div class="card"><div class="n">01 · BUILD</div><h3>Products that ship</h3><p>Field-ready software for measurement, quoting, and operations, designed with the people who use it every day and priced for small shops.</p></div>
-<div class="card"><div class="n">02 · RESEARCH</div><h3>Benchmarks that tell the truth</h3><p>PhoneBench measures what AI agents can actually do when the work is physical, sequential, and judged against an unforgiving standard.</p></div>
-<div class="card"><div class="n">03 · METHOD</div><h3>AI-driven development</h3><p>Multi-agent workflows handle implementation, testing, and verification in parallel, while direction, taste, and final calls stay human.</p></div>
+<div class="card reveal"><div class="n">01 · BUILD</div><h3>Products that ship</h3><p>Field-ready software for offset measurement, quoting, and operations, designed with the people who use it every day and priced for small shops.</p></div>
+<div class="card reveal"><div class="n">02 · RESEARCH</div><h3>Benchmarks that tell the truth</h3><p>PhoneBench is a robotics AI benchmark: it measures what AI agents can actually do when the work is physical, sequential, and judged against an unforgiving standard.</p></div>
+<div class="card reveal"><div class="n">03 · METHOD</div><h3>AI-driven development</h3><p>Multi-agent workflows handle implementation, testing, and verification in parallel, while direction, taste, and final calls stay human.</p></div>
 </div>
 </div></section>
 
-<section><div class="wrap">
+<section class="reveal"><div class="wrap">
 <div class="sec-kicker">Start here</div>
 <h2>Two doors in.</h2>
 <p class="sec-sub">Looking for the software? The products live on one page. Curious how a lab this small ships this much? The About page explains the operating model.</p>
@@ -127,5 +146,14 @@ header{padding:64px 0 56px}
 <div>Nivelato Labs. Software that measures up.</div>
 <div><a href="/products/">Products</a><a href="/about/">About</a><a href="/contact/">Contact</a></div>
 </div></footer>
+<script>
+document.documentElement.classList.add('js');
+(function(){try{
+var els=document.querySelectorAll('.reveal');if(!els.length)return;
+if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}})},{threshold:.12});
+els.forEach(function(e){io.observe(e)});
+}catch(err){document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in')});}})();
+</script>
 </body>
 </html>

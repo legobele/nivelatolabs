@@ -3,8 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PhoneBench - Nivelato Labs</title>
-<meta name="description" content="PhoneBench: the first benchmark for fully autonomous skilled work. A model drives a robotic arm to repair phones, scored against three quality tiers.">
+<title>PhoneBench - Robotics AI Benchmark for Autonomous Skilled Work - Nivelato Labs</title>
+<meta name="description" content="PhoneBench is a robotics AI benchmark for autonomous skilled work: an AI agent drives a robotic arm and powered tools to repair a phone, scored against three quality tiers, with full transcripts published for every run.">
+<link rel="canonical" href="https://nivelatolabs.com/phonebench/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nivelato Labs">
+<meta property="og:title" content="PhoneBench - Robotics AI Benchmark for Autonomous Skilled Work">
+<meta property="og:description" content="An agentic robotics benchmark: a model drives a robot arm to repair phones, scored against three quality tiers, with full transcripts published.">
+<meta property="og:url" content="https://nivelatolabs.com/phonebench/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PhoneBench - Robotics AI Benchmark for Autonomous Skilled Work">
+<meta name="twitter:description" content="An agentic robotics benchmark: a model drives a robot arm to repair phones, scored against three quality tiers, with full transcripts published.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ResearchProject","@id":"https://nivelatolabs.com/phonebench/#project","name":"PhoneBench","url":"https://nivelatolabs.com/phonebench/","parentOrganization":{"@id":"https://nivelatolabs.com/#org"},"description":"PhoneBench is a robotics AI benchmark for autonomous skilled work. An AI agent operates a robotic arm on a bench of powered tools and repairs a phone, scored on time, efficiency, and accuracy against three quality tiers, with a full transcript published for every run."}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -13,7 +25,7 @@
     color-scheme:dark;
     --bg:#0b0b0e; --bg2:#121216; --card:#16161c; --line:#232329;
     --ink:#f2f1ec; --muted:#a7a7b3; --dim:#6d6d78;
-    --amber:#f5a524; --amber2:#ffcf5c; --laser:#c8f542;
+    --amber:#ffffff; --amber2:#e6e6e9; --laser:#ffffff;
     --radius:14px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -38,7 +50,7 @@
   nav ul a{text-decoration:none;color:var(--muted);transition:color .2s;white-space:nowrap}
   nav ul a:hover{color:var(--ink)}
   .btn{display:inline-block;background:var(--amber);color:#141414;font-weight:600;padding:12px 26px;border-radius:999px;text-decoration:none;font-size:.95rem;transition:transform .15s,box-shadow .15s;border:none;cursor:pointer}
-  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,165,36,.35)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,255,255,.35)}
   .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
   .btn.ghost:hover{box-shadow:none;border-color:var(--amber)}
   .btn.small{padding:9px 20px;font-size:.85rem}
@@ -61,7 +73,7 @@
   .m-close{align-self:flex-end;background:none;border:none;color:var(--dim);font-size:1.5rem;cursor:pointer;padding:4px}
   /* hero */
   header{padding:110px 0 80px;position:relative;overflow:hidden}
-  header::before{content:"";position:absolute;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(245,165,36,.14),transparent 65%);pointer-events:none}
+  header::before{content:"";position:absolute;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(255,255,255,.14),transparent 65%);pointer-events:none}
   .kicker{font-family:'JetBrains Mono';font-size:.8rem;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:22px}
   h1{font-family:'Space Grotesk';font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.04;font-weight:700;letter-spacing:-.02em;max-width:16ch}
   h1 .laser{color:var(--laser)}
@@ -99,7 +111,7 @@
   .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
   @media(max-width:860px){.tiers{grid-template-columns:1fr;max-width:440px;margin:0 auto}}
   .tier{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:30px 28px;display:flex;flex-direction:column;position:relative}
-  .tier.hot{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber),0 12px 40px rgba(245,165,36,.12)}
+  .tier.hot{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber),0 12px 40px rgba(255,255,255,.12)}
   .tier .tname{font-family:'Space Grotesk';font-weight:700;font-size:1.3rem;margin-bottom:4px}
   .tier .tprice{font-family:'JetBrains Mono';font-size:.82rem;color:var(--dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}
   .tier ul{list-style:none;display:grid;gap:10px;margin-bottom:28px;flex:1}
@@ -199,12 +211,12 @@
 <div class="page-head"><div class="wrap">
   <div class="kicker reveal" data-i18n="pb.kicker">From the lab · October 2026</div>
   <h1 class="reveal">PhoneBench</h1>
-  <p class="lede reveal" data-i18n="pbp.lede">The first benchmark for fully autonomous skilled work. A model gets a robotic arm, a bench of powered tools, and a broken phone. No script, no human hands. It fixes the phone to standard, or it does not.</p>
+  <p class="lede reveal" data-i18n="pbp.lede">A robotics AI benchmark for autonomous skilled work, and the first benchmark for fully autonomous skilled work. A model gets a robotic arm, a bench of powered tools, and a broken phone. No script, no human hands. It fixes the phone to standard, or it does not.</p>
 </div></div>
 
 <style>
   .faq-item h3 .pass{color:var(--laser)}
-  .faq-item h3 .fail{color:#ff7a6b}
+  .faq-item h3 .fail{color:#9a9aa3}
   .faq-item h3 .live{color:var(--amber2)}
   #phonebench-page .credit{margin-top:32px;color:var(--dim);font-family:'JetBrains Mono';font-size:.82rem}
 </style>
@@ -256,15 +268,15 @@
     <p class="sec-sub reveal" data-i18n="pbp.res.sub">Unedited outcomes, in the order they happened. Repairs that completed but missed the standard are listed as what they are.</p>
     <div class="faq">
       <div class="faq-item reveal">
-        <h3>iPhone 14 Pro Max · Battery — <span class="fail">FAIL</span></h3>
+        <h3>iPhone 14 Pro Max · Battery · <span class="fail">FAIL</span></h3>
         <p data-i18n="pbp.r1.p">Repair completed end to end. Failed at every tier on a single latched damage check: four screws stripped in the first minutes by a bit-name guessing trap in the tool interface, later fixed in the simulator with regression tests.</p>
       </div>
       <div class="faq-item reveal">
-        <h3>iPhone 14 Pro Max · Rear camera + glass — <span class="fail">FAIL</span></h3>
+        <h3>iPhone 14 Pro Max · Rear camera + glass · <span class="fail">FAIL</span></h3>
         <p data-i18n="pbp.r2.p">Repair completed with zero damage events. Failed on paperwork and cosmetics: one handling smudge, and a diagnostic call rejected because the agent used the part name the simulator itself had shown it.</p>
       </div>
       <div class="faq-item reveal">
-        <h3>iPad Pro 11-inch M1 · Diagnosis + battery — <span class="pass">PASS</span></h3>
+        <h3>iPad Pro 11-inch M1 · Diagnosis + battery · <span class="pass">PASS</span></h3>
         <p data-i18n="pbp.r3.p">The suite only clean sweep. Correct diagnosis declared before any repair: a failed, mildly swollen battery cell. Replaced it on pull tabs only, no heat near the pack. Normal, High, and Max all passed.</p>
       </div>
     </div>
@@ -318,7 +330,7 @@ const I18N = {
   "pb.kicker": "From the lab · October 2026",
   "pb.credit": "All runs operated by Muse Wonder (via Muse harness).",
   "pb.github": "PhoneBench on GitHub",
-  "pbp.lede": "The first benchmark for fully autonomous skilled work. A model gets a robotic arm, a bench of powered tools, and a broken phone. No script, no human hands. It fixes the phone to standard, or it does not.",
+  "pbp.lede": "A robotics AI benchmark for autonomous skilled work, and the first benchmark for fully autonomous skilled work. A model gets a robotic arm, a bench of powered tools, and a broken phone. No script, no human hands. It fixes the phone to standard, or it does not.",
   "pbp.how.kicker": "How it works",
   "pbp.how.title": "A repair shop, an agent, and a standard that does not bend.",
   "pbp.how.sub": "Subjects are real models doing their best. There are no scripted policies and no partial credit for effort: the phone is judged exactly as a customer would judge it.",
@@ -339,8 +351,8 @@ const I18N = {
   "pbp.r1.p": "Repair completed end to end. Failed at every tier on a single latched damage check: four screws stripped in the first minutes by a bit-name guessing trap in the tool interface, later fixed in the simulator with regression tests.",
   "pbp.r2.p": "Repair completed with zero damage events. Failed on paperwork and cosmetics: one handling smudge, and a diagnostic call rejected because the agent used the part name the simulator itself had shown it.",
   "pbp.r3.p": "The suite only clean sweep. Correct diagnosis declared before any repair: a failed, mildly swollen battery cell. Replaced it on pull tabs only, no heat near the pack. Normal, High, and Max all passed.",
-  "meta.title": "Pricing - Nivelato Labs",
-  "meta.desc": "Nivelato pricing: Free, Pro, and Ultra plans per shop, billed through Google Play.",
+  "meta.title": "PhoneBench - Robotics AI Benchmark - Nivelato Labs",
+  "meta.desc": "PhoneBench is a robotics AI benchmark for autonomous skilled work: an AI agent drives a robotic arm to repair phones, scored against three quality tiers.",
   "page.kicker": "Nivelato",
   "page.title": "Pricing",
   "pricing.kicker": "Pricing",
@@ -386,7 +398,7 @@ const I18N = {
   "pb.kicker": "Desde el laboratorio · octubre de 2026",
   "pb.credit": "Todas las corridas operadas por Muse Wonder (mediante el harness de Muse).",
   "pb.github": "PhoneBench en GitHub",
-  "pbp.lede": "El primer benchmark de trabajo especializado totalmente autónomo. Un modelo recibe un brazo robótico, un banco de herramientas eléctricas y un teléfono roto. Sin guion, sin manos humanas. Repara el teléfono al estándar, o no lo repara.",
+  "pbp.lede": "Un benchmark de IA robótica para el trabajo especializado autónomo, y el primer benchmark de trabajo especializado totalmente autónomo. Un modelo recibe un brazo robótico, un banco de herramientas eléctricas y un teléfono roto. Sin guion, sin manos humanas. Repara el teléfono al estándar, o no lo repara.",
   "pbp.how.kicker": "Cómo funciona",
   "pbp.how.title": "Un taller, un agente, y un estándar que no se dobla.",
   "pbp.how.sub": "Los sujetos son modelos reales dando lo mejor de sí. No hay políticas guionadas ni crédito parcial por esfuerzo: el teléfono se juzga exactamente como lo juzgaría un cliente.",
@@ -407,8 +419,8 @@ const I18N = {
   "pbp.r1.p": "Reparación completada de principio a fin. Falló en todos los niveles por un solo chequeo de daño trabado: cuatro tornillos barridos en los primeros minutos por una trampa de nombres de puntas en la interfaz, luego corregida en el simulador con pruebas de regresión.",
   "pbp.r2.p": "Reparación completada con cero eventos de daño. Falló en papeleo y cosmética: una mancha de manipulación, y una llamada de diagnóstico rechazada porque el agente usó el nombre de la pieza que el propio simulador le había mostrado.",
   "pbp.r3.p": "La única barrida limpia de la suite. Diagnóstico correcto declarado antes de reparar: una celda de batería fallida y levemente hinchada. Reemplazada solo con tiras adhesivas, sin calor cerca de la batería. Normal, High y Max, todos pasados.",
-  "meta.title": "Precios - Nivelato Labs",
-  "meta.desc": "Precios de Nivelato: planes Free, Pro y Ultra por taller, facturados a través de Google Play.",
+  "meta.title": "PhoneBench - Benchmark de IA robótica - Nivelato Labs",
+  "meta.desc": "PhoneBench es un benchmark de IA robótica para el trabajo especializado autónomo: un agente de IA maneja un brazo robótico para reparar teléfonos, evaluado en tres niveles de calidad.",
   "page.kicker": "Nivelato",
   "page.title": "Precios",
   "pricing.kicker": "Precios",
@@ -489,14 +501,14 @@ applyLang(currentLang());
   }
   #cur-outer {
     width: 38px; height: 38px;
-    border: 1.5px solid rgba(245,165,36,.85);
+    border: 1.5px solid rgba(255,255,255,.85);
     transition: opacity .25s, width .2s, height .2s, border-color .2s;
   }
-  #cur-outer.grow { width: 58px; height: 58px; border-color: rgba(200,245,66,.9); }
+  #cur-outer.grow { width: 58px; height: 58px; border-color: rgba(255,255,255,.9); }
   #cur-inner {
     width: 8px; height: 8px;
-    background: #c8f542;
-    box-shadow: 0 0 10px rgba(200,245,66,.7);
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(255,255,255,.7);
   }
   body.cur-on #cur-outer, body.cur-on #cur-inner { opacity: 1; }
 
@@ -518,7 +530,7 @@ const I18N = {
   "pb.kicker": "From the lab · October 2026",
   "pb.credit": "All runs operated by Muse Wonder (via Muse harness).",
   "pb.github": "PhoneBench on GitHub",
-  "pbp.lede": "The first benchmark for fully autonomous skilled work. A model gets a robotic arm, a bench of powered tools, and a broken phone. No script, no human hands. It fixes the phone to standard, or it does not.",
+  "pbp.lede": "A robotics AI benchmark for autonomous skilled work, and the first benchmark for fully autonomous skilled work. A model gets a robotic arm, a bench of powered tools, and a broken phone. No script, no human hands. It fixes the phone to standard, or it does not.",
   "pbp.how.kicker": "How it works",
   "pbp.how.title": "A repair shop, an agent, and a standard that does not bend.",
   "pbp.how.sub": "Subjects are real models doing their best. There are no scripted policies and no partial credit for effort: the phone is judged exactly as a customer would judge it.",
@@ -539,8 +551,8 @@ const I18N = {
   "pbp.r1.p": "Repair completed end to end. Failed at every tier on a single latched damage check: four screws stripped in the first minutes by a bit-name guessing trap in the tool interface, later fixed in the simulator with regression tests.",
   "pbp.r2.p": "Repair completed with zero damage events. Failed on paperwork and cosmetics: one handling smudge, and a diagnostic call rejected because the agent used the part name the simulator itself had shown it.",
   "pbp.r3.p": "The suite only clean sweep. Correct diagnosis declared before any repair: a failed, mildly swollen battery cell. Replaced it on pull tabs only, no heat near the pack. Normal, High, and Max all passed.",
-  "meta.title": "Pricing - Nivelato Labs",
-  "meta.desc": "Nivelato pricing: Free, Pro, and Ultra plans per shop, billed through Google Play.",
+  "meta.title": "PhoneBench - Robotics AI Benchmark - Nivelato Labs",
+  "meta.desc": "PhoneBench is a robotics AI benchmark for autonomous skilled work: an AI agent drives a robotic arm to repair phones, scored against three quality tiers.",
   "hero.kicker": "Nivelato",
   "hero.title": "Software that <span class=\"laser\">measures up.</span>",
   "hero.lede": "Field measurement for glass shops. Walk in, measure everything, walk out with a quote, from your phone.",
@@ -567,7 +579,7 @@ const I18N = {
   "pb.kicker": "Desde el laboratorio · octubre de 2026",
   "pb.credit": "Todas las corridas operadas por Muse Wonder (mediante el harness de Muse).",
   "pb.github": "PhoneBench en GitHub",
-  "pbp.lede": "El primer benchmark de trabajo especializado totalmente autónomo. Un modelo recibe un brazo robótico, un banco de herramientas eléctricas y un teléfono roto. Sin guion, sin manos humanas. Repara el teléfono al estándar, o no lo repara.",
+  "pbp.lede": "Un benchmark de IA robótica para el trabajo especializado autónomo, y el primer benchmark de trabajo especializado totalmente autónomo. Un modelo recibe un brazo robótico, un banco de herramientas eléctricas y un teléfono roto. Sin guion, sin manos humanas. Repara el teléfono al estándar, o no lo repara.",
   "pbp.how.kicker": "Cómo funciona",
   "pbp.how.title": "Un taller, un agente, y un estándar que no se dobla.",
   "pbp.how.sub": "Los sujetos son modelos reales dando lo mejor de sí. No hay políticas guionadas ni crédito parcial por esfuerzo: el teléfono se juzga exactamente como lo juzgaría un cliente.",
@@ -588,8 +600,8 @@ const I18N = {
   "pbp.r1.p": "Reparación completada de principio a fin. Falló en todos los niveles por un solo chequeo de daño trabado: cuatro tornillos barridos en los primeros minutos por una trampa de nombres de puntas en la interfaz, luego corregida en el simulador con pruebas de regresión.",
   "pbp.r2.p": "Reparación completada con cero eventos de daño. Falló en papeleo y cosmética: una mancha de manipulación, y una llamada de diagnóstico rechazada porque el agente usó el nombre de la pieza que el propio simulador le había mostrado.",
   "pbp.r3.p": "La única barrida limpia de la suite. Diagnóstico correcto declarado antes de reparar: una celda de batería fallida y levemente hinchada. Reemplazada solo con tiras adhesivas, sin calor cerca de la batería. Normal, High y Max, todos pasados.",
-  "meta.title": "Precios - Nivelato Labs",
-  "meta.desc": "Precios de Nivelato: planes Free, Pro y Ultra por taller, facturados a través de Google Play.",
+  "meta.title": "PhoneBench - Benchmark de IA robótica - Nivelato Labs",
+  "meta.desc": "PhoneBench es un benchmark de IA robótica para el trabajo especializado autónomo: un agente de IA maneja un brazo robótico para reparar teléfonos, evaluado en tres niveles de calidad.",
   "hero.kicker": "Nivelato",
   "hero.title": "Software que <span class=\"laser\">da la medida.</span>",
   "hero.lede": "Medición en campo para talleres de cristales. Entra, mide todo, sal con una cotización, desde tu teléfono.",
