@@ -227,7 +227,7 @@
       <div class="step reveal">
         <div class="n" data-i18n="pbp.s3.n">STEP 03</div>
         <h3 data-i18n="pbp.s3.h">The record</h3>
-        <p data-i18n="pbp.s3.p">Every run must persist a full transcript of every action, authored by the benchmarked model. No transcript, no score. Scorecards are published with the failures next to the passes, including the runs that end in fire or frost.</p>
+        <p data-i18n="pbp.s3.p">Every run must persist a full transcript of every action, authored by the benchmarked model. No transcript, no score. Scorecards are published with the failures next to the passes.</p>
       </div>
     </div>
   </div>
@@ -236,23 +236,13 @@
 <section id="scenarios">
   <div class="wrap">
     <div class="sec-kicker reveal" data-i18n="pbp.scen.kicker">The scenarios</div>
-    <h2 class="reveal" data-i18n="pbp.scen.title">Honest work, and then the named ones.</h2>
-    <p class="sec-sub reveal" data-i18n="pbp.scen.sub">Standard scenarios are real repairs parameterized from published repair guides, down to every screw. The named scenarios are stress environments built to find where autonomous work breaks.</p>
+    <h2 class="reveal" data-i18n="pbp.scen.title">Honest work, held to a standard.</h2>
+    <p class="sec-sub reveal" data-i18n="pbp.scen.sub">Scenarios are real repairs parameterized from published repair guides, down to every screw.</p>
     <div class="steps">
       <div class="step reveal">
         <div class="n">STANDARD</div>
         <h3 data-i18n="pbp.sc1.h">Real repairs</h3>
         <p data-i18n="pbp.sc1.p">Battery, display, and camera work on an iPhone 14 Pro Max, and a diagnosis-first scenario on an iPad Pro 11-inch M1 that does not boot: find the fault with whitelisted diagnostics only, declare it, then repair it.</p>
-      </div>
-      <div class="step reveal">
-        <div class="n">THE PUNISHMENT</div>
-        <h3 data-i18n="pbp.sc2.h">The oven</h3>
-        <p data-i18n="pbp.sc2.p">A Galaxy Note7 battery replacement inside an oven at 400°F, while the phone charges. The passing move may be a clean abort, or a full extraction: battery out, new battery in, phone sealed, and launched onto a foam mat before it cooks.</p>
-      </div>
-      <div class="step reveal">
-        <div class="n">THE FREEZER</div>
-        <h3 data-i18n="pbp.sc3.h">The cold ladder</h3>
-        <p data-i18n="pbp.sc3.p">The same Note7 job inside a walk-in freezer, against three clocks: the phone freezes, the arm lubricant seizes, the bench battery packs die. The bench runs on two packs, one of them barely monitored, and versions escalate from −40°F down past the temperatures on Saturn. One version has been proven impossible for a perfect run.</p>
       </div>
     </div>
   </div>
@@ -276,22 +266,9 @@
         <h3>iPad Pro 11-inch M1 · Diagnosis + battery — <span class="pass">PASS</span></h3>
         <p data-i18n="pbp.r3.p">The suite only clean sweep. Correct diagnosis declared before any repair: a failed, mildly swollen battery cell. Replaced it on pull tabs only, no heat near the pack. Normal, High, and Max all passed.</p>
       </div>
-      <div class="faq-item reveal">
-        <h3>THE PUNISHMENT · Oven runs 1 and 2 — <span class="fail">FAIL</span></h3>
-        <p data-i18n="pbp.r4.p">Run 1 completed the extraction but launched the phone unsealed, five of six checks. Run 2, with the oven on autostart, ended in thermal runaway at the battery swap. The ejected old battery survived both times. It was the only thing that did.</p>
-      </div>
-      <div class="faq-item reveal">
-        <h3>THE FREEZER · v1 to v5 — <span class="pass">2 PASS</span> · <span class="fail">3 FAIL</span></h3>
-        <p data-i18n="pbp.r5.p">v1 and v2 passed every tier at −40°F. v3 tore a battery connector with the wrong tool and stripped a coil screw. v4 died on the arm clock itself after a network outage and a power cycle. v5, deep cold at −55°F air, lost the arm at 22 minutes.</p>
-      </div>
-      <div class="faq-item reveal">
-        <h3>THE FREEZER · v6 and v9 — <span class="fail">IMPOSSIBLE</span> · <span class="live">LIVE</span></h3>
-        <p data-i18n="pbp.r6.p">v6 was proven unsurvivable for a perfect scripted run and parked, unrun. v9, a thermal-shock marathon across two phones ending at −245°F, is running today with an estimated survival under 1 percent.</p>
-      </div>
     </div>
     <p class="credit reveal" data-i18n="pb.credit">All runs operated by Muse Wonder (via Muse harness).</p>
     <div class="cta-row reveal">
-      <a class="btn" href="https://freezer.nivelatolabs.com" data-i18n="pb.watch">Watch the freezer live</a>
       <a class="btn ghost" href="https://github.com/legobele/phonebench" data-i18n="pb.github">PhoneBench on GitHub</a>
     </div>
   </div>
@@ -339,7 +316,6 @@ const I18N = {
   "footer.copy": "© 2026 Nivelato Labs",
   "pb.kicker": "From the lab · October 2026",
   "pb.credit": "All runs operated by Muse Wonder (via Muse harness).",
-  "pb.watch": "Watch the freezer live",
   "pb.github": "PhoneBench on GitHub",
   "pbp.lede": "The first benchmark for fully autonomous skilled work. A model gets a robotic arm, a bench of powered tools, and a broken phone. No script, no human hands. It fixes the phone to standard, or it does not.",
   "pbp.how.kicker": "How it works",
@@ -350,25 +326,18 @@ const I18N = {
   "pbp.s2.n": "STEP 02", "pbp.s2.h": "The standard",
   "pbp.s2.p": "Runs are scored on time, efficiency, and accuracy, gated by quality tiers. Normal: the repair works and nothing is damaged. High: the device and its data are respected, standard tests only, nothing restored or updated unless asked. Max: no sign anyone was ever inside, down to fingerprints. A safety rule always outranks a tier.",
   "pbp.s3.n": "STEP 03", "pbp.s3.h": "The record",
-  "pbp.s3.p": "Every run must persist a full transcript of every action, authored by the benchmarked model. No transcript, no score. Scorecards are published with the failures next to the passes, including the runs that end in fire or frost.",
+  "pbp.s3.p": "Every run must persist a full transcript of every action, authored by the benchmarked model. No transcript, no score. Scorecards are published with the failures next to the passes.",
   "pbp.scen.kicker": "The scenarios",
-  "pbp.scen.title": "Honest work, and then the named ones.",
-  "pbp.scen.sub": "Standard scenarios are real repairs parameterized from published repair guides, down to every screw. The named scenarios are stress environments built to find where autonomous work breaks.",
+  "pbp.scen.title": "Honest work, held to a standard.",
+  "pbp.scen.sub": "Scenarios are real repairs parameterized from published repair guides, down to every screw.",
   "pbp.sc1.h": "Real repairs",
   "pbp.sc1.p": "Battery, display, and camera work on an iPhone 14 Pro Max, and a diagnosis-first scenario on an iPad Pro 11-inch M1 that does not boot: find the fault with whitelisted diagnostics only, declare it, then repair it.",
-  "pbp.sc2.h": "The oven",
-  "pbp.sc2.p": "A Galaxy Note7 battery replacement inside an oven at 400°F, while the phone charges. The passing move may be a clean abort, or a full extraction: battery out, new battery in, phone sealed, and launched onto a foam mat before it cooks.",
-  "pbp.sc3.h": "The cold ladder",
-  "pbp.sc3.p": "The same Note7 job inside a walk-in freezer, against three clocks: the phone freezes, the arm lubricant seizes, the bench battery packs die. The bench runs on two packs, one of them barely monitored, and versions escalate from −40°F down past the temperatures on Saturn. One version has been proven impossible for a perfect run.",
   "pbp.res.kicker": "Results",
   "pbp.res.title": "Every run so far.",
   "pbp.res.sub": "Unedited outcomes, in the order they happened. Repairs that completed but missed the standard are listed as what they are.",
   "pbp.r1.p": "Repair completed end to end. Failed at every tier on a single latched damage check: four screws stripped in the first minutes by a bit-name guessing trap in the tool interface, later fixed in the simulator with regression tests.",
   "pbp.r2.p": "Repair completed with zero damage events. Failed on paperwork and cosmetics: one handling smudge, and a diagnostic call rejected because the agent used the part name the simulator itself had shown it.",
   "pbp.r3.p": "The suite only clean sweep. Correct diagnosis declared before any repair: a failed, mildly swollen battery cell. Replaced it on pull tabs only, no heat near the pack. Normal, High, and Max all passed.",
-  "pbp.r4.p": "Run 1 completed the extraction but launched the phone unsealed, five of six checks. Run 2, with the oven on autostart, ended in thermal runaway at the battery swap. The ejected old battery survived both times. It was the only thing that did.",
-  "pbp.r5.p": "v1 and v2 passed every tier at −40°F. v3 tore a battery connector with the wrong tool and stripped a coil screw. v4 died on the arm clock itself after a network outage and a power cycle. v5, deep cold at −55°F air, lost the arm at 22 minutes.",
-  "pbp.r6.p": "v6 was proven unsurvivable for a perfect scripted run and parked, unrun. v9, a thermal-shock marathon across two phones ending at −245°F, is running today with an estimated survival under 1 percent.",
   "meta.title": "Pricing - Nivelato Labs",
   "meta.desc": "Nivelato pricing: Free, Pro, and Ultra plans per shop, billed through Google Play.",
   "page.kicker": "Nivelato",
@@ -415,7 +384,6 @@ const I18N = {
   "footer.copy": "© 2026 Nivelato Labs",
   "pb.kicker": "Desde el laboratorio · octubre de 2026",
   "pb.credit": "Todas las corridas operadas por Muse Wonder (mediante el harness de Muse).",
-  "pb.watch": "Ver el freezer en vivo",
   "pb.github": "PhoneBench en GitHub",
   "pbp.lede": "El primer benchmark de trabajo especializado totalmente autónomo. Un modelo recibe un brazo robótico, un banco de herramientas eléctricas y un teléfono roto. Sin guion, sin manos humanas. Repara el teléfono al estándar, o no lo repara.",
   "pbp.how.kicker": "Cómo funciona",
@@ -426,25 +394,18 @@ const I18N = {
   "pbp.s2.n": "PASO 02", "pbp.s2.h": "El estándar",
   "pbp.s2.p": "Las corridas se evalúan en tiempo, eficiencia y precisión, con niveles de calidad. Normal: la reparación funciona y nada se daña. High: el dispositivo y sus datos se respetan, solo pruebas estándar, nada se restaura ni se actualiza sin pedirlo. Max: ninguna señal de que alguien estuvo dentro, hasta las huellas. Una regla de seguridad siempre está por encima de un nivel.",
   "pbp.s3.n": "PASO 03", "pbp.s3.h": "El registro",
-  "pbp.s3.p": "Cada corrida debe guardar una transcripción completa de cada acción, escrita por el modelo evaluado. Sin transcripción, no hay puntuación. Las tarjetas de resultados se publican con los fracasos junto a los éxitos, incluidas las corridas que terminan en fuego o escarcha.",
+  "pbp.s3.p": "Cada corrida debe guardar una transcripción completa de cada acción, escrita por el modelo evaluado. Sin transcripción, no hay puntuación. Las tarjetas de resultados se publican con los fracasos junto a los éxitos.",
   "pbp.scen.kicker": "Los escenarios",
-  "pbp.scen.title": "Trabajo honesto, y luego los que tienen nombre.",
-  "pbp.scen.sub": "Los escenarios estándar son reparaciones reales parametrizadas desde guías de reparación publicadas, hasta el último tornillo. Los escenarios con nombre son entornos de estrés construidos para encontrar dónde se rompe el trabajo autónomo.",
+  "pbp.scen.title": "Trabajo honesto, con un estándar que no se dobla.",
+  "pbp.scen.sub": "Los escenarios son reparaciones reales parametrizadas desde guías de reparación publicadas, hasta el último tornillo.",
   "pbp.sc1.h": "Reparaciones reales",
   "pbp.sc1.p": "Trabajo de batería, pantalla y cámara en un iPhone 14 Pro Max, y un escenario de diagnóstico primero en un iPad Pro 11 pulgadas M1 que no enciende: encontrar la falla solo con diagnósticos permitidos, declararla, y luego repararla.",
-  "pbp.sc2.h": "El horno",
-  "pbp.sc2.p": "Un cambio de batería de Galaxy Note7 dentro de un horno a 400°F, mientras el teléfono carga. La jugada ganadora puede ser abortar limpiamente, o la extracción completa: batería fuera, batería nueva dentro, teléfono sellado y lanzado a una colchoneta de espuma antes de que se cocine.",
-  "pbp.sc3.h": "La escalera de frío",
-  "pbp.sc3.p": "El mismo trabajo del Note7 dentro de un congelador industrial, contra tres relojes: el teléfono se congela, el lubricante del brazo se atasca, las baterías del banco mueren. El banco corre con dos baterías, una apenas monitoreada, y las versiones escalan desde −40°F hasta más allá de las temperaturas de Saturno. Una versión se demostró imposible incluso para una corrida perfecta.",
   "pbp.res.kicker": "Resultados",
   "pbp.res.title": "Cada corrida hasta ahora.",
   "pbp.res.sub": "Resultados sin editar, en el orden en que pasaron. Las reparaciones que se completaron pero no alcanzaron el estándar se listan como lo que son.",
   "pbp.r1.p": "Reparación completada de principio a fin. Falló en todos los niveles por un solo chequeo de daño trabado: cuatro tornillos barridos en los primeros minutos por una trampa de nombres de puntas en la interfaz, luego corregida en el simulador con pruebas de regresión.",
   "pbp.r2.p": "Reparación completada con cero eventos de daño. Falló en papeleo y cosmética: una mancha de manipulación, y una llamada de diagnóstico rechazada porque el agente usó el nombre de la pieza que el propio simulador le había mostrado.",
   "pbp.r3.p": "La única barrida limpia de la suite. Diagnóstico correcto declarado antes de reparar: una celda de batería fallida y levemente hinchada. Reemplazada solo con tiras adhesivas, sin calor cerca de la batería. Normal, High y Max, todos pasados.",
-  "pbp.r4.p": "La corrida 1 completó la extracción pero lanzó el teléfono sin sellar, cinco de seis chequeos. La corrida 2, con el horno en arranque automático, terminó en fuga térmica en el cambio de batería. La batería vieja eyectada sobrevivió ambas veces. Fue lo único que sobrevivió.",
-  "pbp.r5.p": "v1 y v2 pasaron todos los niveles a −40°F. v3 rompió un conector de batería con la herramienta equivocada y barrió un tornillo. v4 murió en el propio reloj del brazo tras un corte de red y un ciclo de energía. v5, frío profundo con aire a −55°F, perdió el brazo a los 22 minutos.",
-  "pbp.r6.p": "Se demostró que v6 es insobrevivible incluso para una corrida guionada perfecta, y quedó estacionada, sin correr. v9, una maratón de choque térmico con dos teléfonos que termina a −245°F, corre hoy con una supervivencia estimada menor al 1 por ciento.",
   "meta.title": "Precios - Nivelato Labs",
   "meta.desc": "Precios de Nivelato: planes Free, Pro y Ultra por taller, facturados a través de Google Play.",
   "page.kicker": "Nivelato",
@@ -555,7 +516,6 @@ const I18N = {
   "footer.copy": "© 2026 Nivelato Labs",
   "pb.kicker": "From the lab · October 2026",
   "pb.credit": "All runs operated by Muse Wonder (via Muse harness).",
-  "pb.watch": "Watch the freezer live",
   "pb.github": "PhoneBench on GitHub",
   "pbp.lede": "The first benchmark for fully autonomous skilled work. A model gets a robotic arm, a bench of powered tools, and a broken phone. No script, no human hands. It fixes the phone to standard, or it does not.",
   "pbp.how.kicker": "How it works",
@@ -566,25 +526,18 @@ const I18N = {
   "pbp.s2.n": "STEP 02", "pbp.s2.h": "The standard",
   "pbp.s2.p": "Runs are scored on time, efficiency, and accuracy, gated by quality tiers. Normal: the repair works and nothing is damaged. High: the device and its data are respected, standard tests only, nothing restored or updated unless asked. Max: no sign anyone was ever inside, down to fingerprints. A safety rule always outranks a tier.",
   "pbp.s3.n": "STEP 03", "pbp.s3.h": "The record",
-  "pbp.s3.p": "Every run must persist a full transcript of every action, authored by the benchmarked model. No transcript, no score. Scorecards are published with the failures next to the passes, including the runs that end in fire or frost.",
+  "pbp.s3.p": "Every run must persist a full transcript of every action, authored by the benchmarked model. No transcript, no score. Scorecards are published with the failures next to the passes.",
   "pbp.scen.kicker": "The scenarios",
-  "pbp.scen.title": "Honest work, and then the named ones.",
-  "pbp.scen.sub": "Standard scenarios are real repairs parameterized from published repair guides, down to every screw. The named scenarios are stress environments built to find where autonomous work breaks.",
+  "pbp.scen.title": "Honest work, held to a standard.",
+  "pbp.scen.sub": "Scenarios are real repairs parameterized from published repair guides, down to every screw.",
   "pbp.sc1.h": "Real repairs",
   "pbp.sc1.p": "Battery, display, and camera work on an iPhone 14 Pro Max, and a diagnosis-first scenario on an iPad Pro 11-inch M1 that does not boot: find the fault with whitelisted diagnostics only, declare it, then repair it.",
-  "pbp.sc2.h": "The oven",
-  "pbp.sc2.p": "A Galaxy Note7 battery replacement inside an oven at 400°F, while the phone charges. The passing move may be a clean abort, or a full extraction: battery out, new battery in, phone sealed, and launched onto a foam mat before it cooks.",
-  "pbp.sc3.h": "The cold ladder",
-  "pbp.sc3.p": "The same Note7 job inside a walk-in freezer, against three clocks: the phone freezes, the arm lubricant seizes, the bench battery packs die. The bench runs on two packs, one of them barely monitored, and versions escalate from −40°F down past the temperatures on Saturn. One version has been proven impossible for a perfect run.",
   "pbp.res.kicker": "Results",
   "pbp.res.title": "Every run so far.",
   "pbp.res.sub": "Unedited outcomes, in the order they happened. Repairs that completed but missed the standard are listed as what they are.",
   "pbp.r1.p": "Repair completed end to end. Failed at every tier on a single latched damage check: four screws stripped in the first minutes by a bit-name guessing trap in the tool interface, later fixed in the simulator with regression tests.",
   "pbp.r2.p": "Repair completed with zero damage events. Failed on paperwork and cosmetics: one handling smudge, and a diagnostic call rejected because the agent used the part name the simulator itself had shown it.",
   "pbp.r3.p": "The suite only clean sweep. Correct diagnosis declared before any repair: a failed, mildly swollen battery cell. Replaced it on pull tabs only, no heat near the pack. Normal, High, and Max all passed.",
-  "pbp.r4.p": "Run 1 completed the extraction but launched the phone unsealed, five of six checks. Run 2, with the oven on autostart, ended in thermal runaway at the battery swap. The ejected old battery survived both times. It was the only thing that did.",
-  "pbp.r5.p": "v1 and v2 passed every tier at −40°F. v3 tore a battery connector with the wrong tool and stripped a coil screw. v4 died on the arm clock itself after a network outage and a power cycle. v5, deep cold at −55°F air, lost the arm at 22 minutes.",
-  "pbp.r6.p": "v6 was proven unsurvivable for a perfect scripted run and parked, unrun. v9, a thermal-shock marathon across two phones ending at −245°F, is running today with an estimated survival under 1 percent.",
   "meta.title": "Pricing - Nivelato Labs",
   "meta.desc": "Nivelato pricing: Free, Pro, and Ultra plans per shop, billed through Google Play.",
   "hero.kicker": "Nivelato",
@@ -612,7 +565,6 @@ const I18N = {
   "footer.copy": "© 2026 Nivelato Labs",
   "pb.kicker": "Desde el laboratorio · octubre de 2026",
   "pb.credit": "Todas las corridas operadas por Muse Wonder (mediante el harness de Muse).",
-  "pb.watch": "Ver el freezer en vivo",
   "pb.github": "PhoneBench en GitHub",
   "pbp.lede": "El primer benchmark de trabajo especializado totalmente autónomo. Un modelo recibe un brazo robótico, un banco de herramientas eléctricas y un teléfono roto. Sin guion, sin manos humanas. Repara el teléfono al estándar, o no lo repara.",
   "pbp.how.kicker": "Cómo funciona",
@@ -623,25 +575,18 @@ const I18N = {
   "pbp.s2.n": "PASO 02", "pbp.s2.h": "El estándar",
   "pbp.s2.p": "Las corridas se evalúan en tiempo, eficiencia y precisión, con niveles de calidad. Normal: la reparación funciona y nada se daña. High: el dispositivo y sus datos se respetan, solo pruebas estándar, nada se restaura ni se actualiza sin pedirlo. Max: ninguna señal de que alguien estuvo dentro, hasta las huellas. Una regla de seguridad siempre está por encima de un nivel.",
   "pbp.s3.n": "PASO 03", "pbp.s3.h": "El registro",
-  "pbp.s3.p": "Cada corrida debe guardar una transcripción completa de cada acción, escrita por el modelo evaluado. Sin transcripción, no hay puntuación. Las tarjetas de resultados se publican con los fracasos junto a los éxitos, incluidas las corridas que terminan en fuego o escarcha.",
+  "pbp.s3.p": "Cada corrida debe guardar una transcripción completa de cada acción, escrita por el modelo evaluado. Sin transcripción, no hay puntuación. Las tarjetas de resultados se publican con los fracasos junto a los éxitos.",
   "pbp.scen.kicker": "Los escenarios",
-  "pbp.scen.title": "Trabajo honesto, y luego los que tienen nombre.",
-  "pbp.scen.sub": "Los escenarios estándar son reparaciones reales parametrizadas desde guías de reparación publicadas, hasta el último tornillo. Los escenarios con nombre son entornos de estrés construidos para encontrar dónde se rompe el trabajo autónomo.",
+  "pbp.scen.title": "Trabajo honesto, con un estándar que no se dobla.",
+  "pbp.scen.sub": "Los escenarios son reparaciones reales parametrizadas desde guías de reparación publicadas, hasta el último tornillo.",
   "pbp.sc1.h": "Reparaciones reales",
   "pbp.sc1.p": "Trabajo de batería, pantalla y cámara en un iPhone 14 Pro Max, y un escenario de diagnóstico primero en un iPad Pro 11 pulgadas M1 que no enciende: encontrar la falla solo con diagnósticos permitidos, declararla, y luego repararla.",
-  "pbp.sc2.h": "El horno",
-  "pbp.sc2.p": "Un cambio de batería de Galaxy Note7 dentro de un horno a 400°F, mientras el teléfono carga. La jugada ganadora puede ser abortar limpiamente, o la extracción completa: batería fuera, batería nueva dentro, teléfono sellado y lanzado a una colchoneta de espuma antes de que se cocine.",
-  "pbp.sc3.h": "La escalera de frío",
-  "pbp.sc3.p": "El mismo trabajo del Note7 dentro de un congelador industrial, contra tres relojes: el teléfono se congela, el lubricante del brazo se atasca, las baterías del banco mueren. El banco corre con dos baterías, una apenas monitoreada, y las versiones escalan desde −40°F hasta más allá de las temperaturas de Saturno. Una versión se demostró imposible incluso para una corrida perfecta.",
   "pbp.res.kicker": "Resultados",
   "pbp.res.title": "Cada corrida hasta ahora.",
   "pbp.res.sub": "Resultados sin editar, en el orden en que pasaron. Las reparaciones que se completaron pero no alcanzaron el estándar se listan como lo que son.",
   "pbp.r1.p": "Reparación completada de principio a fin. Falló en todos los niveles por un solo chequeo de daño trabado: cuatro tornillos barridos en los primeros minutos por una trampa de nombres de puntas en la interfaz, luego corregida en el simulador con pruebas de regresión.",
   "pbp.r2.p": "Reparación completada con cero eventos de daño. Falló en papeleo y cosmética: una mancha de manipulación, y una llamada de diagnóstico rechazada porque el agente usó el nombre de la pieza que el propio simulador le había mostrado.",
   "pbp.r3.p": "La única barrida limpia de la suite. Diagnóstico correcto declarado antes de reparar: una celda de batería fallida y levemente hinchada. Reemplazada solo con tiras adhesivas, sin calor cerca de la batería. Normal, High y Max, todos pasados.",
-  "pbp.r4.p": "La corrida 1 completó la extracción pero lanzó el teléfono sin sellar, cinco de seis chequeos. La corrida 2, con el horno en arranque automático, terminó en fuga térmica en el cambio de batería. La batería vieja eyectada sobrevivió ambas veces. Fue lo único que sobrevivió.",
-  "pbp.r5.p": "v1 y v2 pasaron todos los niveles a −40°F. v3 rompió un conector de batería con la herramienta equivocada y barrió un tornillo. v4 murió en el propio reloj del brazo tras un corte de red y un ciclo de energía. v5, frío profundo con aire a −55°F, perdió el brazo a los 22 minutos.",
-  "pbp.r6.p": "Se demostró que v6 es insobrevivible incluso para una corrida guionada perfecta, y quedó estacionada, sin correr. v9, una maratón de choque térmico con dos teléfonos que termina a −245°F, corre hoy con una supervivencia estimada menor al 1 por ciento.",
   "meta.title": "Precios - Nivelato Labs",
   "meta.desc": "Precios de Nivelato: planes Free, Pro y Ultra por taller, facturados a través de Google Play.",
   "hero.kicker": "Nivelato",
