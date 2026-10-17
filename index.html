@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{if(sessionStorage.getItem('nl-intro-seen')){document.documentElement.classList.add('intro-seen')}else{sessionStorage.setItem('nl-intro-seen','1')}}catch(e){document.documentElement.classList.add('intro-seen')}</script>
 <title>Nivelato Labs - Software that measures up</title>
 <meta name="description" content="Nivelato Labs is an AI-driven software lab building Nivelato, offset measuring software for glass shops, and PhoneBench, a robotics AI benchmark.">
 <link rel="canonical" href="https://nivelatolabs.com/">
@@ -80,8 +81,17 @@ header{background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1p
 @keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
 header .kicker,header h1,header .lede,header .cta-row,header .rule{animation:rise .95s cubic-bezier(.22,.8,.3,1) both}
 header h1{animation-delay:.12s} header .lede{animation-delay:.26s} header .cta-row{animation-delay:.4s} header .rule{animation-delay:.54s}
-.intro{position:fixed;inset:0;z-index:300;background:#050505;display:flex;align-items:center;justify-content:center;pointer-events:none;animation:introout .8s ease 1.05s forwards}
-.intro span{font-family:'Space Grotesk';font-weight:700;letter-spacing:.42em;font-size:clamp(.95rem,3.4vw,1.6rem);color:#fafafa;text-transform:uppercase;animation:rise .8s ease both}
+/* Intro: once per session (html.intro-seen set by the early head script
+   suppresses it before paint on repeat loads and internal redirects).
+   Backdrop is the Oeschinensee photo, monochrome and darkened, with the
+   Breakout outline mark large over it. Photo credit: docs/asset-credits.md */
+.intro{position:fixed;inset:0;z-index:300;background:#050505;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;pointer-events:none;overflow:hidden;animation:introout .8s ease 1.05s forwards}
+.intro::before{content:"";position:absolute;inset:0;background:url('/assets/mountains-oeschinensee.jpg') center 38%/cover no-repeat;filter:grayscale(1) contrast(1.06) brightness(.42)}
+.intro::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 90% 80% at 50% 45%,rgba(5,5,5,.16),rgba(5,5,5,.62))}
+.intro .intro-mark,.intro span{position:relative;z-index:1}
+.intro-mark{width:clamp(128px,32vw,216px);height:auto;color:#fff;filter:drop-shadow(0 2px 22px rgba(0,0,0,.5));animation:rise .8s ease both}
+.intro span{font-family:'Space Grotesk';font-weight:700;letter-spacing:.42em;font-size:clamp(.95rem,3.4vw,1.6rem);color:#fafafa;text-transform:uppercase;animation:rise .8s ease .1s both}
+html.intro-seen .intro{display:none}
 @keyframes introout{to{opacity:0;visibility:hidden}}
 html.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.8,.3,1)}
 html.js .reveal.in{opacity:1;transform:none}
@@ -124,7 +134,7 @@ body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events
 <link rel="alternate" type="text/markdown" title="AGENTS.md" href="/AGENTS.md">
 </head>
 <body>
-<div class="intro" aria-hidden="true"><span>Nivelato Labs</span></div>
+<div class="intro" aria-hidden="true"><svg class="intro-mark" viewBox="-5 -5 110 110" fill="none" stroke="currentColor" stroke-width="6.5" aria-hidden="true" focusable="false"><path d="M55 20 H20 V84 H84 V43" stroke-linejoin="miter"/><path d="M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z" stroke-linejoin="bevel"/></svg><span>Nivelato Labs</span></div>
 <nav class="variant-nav" aria-label="Main">
   <a class="variant-lockup" href="/" aria-label="Nivelato Labs home">
     <span class="variant-mark"><svg viewBox="-5 -5 110 110" fill="none" stroke="currentColor" stroke-width="6.5" aria-hidden="true" focusable="false"><path d="M55 20 H20 V84 H84 V43" stroke-linejoin="miter"/><path d="M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z" stroke-linejoin="bevel"/></svg></span>
