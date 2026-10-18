@@ -186,7 +186,7 @@ section{background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 
    it, and the lab header begins where the band ends. The hero pulls
    up under the transparent Variant B header, the role the lab header
    had before; the lab header now starts in normal flow. */
-.product-hero{--navh:126px;position:relative;margin-top:calc(var(--navh) * -1);height:115vh;height:115svh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;background:#050505}
+.product-hero{--navh:126px;position:relative;margin-top:calc(var(--navh) * -1);height:115vh;height:115svh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
 .product-hero::before{content:"";position:absolute;inset:0;background:url('/assets/mountains-oeschinensee.jpg') center 35%/cover no-repeat;filter:grayscale(1) contrast(1.07) brightness(.58)}
 .product-hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(5,5,5,.40) 0%,rgba(5,5,5,.12) 34%,rgba(5,5,5,.46) 68%,rgba(5,5,5,.80) 100%);pointer-events:none}
 .product-hero .ph-inner{position:relative;z-index:2;width:100%;padding-bottom:calc(15vh + 56px);padding-bottom:calc(15svh + 56px)}
@@ -200,6 +200,18 @@ section{background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 
 header{margin-top:0;padding:96px 0 108px}
 @media(max-width:480px){.product-hero{--navh:116px}header{padding:72px 0 76px}}
 @media(prefers-reduced-motion:reduce){.product-hero .ph-eyebrow,.product-hero .ph-title,.product-hero .ph-sub{animation:none}}
+
+/* ---- One photo across both heroes (Oct 2026 fix) ----
+   The product hero and the lab header each painting the same photo
+   made the image visibly restart at the seam. The photo now lives on
+   the shared .hero-stack wrapper behind both; each hero keeps only
+   its own scrim, so the scene runs unbroken from the top of the page
+   to the lab header's fade to black. */
+.hero-stack{position:relative;background:#050505}
+.hero-stack::before{content:"";position:absolute;inset:0;z-index:0;background:url('/assets/mountains-oeschinensee.jpg') center 30%/cover no-repeat;filter:grayscale(1) contrast(1.07) brightness(.6)}
+.hero-stack .product-hero,.hero-stack header{z-index:1}
+.product-hero::before{display:none}
+.hero-stack header::before{display:none}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -300,6 +312,7 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
     </div>
   </div>
 </div>
+<div class="hero-stack">
 <section class="product-hero" aria-label="Nivelato: field measurement, reinvented">
 <div class="ph-inner wrap">
 <div class="ph-eyebrow">[ Nivelato Labs ]</div>
@@ -323,6 +336,7 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 </div>
 <div class="photo-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:20190725_Oeschinensee-Panorama,_Kandersteg_(06540-42_stitch).jpg" target="_blank" rel="noopener noreferrer">© Günter Seggebäing, Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></div>
 </div></header>
+</div>
 <button type="button" class="scroll-cue" aria-label="Scroll down to content">[ SCROLL ]<span class="cue-line" aria-hidden="true"></span></button>
 
 <section class="alt reveal"><div class="wrap">
