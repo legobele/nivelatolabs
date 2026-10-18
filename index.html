@@ -177,6 +177,29 @@ header .photo-credit a{color:rgba(250,250,250,.78);text-decoration:none}
 header .photo-credit a:hover{color:#fff}
 section{background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:54px 54px}
 @media(max-width:480px){header{--navh:116px;padding:calc(var(--navh) + 54px) 0 76px}}
+
+/* ---- Product hero (Oct 2026): the Nivelato hero from the app login
+   takes the first screen; the lab header below starts at exactly
+   1.15 viewport heights. The product hero is 115svh tall: its claim
+   block ends at the first screen's lower edge, a 15svh photo band
+   carrying the HUD foot row ([ SCROLL ] / [ EST. FIELD ]) runs below
+   it, and the lab header begins where the band ends. The hero pulls
+   up under the transparent Variant B header, the role the lab header
+   had before; the lab header now starts in normal flow. */
+.product-hero{--navh:126px;position:relative;margin-top:calc(var(--navh) * -1);height:115vh;height:115svh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;background:#050505}
+.product-hero::before{content:"";position:absolute;inset:0;background:url('/assets/mountains-oeschinensee.jpg') center 35%/cover no-repeat;filter:grayscale(1) contrast(1.07) brightness(.58)}
+.product-hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(5,5,5,.40) 0%,rgba(5,5,5,.12) 34%,rgba(5,5,5,.46) 68%,rgba(5,5,5,.80) 100%);pointer-events:none}
+.product-hero .ph-inner{position:relative;z-index:2;width:100%;padding-bottom:calc(15vh + 56px);padding-bottom:calc(15svh + 56px)}
+.ph-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.8rem;letter-spacing:.3em;color:#fafafa;text-transform:uppercase;margin-bottom:20px;text-shadow:0 1px 12px rgba(0,0,0,.55)}
+.ph-title{font-family:'Anybody','Archivo Black',system-ui,sans-serif;font-weight:900;font-stretch:150%;text-transform:uppercase;font-size:clamp(1.4rem,6.8vw,5.4rem);line-height:1.04;letter-spacing:.01em;color:#fff;text-shadow:0 2px 34px rgba(0,0,0,.5)}
+.ph-sub{font-family:'JetBrains Mono',monospace;font-size:clamp(.76rem,2.4vw,.95rem);letter-spacing:.26em;line-height:2;text-transform:uppercase;color:rgba(250,250,250,.92);margin-top:26px;text-shadow:0 1px 12px rgba(0,0,0,.6)}
+.ph-foot{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;justify-content:space-between;gap:20px;padding:0 24px 20px;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(250,250,250,.72)}
+.product-hero .ph-eyebrow,.product-hero .ph-title,.product-hero .ph-sub{animation:rise .95s cubic-bezier(.22,.8,.3,1) both}
+.product-hero .ph-title{animation-delay:.12s}
+.product-hero .ph-sub{animation-delay:.26s}
+header{margin-top:0;padding:96px 0 108px}
+@media(max-width:480px){.product-hero{--navh:116px}header{padding:72px 0 76px}}
+@media(prefers-reduced-motion:reduce){.product-hero .ph-eyebrow,.product-hero .ph-title,.product-hero .ph-sub{animation:none}}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -277,6 +300,14 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
     </div>
   </div>
 </div>
+<section class="product-hero" aria-label="Nivelato: field measurement, reinvented">
+<div class="ph-inner wrap">
+<div class="ph-eyebrow">[ Nivelato Labs ]</div>
+<p class="ph-title">Field<br>Measurement,<br>Reinvented.</p>
+<p class="ph-sub">+ Offset measuring software<br>for glass shops</p>
+</div>
+<div class="ph-foot" aria-hidden="true"><span>[ Scroll ]</span><span>[ Est. Field ]</span></div>
+</section>
 <header><div class="wrap">
 <div class="kicker">[ Nivelato Labs ]</div>
 <h1>Software that<br><span class="laser">measures up</span>,<br>built at<br>agent speed.</h1>
@@ -333,7 +364,7 @@ els.forEach(function(e){io.observe(e)});
    first section below the hero; reduced motion jumps instantly. */
 (function(){try{
 var cue=document.querySelector('.scroll-cue');if(!cue)return;
-var hero=document.querySelector('header')||document.querySelector('.page-head');
+var hero=document.querySelector('.product-hero')||document.querySelector('header')||document.querySelector('.page-head');
 var next=hero?hero.nextElementSibling:null;
 while(next&&(next.tagName==='STYLE'||next.classList.contains('scroll-cue'))){next=next.nextElementSibling;}
 var gone=false;
