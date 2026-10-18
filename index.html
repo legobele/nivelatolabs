@@ -117,7 +117,7 @@ html.js .reveal.in{opacity:1;transform:none}
    and 150% width; .08em spacing keeps the EDOLUS air without
    weakening the already-expanded letterforms. */
 @font-face{font-family:'Anybody';src:url('/assets/fonts/Anybody-Variable.ttf') format('truetype');font-weight:100 900;font-stretch:50% 150%;font-display:swap}
-.variant-nav{--wordmark-font:'Anybody','Archivo Black',system-ui,sans-serif;--wordmark-spacing:.08em;position:relative;top:auto;z-index:80;min-height:126px;padding:24px 20px 18px;background:transparent;border:0;-webkit-backdrop-filter:none;backdrop-filter:none;display:flex;align-items:flex-start;justify-content:center;overflow:visible}
+.variant-nav{--wordmark-font:'Anybody','Archivo Black',system-ui,sans-serif;--wordmark-spacing:.08em;position:sticky;top:0;z-index:300;min-height:126px;padding:24px 20px 18px;background:rgba(5,5,5,.82);border:0;-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);display:flex;align-items:flex-start;justify-content:center;overflow:visible}
 .variant-nav::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.46),rgba(0,0,0,0) 88%);pointer-events:none}
 .variant-nav .variant-lockup{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:9px;max-width:calc(100vw - 112px);color:#fff;text-decoration:none}
 .variant-mark{width:34px;height:34px;color:#fff;flex:none}
@@ -148,7 +148,7 @@ body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events
 .variant-submenu a:hover,.variant-submenu a:focus-visible{color:#fff;background:rgba(255,255,255,.07)}
 .variant-menu-actions{margin-top:24px;display:grid;gap:10px}
 .variant-menu-actions .btn{text-align:center;justify-content:center}
-.variant-menu-close{position:absolute;top:26px;right:20px;width:44px;height:44px;border:1px solid rgba(255,255,255,.28);border-radius:50%;background:transparent;color:#fff;font-size:1.35rem;line-height:1;cursor:pointer}
+.variant-menu-close{position:fixed;top:26px;right:20px;z-index:10;width:44px;height:44px;border:1px solid rgba(255,255,255,.28);border-radius:50%;background:transparent;color:#fff;font-size:1.35rem;line-height:1;cursor:pointer}
 /* Menu drill-in panels (Oct 2026): parent rows slide to a submenu
    panel instead of expanding in place. Labels stay centered across
    the full row width, the chevron rides the right edge without
