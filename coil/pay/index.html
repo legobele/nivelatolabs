@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="Paying at a COIL machine happens at the machine. This page explains how, and points you to the catalog and the live demo.">
+<title>COIL · Pay at the Machine · by Nivelato Labs</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-5 -5 110 110'%3E%3Crect x='-5' y='-5' width='110' height='110' fill='%23050505'/%3E%3Cg fill='none' stroke='white' stroke-width='6.5'%3E%3Cpath d='M44 56 H57 V43 H31 V69 H70 V30 H18 V82 H83 V17'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+@font-face{
+  font-family:'Anybody';
+  src:url('/assets/fonts/Anybody-Variable.ttf') format('truetype');
+  font-weight:100 900;
+  font-display:swap;
+}
+:root{
+  --bg:#050505; --surface2:#0a0a0b; --card:#0e0e10;
+  --line:rgba(255,255,255,.14); --line-strong:rgba(255,255,255,.28);
+  --ink:#fafafa; --muted:#a8a8b0; --dim:#6f6f77;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+  --disp:'Anybody',Arial,Helvetica,sans-serif;
+  --ui:Arial,Helvetica,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--ui);
+  min-height:100dvh; line-height:1.5;
+  display:flex; flex-direction:column;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.040) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.040) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.075) 1px, transparent 1px);
+  background-size:44px 44px, 44px 44px, 220px 220px, 220px 220px;
+}
+.wrap{position:relative; z-index:1; width:100%; max-width:640px; margin:0 auto; padding:0 20px 48px; flex:1; display:flex; flex-direction:column;}
+.hud{font-family:var(--mono); text-transform:uppercase; letter-spacing:.26em; font-size:.72rem; color:var(--muted);}
+.hud b{color:var(--ink); font-weight:600;}
+.headline{font-family:var(--disp); font-weight:850; font-stretch:150%; text-transform:uppercase; line-height:.98; letter-spacing:.01em;}
+.wordmark{font-family:var(--disp); font-weight:900; font-stretch:150%; text-transform:uppercase; letter-spacing:.08em;}
+.mark{color:var(--ink); display:block;}
+a{color:var(--ink);}
+
+.topstrip{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:18px 0 14px; border-bottom:1px solid var(--line);
+}
+.brand{display:flex; align-items:center; gap:12px;}
+.brand .mark{width:34px; height:34px;}
+.brand .wordmark{font-size:1.3rem;}
+
+.center{flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:44px 0 8px;}
+.center .mark{width:92px; height:92px;}
+.center h1{font-size:clamp(2.2rem, 10vw, 3.6rem); margin-top:28px;}
+.center .lede{color:var(--muted); font-size:1.08rem; line-height:1.6; max-width:30rem; margin-top:18px;}
+.center .lede b{color:var(--ink);}
+.steps{
+  margin-top:30px; width:100%; max-width:30rem; text-align:left;
+  border:1px solid var(--line); border-radius:8px; background:var(--card);
+  padding:20px 22px;
+}
+.steps li{list-style:none; padding:10px 0; border-bottom:1px solid var(--line); color:var(--muted); font-size:1rem; line-height:1.5;}
+.steps li:last-child{border-bottom:none;}
+.steps .n{font-family:var(--mono); color:var(--ink); letter-spacing:.2em; font-size:.75rem; display:block; margin-bottom:4px;}
+.cta-row{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:32px;}
+.btn{
+  min-height:56px; padding:0 30px;
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  border-radius:6px; font-family:var(--mono); text-transform:uppercase;
+  letter-spacing:.2em; font-size:.95rem; text-decoration:none;
+  transition:transform 160ms var(--ease), filter 160ms var(--ease), background 160ms var(--ease);
+}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:#fff; color:#050505; font-weight:700;}
+.btn-primary:active{filter:brightness(.88);}
+.btn-ghost{box-shadow:inset 0 0 0 1px var(--line-strong); color:var(--ink);}
+.btn-ghost:active{background:rgba(255,255,255,.08);}
+
+footer{
+  margin-top:48px; border-top:1px solid var(--line); padding-top:22px;
+  display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between;
+}
+.byline{display:flex; align-items:center; gap:9px; color:var(--muted);}
+.byline .mark{width:17px; height:17px; color:var(--muted); flex:0 0 auto;}
+footer a{text-underline-offset:3px;}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none !important; transition:none !important;}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="coil" viewBox="-5 -5 110 110">
+      <g fill="none" stroke="currentColor" stroke-width="6.5">
+        <path d="M44 56 H57 V43 H31 V69 H70 V30 H18 V82 H83 V17" stroke-linejoin="miter"/>
+      </g>
+    </symbol>
+    <symbol id="breakout" viewBox="-5 -5 110 110">
+      <g fill="none" stroke="currentColor" stroke-width="6.5">
+        <path d="M55 20 H20 V84 H84 V43" stroke-linejoin="miter"/>
+        <path d="M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z" stroke-linejoin="bevel"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+  <div class="topstrip">
+    <div class="brand">
+      <svg class="mark" viewBox="-5 -5 110 110" aria-hidden="true"><use href="#coil"/></svg>
+      <span class="wordmark">COIL</span>
+    </div>
+    <span class="hud">[ Unit 01 · Pay ]</span>
+  </div>
+
+  <main class="center">
+    <svg class="mark" viewBox="-5 -5 110 110" aria-hidden="true"><use href="#coil"/></svg>
+    <div class="hud" style="margin-top:24px;">[ 02 · Checkout ]</div>
+    <h1 class="headline">Pay at<br>the machine.</h1>
+    <p class="lede">There is no checkout on this page, and nothing here can charge you. <b>Payment happens on the COIL machine itself:</b> the screen shows a fresh code for your exact purchase, your phone pays, the snack drops. If you scanned your way here outside of a purchase, you are simply early.</p>
+
+    <ol class="steps">
+      <li><span class="n">[ Step 01 ]</span>Pick your snack on the machine screen.</li>
+      <li><span class="n">[ Step 02 ]</span>The machine shows a pay code for that item and that total. It expires in 90 seconds; expired means no charge.</li>
+      <li><span class="n">[ Step 03 ]</span>Scan it with your phone, pay, and collect below.</li>
+    </ol>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" href="/coil/">Browse the catalog</a>
+      <a class="btn btn-ghost" href="https://legobele.github.io/coil-demo">Try the live demo</a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="byline">
+      <svg class="mark" viewBox="-5 -5 110 110" aria-hidden="true"><use href="#breakout"/></svg>
+      <span class="hud">COIL by <a href="https://nivelatolabs.com/">Nivelato Labs</a></span>
+    </div>
+    <span class="hud">[ Snacks, Dispensed. ]</span>
+  </footer>
+
+</div>
+</body>
+</html>
