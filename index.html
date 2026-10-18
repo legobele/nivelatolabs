@@ -223,30 +223,38 @@ section{background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 
 .company-none{color:var(--muted);font-size:.92rem}
 body.company-pop-open{overflow:hidden}
 @media(prefers-reduced-motion:reduce){.company-card{transition:none}}
-.cookie-bar{position:fixed;left:16px;right:16px;bottom:16px;z-index:70;max-width:720px;margin:0 auto;display:flex;gap:16px;align-items:center;justify-content:space-between;padding:16px 18px;border-radius:20px;background:rgba(16,16,19,.72);border:1px solid rgba(255,255,255,.16);-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 18px 50px rgba(0,0,0,.5);font-size:.88rem;color:var(--muted)}
-.cookie-bar[hidden]{display:none}
-.cookie-bar .cb-actions{display:flex;gap:10px;flex:none}
-.cookie-bar .btn{padding:9px 16px;font-size:.85rem}
-.cookie-bar .cb-main{flex:1;min-width:0;padding-right:16px}
-.cookie-bar .cb-main p{margin:0}
 @media(max-width:640px){.cookie-bar{flex-direction:column;align-items:flex-start}}
-.cookie-bar{transition:transform .5s cubic-bezier(.22,1,.36,1),opacity .5s ease,border-radius .5s ease;transform-origin:50% 100%}
-.cookie-bar.cb-shrink{transform:translateY(16px) scale(.07);opacity:0;border-radius:999px}
-.cookie-bar.cb-shrink .cb-main,.cookie-bar.cb-shrink .cb-actions{opacity:0;transition:opacity .15s ease}
-.cookie-bar .cb-title{color:var(--ink);font-weight:600;font-size:.95rem;margin:0 0 6px}
-.cb-btn{font:inherit;font-size:.85rem;color:var(--ink);background:transparent;border:1px solid rgba(255,255,255,.32);border-radius:10px;padding:9px 16px;cursor:pointer;white-space:nowrap}
-.cb-btn-primary{background:#fafafa;color:#0a0a0b;border-color:#fafafa;font-weight:600}
-.cb-btn-link{border-color:transparent;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
-.cb-prefs{margin-top:14px;border-top:1px solid rgba(255,255,255,.12);padding-top:12px;display:flex;flex-direction:column;gap:10px}
 .cb-prefs[hidden]{display:none}
-.cb-pref{display:flex;align-items:center;justify-content:space-between;gap:14px;color:var(--ink);font-size:.86rem}
-.cb-pref em{font-style:normal;color:var(--muted);font-size:.76rem;margin-left:6px}
-.cb-pref input{accent-color:#fafafa;width:18px;height:18px;flex:none}
-.cb-prefs .cb-btn{align-self:flex-start}
-.cookie-bar .cb-actions{flex-direction:column;align-items:stretch}
-@keyframes cue-arrive{0%{transform:translateX(-50%) scale(.55)}60%{transform:translateX(-50%) scale(1.14)}100%{transform:translateX(-50%) scale(1)}}
-.scroll-cue.cue-pop{animation:cue-arrive .55s cubic-bezier(.22,1,.36,1)}
+.cb-prefs @keyframes cue-arrive{0%{transform:translateX(-50%) scale(.55)}60%{transform:translateX(-50%) scale(1.14)}100%{transform:translateX(-50%) scale(1)}}
 @media(prefers-reduced-motion:reduce){.cookie-bar{transition:none}.scroll-cue.cue-pop{animation:none}}
+.cookie-cue{position:fixed;top:136px;left:50%;transform:translateX(-50%);z-index:380;display:flex;flex-direction:column;align-items:center;gap:1px;padding:9px 26px 11px;border-radius:18px;border:1px solid rgba(255,255,255,.2);background:rgba(14,14,17,.8);-webkit-backdrop-filter:blur(12px) saturate(140%);backdrop-filter:blur(12px) saturate(140%);color:var(--ink);cursor:pointer;font:inherit}
+.cookie-cue[hidden]{display:none}
+.cookie-cue-small{font-size:.74rem;color:var(--muted)}
+.cookie-cue-big{font-size:.98rem;font-weight:600}
+.cookie-sheet{position:fixed;top:136px;left:50%;transform:translateX(-50%);z-index:390;width:min(430px,calc(100vw - 32px));border:1px solid rgba(255,255,255,.18);border-radius:22px;background:rgba(13,13,16,.92);-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);padding:20px;box-shadow:0 24px 60px rgba(0,0,0,.55)}
+.cookie-sheet[hidden]{display:none}
+.cookie-sheet.opening{animation:sheet-in .38s cubic-bezier(.22,1,.36,1)}
+@keyframes sheet-in{from{opacity:0;transform:translateX(-50%) translateY(-12px) scale(.96)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
+.cookie-sheet.closing{animation:sheet-out .3s ease forwards}
+@keyframes sheet-out{to{opacity:0;transform:translateX(-50%) translateY(-10px) scale(.9)}}
+.cookie-sheet-title{font-weight:600;font-size:1rem;color:var(--ink);margin:0 0 8px}
+.cookie-sheet-body{font-size:.88rem;color:var(--muted);margin:0 0 14px}
+.cookie-sheet-sub{font-size:.88rem;color:var(--muted);margin:0 0 8px}
+.cookie-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:9px 0}
+.cookie-row-text{display:flex;flex-direction:column}
+.cookie-row-name{color:var(--ink);font-size:.94rem}
+.cookie-row-desc{color:var(--muted);font-size:.8rem}
+.cookie-switch{position:relative;width:52px;height:30px;flex:none;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);cursor:pointer;padding:0}
+.cookie-switch .cookie-knob{position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:#8a8a90;transition:left .22s ease,background .22s ease}
+.cookie-switch.on{background:rgba(255,255,255,.85)}
+.cookie-switch.on .cookie-knob{left:24px;background:#0a0a0b}
+.cookie-switch.locked{cursor:default;opacity:.85}
+.cookie-actions{display:flex;align-items:center;gap:10px;margin-top:16px;flex-wrap:wrap}
+.cookie-btn{font:inherit;font-size:.86rem;color:var(--ink);background:transparent;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:9px 16px;cursor:pointer}
+.cookie-btn-primary{background:#fafafa;color:#0a0a0b;border-color:#fafafa;font-weight:600;padding:11px 20px}
+body.cookie-locked{overflow:hidden}
+@media(max-width:480px){.cookie-cue{top:126px}.cookie-sheet{top:126px}}
+@media(prefers-reduced-motion:reduce){.cookie-sheet.opening,.cookie-sheet.closing{animation:none}}
 .photo-credit a:hover{color:#fff}
 @media(max-width:480px){.product-hero{--navh:116px}}
 @media(prefers-reduced-motion:reduce){.product-hero .ph-eyebrow,.product-hero .ph-title,.product-hero .ph-sub{animation:none}}
@@ -405,19 +413,14 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 <div class="photo-credit">Hero photo: <a href="https://commons.wikimedia.org/wiki/File:20190725_Oeschinensee-Panorama,_Kandersteg_(06540-42_stitch).jpg" target="_blank" rel="noopener noreferrer">© Günter Seggebäing, Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></div>
 <div><a href="/products/">Products</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/pr/">Para clientes en PR</a><a href="#" id="cb-open">Cookies</a></div>
 </div></footer>
-<div class="cookie-bar" id="cookie-bar" role="region" aria-label="Cookie notice" hidden>
-<div class="cb-main">
-<p class="cb-title">We Value Your Privacy</p>
-<p>We and our partners use cookies and similar technologies to enhance your browsing experience, analyze our traffic, and personalize content and advertisements. By clicking &ldquo;Accept All&rdquo;, you consent to our use of cookies as described in our Cookie Policy. You may withdraw your consent at any time.</p>
-<div class="cb-prefs" id="cb-prefs" hidden>
-<label class="cb-pref"><span>Strictly Necessary <em>Always Active</em></span><input type="checkbox" checked disabled></label>
-<label class="cb-pref"><span>Performance and Analytics</span><input type="checkbox" id="cb-pref-analytics" checked></label>
-<label class="cb-pref"><span>Functional</span><input type="checkbox" id="cb-pref-functional" checked></label>
-<label class="cb-pref"><span>Targeting and Advertising</span><input type="checkbox" id="cb-pref-ads"></label>
-<button type="button" class="cb-btn cb-btn-primary" id="cb-save">Save My Preferences</button>
-</div>
-</div>
-<div class="cb-actions"><button type="button" class="cb-btn cb-btn-primary" id="cb-accept">Accept All</button><button type="button" class="cb-btn" id="cb-decline">Reject All</button><button type="button" class="cb-btn cb-btn-link" id="cb-manage" aria-expanded="false" aria-controls="cb-prefs">Manage Preferences</button></div>
+<button type="button" class="cookie-cue" id="cookie-cue" aria-expanded="false" aria-controls="cookie-sheet" hidden><span class="cookie-cue-small">Scroll up for</span><span class="cookie-cue-big">Cookie Notice</span></button>
+<div class="cookie-sheet" id="cookie-sheet" role="dialog" aria-modal="false" aria-labelledby="cookie-sheet-title" hidden>
+<p class="cookie-sheet-title" id="cookie-sheet-title">Cookie Notice</p>
+<p class="cookie-sheet-body">We use cookies to run this site and, with your permission, usage cookies to understand how the site is used. Standard cookie notice text applies: necessary cookies keep you signed in, usage cookies help with marketing and SEO.</p>
+<p class="cookie-sheet-sub">Use these cookies:</p>
+<div class="cookie-row"><div class="cookie-row-text"><span class="cookie-row-name">Necessary</span><span class="cookie-row-desc">These include login cookies.</span></div><span class="cookie-switch on locked" role="switch" aria-checked="true" aria-label="Necessary cookies, always on"><span class="cookie-knob"></span></span></div>
+<div class="cookie-row"><div class="cookie-row-text"><span class="cookie-row-name">Usage</span><span class="cookie-row-desc">These track your usage here for marketing &amp; SEO.</span></div><button type="button" class="cookie-switch on" id="cookie-usage" role="switch" aria-checked="true" aria-label="Usage cookies"><span class="cookie-knob"></span></button></div>
+<div class="cookie-actions"><button type="button" class="cookie-btn cookie-btn-primary" id="cookie-preserve">Preserve these choices</button><button type="button" class="cookie-btn" id="cookie-all">Use all</button><button type="button" class="cookie-btn" id="cookie-none">Use none</button></div>
 </div>
 <script>
 document.documentElement.classList.add('js');
@@ -429,30 +432,46 @@ els.forEach(function(e){io.observe(e)});
 }catch(err){document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in')});}})();
 </script>
 <script>
-/* Cookie notice: shown until the visitor picks Accept or Decline; the
-   choice is kept in localStorage (niv-cookie-consent) and the footer
-   Cookies link reopens the bar. Declining also removes the analytics
-   beacon for the rest of the page view. */
+/* Cookie notice: lives above the top of the page. A cue pill waits
+   under the nav ("Scroll up for Cookie Notice"); scrolling or swiping
+   up at the very top, or tapping the pill, opens the sheet. While the
+   sheet is open the page behind it does not scroll. Any decision
+   (Preserve / Use all / Use none) stores the choice in localStorage
+   (niv-cookie-consent), collapses the sheet back into the cue, and the
+   cue retires. The footer Cookies link reopens the sheet. */
 (function(){try{
-var bar=document.getElementById('cookie-bar');if(!bar)return;
+var cue=document.getElementById('cookie-cue'),sheet=document.getElementById('cookie-sheet');if(!cue||!sheet)return;
 var KEY='niv-cookie-consent';
 function choice(){try{return localStorage.getItem(KEY);}catch(e){return null;}}
 function save(v){try{localStorage.setItem(KEY,v);}catch(e){}}
-function show(){bar.hidden=false;var cue=document.querySelector('.scroll-cue');if(cue){cue.classList.remove('cue-on');}}
-function hide(){bar.hidden=true;var cue=document.querySelector('.scroll-cue');if(cue&&window.scrollY<=40){cue.classList.add('cue-on');}}
-if(!choice()){show();}
-var acc=document.getElementById('cb-accept'),dec=document.getElementById('cb-decline'),open=document.getElementById('cb-open'),man=document.getElementById('cb-manage'),prefs=document.getElementById('cb-prefs'),saveBtn=document.getElementById('cb-save');
 function killBeacon(){var b=document.querySelector('script[src*="static.cloudflareinsights.com"]');if(b){b.remove();}}
-function dismiss(v){save(v);if(v==='declined')killBeacon();
+var usage=document.getElementById('cookie-usage');
+function usageOn(){return usage&&usage.classList.contains('on');}
+function setUsage(on){if(!usage)return;usage.classList.toggle('on',!!on);usage.setAttribute('aria-checked',on?'true':'false');}
+if(usage){usage.addEventListener('click',function(){setUsage(!usageOn());});}
+var open=false;
+function expand(){if(open)return;open=true;cue.hidden=true;cue.setAttribute('aria-expanded','true');sheet.hidden=false;sheet.classList.remove('closing');sheet.classList.add('opening');document.body.classList.add('cookie-locked');}
+function collapse(decision){if(!open)return;open=false;cue.setAttribute('aria-expanded','false');document.body.classList.remove('cookie-locked');
+  if(decision){save(decision);if(!usageOn())killBeacon();}
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduce){hide();return;}
-  bar.classList.add('cb-shrink');
-  setTimeout(function(){bar.hidden=true;bar.classList.remove('cb-shrink');var cue=document.querySelector('.scroll-cue');if(cue&&window.scrollY<=40){cue.classList.add('cue-on','cue-pop');setTimeout(function(){cue.classList.remove('cue-pop');},600);}},520);}
-if(acc){acc.addEventListener('click',function(){dismiss('accepted');});}
-if(dec){dec.addEventListener('click',function(){dismiss('declined');});}
-if(man&&prefs){man.addEventListener('click',function(){var willShow=prefs.hidden;prefs.hidden=!willShow;man.setAttribute('aria-expanded',willShow?'true':'false');});}
-if(saveBtn){saveBtn.addEventListener('click',function(){var an=document.getElementById('cb-pref-analytics');if(an&&!an.checked)killBeacon();dismiss('custom');});}
-if(open){open.addEventListener('click',function(e){e.preventDefault();show();});}
+  if(reduce){sheet.hidden=true;if(!decision&&!choice())cue.hidden=false;return;}
+  sheet.classList.remove('opening');sheet.classList.add('closing');
+  setTimeout(function(){sheet.hidden=true;sheet.classList.remove('closing');if(!decision&&!choice())cue.hidden=false;},300);}
+function decide(v){if(v==='all')setUsage(true);if(v==='none')setUsage(false);collapse(v==='all'?'all':(v==='none'?'none':'custom'));}
+var p=document.getElementById('cookie-preserve'),a=document.getElementById('cookie-all'),n=document.getElementById('cookie-none');
+if(p)p.addEventListener('click',function(){decide('custom');});
+if(a)a.addEventListener('click',function(){decide('all');});
+if(n)n.addEventListener('click',function(){decide('none');});
+cue.addEventListener('click',expand);
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&open)collapse(null);});
+/* overscroll-up triggers: wheel at the very top, or an upward swipe at the very top */
+window.addEventListener('wheel',function(e){if(!open&&!choice()&&window.scrollY<=0&&e.deltaY<-6){expand();}},{passive:true});
+var ty=null;
+window.addEventListener('touchstart',function(e){ty=e.touches[0].clientY;},{passive:true});
+window.addEventListener('touchend',function(e){if(ty===null)return;var dy=ty-e.changedTouches[0].clientY;ty=null;if(!open&&!choice()&&window.scrollY<=0&&dy>42){expand();}},{passive:true});
+if(!choice()){cue.hidden=false;}
+var openLink=document.getElementById('cb-open');
+if(openLink){openLink.addEventListener('click',function(e){e.preventDefault();window.scrollTo(0,0);expand();});}
 }catch(err){}})();
 </script>
 <script>
