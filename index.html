@@ -225,16 +225,28 @@ body.company-pop-open{overflow:hidden}
 @media(prefers-reduced-motion:reduce){.company-card{transition:none}}
 .cookie-bar{position:fixed;left:16px;right:16px;bottom:16px;z-index:70;max-width:720px;margin:0 auto;display:flex;gap:16px;align-items:center;justify-content:space-between;padding:16px 18px;border-radius:20px;background:rgba(16,16,19,.72);border:1px solid rgba(255,255,255,.16);-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 18px 50px rgba(0,0,0,.5);font-size:.88rem;color:var(--muted)}
 .cookie-bar[hidden]{display:none}
-.cookie-bar .cb-tag{font-family:'JetBrains Mono',monospace;letter-spacing:.18em;color:var(--ink);text-transform:uppercase;font-size:.72rem;display:block;margin-bottom:4px}
 .cookie-bar .cb-actions{display:flex;gap:10px;flex:none}
 .cookie-bar .btn{padding:9px 16px;font-size:.85rem}
 .cookie-bar .cb-main{flex:1;min-width:0;padding-right:16px}
 .cookie-bar .cb-main p{margin:0}
-.cb-crab-row{margin-top:12px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.cb-crab{font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.08em;color:var(--ink);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:7px 14px;cursor:pointer}
-.cb-crab:hover{background:rgba(255,255,255,.12)}
-.cb-readout{font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.06em;color:var(--ink)}
 @media(max-width:640px){.cookie-bar{flex-direction:column;align-items:flex-start}}
+.cookie-bar{transition:transform .5s cubic-bezier(.22,1,.36,1),opacity .5s ease,border-radius .5s ease;transform-origin:50% 100%}
+.cookie-bar.cb-shrink{transform:translateY(16px) scale(.07);opacity:0;border-radius:999px}
+.cookie-bar.cb-shrink .cb-main,.cookie-bar.cb-shrink .cb-actions{opacity:0;transition:opacity .15s ease}
+.cookie-bar .cb-title{color:var(--ink);font-weight:600;font-size:.95rem;margin:0 0 6px}
+.cb-btn{font:inherit;font-size:.85rem;color:var(--ink);background:transparent;border:1px solid rgba(255,255,255,.32);border-radius:10px;padding:9px 16px;cursor:pointer;white-space:nowrap}
+.cb-btn-primary{background:#fafafa;color:#0a0a0b;border-color:#fafafa;font-weight:600}
+.cb-btn-link{border-color:transparent;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+.cb-prefs{margin-top:14px;border-top:1px solid rgba(255,255,255,.12);padding-top:12px;display:flex;flex-direction:column;gap:10px}
+.cb-prefs[hidden]{display:none}
+.cb-pref{display:flex;align-items:center;justify-content:space-between;gap:14px;color:var(--ink);font-size:.86rem}
+.cb-pref em{font-style:normal;color:var(--muted);font-size:.76rem;margin-left:6px}
+.cb-pref input{accent-color:#fafafa;width:18px;height:18px;flex:none}
+.cb-prefs .cb-btn{align-self:flex-start}
+.cookie-bar .cb-actions{flex-direction:column;align-items:stretch}
+@keyframes cue-arrive{0%{transform:translateX(-50%) scale(.55)}60%{transform:translateX(-50%) scale(1.14)}100%{transform:translateX(-50%) scale(1)}}
+.scroll-cue.cue-pop{animation:cue-arrive .55s cubic-bezier(.22,1,.36,1)}
+@media(prefers-reduced-motion:reduce){.cookie-bar{transition:none}.scroll-cue.cue-pop{animation:none}}
 .photo-credit a:hover{color:#fff}
 @media(max-width:480px){.product-hero{--navh:116px}}
 @media(prefers-reduced-motion:reduce){.product-hero .ph-eyebrow,.product-hero .ph-title,.product-hero .ph-sub{animation:none}}
@@ -395,10 +407,17 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 </div></footer>
 <div class="cookie-bar" id="cookie-bar" role="region" aria-label="Cookie notice" hidden>
 <div class="cb-main">
-<p><span class="cb-tag">[ Cookies ]</span>This site uses cookies for sign-in and privacy-respecting analytics. Who are we sharing your data with? No one. I still haven't joined a 700-partner polycule.</p>
-<div class="cb-crab-row"><button type="button" class="cb-crab" id="cb-crab">Pet the crab</button><span class="cb-readout" id="cb-crab-count">&#129408; &times;0 &mdash; unpet, as of yet</span></div>
+<p class="cb-title">We Value Your Privacy</p>
+<p>We and our partners use cookies and similar technologies to enhance your browsing experience, analyze our traffic, and personalize content and advertisements. By clicking &ldquo;Accept All&rdquo;, you consent to our use of cookies as described in our Cookie Policy. You may withdraw your consent at any time.</p>
+<div class="cb-prefs" id="cb-prefs" hidden>
+<label class="cb-pref"><span>Strictly Necessary <em>Always Active</em></span><input type="checkbox" checked disabled></label>
+<label class="cb-pref"><span>Performance and Analytics</span><input type="checkbox" id="cb-pref-analytics" checked></label>
+<label class="cb-pref"><span>Functional</span><input type="checkbox" id="cb-pref-functional" checked></label>
+<label class="cb-pref"><span>Targeting and Advertising</span><input type="checkbox" id="cb-pref-ads"></label>
+<button type="button" class="cb-btn cb-btn-primary" id="cb-save">Save My Preferences</button>
 </div>
-<div class="cb-actions"><button type="button" class="btn" id="cb-accept">Accept</button><button type="button" class="btn ghost" id="cb-decline">Decline</button></div>
+</div>
+<div class="cb-actions"><button type="button" class="cb-btn cb-btn-primary" id="cb-accept">Accept All</button><button type="button" class="cb-btn" id="cb-decline">Reject All</button><button type="button" class="cb-btn cb-btn-link" id="cb-manage" aria-expanded="false" aria-controls="cb-prefs">Manage Preferences</button></div>
 </div>
 <script>
 document.documentElement.classList.add('js');
@@ -422,13 +441,18 @@ function save(v){try{localStorage.setItem(KEY,v);}catch(e){}}
 function show(){bar.hidden=false;var cue=document.querySelector('.scroll-cue');if(cue){cue.classList.remove('cue-on');}}
 function hide(){bar.hidden=true;var cue=document.querySelector('.scroll-cue');if(cue&&window.scrollY<=40){cue.classList.add('cue-on');}}
 if(!choice()){show();}
-var acc=document.getElementById('cb-accept'),dec=document.getElementById('cb-decline'),open=document.getElementById('cb-open');
-if(acc){acc.addEventListener('click',function(){save('accepted');hide();});}
-if(dec){dec.addEventListener('click',function(){save('declined');var b=document.querySelector('script[src*="static.cloudflareinsights.com"]');if(b){b.remove();}hide();});}
+var acc=document.getElementById('cb-accept'),dec=document.getElementById('cb-decline'),open=document.getElementById('cb-open'),man=document.getElementById('cb-manage'),prefs=document.getElementById('cb-prefs'),saveBtn=document.getElementById('cb-save');
+function killBeacon(){var b=document.querySelector('script[src*="static.cloudflareinsights.com"]');if(b){b.remove();}}
+function dismiss(v){save(v);if(v==='declined')killBeacon();
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){hide();return;}
+  bar.classList.add('cb-shrink');
+  setTimeout(function(){bar.hidden=true;bar.classList.remove('cb-shrink');var cue=document.querySelector('.scroll-cue');if(cue&&window.scrollY<=40){cue.classList.add('cue-on','cue-pop');setTimeout(function(){cue.classList.remove('cue-pop');},600);}},520);}
+if(acc){acc.addEventListener('click',function(){dismiss('accepted');});}
+if(dec){dec.addEventListener('click',function(){dismiss('declined');});}
+if(man&&prefs){man.addEventListener('click',function(){var willShow=prefs.hidden;prefs.hidden=!willShow;man.setAttribute('aria-expanded',willShow?'true':'false');});}
+if(saveBtn){saveBtn.addEventListener('click',function(){var an=document.getElementById('cb-pref-analytics');if(an&&!an.checked)killBeacon();dismiss('custom');});}
 if(open){open.addEventListener('click',function(e){e.preventDefault();show();});}
-var crabBtn=document.getElementById('cb-crab'),crabOut=document.getElementById('cb-crab-count'),crabN=0;
-var crabLines=['he appreciates it','crab morale rising','he has told the other crabs','this is the most attention he gets all day','somewhere, a tide pool celebrates'];
-if(crabBtn){crabBtn.addEventListener('click',function(){crabN++;crabOut.innerHTML='&#129408; &times;'+crabN+' &mdash; '+crabLines[Math.min(crabN-1,crabLines.length-1)]+(crabN>crabLines.length?' (he is thriving)':'');});}
 }catch(err){}})();
 </script>
 <script>
