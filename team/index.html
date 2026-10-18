@@ -116,9 +116,9 @@ html.js .reveal.in{opacity:1;transform:none}
    and 150% width; .08em spacing keeps the EDOLUS air without
    weakening the already-expanded letterforms. */
 @font-face{font-family:'Anybody';src:url('/assets/fonts/Anybody-Variable.ttf') format('truetype');font-weight:100 900;font-stretch:50% 150%;font-display:swap}
-.variant-nav{--wordmark-font:'Anybody','Archivo Black',system-ui,sans-serif;--wordmark-spacing:.08em;position:sticky;top:0;z-index:300;min-height:126px;padding:24px 20px 18px;background:rgba(5,5,5,.82);border:0;-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);display:flex;align-items:flex-start;justify-content:center;overflow:visible}
+.variant-nav{--wordmark-font:'Anybody','Archivo Black',system-ui,sans-serif;--wordmark-spacing:.08em;position:sticky;top:12px;z-index:300;min-height:64px;padding:8px 18px;margin:12px 12px 0;border:1px solid rgba(255,255,255,.16);border-radius:999px;box-shadow:0 14px 34px rgba(0,0,0,.42);background:rgba(5,5,5,.82);border:0;-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);display:flex;align-items:center;justify-content:flex-start;overflow:visible}
 .variant-nav::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.46),rgba(0,0,0,0) 88%);pointer-events:none}
-.variant-nav .variant-lockup{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:9px;max-width:calc(100vw - 112px);color:#fff;text-decoration:none}
+.variant-nav .variant-lockup{position:relative;z-index:1;display:flex;flex-direction:row;align-items:center;gap:12px;max-width:calc(100vw - 112px);color:#fff;text-decoration:none}
 .variant-mark{width:34px;height:34px;color:#fff;flex:none}
 .variant-mark svg{display:block;width:100%;height:100%}
 .variant-wordmark{font-family:var(--wordmark-font);font-weight:900;font-stretch:150%;font-size:clamp(.92rem,2.2vw,1.18rem);line-height:1;letter-spacing:var(--wordmark-spacing);text-indent:var(--wordmark-spacing);text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 14px rgba(0,0,0,.35)}
@@ -172,7 +172,7 @@ body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events
 .variant-lang-option{min-height:46px;padding:10px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:12px;color:#fff;font:600 .98rem 'Inter',system-ui,sans-serif;cursor:pointer;text-align:center}
 .variant-lang-option:hover{background:rgba(255,255,255,.09)}
 .variant-lang-option[aria-selected="true"]{border-color:#fff;background:rgba(255,255,255,.12)}
-@media(max-width:480px){.variant-nav{min-height:116px;padding:20px 16px 14px}.variant-mark{width:30px;height:30px}.variant-wordmark{font-size:.88rem}.variant-menu-button{right:12px}.variant-menu-close{top:20px;right:12px}.variant-menu-inner{padding-top:112px}}
+@media(max-width:480px){.variant-nav{min-height:60px;padding:6px 14px}.variant-mark{width:30px;height:30px}.variant-wordmark{font-size:.88rem}.variant-menu-button{right:12px}.variant-menu-close{top:20px;right:12px}.variant-menu-inner{padding-top:112px}}
 @media(prefers-reduced-motion:reduce){.variant-menu{transition:none}}
 
 /* ---- Team hero: mountain treatment (the homepage hero grammar) ----
@@ -208,6 +208,7 @@ header .stats{margin-top:64px;border-top:1px solid rgba(255,255,255,.28);padding
 @supports((-webkit-backdrop-filter:blur(12px)) or (backdrop-filter:blur(12px))){
 .person{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.13);box-shadow:inset 0 1px 0 rgba(255,255,255,.07);-webkit-backdrop-filter:blur(12px) saturate(150%);backdrop-filter:blur(12px) saturate(150%)}
 }
+@media(max-width:380px){.variant-nav .variant-wordmark{display:none}.variant-nav{border-radius:20px;min-height:56px}}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebPage","url":"https://nivelatolabs.com/team/","name":"Team - Nivelato Labs","isPartOf":{"@id":"https://nivelatolabs.com/#site"},"about":{"@id":"https://nivelatolabs.com/#org"},"mainEntity":{"@type":"Person","name":"Benj Lebron","jobTitle":"Founder","worksFor":{"@id":"https://nivelatolabs.com/#org"}}}
