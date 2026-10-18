@@ -155,15 +155,15 @@ body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events
    shifting them, and a back row returns to the previous panel. */
 .variant-viewport{overflow:hidden}
 .variant-track{display:flex;align-items:flex-start;width:min(440px,calc(100vw - 48px));margin:0 auto;transition:transform var(--niv-mo-view,300ms) var(--niv-mo-ease,cubic-bezier(.22,1,.36,1))}
-.variant-panel{flex:0 0 100%;min-width:0;visibility:hidden}
-.variant-panel[data-panel="root"]{visibility:visible}
+.variant-panel{flex:0 0 100%;min-width:0;visibility:hidden;opacity:0;transition:opacity 260ms cubic-bezier(.22,1,.36,1)}
+.variant-panel[data-panel="root"]{visibility:visible;opacity:1}
 .variant-panel .variant-menu-inner{width:100%}
 .variant-row{position:relative;display:flex;align-items:center;justify-content:center;width:100%;min-height:54px;padding:0;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.25);color:#fff;font:inherit;font-size:1.08rem;font-weight:600;text-align:center;cursor:pointer}
 .variant-row:hover,.variant-row:focus-visible{background:rgba(255,255,255,.06);color:#fff;outline:none}
 .variant-drill-chev{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:1.35rem;font-weight:400;color:rgba(255,255,255,.85);pointer-events:none}
 .variant-back{justify-content:flex-start;font-size:1rem;color:rgba(255,255,255,.85)}
 .variant-back-chev{margin-right:10px;font-size:1.25rem}
-@media(prefers-reduced-motion:reduce){.variant-track{transition:none}}
+@media(prefers-reduced-motion:reduce){.variant-track{transition:none}.variant-panel{transition:none}}
 .variant-menu .lang-toggle{align-self:center;margin:0 0 10px}
 @media(max-width:480px){.variant-nav{min-height:116px;padding:20px 16px 14px}.variant-mark{width:30px;height:30px}.variant-wordmark{font-size:.88rem}.variant-menu-button{top:20px;right:12px}.variant-menu-close{top:20px;right:12px}.variant-menu-inner{padding-top:112px}}
 @media(prefers-reduced-motion:reduce){.variant-menu{transition:none}}
@@ -203,13 +203,12 @@ section{background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 
 .cookie-bar .cb-tag{font-family:'JetBrains Mono',monospace;letter-spacing:.18em;color:var(--ink);text-transform:uppercase;font-size:.72rem;display:block;margin-bottom:4px}
 .cookie-bar .cb-actions{display:flex;gap:10px;flex:none}
 .cookie-bar .btn{padding:9px 16px;font-size:.85rem}
-.cookie-bar .cb-main{flex:1;min-width:0}
+.cookie-bar .cb-main{flex:1;min-width:0;padding-right:16px}
 .cookie-bar .cb-main p{margin:0}
-.cb-slider-row{margin-top:12px}
-.cb-slider-row label{display:block;font-size:.8rem;color:var(--muted);margin-bottom:6px}
-.cb-slider-line{display:flex;align-items:center;gap:14px}
-.cb-slider-line input[type=range]{flex:1;accent-color:#fafafa;min-width:120px}
-.cb-readout{font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.06em;color:var(--ink);white-space:nowrap}
+.cb-crab-row{margin-top:12px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.cb-crab{font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.08em;color:var(--ink);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:7px 14px;cursor:pointer}
+.cb-crab:hover{background:rgba(255,255,255,.12)}
+.cb-readout{font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.06em;color:var(--ink)}
 @media(max-width:640px){.cookie-bar{flex-direction:column;align-items:flex-start}}
 .photo-credit a:hover{color:#fff}
 @media(max-width:480px){.product-hero{--navh:116px}}
@@ -370,10 +369,7 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 <div class="cookie-bar" id="cookie-bar" role="region" aria-label="Cookie notice" hidden>
 <div class="cb-main">
 <p><span class="cb-tag">[ Cookies ]</span>This site uses cookies for sign-in and privacy-respecting analytics. Who are we sharing your data with? No one. I still haven't joined a 700-partner polycule.</p>
-<div class="cb-slider-row">
-<label for="cb-slider">Speaking of which: how many people does a polycule need before it becomes a cult?</label>
-<div class="cb-slider-line"><input type="range" id="cb-slider" min="2" max="700" step="1" value="50" aria-label="Polycule to cult threshold"><span class="cb-readout" id="cb-readout">50 people: still a polycule</span></div>
-</div>
+<div class="cb-crab-row"><button type="button" class="cb-crab" id="cb-crab">Pet the crab</button><span class="cb-readout" id="cb-crab-count">&#129408; &times;0 &mdash; unpet, as of yet</span></div>
 </div>
 <div class="cb-actions"><button type="button" class="btn" id="cb-accept">Accept</button><button type="button" class="btn ghost" id="cb-decline">Decline</button></div>
 </div>
@@ -403,9 +399,9 @@ var acc=document.getElementById('cb-accept'),dec=document.getElementById('cb-dec
 if(acc){acc.addEventListener('click',function(){save('accepted');hide();});}
 if(dec){dec.addEventListener('click',function(){save('declined');var b=document.querySelector('script[src*="static.cloudflareinsights.com"]');if(b){b.remove();}hide();});}
 if(open){open.addEventListener('click',function(e){e.preventDefault();show();});}
-var slider=document.getElementById('cb-slider'),readout=document.getElementById('cb-readout');
-function paintSlider(){if(!slider||!readout)return;var n=+slider.value;readout.textContent=n+' people: '+(n>=700?'okay, that one is a cult':'still a polycule');}
-if(slider){slider.addEventListener('input',paintSlider);paintSlider();}
+var crabBtn=document.getElementById('cb-crab'),crabOut=document.getElementById('cb-crab-count'),crabN=0;
+var crabLines=['he appreciates it','crab morale rising','he has told the other crabs','this is the most attention he gets all day','somewhere, a tide pool celebrates'];
+if(crabBtn){crabBtn.addEventListener('click',function(){crabN++;crabOut.innerHTML='&#129408; &times;'+crabN+' &mdash; '+crabLines[Math.min(crabN-1,crabLines.length-1)]+(crabN>crabLines.length?' (he is thriving)':'');});}
 }catch(err){}})();
 </script>
 <script>
@@ -454,8 +450,8 @@ function render(){
   var top=stack[stack.length-1];
   Object.keys(panels).forEach(function(n){
     var p=panels[n];
-    if(n===top){p.style.visibility='visible';if('inert' in p)p.inert=false;}
-    else if('inert' in p){p.inert=true;}
+    if(n===top){p.style.visibility='visible';p.style.opacity='1';if('inert' in p)p.inert=false;}
+    else{p.style.opacity='0';if('inert' in p)p.inert=true;}
   });
   if(hideTimer)clearTimeout(hideTimer);
   hideTimer=setTimeout(function(){
