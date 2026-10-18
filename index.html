@@ -285,11 +285,15 @@ body.cookie-thanks-on .cookie-thanks{top:14px}
 .cookie-ring[hidden]{display:none}
 .cookie-ring.flash{animation:ring-flash .5s ease-in-out 3}
 @keyframes ring-flash{0%,100%{opacity:.15}50%{opacity:1}}
-.cookie-alert{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:385;width:min(480px,calc(100vw - 40px));padding:26px 30px;border-radius:22px;border:1px solid rgba(255,255,255,.25);background:rgba(12,12,15,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:var(--ink);cursor:pointer;font:inherit;text-align:center;box-shadow:0 26px 60px rgba(0,0,0,.6)}
+.cookie-alert{position:fixed;top:92px;left:50%;transform:translateX(-50%);z-index:385;width:min(480px,calc(100vw - 40px));padding:26px 30px;border-radius:22px;border:1px solid rgba(255,255,255,.25);background:rgba(12,12,15,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:var(--ink);cursor:pointer;font:inherit;text-align:center;box-shadow:0 26px 60px rgba(0,0,0,.6)}
 .cookie-alert[hidden]{display:none}
 .cookie-alert-main{display:block;font-size:1.28rem;line-height:1.35}
 .cookie-alert-sub{display:block;margin-top:8px;color:var(--muted);font-style:italic;font-size:.94rem}
 body.cookie-blocked{overflow:hidden}
+@media(max-width:899px){.cookie-alert{top:14px}}
+body.cookie-locked,body.cookie-blocked,body.cookie-thanks-on{scrollbar-width:none}
+html:has(body.cookie-locked),html:has(body.cookie-blocked),html:has(body.cookie-thanks-on){scrollbar-width:none}
+body.cookie-locked::-webkit-scrollbar,body.cookie-blocked::-webkit-scrollbar,body.cookie-thanks-on::-webkit-scrollbar,html:has(body.cookie-locked)::-webkit-scrollbar,html:has(body.cookie-blocked)::-webkit-scrollbar,html:has(body.cookie-thanks-on)::-webkit-scrollbar{display:none}
 @media(prefers-reduced-motion:reduce){.cookie-ring.flash{animation:none}}
 @media(min-width:900px){body.cookie-present .cookie-cue{top:84px}body.cookie-present .cookie-thanks{top:84px}}
 @media(max-width:899px){body.cookie-present .scroll-cue{opacity:0;visibility:hidden}}
