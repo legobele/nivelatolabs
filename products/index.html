@@ -130,7 +130,7 @@ html.js .reveal.in{opacity:1;transform:none}
 .variant-mark{width:34px;height:34px;color:#fff;flex:none}
 .variant-mark svg{display:block;width:100%;height:100%}
 .variant-wordmark{font-family:var(--wordmark-font);font-weight:900;font-stretch:150%;font-size:clamp(.92rem,2.2vw,1.18rem);line-height:1;letter-spacing:var(--wordmark-spacing);text-indent:var(--wordmark-spacing);text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 14px rgba(0,0,0,.35)}
-.variant-menu-button{position:absolute;top:26px;right:20px;z-index:2;width:44px;height:44px;padding:0 10px;border:0;background:transparent;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer}
+.variant-menu-button{position:absolute;top:50%;transform:translateY(-50%);right:20px;z-index:2;width:44px;height:44px;padding:0 10px;border:0;background:transparent;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer}
 .variant-menu-button i{display:block;width:22px;height:2.5px;border-radius:2px;background:currentColor}
 .variant-menu{position:fixed;inset:0;z-index:400;background:rgba(3,3,4,.96);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s ease,visibility 0s linear .25s;overflow-y:auto}
 body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .25s ease}
@@ -172,7 +172,7 @@ body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events
 .variant-back-chev{margin-right:10px;font-size:1.25rem}
 @media(prefers-reduced-motion:reduce){.variant-track{transition:none}.variant-panel{transition:none}}
 .variant-menu .lang-toggle{align-self:center;margin:0 0 10px}
-@media(max-width:480px){.variant-nav{min-height:116px;padding:20px 16px 14px}.variant-mark{width:30px;height:30px}.variant-wordmark{font-size:.88rem}.variant-menu-button{top:20px;right:12px}.variant-menu-close{top:20px;right:12px}.variant-menu-inner{padding-top:112px}}
+@media(max-width:480px){.variant-nav{min-height:116px;padding:20px 16px 14px}.variant-mark{width:30px;height:30px}.variant-wordmark{font-size:.88rem}.variant-menu-button{right:12px}.variant-menu-close{top:20px;right:12px}.variant-menu-inner{padding-top:112px}}
 @media(prefers-reduced-motion:reduce){.variant-menu{transition:none}}
 </style>
 <script type="application/ld+json">

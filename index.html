@@ -123,7 +123,7 @@ html.js .reveal.in{opacity:1;transform:none}
 .variant-mark{width:34px;height:34px;color:#fff;flex:none}
 .variant-mark svg{display:block;width:100%;height:100%}
 .variant-wordmark{font-family:var(--wordmark-font);font-weight:900;font-stretch:150%;font-size:clamp(.92rem,2.2vw,1.18rem);line-height:1;letter-spacing:var(--wordmark-spacing);text-indent:var(--wordmark-spacing);text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 14px rgba(0,0,0,.35)}
-.variant-menu-button{position:absolute;top:26px;right:20px;z-index:2;width:44px;height:44px;padding:0 10px;border:0;background:transparent;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer}
+.variant-menu-button{position:absolute;top:50%;transform:translateY(-50%);right:20px;z-index:2;width:44px;height:44px;padding:0 10px;border:0;background:transparent;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer}
 .variant-menu-button i{display:block;width:22px;height:2.5px;border-radius:2px;background:currentColor}
 .variant-menu{position:fixed;inset:0;z-index:400;background:rgba(3,3,4,.96);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s ease,visibility 0s linear .25s;overflow-y:auto}
 body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .25s ease}
@@ -165,7 +165,7 @@ body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events
 .variant-back-chev{margin-right:10px;font-size:1.25rem}
 @media(prefers-reduced-motion:reduce){.variant-track{transition:none}.variant-panel{transition:none}}
 .variant-menu .lang-toggle{align-self:center;margin:0 0 10px}
-@media(max-width:480px){.variant-nav{min-height:116px;padding:20px 16px 14px}.variant-mark{width:30px;height:30px}.variant-wordmark{font-size:.88rem}.variant-menu-button{top:20px;right:12px}.variant-menu-close{top:20px;right:12px}.variant-menu-inner{padding-top:112px}}
+@media(max-width:480px){.variant-nav{min-height:116px;padding:20px 16px 14px}.variant-mark{width:30px;height:30px}.variant-wordmark{font-size:.88rem}.variant-menu-button{right:12px}.variant-menu-close{top:20px;right:12px}.variant-menu-inner{padding-top:112px}}
 @media(prefers-reduced-motion:reduce){.variant-menu{transition:none}}
 
 section{background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:54px 54px}
@@ -258,19 +258,31 @@ body.cookie-locked{overflow:hidden}
 @media(max-width:480px){.cookie-thanks{top:126px}}
 @media(prefers-reduced-motion:reduce){.cookie-thanks.pop{animation:none}.cookie-thanks.bye{transition:none}}
 @media(min-width:900px){
-body.cookie-locked .variant-nav{min-height:64px;padding:10px 18px;justify-content:flex-start}
-body.cookie-locked .variant-mark{width:26px;height:26px}
-body.cookie-locked .variant-wordmark{font-size:.8rem}
-body.cookie-locked .cookie-sheet{top:84px;transform:translateX(-30%)}
+body.cookie-present .variant-nav{min-height:64px;padding:10px 18px;justify-content:flex-start}
+body.cookie-present .variant-mark{width:26px;height:26px}
+body.cookie-present .variant-wordmark{font-size:.8rem}
+body.cookie-present .cookie-sheet{top:84px;transform:translateX(-30%)}
 .variant-nav{transition:min-height .32s cubic-bezier(.22,1,.36,1),padding .32s cubic-bezier(.22,1,.36,1)}
 }
 @media(max-width:899px){
-body.cookie-locked .variant-nav{position:fixed;top:auto;bottom:12px;left:12px;right:12px;min-height:66px;padding:6px 16px;align-items:center;border:1px solid rgba(255,255,255,.16);border-radius:18px;background:rgba(10,10,12,.85);-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);z-index:360;justify-content:center}
-body.cookie-locked .variant-mark{width:22px;height:22px}
-body.cookie-locked .variant-wordmark{font-size:.78rem}
-body.cookie-locked .cookie-sheet{top:14px}
-body.cookie-locked .cookie-thanks{top:14px}
+body.cookie-present .variant-nav{position:fixed;top:auto;bottom:12px;left:12px;right:12px;min-height:66px;padding:6px 16px;align-items:center;border:1px solid rgba(255,255,255,.16);border-radius:18px;background:rgba(10,10,12,.85);-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);z-index:360;justify-content:center}
+body.cookie-present .variant-mark{width:22px;height:22px}
+body.cookie-present .variant-wordmark{font-size:.78rem}
+body.cookie-present .cookie-sheet{top:14px}
+body.cookie-present .cookie-thanks{top:14px}
 }
+.cookie-ring{position:fixed;inset:0;z-index:370;pointer-events:none;border:3px solid rgba(255,46,46,.85);box-shadow:inset 0 0 34px rgba(255,46,46,.4)}
+.cookie-ring[hidden]{display:none}
+.cookie-ring.flash{animation:ring-flash .5s ease-in-out 3}
+@keyframes ring-flash{0%,100%{opacity:.15}50%{opacity:1}}
+.cookie-alert{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:385;width:min(480px,calc(100vw - 40px));padding:26px 30px;border-radius:22px;border:1px solid rgba(255,255,255,.25);background:rgba(12,12,15,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:var(--ink);cursor:pointer;font:inherit;text-align:center;box-shadow:0 26px 60px rgba(0,0,0,.6)}
+.cookie-alert[hidden]{display:none}
+.cookie-alert-main{display:block;font-size:1.28rem;line-height:1.35}
+.cookie-alert-sub{display:block;margin-top:8px;color:var(--muted);font-style:italic;font-size:.94rem}
+body.cookie-blocked{overflow:hidden}
+@media(prefers-reduced-motion:reduce){.cookie-ring.flash{animation:none}}
+@media(min-width:900px){body.cookie-present .cookie-cue{top:84px}body.cookie-present .cookie-thanks{top:84px}}
+@media(max-width:899px){body.cookie-present .cookie-cue{top:14px}body.cookie-present .scroll-cue{opacity:0;visibility:hidden}}
 .photo-credit a:hover{color:#fff}
 @media(max-width:480px){.product-hero{--navh:116px}}
 @media(prefers-reduced-motion:reduce){.product-hero .ph-eyebrow,.product-hero .ph-title,.product-hero .ph-sub{animation:none}}
@@ -430,11 +442,13 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 <div><a href="/products/">Products</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/pr/">Para clientes en PR</a><a href="#" id="cb-open">Cookies</a></div>
 </div></footer>
 <button type="button" class="cookie-cue" id="cookie-cue" aria-expanded="false" aria-controls="cookie-sheet" hidden><span class="cookie-cue-small">Scroll up for</span><span class="cookie-cue-big">Cookie Notice</span></button>
+<div class="cookie-ring" id="cookie-ring" aria-hidden="true" hidden></div>
+<button type="button" class="cookie-alert" id="cookie-alert" hidden><span class="cookie-alert-main">Please review our Cookie Notice to continue using the site</span><span class="cookie-alert-sub">Click or tap here to review.</span></button>
 <div class="cookie-thanks" id="cookie-thanks" role="status" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5 L9.5 18 L20 6.5" stroke="#4caf6d" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Thanks for responding!</span></div>
 <div class="cookie-sheet" id="cookie-sheet" role="dialog" aria-modal="false" aria-labelledby="cookie-sheet-title" hidden>
 <div class="cookie-sheet-inner">
 <p class="cookie-sheet-title" id="cookie-sheet-title">Cookie Notice</p>
-<p class="cookie-sheet-body">We use cookies to run this site and, with your permission, usage cookies to understand how the site is used. Standard cookie notice text applies: necessary cookies keep you signed in, usage cookies help with marketing and SEO.</p>
+<p class="cookie-sheet-body">We use cookies and similar technologies to improve your browsing experience, personalize content and ads, provide social media features, and analyze our traffic. By clicking &ldquo;Accept All&rdquo;, you consent to our use of cookies as described in our Cookie Policy and Privacy Policy.</p>
 <p class="cookie-sheet-sub">Use these cookies:</p>
 <div class="cookie-row"><div class="cookie-row-text"><span class="cookie-row-name">Necessary</span><span class="cookie-row-desc">These include login cookies.</span></div><span class="cookie-switch on locked" role="switch" aria-checked="true" aria-label="Necessary cookies, always on"><span class="cookie-knob"></span></span></div>
 <div class="cookie-row"><div class="cookie-row-text"><span class="cookie-row-name">Usage</span><span class="cookie-row-desc">These track your usage here for marketing &amp; SEO.</span></div><button type="button" class="cookie-switch on" id="cookie-usage" role="switch" aria-checked="true" aria-label="Usage cookies"><span class="cookie-knob"></span></button></div>
@@ -470,7 +484,7 @@ function setUsage(on){if(!usage)return;usage.classList.toggle('on',!!on);usage.s
 if(usage){usage.addEventListener('click',function(){setUsage(!usageOn());});}
 var open=false;
 function pillDims(){if(!cue.hidden){return{w:cue.offsetWidth,h:cue.offsetHeight};}return{w:236,h:66};}
-function expand(){if(open)return;open=true;cue.setAttribute('aria-expanded','true');document.body.classList.add('cookie-locked');
+function expand(){if(open)return;open=true;cue.setAttribute('aria-expanded','true');document.body.classList.add('cookie-locked');document.body.classList.add('cookie-present');
   var d=pillDims();cue.hidden=true;
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   sheet.hidden=false;
@@ -484,7 +498,7 @@ function expand(){if(open)return;open=true;cue.setAttribute('aria-expanded','tru
   sheet.style.width=targetW+'px';sheet.style.height=targetH+'px';sheet.style.borderRadius='22px';
   setTimeout(function(){inner.style.transition='opacity .26s ease';inner.style.opacity='1';sheet.style.width='';sheet.style.height='';sheet.style.borderRadius='';},360);}
 function collapse(decision){if(!open)return;open=false;cue.setAttribute('aria-expanded','false');
-  if(decision){save(decision);if(!usageOn())killBeacon();}
+  if(decision){save(decision);if(!usageOn())killBeacon();clearAlert();}
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var inner=sheet.querySelector('.cookie-sheet-inner');
   if(reduce){sheet.hidden=true;inner.style.opacity='0';document.body.classList.remove('cookie-locked');if(!decision&&!choice())cue.hidden=false;return;}
@@ -494,8 +508,9 @@ function collapse(decision){if(!open)return;open=false;cue.setAttribute('aria-ex
     sheet.style.width=curW+'px';sheet.style.height=curH+'px';void sheet.offsetWidth;
     sheet.style.width=d.w+'px';sheet.style.height=d.h+'px';sheet.style.borderRadius='18px';
     setTimeout(function(){sheet.hidden=true;sheet.style.width='';sheet.style.height='';sheet.style.borderRadius='';document.body.classList.remove('cookie-locked');
-      if(decision){var th=document.getElementById('cookie-thanks');if(th){th.hidden=false;th.classList.add('pop');setTimeout(function(){th.classList.add('bye');setTimeout(function(){th.hidden=true;th.classList.remove('pop','bye');},380);},2300);}}
-      else if(!choice()){cue.hidden=false;}},350);
+      if(decision){var th=document.getElementById('cookie-thanks');if(th){th.hidden=false;th.classList.add('pop');setTimeout(function(){th.classList.add('bye');setTimeout(function(){th.hidden=true;th.classList.remove('pop','bye');document.body.classList.remove('cookie-present');},380);},2300);}}
+      else if(!choice()){if(alertArmed){showAlert();}else{cue.hidden=false;}}
+      else{document.body.classList.remove('cookie-present');}},350);
   },190);}
 function decide(v){if(v==='all')setUsage(true);if(v==='none')setUsage(false);collapse(v==='all'?'all':(v==='none'?'none':'custom'));}
 var p=document.getElementById('cookie-preserve'),a=document.getElementById('cookie-all'),n=document.getElementById('cookie-none');
@@ -509,7 +524,15 @@ window.addEventListener('wheel',function(e){if(!open&&!choice()&&window.scrollY<
 var ty=null;
 window.addEventListener('touchstart',function(e){ty=e.touches[0].clientY;},{passive:true});
 window.addEventListener('touchend',function(e){if(ty===null)return;var dy=ty-e.changedTouches[0].clientY;ty=null;if(!open&&!choice()&&window.scrollY<=0&&dy>42){expand();}},{passive:true});
-if(!choice()){cue.hidden=false;}
+var alertCard=document.getElementById('cookie-alert'),ring=document.getElementById('cookie-ring'),alertArmed=false;
+function showAlert(){alertArmed=true;cue.hidden=true;if(ring){ring.hidden=false;ring.classList.add('flash');}if(alertCard)alertCard.hidden=false;document.body.classList.add('cookie-blocked');}
+function clearAlert(){alertArmed=false;if(ring){ring.hidden=true;ring.classList.remove('flash');}if(alertCard)alertCard.hidden=true;document.body.classList.remove('cookie-blocked');}
+if(alertCard){alertCard.addEventListener('click',function(){clearAlert();expand();});}
+window.addEventListener('scroll',function(){if(choice()||open||alertArmed)return;var max=document.documentElement.scrollHeight-window.innerHeight;if(max>0&&window.scrollY>max*.5){showAlert();}},{passive:true});
+var sentinel=document.createElement('div');sentinel.setAttribute('aria-hidden','true');sentinel.style.cssText='position:absolute;left:0;width:1px;height:1px;pointer-events:none';sentinel.style.top=Math.round(document.documentElement.scrollHeight*.52)+'px';document.body.appendChild(sentinel);
+if('IntersectionObserver' in window){var sio=new IntersectionObserver(function(es){es.forEach(function(en){if(!en.isIntersecting&&window.scrollY>sentinel.offsetTop&&!choice()&&!open&&!alertArmed){showAlert();}});},{threshold:0});sio.observe(sentinel);}
+var watchdog=setInterval(function(){if(choice()||alertArmed){clearInterval(watchdog);return;}if(open)return;if(window.scrollY>sentinel.offsetTop){showAlert();clearInterval(watchdog);}},600);
+if(!choice()){cue.hidden=false;document.body.classList.add('cookie-present');}
 var openLink=document.getElementById('cb-open');
 if(openLink){openLink.addEventListener('click',function(e){e.preventDefault();window.scrollTo(0,0);expand();});}
 }catch(err){}})();
