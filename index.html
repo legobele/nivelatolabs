@@ -117,7 +117,7 @@ html.js .reveal.in{opacity:1;transform:none}
    and 150% width; .08em spacing keeps the EDOLUS air without
    weakening the already-expanded letterforms. */
 @font-face{font-family:'Anybody';src:url('/assets/fonts/Anybody-Variable.ttf') format('truetype');font-weight:100 900;font-stretch:50% 150%;font-display:swap}
-.variant-nav{--wordmark-font:'Anybody','Archivo Black',system-ui,sans-serif;--wordmark-spacing:.08em;position:sticky;top:12px;z-index:300;min-height:64px;padding:8px 18px;margin:12px 12px 0;border:1px solid rgba(255,255,255,.16);border-radius:999px;box-shadow:0 14px 34px rgba(0,0,0,.42);background:rgba(5,5,5,.82);border:0;-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);display:flex;align-items:center;justify-content:flex-start;overflow:visible}
+.variant-nav{--wordmark-font:'Anybody','Archivo Black',system-ui,sans-serif;--wordmark-spacing:.08em;position:sticky;top:12px;z-index:300;min-height:64px;padding:8px 18px;margin:12px 12px 0;border:1px solid rgba(255,255,255,.16);border-radius:999px;box-shadow:0 14px 34px rgba(0,0,0,.42);background:rgba(7,7,9,.94);display:flex;align-items:center;justify-content:flex-start;overflow:visible}
 .variant-nav::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.46),rgba(0,0,0,0) 88%);pointer-events:none}
 .variant-nav .variant-lockup{position:relative;z-index:1;display:flex;flex-direction:row;align-items:center;gap:12px;max-width:calc(100vw - 112px);color:#fff;text-decoration:none}
 .variant-mark{width:34px;height:34px;color:#fff;flex:none}
@@ -198,31 +198,38 @@ section{background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 
 .working-with h3{font-size:1.3rem;margin-bottom:6px}
 .working-with p{color:var(--muted);max-width:52ch}
 @media(max-width:640px){.working-with{flex-direction:column;align-items:flex-start}}
-.company-spot{position:relative;display:flex;align-items:center;gap:18px}
-.company-badge{width:96px;height:96px;flex:none;border-radius:50%;border:1px solid rgba(255,255,255,.38);background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
-.company-badge img{width:68%;height:auto}
-.company-badge:hover{border-color:rgba(255,255,255,.7)}
-.company-hint{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.company-card{position:absolute;left:0;top:calc(100% + 16px);z-index:60;width:min(430px,calc(100vw - 48px));border:1px solid var(--line);border-radius:20px;background:var(--card);padding:22px;opacity:0;visibility:hidden;transform:translateY(6px) scale(.98);transform-origin:top left;transition:opacity .28s var(--niv-mo-ease,cubic-bezier(.22,1,.36,1)),transform .28s var(--niv-mo-ease,cubic-bezier(.22,1,.36,1)),visibility 0s linear .28s}
-.company-spot:hover .company-card,.company-spot:focus-within .company-card,.company-spot.open .company-card{opacity:1;visibility:visible;transform:none;transition:opacity .28s var(--niv-mo-ease,cubic-bezier(.22,1,.36,1)),transform .28s var(--niv-mo-ease,cubic-bezier(.22,1,.36,1))}
-.company-card-head{display:flex;align-items:center;gap:14px;margin-bottom:12px}
-.company-mini{width:52px;height:52px;flex:none;border-radius:50%;border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center}
-.company-mini img{width:70%;height:auto}
-.company-card h3{font-size:1.12rem;line-height:1.25}
+.co-carousel{position:relative}
+.co-stage{position:relative;min-height:120px}
+.co-slide{position:absolute;left:0;top:0;opacity:0;visibility:hidden;transition:opacity .45s ease,visibility 0s linear .45s}
+.co-slide.active{position:relative;opacity:1;visibility:visible;transition:opacity .45s ease}
+.co-spot{position:relative;display:inline-block}
+.co-badge{position:relative;z-index:62;width:96px;height:96px;border-radius:50%;border:1px solid rgba(255,255,255,.38);background:#101014;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.co-badge img{width:76%;height:76%;object-fit:contain}
+.co-badge:hover{border-color:rgba(255,255,255,.75)}
+.co-card{position:absolute;left:0;top:48px;z-index:60;width:min(430px,calc(100vw - 48px));border:1px solid var(--line);border-radius:30px;border-top-left-radius:54px;background:var(--card);padding:16px 22px 22px;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .3s cubic-bezier(.22,1,.36,1),transform .3s cubic-bezier(.22,1,.36,1),visibility 0s linear .3s}
+.co-spot.open .co-card{opacity:1;visibility:visible;transform:none;transition:opacity .3s cubic-bezier(.22,1,.36,1),transform .3s cubic-bezier(.22,1,.36,1)}
+.co-card-head{margin-left:118px;min-height:50px;display:flex;flex-direction:column;justify-content:center;margin-bottom:10px}
+.co-card h3{font-size:1.12rem;line-height:1.25}
 .company-loc{color:var(--muted);font-size:.86rem}
 .company-desc{color:var(--muted);font-size:.94rem;margin-bottom:16px}
 .company-cta{width:100%;font:inherit;font-size:.92rem;color:var(--ink);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:11px 18px;cursor:pointer}
 .company-cta:hover{background:rgba(255,255,255,.12)}
-.company-pop{position:fixed;inset:0;z-index:500;background:rgba(3,3,4,.9);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);overflow-y:auto;padding:28px 20px}
-.company-pop[hidden]{display:none}
-.company-pop-panel{position:relative;max-width:520px;margin:4vh auto;border:1px solid var(--line);border-radius:24px;background:var(--card);padding:28px}
-.company-pop-close{position:absolute;top:16px;right:16px;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;font-size:1.25rem;cursor:pointer}
-.company-pop h4{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:22px 0 10px}
+.co-full{position:absolute;inset:0;padding:26px;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility 0s linear .3s}
+.co-card.full .co-full{opacity:1;visibility:visible;transition:opacity .35s ease .18s}
+.co-card.full .co-card-main{opacity:0;visibility:hidden}
+.co-card-main{transition:opacity .25s ease}
+.co-full h3{font-size:1.3rem;margin-bottom:2px}
+.co-full h4{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:22px 0 10px}
+.co-full-close{position:absolute;top:16px;right:16px;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;font-size:1.25rem;cursor:pointer;z-index:2}
 .company-quote{border-left:2px solid rgba(255,255,255,.35);padding-left:14px;margin-bottom:12px;color:var(--ink)}
 .company-quote span{display:block;color:var(--muted);font-size:.84rem;margin-top:4px}
 .company-none{color:var(--muted);font-size:.92rem}
+.co-dots{display:flex;gap:8px;margin-top:18px}
+.co-dots[hidden]{display:none}
+.co-dot{width:8px;height:8px;border-radius:50%;border:1px solid rgba(255,255,255,.5);background:transparent;padding:0;cursor:pointer}
+.co-dot.on{background:#fff}
 body.company-pop-open{overflow:hidden}
-@media(prefers-reduced-motion:reduce){.company-card{transition:none}}
+@media(prefers-reduced-motion:reduce){.co-card,.co-slide,.co-full{transition:none}}
 @media(max-width:640px){.cookie-bar{flex-direction:column;align-items:flex-start}}
 .cookie-cue{position:fixed;top:136px;left:50%;transform:translateX(-50%);z-index:380;display:flex;flex-direction:column;align-items:center;gap:1px;padding:9px 26px 11px;border-radius:18px;border:1px solid rgba(255,255,255,.2);background:rgba(14,14,17,.8);-webkit-backdrop-filter:blur(12px) saturate(140%);backdrop-filter:blur(12px) saturate(140%);color:var(--ink);cursor:pointer;font:inherit}
 .cookie-cue[hidden]{display:none}
@@ -265,7 +272,7 @@ body.cookie-present .cookie-sheet{top:100px}
 .variant-nav{transition:min-height .32s cubic-bezier(.22,1,.36,1),padding .32s cubic-bezier(.22,1,.36,1)}
 }
 @media(max-width:899px){
-body.cookie-locked .variant-nav,body.cookie-blocked .variant-nav,body.cookie-thanks-on .variant-nav{position:fixed;top:auto;bottom:12px;left:12px;right:12px;min-height:66px;padding:6px 16px;align-items:center;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(10,10,12,.85);-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);z-index:360;justify-content:center}
+body.cookie-locked .variant-nav,body.cookie-blocked .variant-nav,body.cookie-thanks-on .variant-nav{position:fixed;top:auto;bottom:12px;left:12px;right:12px;min-height:66px;padding:6px 16px;align-items:center;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(9,9,11,.95);z-index:360;justify-content:center}
 body.cookie-present .variant-mark{width:22px;height:22px}
 body.cookie-present .variant-wordmark{font-size:.78rem}
 body.cookie-locked .cookie-sheet{top:14px}
@@ -439,15 +446,7 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 
 <section class="alt reveal"><div class="wrap">
 <div class="sec-kicker">Working with</div>
-<div class="company-spot" id="company-spot">
-<button type="button" class="company-badge" id="company-badge" aria-haspopup="dialog" aria-expanded="false" aria-label="Quality Glazing Contractors: show company card"><img src="/assets/qg-monogram-white.png" alt="" width="287" height="159"></button>
-<span class="company-hint" aria-hidden="true">Products used by</span>
-<div class="company-card">
-<div class="company-card-head"><span class="company-mini"><img src="/assets/qg-monogram-white.png" alt="" width="287" height="159"></span><div><h3>Quality Glazing Contractors</h3><p class="company-loc">San Juan, Puerto Rico</p></div></div>
-<p class="company-desc">Quality Glazing Contractors is a leading glass shop in Puerto Rico, who uses Nivelato for their employees to assist them.</p>
-<button type="button" class="company-cta" id="company-open">View full testimonial</button>
-</div>
-</div>
+<div class="co-carousel" id="co-carousel"><div class="co-stage" id="co-stage"></div><div class="co-dots" id="co-dots" hidden></div></div>
 </div></section>
 </main>
 <footer><div class="wrap">
@@ -633,35 +632,70 @@ render();
 }catch(e){}})();
 </script>
 
-<div class="company-pop" id="company-pop" role="dialog" aria-modal="true" aria-labelledby="company-pop-title" hidden>
-<div class="company-pop-panel">
-<button type="button" class="company-pop-close" id="company-pop-close" aria-label="Close testimonial">&times;</button>
-<div class="company-card-head"><span class="company-mini"><img src="/assets/qg-monogram-white.png" alt="" width="287" height="159"></span><div><h3 id="company-pop-title">Quality Glazing Contractors</h3><p class="company-loc">San Juan, Puerto Rico</p></div></div>
-<p class="company-desc">Quality Glazing Contractors is a leading glass shop in Puerto Rico, who uses Nivelato for their employees to assist them.</p>
-<h4>Employee testimonials</h4>
-<div id="company-employee-quotes"></div>
-<h4>Company testimonial</h4>
-<div id="company-main-quote"></div>
-</div>
-</div>
 <script>
 (function(){
 var TESTIMONIALS={employee:[],company:null};
+var COMPANIES=[{id:'qgc',name:'Quality Glazing Contractors',loc:'San Juan, Puerto Rico',desc:'Quality Glazing Contractors is a leading glass shop in Puerto Rico, who uses Nivelato for their employees to assist them.',logo:'/assets/qg-monogram-white.png'}];
 function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML;}
-function renderQuotes(){
-  var e=document.getElementById('company-employee-quotes'),m=document.getElementById('company-main-quote');
-  if(!e||!m)return;
-  e.innerHTML=TESTIMONIALS.employee.length?TESTIMONIALS.employee.map(function(q){return '<p class="company-quote">&ldquo;'+esc(q.text)+'&rdquo;<span>- '+esc(q.name)+'</span></p>';}).join(''):'<p class="company-none">Testimonials from the Quality Glazing team are being collected.</p>';
-  m.innerHTML=TESTIMONIALS.company?'<p class="company-quote">&ldquo;'+esc(TESTIMONIALS.company.text)+'&rdquo;<span>- '+esc(TESTIMONIALS.company.name)+'</span></p>':'<p class="company-none">The company testimonial is being collected.</p>';
+function quotesHTML(){
+  var e=TESTIMONIALS.employee.length?TESTIMONIALS.employee.map(function(q){return '<p class="company-quote">&ldquo;'+esc(q.text)+'&rdquo;<span>- '+esc(q.name)+'</span></p>';}).join(''):'<p class="company-none">Testimonials from the Quality Glazing team are being collected.</p>';
+  var m=TESTIMONIALS.company?'<p class="company-quote">&ldquo;'+esc(TESTIMONIALS.company.text)+'&rdquo;<span>- '+esc(TESTIMONIALS.company.name)+'</span></p>':'<p class="company-none">The company testimonial is being collected.</p>';
+  return '<h4>Employee testimonials</h4>'+e+'<h4>Company testimonial</h4>'+m;
 }
-renderQuotes();
-var spot=document.getElementById('company-spot'),badge=document.getElementById('company-badge'),openBtn=document.getElementById('company-open'),pop=document.getElementById('company-pop'),closeBtn=document.getElementById('company-pop-close');
-if(badge&&spot){badge.addEventListener('click',function(){var open=spot.classList.toggle('open');badge.setAttribute('aria-expanded',open?'true':'false');});}
-function openPop(){if(!pop)return;pop.hidden=false;document.body.classList.add('company-pop-open');if(closeBtn)closeBtn.focus();}
-function closePop(){if(!pop)return;pop.hidden=true;document.body.classList.remove('company-pop-open');if(openBtn)openBtn.focus();}
-if(openBtn)openBtn.addEventListener('click',openPop);
-if(closeBtn)closeBtn.addEventListener('click',closePop);
-if(pop){pop.addEventListener('click',function(e){if(e.target===pop)closePop();});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!pop.hidden)closePop();});}
+var stage=document.getElementById('co-stage'),dots=document.getElementById('co-dots');
+if(!stage)return;
+COMPANIES.forEach(function(co,i){
+  var slide=document.createElement('div');slide.className='co-slide'+(i===0?' active':'');
+  slide.innerHTML='<div class="co-spot"><button type="button" class="co-badge" aria-haspopup="true" aria-expanded="false" aria-label="'+esc(co.name)+': show company card"><img src="'+co.logo+'" alt=""></button>'
+    +'<div class="co-card"><div class="co-card-main"><div class="co-card-head"><div><h3>'+esc(co.name)+'</h3><p class="company-loc">'+esc(co.loc)+'</p></div></div>'
+    +'<p class="company-desc">'+esc(co.desc)+'</p><button type="button" class="company-cta">View full testimonial</button></div>'
+    +'<div class="co-full"><button type="button" class="co-full-close" aria-label="Close full testimonial">&times;</button><h3>'+esc(co.name)+'</h3><p class="company-loc">'+esc(co.loc)+'</p>'+quotesHTML()+'</div></div></div>';
+  stage.appendChild(slide);
+  var dot=document.createElement('button');dot.type='button';dot.className='co-dot'+(i===0?' on':'');dot.setAttribute('aria-label','Show '+co.name);dot.addEventListener('click',function(){go(i);});
+  dots.appendChild(dot);
+});
+if(COMPANIES.length>1)dots.hidden=false;
+var slides=Array.prototype.slice.call(stage.children),dotEls=Array.prototype.slice.call(dots.children),cur=0,timer=null,anyOpen=false;
+function go(i){slides[cur].classList.remove('active');dotEls[cur]&&dotEls[cur].classList.remove('on');cur=i;slides[cur].classList.add('active');dotEls[cur]&&dotEls[cur].classList.add('on');}
+function rotate(){if(COMPANIES.length<2||anyOpen)return;go((cur+1)%COMPANIES.length);}
+timer=setInterval(rotate,5500);
+var lockY=0,locked=false;
+function lockScroll(){lockY=window.scrollY;document.body.style.position='fixed';document.body.style.top=(-lockY)+'px';document.body.style.left='0';document.body.style.right='0';locked=true;}
+function unlockScroll(){document.body.style.position='';document.body.style.top='';document.body.style.left='';document.body.style.right='';var de=document.documentElement,p=de.style.scrollBehavior;de.style.scrollBehavior='auto';window.scrollTo(0,lockY);de.style.scrollBehavior=p;locked=false;}
+slides.forEach(function(slide){
+  var spot=slide.querySelector('.co-spot'),badge=slide.querySelector('.co-badge'),card=slide.querySelector('.co-card'),cta=slide.querySelector('.company-cta'),closeBtn=slide.querySelector('.co-full-close');
+  function openCard(){spot.classList.add('open');badge.setAttribute('aria-expanded','true');anyOpen=true;}
+  function closeCard(){if(card.classList.contains('full'))return;spot.classList.remove('open');badge.setAttribute('aria-expanded','false');anyOpen=false;}
+  badge.addEventListener('mouseenter',openCard);
+  badge.addEventListener('focus',openCard);
+  badge.addEventListener('click',function(){spot.classList.contains('open')?closeCard():openCard();});
+  spot.addEventListener('mouseleave',closeCard);
+  function toFull(){
+    var r=card.getBoundingClientRect();
+    card.dataset.rect=JSON.stringify({left:r.left,top:r.top,width:r.width,height:r.height});
+    card.style.transition='none';card.style.position='fixed';card.style.zIndex='480';card.style.margin='0';
+    card.style.left=r.left+'px';card.style.top=r.top+'px';card.style.width=r.width+'px';card.style.height=r.height+'px';card.style.overflow='hidden';
+    lockScroll();
+    requestAnimationFrame(function(){requestAnimationFrame(function(){
+      card.style.transition='left .5s cubic-bezier(.22,1,.36,1),top .5s cubic-bezier(.22,1,.36,1),width .5s cubic-bezier(.22,1,.36,1),height .5s cubic-bezier(.22,1,.36,1),border-radius .5s cubic-bezier(.22,1,.36,1)';
+      card.style.left='14px';card.style.top='14px';card.style.width=(window.innerWidth-28)+'px';card.style.height=(window.innerHeight-28)+'px';card.style.borderRadius='26px';card.style.borderTopLeftRadius='26px';
+      card.classList.add('full');closeBtn.focus();
+    });});
+  }
+  function fromFull(){
+    var r0=JSON.parse(card.dataset.rect||'{}');
+    card.classList.remove('full');
+    var anchor=card.getBoundingClientRect();
+    card.style.left=r0.left+'px';card.style.top=r0.top+'px';card.style.width=r0.width+'px';card.style.height=r0.height+'px';card.style.borderRadius='30px';card.style.borderTopLeftRadius='54px';
+    setTimeout(function(){
+      card.style.transition='';card.style.position='';card.style.zIndex='';card.style.margin='';card.style.left='';card.style.top='';card.style.width='';card.style.height='';card.style.overflow='';card.style.borderRadius='';card.style.borderTopLeftRadius='';
+      if(locked)unlockScroll();cta.focus();
+    },520);
+  }
+  cta.addEventListener('click',toFull);
+  closeBtn.addEventListener('click',fromFull);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){if(card.classList.contains('full'))fromFull();else closeCard();}});
+});
 })();
 </script>
 </body>
