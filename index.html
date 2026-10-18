@@ -224,19 +224,14 @@ section{background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 
 body.company-pop-open{overflow:hidden}
 @media(prefers-reduced-motion:reduce){.company-card{transition:none}}
 @media(max-width:640px){.cookie-bar{flex-direction:column;align-items:flex-start}}
-.cb-prefs[hidden]{display:none}
-.cb-prefs @keyframes cue-arrive{0%{transform:translateX(-50%) scale(.55)}60%{transform:translateX(-50%) scale(1.14)}100%{transform:translateX(-50%) scale(1)}}
-@media(prefers-reduced-motion:reduce){.cookie-bar{transition:none}.scroll-cue.cue-pop{animation:none}}
 .cookie-cue{position:fixed;top:136px;left:50%;transform:translateX(-50%);z-index:380;display:flex;flex-direction:column;align-items:center;gap:1px;padding:9px 26px 11px;border-radius:18px;border:1px solid rgba(255,255,255,.2);background:rgba(14,14,17,.8);-webkit-backdrop-filter:blur(12px) saturate(140%);backdrop-filter:blur(12px) saturate(140%);color:var(--ink);cursor:pointer;font:inherit}
 .cookie-cue[hidden]{display:none}
 .cookie-cue-small{font-size:.74rem;color:var(--muted)}
 .cookie-cue-big{font-size:.98rem;font-weight:600}
 .cookie-sheet{position:fixed;top:136px;left:50%;transform:translateX(-50%);z-index:390;width:min(430px,calc(100vw - 32px));border:1px solid rgba(255,255,255,.18);border-radius:22px;background:rgba(13,13,16,.92);-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);padding:20px;box-shadow:0 24px 60px rgba(0,0,0,.55)}
 .cookie-sheet[hidden]{display:none}
-.cookie-sheet.opening{animation:sheet-in .38s cubic-bezier(.22,1,.36,1)}
-@keyframes sheet-in{from{opacity:0;transform:translateX(-50%) translateY(-12px) scale(.96)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
-.cookie-sheet.closing{animation:sheet-out .3s ease forwards}
-@keyframes sheet-out{to{opacity:0;transform:translateX(-50%) translateY(-10px) scale(.9)}}
+.cookie-sheet{overflow:hidden;transition:width .34s cubic-bezier(.22,1,.36,1),height .34s cubic-bezier(.22,1,.36,1),border-radius .34s cubic-bezier(.22,1,.36,1)}
+.cookie-sheet-inner{opacity:0}
 .cookie-sheet-title{font-weight:600;font-size:1rem;color:var(--ink);margin:0 0 8px}
 .cookie-sheet-body{font-size:.88rem;color:var(--muted);margin:0 0 14px}
 .cookie-sheet-sub{font-size:.88rem;color:var(--muted);margin:0 0 8px}
@@ -249,12 +244,12 @@ body.company-pop-open{overflow:hidden}
 .cookie-switch.on{background:rgba(255,255,255,.85)}
 .cookie-switch.on .cookie-knob{left:24px;background:#0a0a0b}
 .cookie-switch.locked{cursor:default;opacity:.85}
-.cookie-actions{display:flex;align-items:center;gap:10px;margin-top:16px;flex-wrap:wrap}
+.cookie-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
 .cookie-btn{font:inherit;font-size:.86rem;color:var(--ink);background:transparent;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:9px 16px;cursor:pointer}
-.cookie-btn-primary{background:#fafafa;color:#0a0a0b;border-color:#fafafa;font-weight:600;padding:11px 20px}
+.cookie-btn-primary{background:#fafafa;color:#0a0a0b;border-color:#fafafa;font-weight:600;padding:11px 20px;grid-column:1/-1}
 body.cookie-locked{overflow:hidden}
 @media(max-width:480px){.cookie-cue{top:126px}.cookie-sheet{top:126px}}
-@media(prefers-reduced-motion:reduce){.cookie-sheet.opening,.cookie-sheet.closing{animation:none}}
+@media(prefers-reduced-motion:reduce){.cookie-sheet,.cookie-sheet-inner{transition:none}.cookie-sheet-inner{opacity:1}}
 .photo-credit a:hover{color:#fff}
 @media(max-width:480px){.product-hero{--navh:116px}}
 @media(prefers-reduced-motion:reduce){.product-hero .ph-eyebrow,.product-hero .ph-title,.product-hero .ph-sub{animation:none}}
@@ -415,12 +410,14 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 </div></footer>
 <button type="button" class="cookie-cue" id="cookie-cue" aria-expanded="false" aria-controls="cookie-sheet" hidden><span class="cookie-cue-small">Scroll up for</span><span class="cookie-cue-big">Cookie Notice</span></button>
 <div class="cookie-sheet" id="cookie-sheet" role="dialog" aria-modal="false" aria-labelledby="cookie-sheet-title" hidden>
+<div class="cookie-sheet-inner">
 <p class="cookie-sheet-title" id="cookie-sheet-title">Cookie Notice</p>
 <p class="cookie-sheet-body">We use cookies to run this site and, with your permission, usage cookies to understand how the site is used. Standard cookie notice text applies: necessary cookies keep you signed in, usage cookies help with marketing and SEO.</p>
 <p class="cookie-sheet-sub">Use these cookies:</p>
 <div class="cookie-row"><div class="cookie-row-text"><span class="cookie-row-name">Necessary</span><span class="cookie-row-desc">These include login cookies.</span></div><span class="cookie-switch on locked" role="switch" aria-checked="true" aria-label="Necessary cookies, always on"><span class="cookie-knob"></span></span></div>
 <div class="cookie-row"><div class="cookie-row-text"><span class="cookie-row-name">Usage</span><span class="cookie-row-desc">These track your usage here for marketing &amp; SEO.</span></div><button type="button" class="cookie-switch on" id="cookie-usage" role="switch" aria-checked="true" aria-label="Usage cookies"><span class="cookie-knob"></span></button></div>
 <div class="cookie-actions"><button type="button" class="cookie-btn cookie-btn-primary" id="cookie-preserve">Preserve these choices</button><button type="button" class="cookie-btn" id="cookie-all">Use all</button><button type="button" class="cookie-btn" id="cookie-none">Use none</button></div>
+</div>
 </div>
 <script>
 document.documentElement.classList.add('js');
@@ -450,13 +447,32 @@ function usageOn(){return usage&&usage.classList.contains('on');}
 function setUsage(on){if(!usage)return;usage.classList.toggle('on',!!on);usage.setAttribute('aria-checked',on?'true':'false');}
 if(usage){usage.addEventListener('click',function(){setUsage(!usageOn());});}
 var open=false;
-function expand(){if(open)return;open=true;cue.hidden=true;cue.setAttribute('aria-expanded','true');sheet.hidden=false;sheet.classList.remove('closing');sheet.classList.add('opening');document.body.classList.add('cookie-locked');}
-function collapse(decision){if(!open)return;open=false;cue.setAttribute('aria-expanded','false');document.body.classList.remove('cookie-locked');
+function pillDims(){if(!cue.hidden){return{w:cue.offsetWidth,h:cue.offsetHeight};}return{w:236,h:66};}
+function expand(){if(open)return;open=true;cue.setAttribute('aria-expanded','true');document.body.classList.add('cookie-locked');
+  var d=pillDims();cue.hidden=true;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  sheet.hidden=false;
+  var inner=sheet.querySelector('.cookie-sheet-inner');
+  if(reduce){inner.style.opacity='1';return;}
+  var targetW=Math.min(430,window.innerWidth-32);
+  sheet.style.width=targetW+'px';sheet.style.height='auto';
+  var targetH=sheet.scrollHeight;
+  sheet.style.width=d.w+'px';sheet.style.height=d.h+'px';sheet.style.borderRadius='18px';
+  void sheet.offsetWidth;
+  sheet.style.width=targetW+'px';sheet.style.height=targetH+'px';sheet.style.borderRadius='22px';
+  setTimeout(function(){inner.style.transition='opacity .26s ease';inner.style.opacity='1';sheet.style.width='';sheet.style.height='';sheet.style.borderRadius='';},360);}
+function collapse(decision){if(!open)return;open=false;cue.setAttribute('aria-expanded','false');
   if(decision){save(decision);if(!usageOn())killBeacon();}
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduce){sheet.hidden=true;if(!decision&&!choice())cue.hidden=false;return;}
-  sheet.classList.remove('opening');sheet.classList.add('closing');
-  setTimeout(function(){sheet.hidden=true;sheet.classList.remove('closing');if(!decision&&!choice())cue.hidden=false;},300);}
+  var inner=sheet.querySelector('.cookie-sheet-inner');
+  if(reduce){sheet.hidden=true;inner.style.opacity='0';document.body.classList.remove('cookie-locked');if(!decision&&!choice())cue.hidden=false;return;}
+  inner.style.transition='opacity .15s ease';inner.style.opacity='0';
+  setTimeout(function(){
+    var d=pillDims();var curW=sheet.offsetWidth,curH=sheet.offsetHeight;
+    sheet.style.width=curW+'px';sheet.style.height=curH+'px';void sheet.offsetWidth;
+    sheet.style.width=d.w+'px';sheet.style.height=d.h+'px';sheet.style.borderRadius='18px';
+    setTimeout(function(){sheet.hidden=true;sheet.style.width='';sheet.style.height='';sheet.style.borderRadius='';document.body.classList.remove('cookie-locked');if(!decision&&!choice())cue.hidden=false;},350);
+  },190);}
 function decide(v){if(v==='all')setUsage(true);if(v==='none')setUsage(false);collapse(v==='all'?'all':(v==='none'?'none':'custom'));}
 var p=document.getElementById('cookie-preserve'),a=document.getElementById('cookie-all'),n=document.getElementById('cookie-none');
 if(p)p.addEventListener('click',function(){decide('custom');});
