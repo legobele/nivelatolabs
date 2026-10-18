@@ -141,7 +141,7 @@
 .variant-menu{position:fixed;inset:0;z-index:400;background:rgba(3,3,4,.96);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s ease,visibility 0s linear .25s;overflow-y:auto}
 body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .25s ease}
 .variant-menu-inner{width:min(440px,calc(100vw - 48px));margin:0 auto;padding:126px 0 44px;display:flex;flex-direction:column;gap:2px}
-.variant-menu-inner>a{min-height:54px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(255,255,255,.10);color:#fff;text-decoration:none;font-size:1.08rem;font-weight:600;text-align:center}
+.variant-menu-inner>a{min-height:54px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(255,255,255,.25);color:#fff;text-decoration:none;font-size:1.08rem;font-weight:600;text-align:center}
 .variant-menu-inner>a:hover,.variant-menu-inner>a:focus-visible{color:#fff;background:rgba(255,255,255,.06)}
 /* Menu submenus (Oct 2026): a parent row pairs the page link with a
    chevron toggle; the submenu expands on the motion tokens (grid-rows
@@ -161,7 +161,22 @@ body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events
 .variant-submenu a:hover,.variant-submenu a:focus-visible{color:#fff;background:rgba(255,255,255,.07)}
 .variant-menu-actions{margin-top:24px;display:grid;gap:10px}
 .variant-menu-actions .btn{text-align:center;justify-content:center}
-.variant-menu-close{position:absolute;top:26px;right:20px;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:transparent;color:#fff;font-size:1.35rem;line-height:1;cursor:pointer}
+.variant-menu-close{position:absolute;top:26px;right:20px;width:44px;height:44px;border:1px solid rgba(255,255,255,.28);border-radius:50%;background:transparent;color:#fff;font-size:1.35rem;line-height:1;cursor:pointer}
+/* Menu drill-in panels (Oct 2026): parent rows slide to a submenu
+   panel instead of expanding in place. Labels stay centered across
+   the full row width, the chevron rides the right edge without
+   shifting them, and a back row returns to the previous panel. */
+.variant-viewport{overflow:hidden}
+.variant-track{display:flex;align-items:flex-start;width:min(440px,calc(100vw - 48px));margin:0 auto;transition:transform var(--niv-mo-view,300ms) var(--niv-mo-ease,cubic-bezier(.22,1,.36,1))}
+.variant-panel{flex:0 0 100%;min-width:0;visibility:hidden}
+.variant-panel[data-panel="root"]{visibility:visible}
+.variant-panel .variant-menu-inner{width:100%}
+.variant-row{position:relative;display:flex;align-items:center;justify-content:center;width:100%;min-height:54px;padding:0;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.25);color:#fff;font:inherit;font-size:1.08rem;font-weight:600;text-align:center;cursor:pointer}
+.variant-row:hover,.variant-row:focus-visible{background:rgba(255,255,255,.06);color:#fff;outline:none}
+.variant-drill-chev{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:1.35rem;font-weight:400;color:rgba(255,255,255,.85);pointer-events:none}
+.variant-back{justify-content:flex-start;font-size:1rem;color:rgba(255,255,255,.85)}
+.variant-back-chev{margin-right:10px;font-size:1.25rem}
+@media(prefers-reduced-motion:reduce){.variant-track{transition:none}}
 .variant-menu .lang-toggle{align-self:center;margin:0 0 10px}
 .variant-lang{display:flex;flex-direction:column;gap:8px;margin:0 0 10px}
 .variant-lang-current{display:flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:10px 18px;background:transparent;border:1px solid var(--line);border-radius:999px;color:#fff;font-family:'JetBrains Mono',monospace;font-size:.85rem;letter-spacing:.08em;cursor:pointer}
@@ -240,45 +255,51 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 </nav>
 <div class="variant-menu" id="variant-menu">
   <button class="variant-menu-close" type="button" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')" aria-label="Close menu">×</button>
-  <div class="variant-menu-inner">
+  <div class="variant-viewport">
+  <div class="variant-track">
+    <div class="variant-panel" data-panel="root">
+    <div class="variant-menu-inner">
     <a href="/" data-i18n="nav.home" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Home</a>
-    <div class="variant-menu-item">
-      <div class="variant-menu-row">
-        <a href="/products/" data-i18n="nav.products" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Products</a>
-        <button class="variant-sub-toggle" type="button" aria-expanded="false" aria-controls="variant-sub-products" aria-label="Toggle Products submenu"><span class="variant-sub-chev" aria-hidden="true">▾</span></button>
-      </div>
-      <div class="variant-submenu" id="variant-sub-products">
-        <div class="variant-submenu-in">
-          <a href="/products/" data-i18n="nav.sub.nivelato" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Nivelato</a>
-          <a href="/phonebench/" data-i18n="nav.sub.phonebench" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">PhoneBench</a>
-          <a href="/pricing/" data-i18n="nav.sub.pricing" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Pricing</a>
-        </div>
-      </div>
-    </div>
-    <div class="variant-menu-item">
-      <div class="variant-menu-row">
-        <a href="/about/" data-i18n="nav.about" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">About</a>
-        <button class="variant-sub-toggle" type="button" aria-expanded="false" aria-controls="variant-sub-about" aria-label="Toggle About submenu"><span class="variant-sub-chev" aria-hidden="true">▾</span></button>
-      </div>
-      <div class="variant-submenu" id="variant-sub-about">
-        <div class="variant-submenu-in">
-          <a href="/about/" data-i18n="nav.about" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">About</a>
-          <a href="/about/#mission" data-i18n="nav.sub.mission" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Mission</a>
-          <a href="/about/#vision" data-i18n="nav.sub.vision" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Vision</a>
-          <a href="/about/#values" data-i18n="nav.sub.values" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Core Values</a>
-          <a href="/team/" data-i18n="nav.team" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Team</a>
-        </div>
-      </div>
-    </div>
+    <button type="button" class="variant-row variant-drill" data-drill="products"><span class="variant-row-label" data-i18n="nav.products">Products</span><span class="variant-drill-chev" aria-hidden="true">›</span></button>
+    <button type="button" class="variant-row variant-drill" data-drill="about"><span class="variant-row-label" data-i18n="nav.about">About</span><span class="variant-drill-chev" aria-hidden="true">›</span></button>
     <a href="/contact/" aria-current="page" data-i18n="nav.contact" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Contact</a>
     <div class="variant-menu-actions">
-      <div class="variant-lang" id="variant-lang">
-        <button class="variant-lang-current" type="button" aria-expanded="false" aria-controls="variant-lang-list"><span class="variant-lang-current-label">English</span><span class="variant-lang-chev" aria-hidden="true">▾</span></button>
-        <div class="variant-lang-list" id="variant-lang-list" role="listbox" aria-label="Language" hidden></div>
-      </div>
-      <a class="btn variant-menu-action" href="/get/" data-i18n="nav.get" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Get Nivelato</a>
-      <a class="btn ghost variant-menu-action" href="https://login.nivelatolabs.com" data-i18n="nav.login" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Log in</a>
+          <div class="variant-lang" id="variant-lang">
+            <button class="variant-lang-current" type="button" aria-expanded="false" aria-controls="variant-lang-list"><span class="variant-lang-current-label">English</span><span class="variant-lang-chev" aria-hidden="true">▾</span></button>
+            <div class="variant-lang-list" id="variant-lang-list" role="listbox" aria-label="Language" hidden></div>
+          </div>
+          <a class="btn variant-menu-action" href="/get/" data-i18n="nav.get" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Get Nivelato</a>
+          <a class="btn ghost variant-menu-action" href="https://login.nivelatolabs.com" data-i18n="nav.login" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Log in</a>
+        </div>
     </div>
+    </div>
+    <div class="variant-panel" data-panel="products">
+    <div class="variant-menu-inner">
+    <button type="button" class="variant-row variant-back" data-back><span class="variant-back-chev" aria-hidden="true">‹</span><span data-i18n="nav.products">Products</span></button>
+    <button type="button" class="variant-row variant-drill" data-drill="nivelato"><span class="variant-row-label" data-i18n="nav.sub.nivelato">Nivelato</span><span class="variant-drill-chev" aria-hidden="true">›</span></button>
+    <a href="/phonebench/" data-i18n="nav.sub.phonebench" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">PhoneBench</a>
+    <a href="https://legobele.github.io/coil-demo" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">COIL</a>
+    </div>
+    </div>
+    <div class="variant-panel" data-panel="nivelato">
+    <div class="variant-menu-inner">
+    <button type="button" class="variant-row variant-back" data-back><span class="variant-back-chev" aria-hidden="true">‹</span><span data-i18n="nav.sub.nivelato">Nivelato</span></button>
+    <a href="/products/" data-i18n="nav.sub.overview" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Overview</a>
+    <a href="/pricing/" data-i18n="nav.sub.pricing" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Pricing</a>
+    <a href="/get/" data-i18n="nav.get" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Get Nivelato</a>
+    </div>
+    </div>
+    <div class="variant-panel" data-panel="about">
+    <div class="variant-menu-inner">
+    <button type="button" class="variant-row variant-back" data-back><span class="variant-back-chev" aria-hidden="true">‹</span><span data-i18n="nav.about">About</span></button>
+    <a href="/about/" data-i18n="nav.about" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">About</a>
+    <a href="/about/mission/" data-i18n="nav.sub.mission" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Mission</a>
+    <a href="/about/vision/" data-i18n="nav.sub.vision" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Vision</a>
+    <a href="/about/values/" data-i18n="nav.sub.values" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Core Values</a>
+    <a href="/team/" data-i18n="nav.team" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Team</a>
+    </div>
+    </div>
+  </div>
   </div>
 </div>
 
@@ -337,6 +358,7 @@ const I18N = {
   "nav.sub.nivelato": "Nivelato",
   "nav.sub.phonebench": "PhoneBench",
   "nav.sub.pricing": "Pricing",
+  "nav.sub.overview": "Overview",
   "nav.sub.mission": "Mission",
   "nav.sub.vision": "Vision",
   "nav.sub.values": "Core Values",
@@ -361,6 +383,7 @@ const I18N = {
   "nav.sub.nivelato": "Nivelato",
   "nav.sub.phonebench": "PhoneBench",
   "nav.sub.pricing": "Precios",
+  "nav.sub.overview": "Resumen",
   "nav.sub.mission": "Misión",
   "nav.sub.vision": "Visión",
   "nav.sub.values": "Valores",
@@ -490,23 +513,46 @@ applyLang(currentLang());
 })();
 </script>
 <script>
-/* Variant B menu submenus: the chevron toggles its submenu, the
-   parent label still navigates. One submenu open at a time; closing
-   the menu resets them, so it always reopens flat. */
+/* Variant B menu drill-in: tapping a parent row slides the menu to
+   that section's panel; the back row slides back. Closing the menu
+   resets to the root panel, so it always reopens flat. Panels off
+   the current path are inert and, once the slide settles, hidden. */
 (function(){try{
 var menu=document.getElementById('variant-menu');if(!menu)return;
-var items=[].slice.call(menu.querySelectorAll('.variant-menu-item'));
-function closeItem(item){item.classList.remove('open');var t=item.querySelector('.variant-sub-toggle');if(t)t.setAttribute('aria-expanded','false');}
-items.forEach(function(item){
-  var toggle=item.querySelector('.variant-sub-toggle');if(!toggle)return;
-  toggle.addEventListener('click',function(){
-    var willOpen=!item.classList.contains('open');
-    items.forEach(closeItem);
-    if(willOpen){item.classList.add('open');toggle.setAttribute('aria-expanded','true');}
+var track=menu.querySelector('.variant-track');if(!track)return;
+var panels={};
+[].slice.call(track.querySelectorAll('.variant-panel')).forEach(function(p){panels[p.getAttribute('data-panel')]=p;});
+var stack=['root'];
+var hideTimer=null;
+function render(){
+  var ordered=stack.map(function(n){return panels[n];});
+  Object.keys(panels).forEach(function(n){if(stack.indexOf(n)===-1)ordered.push(panels[n]);});
+  ordered.forEach(function(p){track.appendChild(p);});
+  track.style.transform='translateX('+(-100*(stack.length-1))+'%)';
+  var top=stack[stack.length-1];
+  Object.keys(panels).forEach(function(n){
+    var p=panels[n];
+    if(n===top){p.style.visibility='visible';if('inert' in p)p.inert=false;}
+    else if('inert' in p){p.inert=true;}
   });
+  if(hideTimer)clearTimeout(hideTimer);
+  hideTimer=setTimeout(function(){
+    Object.keys(panels).forEach(function(n){if(n!==stack[stack.length-1])panels[n].style.visibility='hidden';});
+  },340);
+}
+menu.addEventListener('click',function(e){
+  var t=e.target;
+  var drill=t&&t.closest?t.closest('[data-drill]'):null;
+  if(drill){var name=drill.getAttribute('data-drill');if(panels[name]&&stack[stack.length-1]!==name){stack.push(name);render();}return;}
+  var back=t&&t.closest?t.closest('[data-back]'):null;
+  if(back&&stack.length>1){stack.pop();render();}
 });
+function reset(){stack=['root'];render();}
 var closeBtn=menu.querySelector('.variant-menu-close');
-if(closeBtn)closeBtn.addEventListener('click',function(){items.forEach(closeItem);});
+if(closeBtn)closeBtn.addEventListener('click',reset);
+var openBtn=document.querySelector('.variant-menu-button');
+if(openBtn)openBtn.addEventListener('click',reset);
+render();
 }catch(e){}})();
 </script>
 </body>

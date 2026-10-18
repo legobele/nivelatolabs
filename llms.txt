@@ -7,6 +7,9 @@
 - [Home](https://nivelatolabs.com/): what the lab is
 - [Products](https://nivelatolabs.com/products/): Nivelato, offset measuring software for glass shops; PhoneBench, a robotics AI benchmark; and research prototypes
 - [About](https://nivelatolabs.com/about/): how AI-driven software development and multi-agent development work at the lab
+- [Mission](https://nivelatolabs.com/about/mission/): the lab's mission: software that measures up, for the trades that get ignored
+- [Vision](https://nivelatolabs.com/about/vision/): the lab's vision: a one-person lab that out-ships companies
+- [Core Values](https://nivelatolabs.com/about/values/): the lab's core values: measure honestly, publish the failures, the builder supports it, small on purpose
 - [Team](https://nivelatolabs.com/team/): the whole team is Benj Lebron: founder, engineering, design, support, and QA in one person
 - [PhoneBench](https://nivelatolabs.com/phonebench/): the agentic robotics benchmark: scenarios and published results
 - [Contact](https://nivelatolabs.com/contact/): reach the lab
