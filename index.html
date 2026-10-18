@@ -198,6 +198,31 @@ section{background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 
 .working-with h3{font-size:1.3rem;margin-bottom:6px}
 .working-with p{color:var(--muted);max-width:52ch}
 @media(max-width:640px){.working-with{flex-direction:column;align-items:flex-start}}
+.company-spot{position:relative;display:flex;align-items:center;gap:18px}
+.company-badge{width:96px;height:96px;flex:none;border-radius:50%;border:1px solid rgba(255,255,255,.38);background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.company-badge img{width:68%;height:auto}
+.company-badge:hover{border-color:rgba(255,255,255,.7)}
+.company-hint{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.company-card{position:absolute;left:0;top:calc(100% + 16px);z-index:60;width:min(430px,calc(100vw - 48px));border:1px solid var(--line);border-radius:20px;background:var(--card);padding:22px;opacity:0;visibility:hidden;transform:translateY(6px) scale(.98);transform-origin:top left;transition:opacity .28s var(--niv-mo-ease,cubic-bezier(.22,1,.36,1)),transform .28s var(--niv-mo-ease,cubic-bezier(.22,1,.36,1)),visibility 0s linear .28s}
+.company-spot:hover .company-card,.company-spot:focus-within .company-card,.company-spot.open .company-card{opacity:1;visibility:visible;transform:none;transition:opacity .28s var(--niv-mo-ease,cubic-bezier(.22,1,.36,1)),transform .28s var(--niv-mo-ease,cubic-bezier(.22,1,.36,1))}
+.company-card-head{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.company-mini{width:52px;height:52px;flex:none;border-radius:50%;border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center}
+.company-mini img{width:70%;height:auto}
+.company-card h3{font-size:1.12rem;line-height:1.25}
+.company-loc{color:var(--muted);font-size:.86rem}
+.company-desc{color:var(--muted);font-size:.94rem;margin-bottom:16px}
+.company-cta{width:100%;font:inherit;font-size:.92rem;color:var(--ink);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:11px 18px;cursor:pointer}
+.company-cta:hover{background:rgba(255,255,255,.12)}
+.company-pop{position:fixed;inset:0;z-index:500;background:rgba(3,3,4,.9);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);overflow-y:auto;padding:28px 20px}
+.company-pop[hidden]{display:none}
+.company-pop-panel{position:relative;max-width:520px;margin:4vh auto;border:1px solid var(--line);border-radius:24px;background:var(--card);padding:28px}
+.company-pop-close{position:absolute;top:16px;right:16px;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;font-size:1.25rem;cursor:pointer}
+.company-pop h4{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:22px 0 10px}
+.company-quote{border-left:2px solid rgba(255,255,255,.35);padding-left:14px;margin-bottom:12px;color:var(--ink)}
+.company-quote span{display:block;color:var(--muted);font-size:.84rem;margin-top:4px}
+.company-none{color:var(--muted);font-size:.92rem}
+body.company-pop-open{overflow:hidden}
+@media(prefers-reduced-motion:reduce){.company-card{transition:none}}
 .cookie-bar{position:fixed;left:16px;right:16px;bottom:16px;z-index:70;max-width:720px;margin:0 auto;display:flex;gap:16px;align-items:center;justify-content:space-between;padding:16px 18px;border-radius:20px;background:rgba(16,16,19,.72);border:1px solid rgba(255,255,255,.16);-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 18px 50px rgba(0,0,0,.5);font-size:.88rem;color:var(--muted)}
 .cookie-bar[hidden]{display:none}
 .cookie-bar .cb-tag{font-family:'JetBrains Mono',monospace;letter-spacing:.18em;color:var(--ink);text-transform:uppercase;font-size:.72rem;display:block;margin-bottom:4px}
@@ -352,11 +377,13 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 
 <section class="alt reveal"><div class="wrap">
 <div class="sec-kicker">Working with</div>
-<div class="working-with">
-<img src="/assets/qg-monogram-white.png" alt="Quality Glazing Contractors" width="287" height="159">
-<div>
-<h3>Quality Glazing Contractors</h3>
-<p>San Juan, Puerto Rico. The first shop running Nivelato in the field, measuring and quoting storefronts across the metro area.</p>
+<div class="company-spot" id="company-spot">
+<button type="button" class="company-badge" id="company-badge" aria-haspopup="dialog" aria-expanded="false" aria-label="Quality Glazing Contractors: show company card"><img src="/assets/qg-monogram-white.png" alt="" width="287" height="159"></button>
+<span class="company-hint" aria-hidden="true">Products used by</span>
+<div class="company-card">
+<div class="company-card-head"><span class="company-mini"><img src="/assets/qg-monogram-white.png" alt="" width="287" height="159"></span><div><h3>Quality Glazing Contractors</h3><p class="company-loc">San Juan, Puerto Rico</p></div></div>
+<p class="company-desc">Quality Glazing Contractors is a leading glass shop in Puerto Rico, who uses Nivelato for their employees to assist them.</p>
+<button type="button" class="company-cta" id="company-open">View full testimonial</button>
 </div>
 </div>
 </div></section>
@@ -472,6 +499,38 @@ var openBtn=document.querySelector('.variant-menu-button');
 if(openBtn)openBtn.addEventListener('click',reset);
 render();
 }catch(e){}})();
+</script>
+
+<div class="company-pop" id="company-pop" role="dialog" aria-modal="true" aria-labelledby="company-pop-title" hidden>
+<div class="company-pop-panel">
+<button type="button" class="company-pop-close" id="company-pop-close" aria-label="Close testimonial">&times;</button>
+<div class="company-card-head"><span class="company-mini"><img src="/assets/qg-monogram-white.png" alt="" width="287" height="159"></span><div><h3 id="company-pop-title">Quality Glazing Contractors</h3><p class="company-loc">San Juan, Puerto Rico</p></div></div>
+<p class="company-desc">Quality Glazing Contractors is a leading glass shop in Puerto Rico, who uses Nivelato for their employees to assist them.</p>
+<h4>Employee testimonials</h4>
+<div id="company-employee-quotes"></div>
+<h4>Company testimonial</h4>
+<div id="company-main-quote"></div>
+</div>
+</div>
+<script>
+(function(){
+var TESTIMONIALS={employee:[],company:null};
+function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML;}
+function renderQuotes(){
+  var e=document.getElementById('company-employee-quotes'),m=document.getElementById('company-main-quote');
+  if(!e||!m)return;
+  e.innerHTML=TESTIMONIALS.employee.length?TESTIMONIALS.employee.map(function(q){return '<p class="company-quote">&ldquo;'+esc(q.text)+'&rdquo;<span>- '+esc(q.name)+'</span></p>';}).join(''):'<p class="company-none">Testimonials from the Quality Glazing team are being collected.</p>';
+  m.innerHTML=TESTIMONIALS.company?'<p class="company-quote">&ldquo;'+esc(TESTIMONIALS.company.text)+'&rdquo;<span>- '+esc(TESTIMONIALS.company.name)+'</span></p>':'<p class="company-none">The company testimonial is being collected.</p>';
+}
+renderQuotes();
+var spot=document.getElementById('company-spot'),badge=document.getElementById('company-badge'),openBtn=document.getElementById('company-open'),pop=document.getElementById('company-pop'),closeBtn=document.getElementById('company-pop-close');
+if(badge&&spot){badge.addEventListener('click',function(){var open=spot.classList.toggle('open');badge.setAttribute('aria-expanded',open?'true':'false');});}
+function openPop(){if(!pop)return;pop.hidden=false;document.body.classList.add('company-pop-open');if(closeBtn)closeBtn.focus();}
+function closePop(){if(!pop)return;pop.hidden=true;document.body.classList.remove('company-pop-open');if(openBtn)openBtn.focus();}
+if(openBtn)openBtn.addEventListener('click',openPop);
+if(closeBtn)closeBtn.addEventListener('click',closePop);
+if(pop){pop.addEventListener('click',function(e){if(e.target===pop)closePop();});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!pop.hidden)closePop();});}
+})();
 </script>
 </body>
 </html>
