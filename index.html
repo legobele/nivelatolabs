@@ -33,7 +33,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 nav ul{display:flex;gap:22px;list-style:none;font-size:.92rem}
 nav ul a{text-decoration:none;color:var(--muted)} nav ul a:hover,nav ul a[aria-current]{color:var(--ink)}
 .btn{display:inline-block;background:var(--amber);color:#141414;font-weight:600;padding:12px 26px;border-radius:999px;text-decoration:none;font-size:.95rem;border:none;cursor:pointer}
-.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.ghost{background:rgba(255,255,255,.05);color:var(--ink);border:1px solid rgba(255,255,255,.42)}
 header{padding:110px 0 84px;position:relative;overflow:hidden}
 header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 70% 0%,rgba(255,255,255,.09),transparent 65%);pointer-events:none}
 .kicker{font-family:'JetBrains Mono';font-size:.8rem;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:22px}
@@ -58,7 +58,7 @@ h2{font-family:'Space Grotesk';font-size:clamp(1.8rem,3.6vw,2.7rem);line-height:
 .prose{max-width:70ch;color:var(--muted);font-size:1.05rem}
 .prose p{margin-bottom:18px}
 .prose strong{color:var(--ink)}
-footer{padding:44px 0;border-top:1px solid var(--line);color:var(--dim);font-size:.9rem}
+footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
 footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 footer a{color:var(--muted);text-decoration:none;margin-right:18px}
 
@@ -177,8 +177,26 @@ section{background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 
 .product-hero .ph-eyebrow,.product-hero .ph-title,.product-hero .ph-sub{animation:rise .95s cubic-bezier(.22,.8,.3,1) both}
 .product-hero .ph-title{animation-delay:.12s}
 .product-hero .ph-sub{animation-delay:.26s}
-.photo-credit{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;color:rgba(250,250,250,.45)}
-.photo-credit a{color:rgba(250,250,250,.65);text-decoration:none}
+.photo-credit{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;color:rgba(250,250,250,.68)}
+.photo-credit a{color:rgba(250,250,250,.85);text-decoration:none}
+.working-with{display:flex;gap:26px;align-items:center;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:28px}
+.working-with img{height:84px;width:auto;flex:none}
+.working-with h3{font-size:1.3rem;margin-bottom:6px}
+.working-with p{color:var(--muted);max-width:52ch}
+@media(max-width:640px){.working-with{flex-direction:column;align-items:flex-start}}
+.cookie-bar{position:fixed;left:16px;right:16px;bottom:16px;z-index:70;max-width:720px;margin:0 auto;display:flex;gap:16px;align-items:center;justify-content:space-between;padding:16px 18px;border-radius:20px;background:rgba(16,16,19,.72);border:1px solid rgba(255,255,255,.16);-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 18px 50px rgba(0,0,0,.5);font-size:.88rem;color:var(--muted)}
+.cookie-bar[hidden]{display:none}
+.cookie-bar .cb-tag{font-family:'JetBrains Mono',monospace;letter-spacing:.18em;color:var(--ink);text-transform:uppercase;font-size:.72rem;display:block;margin-bottom:4px}
+.cookie-bar .cb-actions{display:flex;gap:10px;flex:none}
+.cookie-bar .btn{padding:9px 16px;font-size:.85rem}
+.cookie-bar .cb-main{flex:1;min-width:0}
+.cookie-bar .cb-main p{margin:0}
+.cb-slider-row{margin-top:12px}
+.cb-slider-row label{display:block;font-size:.8rem;color:var(--muted);margin-bottom:6px}
+.cb-slider-line{display:flex;align-items:center;gap:14px}
+.cb-slider-line input[type=range]{flex:1;accent-color:#fafafa;min-width:120px}
+.cb-readout{font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.06em;color:var(--ink);white-space:nowrap}
+@media(max-width:640px){.cookie-bar{flex-direction:column;align-items:flex-start}}
 .photo-credit a:hover{color:#fff}
 @media(max-width:480px){.product-hero{--navh:116px}}
 @media(prefers-reduced-motion:reduce){.product-hero .ph-eyebrow,.product-hero .ph-title,.product-hero .ph-sub{animation:none}}
@@ -282,6 +300,7 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
     </div>
   </div>
 </div>
+<main>
 <section class="product-hero" aria-label="Nivelato: field measurement, reinvented">
 <div class="ph-inner wrap">
 <div class="ph-eyebrow">[ Nivelato Labs ]</div>
@@ -312,11 +331,33 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 <a class="btn ghost" href="/about/">Read the About page</a>
 </div>
 </div></section>
+
+<section class="alt reveal"><div class="wrap">
+<div class="sec-kicker">Working with</div>
+<div class="working-with">
+<img src="/assets/qg-monogram-white.png" alt="Quality Glazing Contractors" width="287" height="159">
+<div>
+<h3>Quality Glazing Contractors</h3>
+<p>San Juan, Puerto Rico. The first shop running Nivelato in the field, measuring and quoting storefronts across the metro area.</p>
+</div>
+</div>
+</div></section>
+</main>
 <footer><div class="wrap">
 <div>Nivelato Labs. Software that measures up.</div>
 <div class="photo-credit">Hero photo: <a href="https://commons.wikimedia.org/wiki/File:20190725_Oeschinensee-Panorama,_Kandersteg_(06540-42_stitch).jpg" target="_blank" rel="noopener noreferrer">© Günter Seggebäing, Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></div>
-<div><a href="/products/">Products</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/pr/">Para clientes en PR</a></div>
+<div><a href="/products/">Products</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/pr/">Para clientes en PR</a><a href="#" id="cb-open">Cookies</a></div>
 </div></footer>
+<div class="cookie-bar" id="cookie-bar" role="region" aria-label="Cookie notice" hidden>
+<div class="cb-main">
+<p><span class="cb-tag">[ Cookies ]</span>This site uses cookies for sign-in and privacy-respecting analytics. Who are we sharing your data with? No one. I still haven't joined a 700-partner polycule.</p>
+<div class="cb-slider-row">
+<label for="cb-slider">Speaking of which: how many people does a polycule need before it becomes a cult?</label>
+<div class="cb-slider-line"><input type="range" id="cb-slider" min="2" max="700" step="1" value="50" aria-label="Polycule to cult threshold"><span class="cb-readout" id="cb-readout">50 people: still a polycule</span></div>
+</div>
+</div>
+<div class="cb-actions"><button type="button" class="btn" id="cb-accept">Accept</button><button type="button" class="btn ghost" id="cb-decline">Decline</button></div>
+</div>
 <script>
 document.documentElement.classList.add('js');
 (function(){try{
@@ -325,6 +366,28 @@ if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add(
 var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}})},{threshold:.12});
 els.forEach(function(e){io.observe(e)});
 }catch(err){document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in')});}})();
+</script>
+<script>
+/* Cookie notice: shown until the visitor picks Accept or Decline; the
+   choice is kept in localStorage (niv-cookie-consent) and the footer
+   Cookies link reopens the bar. Declining also removes the analytics
+   beacon for the rest of the page view. */
+(function(){try{
+var bar=document.getElementById('cookie-bar');if(!bar)return;
+var KEY='niv-cookie-consent';
+function choice(){try{return localStorage.getItem(KEY);}catch(e){return null;}}
+function save(v){try{localStorage.setItem(KEY,v);}catch(e){}}
+function show(){bar.hidden=false;var cue=document.querySelector('.scroll-cue');if(cue){cue.classList.remove('cue-on');}}
+function hide(){bar.hidden=true;var cue=document.querySelector('.scroll-cue');if(cue&&window.scrollY<=40){cue.classList.add('cue-on');}}
+if(!choice()){show();}
+var acc=document.getElementById('cb-accept'),dec=document.getElementById('cb-decline'),open=document.getElementById('cb-open');
+if(acc){acc.addEventListener('click',function(){save('accepted');hide();});}
+if(dec){dec.addEventListener('click',function(){save('declined');var b=document.querySelector('script[src*="static.cloudflareinsights.com"]');if(b){b.remove();}hide();});}
+if(open){open.addEventListener('click',function(e){e.preventDefault();show();});}
+var slider=document.getElementById('cb-slider'),readout=document.getElementById('cb-readout');
+function paintSlider(){if(!slider||!readout)return;var n=+slider.value;readout.textContent=n+' people: '+(n>=700?'okay, that one is a cult':'still a polycule');}
+if(slider){slider.addEventListener('input',paintSlider);paintSlider();}
+}catch(err){}})();
 </script>
 <script>
 /* Scroll cue behavior: visible at the top of the page, retired for good
@@ -337,7 +400,8 @@ var next=hero?hero.nextElementSibling:null;
 while(next&&(next.tagName==='STYLE'||next.classList.contains('scroll-cue'))){next=next.nextElementSibling;}
 var gone=false;
 function hide(){gone=true;cue.classList.remove('cue-on');}
-if(window.scrollY<=40){cue.classList.add('cue-on');}
+var cookieBar=document.getElementById('cookie-bar');
+if(window.scrollY<=40&&!(cookieBar&&!cookieBar.hidden)){cue.classList.add('cue-on');}
 window.addEventListener('scroll',function(){if(window.scrollY>40&&!gone){hide();}},{passive:true});
 cue.addEventListener('click',function(){
 hide();

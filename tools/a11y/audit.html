@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Accessibility audit · Nivelato Labs (dev tool)</title>
+<style>
+body{background:#050505;color:#fafafa;font-family:ui-monospace,Menlo,monospace;padding:24px;line-height:1.5}
+h1{font-size:1rem;letter-spacing:.2em;text-transform:uppercase}
+#out{white-space:pre-wrap;font-size:.82rem;color:#a8a8b0}
+iframe{width:1280px;height:900px;border:1px solid #26262b;position:absolute;left:-99999px;top:0}
+</style>
+</head>
+<body>
+<h1>[ A11Y AUDIT ]</h1>
+<div id="out">Running axe-core against the target page…</div>
+<iframe id="target" title="audit target"></iframe>
+<script src="./axe.min.js"></script>
+<script>
+(function () {
+  var params = new URLSearchParams(location.search);
+  var page = params.get('page') || '/';
+  var frame = document.getElementById('target');
+  var out = document.getElementById('out');
+  frame.addEventListener('load', function () {
+    setTimeout(function () {
+      axe.run(frame.contentDocument, { resultTypes: ['violations'] }).then(function (results) {
+        var lines = ['PAGE: ' + page, 'VIOLATIONS: ' + results.violations.length];
+        results.violations.forEach(function (v) {
+          lines.push('');
+          lines.push('[' + v.impact + '] ' + v.id + ' — ' + v.help);
+          v.nodes.slice(0, 6).forEach(function (n) {
+            lines.push('  target: ' + n.target.join(' '));
+            lines.push('  ' + (n.failureSummary || '').replace(/\n/g, ' '));
+          });
+        });
+        out.textContent = lines.join('\n');
+        document.title = 'AXE DONE ' + results.violations.length;
+      }).catch(function (err) {
+        out.textContent = 'AXE ERROR: ' + err.message;
+        document.title = 'AXE ERROR';
+      });
+    }, 600);
+  });
+  frame.src = page;
+})();
+</script>
+</body>
+</html>
