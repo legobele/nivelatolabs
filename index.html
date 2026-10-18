@@ -264,7 +264,7 @@ body.cookie-locked{overflow:hidden}
 .cookie-thanks[hidden]{display:none}
 .cookie-thanks.pop{animation:thanks-in .38s cubic-bezier(.22,1,.36,1)}
 @keyframes thanks-in{from{opacity:0;transform:translateX(-50%) scale(.72)}to{opacity:1;transform:translateX(-50%) scale(1)}}
-.cookie-thanks.bye{transition:opacity .35s ease,transform .35s ease;opacity:0;transform:translateX(-50%) scale(.8)}
+.cookie-thanks.bye{transition:opacity .35s ease,transform .35s ease;opacity:0;transform:translateX(-50%) translateY(8px) scale(.78)}
 @media(max-width:480px){.cookie-thanks{top:126px}}
 @media(prefers-reduced-motion:reduce){.cookie-thanks.pop{animation:none}.cookie-thanks.bye{transition:none}}
 @media(min-width:900px){
@@ -311,11 +311,12 @@ body.cookie-locked.cookie-from-bottom .cookie-sheet{top:auto;bottom:14px}
 .cookie-spot[hidden]{display:none}
 body.cookie-locked.cookie-from-bottom .cookie-sheet{top:auto;bottom:18px}
 .cookie-thanks.at-bottom{top:auto;bottom:18px}
+@media(min-width:900px){body.cookie-present .cookie-thanks{top:auto;bottom:18px;transform-origin:50% 100%}}
 @media(max-width:899px){
 body.cookie-unscrolled .cookie-cue{top:88px;bottom:auto}
 body.cookie-locked.cookie-from-bottom .cookie-sheet{top:14px;bottom:auto}
 body.cookie-locked.cookie-from-bottom .variant-nav{position:fixed;top:auto;bottom:12px;left:12px;right:12px;min-height:66px;padding:6px 16px;margin:0;justify-content:center;background:rgba(9,9,11,.95);z-index:360}
-.cookie-thanks{left:12px;right:12px;width:auto;transform:none;height:64px;max-height:64px;justify-content:center}
+.cookie-thanks{left:12px;right:12px;width:auto;transform:none;height:64px;max-height:64px;justify-content:center;transform-origin:50% 0}
 body.cookie-thanks-on .cookie-thanks{top:12px}
 body.cookie-thanks-on .cookie-thanks.at-bottom{top:12px;bottom:auto}
 .cookie-thanks.pop{animation:thanks-in-m .38s cubic-bezier(.22,1,.36,1)}
