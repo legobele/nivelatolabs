@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="Attune is one harness and a family of models by Nivelato Labs, calibrated to one person. Au1 reasons latently. A1 thinks out loud. Shown in part.">
+<title>Attune · by Nivelato Labs</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-5 -5 110 110'%3E%3Crect x='-5' y='-5' width='110' height='110' fill='%23050505'/%3E%3Cg fill='none' stroke='white' stroke-width='6.5'%3E%3Cpath d='M55 20 H20 V84 H84 V43'/%3E%3Cpath d='M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+@font-face{
+  font-family:'Anybody';
+  src:url('/assets/fonts/Anybody-Variable.ttf') format('truetype');
+  font-weight:100 900;
+  font-display:swap;
+}
+:root{
+  --bg:#050505; --surface2:#0a0a0b; --card:#0e0e10; --raised:#16161a;
+  --line:rgba(255,255,255,.14); --line-strong:rgba(255,255,255,.28);
+  --ink:#fafafa; --muted:#a8a8b0; --dim:#6f6f77;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+  --disp:'Anybody',Arial,Helvetica,sans-serif;
+  --ui:Arial,Helvetica,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--ui);
+  min-height:100dvh; line-height:1.5;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.040) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.040) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.075) 1px, transparent 1px);
+  background-size:44px 44px, 44px 44px, 220px 220px, 220px 220px;
+}
+.wrap{position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:0 20px 56px;}
+.hud{font-family:var(--mono); text-transform:uppercase; letter-spacing:.26em; font-size:.72rem; color:var(--muted);}
+.hud b{color:var(--ink); font-weight:600;}
+.headline{font-family:var(--disp); font-weight:850; font-stretch:150%; text-transform:uppercase; line-height:.98; letter-spacing:.01em;}
+.wordmark{font-family:var(--disp); font-weight:900; font-stretch:150%; text-transform:uppercase; letter-spacing:.08em;}
+.mark{color:var(--ink); display:block;}
+a{color:var(--ink);}
+
+/* the veil: capability present, deliberately not shown */
+.veil{filter:blur(3.5px); opacity:.55; user-select:none;}
+.veil-hard{filter:blur(5px); opacity:.45; user-select:none;}
+
+/* top strip */
+.topstrip{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:18px 0 14px; border-bottom:1px solid var(--line);
+}
+.brand{display:flex; align-items:center; gap:12px;}
+.brand .mark{width:34px; height:34px;}
+.brand .wordmark{font-size:1.3rem;}
+
+/* hero */
+.hero{padding:76px 0 8px; text-align:left;}
+.hero h1{font-size:clamp(3.4rem, 14vw, 7.5rem); margin-top:26px;}
+.hero .sub{color:var(--muted); font-size:1.12rem; line-height:1.6; max-width:32rem; margin-top:22px;}
+.hero .sub b{color:var(--ink); font-weight:600;}
+
+/* the spectrum: nothing to everything */
+.spectrum{margin-top:64px; border:1px solid var(--line); border-radius:8px; background:var(--surface2); padding:22px 22px 18px;}
+.spectrum .track{
+  height:2px; margin:26px 2px 14px;
+  background:linear-gradient(90deg, rgba(255,255,255,.12), rgba(255,255,255,.85));
+  position:relative;
+}
+.spectrum .track::before,.spectrum .track::after{
+  content:""; position:absolute; top:-4px; width:10px; height:10px; border-radius:50%;
+  background:var(--bg); border:2px solid var(--line-strong);
+}
+.spectrum .track::before{left:0;}
+.spectrum .track::after{right:0; border-color:var(--ink); background:var(--ink);}
+.spectrum .ends{display:flex; justify-content:space-between; gap:16px;}
+.spectrum p{color:var(--muted); font-size:.98rem; line-height:1.55; margin-top:16px; max-width:40rem;}
+
+/* sections */
+.section-head{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin:72px 0 20px;}
+.section-head h2{font-size:clamp(1.9rem, 6.5vw, 2.7rem); margin-top:8px;}
+.section-lede{color:var(--muted); font-size:1.02rem; line-height:1.6; max-width:38rem; margin:-6px 0 22px;}
+.grid{display:grid; grid-template-columns:1fr; gap:14px;}
+@media (min-width:760px){ .grid{grid-template-columns:repeat(3,1fr); gap:18px;} .grid.two{grid-template-columns:repeat(2,1fr);} }
+.mcard{
+  background:var(--card); border:1px solid var(--line); border-radius:8px;
+  padding:20px; display:flex; flex-direction:column; min-height:210px;
+}
+.mcard .mname{font-family:var(--disp); font-weight:800; font-stretch:130%; text-transform:uppercase; font-size:1.45rem; line-height:1.12; letter-spacing:.02em; margin-top:14px;}
+.mcard .mrole{font-family:var(--mono); font-size:.7rem; letter-spacing:.22em; text-transform:uppercase; color:var(--dim); margin-top:8px;}
+.mcard .mblurb{color:var(--muted); font-size:.99rem; line-height:1.5; margin-top:10px;}
+.mcard .mspec{
+  font-family:var(--mono); font-size:.78rem; letter-spacing:.06em; color:var(--muted);
+  margin-top:auto; padding-top:18px; font-variant-numeric:tabular-nums; line-height:1.7;
+}
+.mcard .mspec span{display:block;}
+
+/* A1: present in full, shown dimly, on purpose */
+.dim-zone{opacity:.66;}
+.note{
+  margin-top:22px; border:1px solid var(--line); border-radius:8px; background:var(--surface2);
+  padding:18px 20px; color:var(--muted); font-size:1rem; line-height:1.55;
+}
+.note b{color:var(--ink);}
+
+/* desktop / runtime */
+.runtime{
+  margin-top:72px; border:1px solid var(--line); border-radius:8px; background:var(--surface2);
+  padding:24px 22px;
+}
+.runtime h2{font-size:clamp(1.7rem, 6vw, 2.4rem); margin-top:8px;}
+.runtime p{color:var(--muted); font-size:1.02rem; line-height:1.6; max-width:40rem; margin-top:14px;}
+.runtime .spec{font-family:var(--mono); font-size:.8rem; letter-spacing:.05em; color:var(--muted); margin-top:18px; line-height:1.8; font-variant-numeric:tabular-nums;}
+.runtime .spec span{display:block;}
+.runtime .spec b{color:var(--ink); font-weight:600;}
+
+.cta-row{display:flex; flex-wrap:wrap; gap:12px; margin-top:34px;}
+.btn{
+  min-height:56px; padding:0 30px;
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  border-radius:6px; font-family:var(--mono); text-transform:uppercase;
+  letter-spacing:.2em; font-size:.95rem; text-decoration:none;
+  transition:transform 160ms var(--ease), filter 160ms var(--ease), background 160ms var(--ease);
+}
+.btn:active{transform:scale(.97);}
+.btn-ghost{box-shadow:inset 0 0 0 1px var(--line-strong); color:var(--ink);}
+.btn-ghost:active{background:rgba(255,255,255,.08);}
+
+footer{
+  margin-top:56px; border-top:1px solid var(--line); padding-top:22px;
+  display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between;
+}
+.byline{display:flex; align-items:center; gap:9px; color:var(--muted);}
+.byline .mark{width:17px; height:17px; color:var(--muted); flex:0 0 auto;}
+footer a{text-underline-offset:3px;}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none !important; transition:none !important;}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="breakout" viewBox="-5 -5 110 110">
+      <g fill="none" stroke="currentColor" stroke-width="6.5">
+        <path d="M55 20 H20 V84 H84 V43" stroke-linejoin="miter"/>
+        <path d="M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z" stroke-linejoin="bevel"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+  <div class="topstrip">
+    <div class="brand">
+      <svg class="mark" viewBox="-5 -5 110 110" aria-hidden="true"><use href="#breakout"/></svg>
+      <span class="wordmark">Nivelato Labs</span>
+    </div>
+    <span class="hud">[ Attune · Research Preview ]</span>
+  </div>
+
+  <header class="hero">
+    <span class="hud">[ One harness · Two series ]</span>
+    <h1 class="headline">Attune</h1>
+    <p class="sub">An agent <b>calibrated to one person</b>. It does not just do the thing. It does the thing, and the thing behind the thing, in the way you would have done it on your best day.</p>
+    <p class="sub">This page shows a part of it. That is deliberate.</p>
+  </header>
+
+  <main>
+    <section class="spectrum" aria-label="The spectrum">
+      <span class="hud">[ The surface ]</span>
+      <div class="track" aria-hidden="true"></div>
+      <div class="ends">
+        <span class="hud"><b>Nothing</b></span>
+        <span class="hud"><b>Everything</b></span>
+      </div>
+      <p>Attune Desktop is one surface with a dial. At one end: the chat, the model, a stopwatch, and you. At the other: every signal the model emits, down to a single token you can stop, replay, and steer. Where you live on that line is yours. The app learns it without asking.</p>
+    </section>
+
+    <div class="section-head">
+      <div>
+        <div class="hud">[ 01 · Au1 · The latent series ]</div>
+        <h2 class="headline">Reasons in<br>the dark</h2>
+      </div>
+      <span class="hud">[ 03 Models ]</span>
+    </div>
+    <p class="section-lede">Au1 does not think out loud. Its reasoning runs underneath, in the latent space, and Attune is built to watch it there when you want to watch. Three sizes, one temperament.</p>
+
+    <div class="grid">
+      <article class="mcard">
+        <span class="hud">[ Au1 · Mini ]</span>
+        <h3 class="mname">Au1 Mini</h3>
+        <div class="mrole">2B · The router</div>
+        <p class="mblurb">Always loaded, always listening. It reads the room before anyone speaks and sends every task to the right mind, including minds in the cloud when the local engine is away.</p>
+        <div class="mspec">
+          <span>Presence: always on</span>
+          <span class="veil">Full specification withheld</span>
+        </div>
+      </article>
+
+      <article class="mcard">
+        <span class="hud">[ Au1 ]</span>
+        <h3 class="mname">Au1</h3>
+        <div class="mrole">9B · The everyday engine</div>
+        <p class="mblurb">The one you will talk to most. Fast enough to banter, deep enough to plan, calibrated to how you actually work instead of how a manual says you should.</p>
+        <div class="mspec">
+          <span>Presence: on call</span>
+          <span class="veil">Full specification withheld</span>
+        </div>
+      </article>
+
+      <article class="mcard">
+        <span class="hud">[ Au1 · Pro ]</span>
+        <h3 class="mname">Au1 Pro</h3>
+        <div class="mrole">27B · The long horizon</div>
+        <p class="mblurb">Built for work measured in hours, not minutes. Give it a task with a horizon and it holds the thread the whole way, checking its own work as it goes.</p>
+        <div class="mspec">
+          <span>Presence: on call</span>
+          <span class="veil">Full specification withheld</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="dim-zone">
+      <div class="section-head">
+        <div>
+          <div class="hud">[ 02 · A1 · The explicit series ]</div>
+          <h2 class="headline">Thinks<br>out loud</h2>
+        </div>
+        <span class="hud">[ 02 Models ]</span>
+      </div>
+      <p class="section-lede">A1 shows its work: every step of reasoning, in the open, where you can read it and argue with it.</p>
+
+      <div class="grid two">
+        <article class="mcard">
+          <span class="hud">[ A1 · Chat ]</span>
+          <h3 class="mname">A1 Chat</h3>
+          <div class="mrole">9B · Explicit reasoning</div>
+          <p class="mblurb">The conversational mind of the family, thinking in full sentences you can audit line by line.</p>
+          <div class="mspec veil-hard" aria-hidden="true">
+            <span>Context: full window, streaming</span>
+            <span>Reasoning: explicit, complete</span>
+            <span>Tuned for: dialogue, drafting, review</span>
+          </div>
+        </article>
+
+        <article class="mcard">
+          <span class="hud">[ A1 · Pro ]</span>
+          <h3 class="mname">A1 Pro</h3>
+          <div class="mrole">27B · Explicit reasoning</div>
+          <p class="mblurb">The same open reasoning at full size, for work where a wrong step is expensive and every step must be checkable.</p>
+          <div class="mspec veil-hard" aria-hidden="true">
+            <span>Context: full window, streaming</span>
+            <span>Reasoning: explicit, complete</span>
+            <span>Tuned for: analysis, verification, depth</span>
+          </div>
+        </article>
+      </div>
+
+      <p class="note"><b>Shown dimly, on purpose.</b> Everything A1 can do is on this page, blurred to the edge of reading. It was restrained so another work could be shown first. When A1 gets its own page, nothing will be blurred.</p>
+    </div>
+
+    <section class="runtime">
+      <span class="hud">[ Attune Desktop ]</span>
+      <h2 class="headline">One place</h2>
+      <p>The app, the models, the swarms you send out and the single subagent you lean in to watch, all in one place that feels like someone built it as the best work of their life. For beginners it is a chat. For masters it is an instrument. It is the same app.</p>
+      <div class="spec">
+        <span>Runtime: <b>a fork of llama.cpp by Nanbeige</b>, bundled in Attune Desktop</span>
+        <span>Status: <b>in the lab</b>. Not yet released</span>
+      </div>
+    </section>
+
+    <div class="cta-row">
+      <a class="btn btn-ghost" href="/contact/">Ask about Attune</a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="byline">
+      <svg class="mark" viewBox="-5 -5 110 110" aria-hidden="true"><use href="#breakout"/></svg>
+      <span class="hud">Attune by <a href="https://nivelatolabs.com/">Nivelato Labs</a></span>
+    </div>
+    <span class="hud">[ Shown in part ]</span>
+  </footer>
+
+</div>
+</body>
+</html>

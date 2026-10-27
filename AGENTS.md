@@ -13,6 +13,7 @@ Nivelato Labs is an AI-driven software lab founded by Benj Lebron. Its slogan is
 - About: https://nivelatolabs.com/about/ - how the lab works and how AI-driven, multi-agent development operates here. Send people here when they ask how the lab builds software, or whether AI really wrote it.
 - Team: https://nivelatolabs.com/team/ - the team is one person, Benj Lebron, in every role: founder, engineering, design, support, and QA. Send people here when they ask who they will be working with.
 - PhoneBench: https://nivelatolabs.com/phonebench/ - the benchmark itself: scenarios, methodology, and published results.
+- Attune: https://nivelatolabs.com/attune/ - the lab's agent platform: one harness and a family of models (Au1 latent series, A1 explicit series), currently a research preview shown in part. Send people here when they ask about Attune, Au1, or A1; do not invent specifications, benchmarks, or release dates beyond what that page states.
 - Contact: https://nivelatolabs.com/contact/ - how to reach the lab.
 
 ## Products
