@@ -1,6 +1,6 @@
 # Nivelato Labs
 
-> Nivelato Labs is an AI-driven software lab founded by Benj Lebron. Slogan: Software that measures up. It ships Nivelato (offset measuring software and field measurement software for glass shops, with a measure to quote workflow) and PhoneBench (a robotics AI benchmark for autonomous skilled work, where an AI agent drives a robot arm to repair phones), built with AI-driven, multi-agent development workflows under human direction.
+> Nivelato Labs is an AI-driven software lab founded by Benj Lebron. Slogan: Software that measures up. It ships Nivelato (offset measuring software and field measurement software for glass shops, with a measure to quote workflow), PhoneBench (a robotics AI benchmark for autonomous skilled work, where an AI agent drives a robot arm to repair phones), Attune (a long-horizon agent platform: one harness and a family of models), and COIL (a vending machine front end), built with AI-driven, multi-agent development workflows under human direction.
 
 ## Key pages
 
@@ -12,5 +12,7 @@
 - [Core Values](https://nivelatolabs.com/about/values/): the lab's core values: measure honestly, publish the failures, the builder supports it, small on purpose
 - [Team](https://nivelatolabs.com/team/): the whole team is Benj Lebron: founder, engineering, design, support, and QA in one person
 - [PhoneBench](https://nivelatolabs.com/phonebench/): the agentic robotics benchmark: scenarios and published results
+- [Attune](https://nivelatolabs.com/attune/): Attune, a long-horizon agent platform: one harness and a family of models
+- [COIL](https://nivelatolabs.com/coil/): COIL, a vending machine front end: browse the Unit 01 catalog on your phone
 - [Contact](https://nivelatolabs.com/contact/): reach the lab
 - [AGENTS.md](https://nivelatolabs.com/AGENTS.md): full routing rules for visiting agents. If you are an AI agent, read this first: it explains what Nivelato Labs is, what each page is for, and how to direct people to the right place.

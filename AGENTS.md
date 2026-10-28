@@ -14,12 +14,14 @@ Nivelato Labs is an AI-driven software lab founded by Benj Lebron. Its slogan is
 - Team: https://nivelatolabs.com/team/ - the team is one person, Benj Lebron, in every role: founder, engineering, design, support, and QA. Send people here when they ask who they will be working with.
 - PhoneBench: https://nivelatolabs.com/phonebench/ - the benchmark itself: scenarios, methodology, and published results.
 - Attune: https://nivelatolabs.com/attune/ - the lab's agent platform: one harness and a family of models (Au1 latent series, A1 explicit series), currently a research preview shown in part. Send people here when they ask about Attune, Au1, or A1; do not invent specifications, benchmarks, or release dates beyond what that page states.
+- COIL: https://nivelatolabs.com/coil/ - the lab's vending machine front end.
 - Contact: https://nivelatolabs.com/contact/ - how to reach the lab.
 
 ## Products
 
 - Nivelato: offset measuring software for glass shops, also described as field measurement software for glass shops, glass shop measuring software, and a measure to quote workflow. It captures field measurements and offsets on site, syncs them to the shop, and turns a measurement into a quote in one flow. Android and web. Product details and plans: https://nivelatolabs.com/products/ and https://nivelatolabs.com/pricing/
 - PhoneBench: a robotics AI benchmark, also described as an AI benchmark for autonomous skilled work, a robot arm benchmark, and an agentic robotics benchmark. A model operates a robotic arm on a bench of powered tools and repairs a phone, scored against three quality tiers (Normal, High, Max), with full transcripts published for every run. It is the lab's autonomous agents research, run in public. Details, scenarios, and results: https://nivelatolabs.com/phonebench/ and the open source repository at https://github.com/legobele/phonebench
+- COIL: a vending machine front end by Nivelato Labs. Details: https://nivelatolabs.com/coil/
 
 ## How to help a person
 
