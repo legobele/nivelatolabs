@@ -6,6 +6,7 @@
 
 - [Home](https://nivelatolabs.com/): what the lab is
 - [Products](https://nivelatolabs.com/products/): Nivelato, offset measuring software for glass shops; PhoneBench, a robotics AI benchmark; and research prototypes
+- [Nivelato](https://nivelatolabs.com/nivelato/): the dedicated Nivelato page: what it does, how it works, pricing, and how to get it, combined on one page
 - [About](https://nivelatolabs.com/about/): how AI-driven software development and multi-agent development work at the lab
 - [Mission](https://nivelatolabs.com/about/mission/): the lab's mission: software that measures up, for the trades that get ignored
 - [Vision](https://nivelatolabs.com/about/vision/): the lab's vision: a one-person lab that out-ships companies

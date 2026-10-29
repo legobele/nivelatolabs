@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{if('scrollRestoration' in history){history.scrollRestoration='manual'}if(!window.location.hash){window.scrollTo(0,0);document.addEventListener('DOMContentLoaded',function(){if(!window.__nlUserScroll){window.scrollTo(0,0)}});window.addEventListener('scroll',function(){window.__nlUserScroll=1},{once:true,passive:true})}}catch(e){}</script>
+<title>Nivelato - Offset Measuring Software for Glass Shops - Nivelato Labs</title>
+<meta name="description" content="Nivelato is offset measuring software for glass shops. It captures field measurements and offsets on site, syncs them to the shop, and turns a measurement into a quote in one measure to quote flow.">
+<link rel="canonical" href="https://nivelatolabs.com/nivelato/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nivelato Labs">
+<meta property="og:title" content="Nivelato - Offset Measuring Software for Glass Shops - Nivelato Labs">
+<meta property="og:description" content="Nivelato is offset measuring software for glass shops. It captures field measurements and offsets on site, syncs them to the shop, and turns a measurement into a quote in one measure to quote flow.">
+<meta property="og:url" content="https://nivelatolabs.com/nivelato/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nivelato - Offset Measuring Software for Glass Shops - Nivelato Labs">
+<meta name="twitter:description" content="Nivelato is offset measuring software for glass shops. It captures field measurements and offsets on site, syncs them to the shop, and turns a measurement into a quote in one measure to quote flow.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","@id":"https://nivelatolabs.com/nivelato/#nivelato","name":"Nivelato","applicationCategory":"BusinessApplication","operatingSystem":"Android, Web","url":"https://nivelatolabs.com/nivelato/","publisher":{"@id":"https://nivelatolabs.com/#org"},"description":"Nivelato is offset measuring software for glass shops. It captures field measurements and offsets on site, syncs them to the shop, and turns a measurement into a quote in one measure to quote flow."}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme:dark;
+    --bg:#0b0b0e; --bg2:#121216; --card:#16161c; --line:#232329;
+    --ink:#f2f1ec; --muted:#a7a7b3; --dim:#6d6d78;
+    --amber:#ffffff; --amber2:#e6e6e9; --laser:#ffffff;
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--amber);color:#111}
+  /* scrollbar */
+  html{scrollbar-width:thin;scrollbar-color:#2e2e38 var(--bg)}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:#2e2e38;border-radius:8px;border:2px solid var(--bg)}
+  ::-webkit-scrollbar-thumb:hover{background:#3f3f4c}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  /* nav */
+  nav{position:sticky;top:0;left:0;right:0;width:100%;z-index:50;background:rgba(11,11,14,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-family:'Space Grotesk';font-weight:700;font-size:1.15rem;letter-spacing:.02em;display:flex;align-items:center;gap:10px;text-decoration:none;flex:none;margin-right:16px}
+  .brand .tick{width:26px;height:26px;border:2px solid var(--amber);border-radius:6px;position:relative;flex:none}
+  .brand .tick::after{content:"";position:absolute;left:5px;top:5px;width:12px;height:6px;border-left:3px solid var(--amber);border-bottom:3px solid var(--amber);transform:rotate(-45deg)}
+  nav ul{display:flex;gap:15px;list-style:none;font-size:.85rem}
+  nav ul a{text-decoration:none;color:var(--muted);transition:color .2s;white-space:nowrap}
+  nav ul a:hover{color:var(--ink)}
+  .btn{display:inline-block;background:var(--amber);color:#141414;font-weight:600;padding:12px 26px;border-radius:999px;text-decoration:none;font-size:.95rem;transition:transform .15s,box-shadow .15s;border:none;cursor:pointer}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,255,255,.35)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn.ghost:hover{box-shadow:none;border-color:var(--amber)}
+  .btn.small{padding:9px 20px;font-size:.85rem}
+  .login-link{font-size:.9rem;color:var(--muted);text-decoration:none;margin-right:11px;transition:color .2s;white-space:nowrap}
+  .login-link:hover{color:var(--ink)}
+  .nav-actions{display:flex;align-items:center;flex:none}
+  nav .btn{white-space:nowrap}nav .lang-toggle{margin-right:10px}
+  @media(max-width:1060px){nav ul{display:none}}
+  @media(max-width:1100px) and (min-width:1061px){nav ul{gap:11px;font-size:.80rem}.brand{font-size:1.02rem;margin-right:10px}.login-link{margin-right:10px;font-size:.84rem}.lang-toggle{margin-right:9px;padding:7px 13px}nav .btn.small{padding:8px 14px}}
+  .nav-burger{display:none;background:none;border:1px solid var(--line);border-radius:10px;color:#fff;font-size:1.3rem;width:44px;height:44px;cursor:pointer}
+  @media(max-width:1060px){.nav-burger{display:inline-flex;align-items:center;justify-content:center}}
+  @media(max-width:1060px){.brand{font-size:0}.brand .tick{font-size:1.2rem}.nav-actions .login-link{display:none}nav .wrap{gap:10px}}
+  .m-drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);background:#0b0b0e;border-left:1px solid var(--line);z-index:200;transform:translateX(105%);transition:transform .25s ease;padding:20px;display:flex;flex-direction:column;gap:6px}
+  body.m-nav-open .m-drawer{transform:translateX(0)}
+  .m-drawer a.m-link{display:block;padding:14px 12px;color:#fff;text-decoration:none;font-size:1.1rem;border-radius:10px}
+  .m-drawer a.m-link:hover{background:rgba(255,255,255,.06)}
+  .m-drawer .m-actions{margin-top:auto;display:flex;flex-direction:column;gap:10px;padding-top:16px;border-top:1px solid var(--line)}
+  .m-scrim{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:190;display:none}
+  body.m-nav-open .m-scrim{display:block}
+  .m-close{align-self:flex-end;background:none;border:none;color:var(--dim);font-size:1.5rem;cursor:pointer;padding:4px}
+  /* hero */
+  header{padding:110px 0 80px;position:relative;overflow:hidden}
+  header::before{content:"";position:absolute;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(255,255,255,.14),transparent 65%);pointer-events:none}
+  /* Scroll cue: a small glass HUD pill fixed at the bottom of the first
+     viewport while the page sits at the top. The behavior script at the
+     end of the body adds .cue-on and retires it for good (this page view)
+     once the reader scrolls past 40px. Whisper-level: white at low opacity,
+     mono HUD type, thin falling line. */
+  .scroll-cue{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:90;display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 16px 7px;background:rgba(8,8,10,.72);border:1px solid rgba(255,255,255,.14);border-radius:999px;cursor:pointer;color:#fafafa;font-family:'JetBrains Mono',monospace;font-size:.64rem;letter-spacing:.34em;text-indent:.34em;opacity:0;visibility:hidden;transition:opacity .45s ease,visibility 0s linear .45s}
+  @supports((-webkit-backdrop-filter:blur(10px)) or (backdrop-filter:blur(10px))){.scroll-cue{background:rgba(8,8,10,.38);-webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%)}}
+  .scroll-cue.cue-on{opacity:.62;visibility:visible;transition:opacity .45s ease}
+  .scroll-cue:hover{opacity:.95}
+  .scroll-cue .cue-line{display:block;width:1px;height:22px;background:linear-gradient(180deg,rgba(250,250,250,.85),rgba(250,250,250,0));animation:cue-drift 2.4s ease-in-out infinite}
+  @keyframes cue-drift{0%,100%{transform:translateY(0);opacity:.45}50%{transform:translateY(5px);opacity:1}}
+  @media(prefers-reduced-motion:reduce){.scroll-cue,.scroll-cue.cue-on{transition:none}.scroll-cue .cue-line{animation:none}}
+  .kicker{font-family:'JetBrains Mono';font-size:.8rem;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:22px}
+  h1{font-family:'Space Grotesk';font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.04;font-weight:700;letter-spacing:-.02em;max-width:16ch}
+  h1 .laser{color:var(--laser)}
+  .lede{margin-top:22px;font-size:1.15rem;color:var(--muted);max-width:56ch}
+  .cta-row{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
+  .rule{margin-top:70px;border-top:1px solid var(--line);padding-top:26px;display:flex;gap:36px;flex-wrap:wrap;font-family:'JetBrains Mono';font-size:.82rem;color:var(--dim)}
+  .rule b{color:var(--amber);font-weight:500}
+  /* sections */
+  section{padding:84px 0}
+  .sec-kicker{font-family:'JetBrains Mono';font-size:.78rem;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:14px}
+  h2{font-family:'Space Grotesk';font-size:clamp(1.8rem,3.6vw,2.7rem);letter-spacing:-.01em;line-height:1.12;margin-bottom:16px}
+  .sec-sub{color:var(--muted);max-width:62ch;margin-bottom:44px;font-size:1.05rem}
+  .alt{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  /* feature tabs */
+  .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+  .tab{font-family:'Space Grotesk';font-weight:600;font-size:.95rem;background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:10px 22px;cursor:pointer;transition:all .2s}
+  .tab:hover{color:var(--ink);border-color:var(--dim)}
+  .tab.active{background:var(--amber);border-color:var(--amber);color:#141414}
+  .tabpanel{display:none;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:34px 32px}
+  .tabpanel.active{display:block}
+  .tabpanel h3{font-family:'Space Grotesk';font-size:1.4rem;margin-bottom:10px}
+  .tabpanel h3 .tick-n{color:var(--amber);font-family:'JetBrains Mono';font-size:.85rem;margin-right:10px}
+  .tabpanel p{color:var(--muted);max-width:60ch}
+  .tabpanel ul{margin-top:18px;list-style:none;display:grid;gap:10px}
+  .tabpanel ul li{color:var(--muted);font-size:.95rem;padding-left:22px;position:relative}
+  .tabpanel ul li::before{content:"✓";position:absolute;left:0;color:var(--laser);font-weight:700}
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:760px){.steps{grid-template-columns:1fr}}
+  .step{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:28px 26px}
+  .step .n{font-family:'JetBrains Mono';color:var(--amber);font-size:.8rem;letter-spacing:.2em;margin-bottom:14px}
+  .step h3{font-family:'Space Grotesk';font-size:1.25rem;margin-bottom:8px}
+  .step p{color:var(--muted);font-size:.94rem}
+  /* pricing */
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+  @media(max-width:860px){.tiers{grid-template-columns:1fr;max-width:440px;margin:0 auto}}
+  .tier{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:30px 28px;display:flex;flex-direction:column;position:relative}
+  .tier.hot{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber),0 12px 40px rgba(255,255,255,.12)}
+  .tier .tname{font-family:'Space Grotesk';font-weight:700;font-size:1.3rem;margin-bottom:4px}
+  .tier .tprice{font-family:'JetBrains Mono';font-size:.82rem;color:var(--dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}
+  .tier ul{list-style:none;display:grid;gap:10px;margin-bottom:28px;flex:1}
+  .tier ul li{color:var(--muted);font-size:.93rem;padding-left:22px;position:relative}
+  .tier ul li::before{content:"✓";position:absolute;left:0;color:var(--laser);font-weight:700}
+  .tier ul li.no{color:var(--dim)}
+  .tier ul li.no::before{content:"×";color:var(--dim)}
+  .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--amber);color:#141414;font-family:'JetBrains Mono';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:5px 16px;border-radius:999px;white-space:nowrap}
+  .tier-note{margin-top:26px;color:var(--dim);font-size:.88rem;text-align:center}
+  /* get app */
+  #get-app .app-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+  @media(max-width:880px){#get-app .app-grid{grid-template-columns:1fr}}
+  .phone{border:1px solid var(--line);border-radius:28px;background:var(--card);padding:34px 30px;position:relative;overflow:hidden}
+  .phone::before{content:"";position:absolute;top:0;left:10%;right:10%;height:3px;background:linear-gradient(90deg,transparent,var(--laser),transparent)}
+  .phone .screen-label{font-family:'JetBrains Mono';font-size:.75rem;color:var(--dim);letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+  .measure{font-family:'JetBrains Mono';padding:16px 0;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;font-size:.95rem}
+  .measure:last-of-type{border-bottom:none}
+  .measure .v{color:var(--laser)}
+  .measure .u{color:var(--dim);font-size:.8rem;margin-left:6px}
+  .phone .total{margin-top:20px;display:flex;justify-content:space-between;align-items:center}
+  .phone .total b{font-family:'Space Grotesk';font-size:1.5rem}
+  .soon{display:inline-block;margin-top:14px;font-family:'JetBrains Mono';font-size:.78rem;color:var(--dim);border:1px dashed var(--line);border-radius:999px;padding:8px 16px}
+  /* PR section */
+  #pr .pr-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:40px 36px;max-width:760px}
+  #pr .pr-card p{color:var(--muted);margin-bottom:16px;max-width:60ch}
+  #pr .pr-card p strong{color:var(--ink);font-weight:600}
+  /* contact */
+  #contact{text-align:center}
+  #contact .sec-sub{margin-left:auto;margin-right:auto}
+  .mail{font-family:'Space Grotesk';font-size:clamp(1.3rem,3vw,2rem);color:var(--amber2);text-decoration:none;border-bottom:2px solid var(--amber);padding-bottom:4px}
+  .mail:hover{color:var(--amber)}
+  footer{border-top:1px solid var(--line);padding:34px 0;color:var(--dim);font-size:.85rem}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer .mono{font-family:'JetBrains Mono';font-size:.76rem}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  /* page header */
+  .page-head{padding:72px 0 4px}
+  .page-head h1{font-family:'Space Grotesk';font-size:clamp(2.2rem,5vw,3.4rem);letter-spacing:-.02em;line-height:1.05;margin-top:12px}
+  /* language toggle */
+  .lang-toggle{background:transparent;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-family:'JetBrains Mono';font-size:.78rem;letter-spacing:.08em;padding:8px 16px;cursor:pointer;margin-right:14px;transition:all .2s;text-align:center;text-indent:.08em}
+  .lang-toggle:hover{color:var(--ink);border-color:var(--amber)}
+  @media(max-width:1060px){.nav-actions .lang-toggle{display:none}}
+  .m-drawer .lang-toggle{margin:0 0 6px;align-self:flex-start}
+
+  /* page header */
+  .page-head{padding:72px 0 4px}
+  .page-head h1{font-family:'Space Grotesk';font-size:clamp(2.2rem,5vw,3.4rem);letter-spacing:-.02em;line-height:1.05;margin-top:12px}
+  /* language toggle */
+  .lang-toggle{background:transparent;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-family:'JetBrains Mono';font-size:.78rem;letter-spacing:.08em;padding:8px 16px;cursor:pointer;margin-right:14px;transition:all .2s;text-align:center;text-indent:.08em}
+  .lang-toggle:hover{color:var(--ink);border-color:var(--amber)}
+  @media(max-width:1060px){.nav-actions .lang-toggle{display:none}}
+  .m-drawer .lang-toggle{margin:0 0 6px;align-self:flex-start}
+
+
+/* ---- Variant B header (EDOLUS concept, chosen Oct 2026) ----
+   One centered lockup over a transparent header: Breakout outline
+   mark above the wide wordmark, with a minimal menu glyph at the
+   right. The wordmark family lives in a single token so a later
+   font decision is a one-line change. Anybody is set at weight 900
+   and 150% width; .08em spacing keeps the EDOLUS air without
+   weakening the already-expanded letterforms. */
+@font-face{font-family:'Anybody';src:url('/assets/fonts/Anybody-Variable.ttf') format('truetype');font-weight:100 900;font-stretch:50% 150%;font-display:swap}
+.variant-nav{--wordmark-font:'Anybody','Archivo Black',system-ui,sans-serif;--wordmark-spacing:.08em;position:sticky;top:12px;z-index:300;min-height:64px;padding:8px 18px;margin:12px 12px 0;border:1px solid rgba(255,255,255,.16);border-radius:999px;box-shadow:0 14px 34px rgba(0,0,0,.42);background:rgba(7,7,9,.94);display:flex;align-items:center;justify-content:flex-start;overflow:visible}
+.variant-nav::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.46),rgba(0,0,0,0) 88%);pointer-events:none}
+.variant-nav .variant-lockup{position:relative;z-index:1;display:flex;flex-direction:row;align-items:center;gap:12px;max-width:calc(100vw - 112px);color:#fff;text-decoration:none}
+.variant-mark{width:34px;height:34px;color:#fff;flex:none}
+.variant-mark svg{display:block;width:100%;height:100%}
+.variant-wordmark{font-family:var(--wordmark-font);font-weight:900;font-stretch:150%;font-size:clamp(.92rem,2.2vw,1.18rem);line-height:1;letter-spacing:var(--wordmark-spacing);text-indent:var(--wordmark-spacing);text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 14px rgba(0,0,0,.35)}
+.variant-menu-button{position:absolute;top:50%;transform:translateY(-50%);right:20px;z-index:2;width:44px;height:44px;padding:0 10px;border:0;background:transparent;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer}
+.variant-menu-button i{display:block;width:22px;height:2.5px;border-radius:2px;background:currentColor}
+.variant-menu{position:fixed;inset:0;z-index:400;background:rgba(3,3,4,0);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility 0s linear .3s,background .45s ease}
+.variant-sheet{position:absolute;top:12px;right:12px;width:min(440px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow-y:auto;background:rgba(9,9,11,.97);border:1px solid rgba(255,255,255,.16);border-radius:30px;box-shadow:0 30px 70px rgba(0,0,0,.55)}
+body.variant-menu-closing .variant-menu{opacity:1;visibility:visible;pointer-events:none;background:rgba(3,3,4,0)}
+
+body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events:auto;background:rgba(3,3,4,.5);transition:opacity .3s ease,background .45s ease}
+.variant-menu-inner{width:100%;margin:0;padding:78px 0 30px;display:flex;flex-direction:column;gap:2px}
+.variant-menu-inner>a{min-height:54px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(255,255,255,.25);color:#fff;text-decoration:none;font-size:1.08rem;font-weight:600;text-align:center}
+.variant-menu-inner>a:hover,.variant-menu-inner>a:focus-visible{color:#fff;background:rgba(255,255,255,.06)}
+/* Menu submenus (Oct 2026): a parent row pairs the page link with a
+   chevron toggle; the submenu expands on the motion tokens (grid-rows
+   + opacity), one open at a time, visibility keeps closed items out
+   of the tab order. */
+.variant-menu-item{border-bottom:1px solid rgba(255,255,255,.10)}
+.variant-menu-row{display:flex;align-items:stretch}
+.variant-menu-row>a{flex:1;min-width:0;min-height:54px;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;font-size:1.08rem;font-weight:600;text-align:center}
+.variant-menu-row>a:hover,.variant-menu-row>a:focus-visible{color:#fff;background:rgba(255,255,255,.06)}
+.variant-sub-toggle{flex:none;width:58px;min-height:54px;display:flex;align-items:center;justify-content:center;background:transparent;border:0;border-left:1px solid rgba(255,255,255,.08);color:#fff;cursor:pointer;font-size:.8rem;padding:0}
+.variant-sub-toggle:hover,.variant-sub-toggle:focus-visible{background:rgba(255,255,255,.06)}
+.variant-sub-chev{display:inline-block}
+.variant-submenu{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;transition:grid-template-rows var(--niv-mo-view,300ms) var(--niv-mo-ease,ease),opacity var(--niv-mo-view,300ms) var(--niv-mo-ease,ease),visibility 0s linear var(--niv-mo-view,300ms)}
+.variant-menu-item.open .variant-submenu{grid-template-rows:1fr;opacity:1;visibility:visible;transition:grid-template-rows var(--niv-mo-view,300ms) var(--niv-mo-ease,ease),opacity var(--niv-mo-view,300ms) var(--niv-mo-ease,ease)}
+.variant-submenu-in{overflow:hidden;min-height:0}
+.variant-submenu a{min-height:46px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.85);text-decoration:none;font-size:.99rem;font-weight:500;text-align:center;border-top:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.03)}
+.variant-submenu a:hover,.variant-submenu a:focus-visible{color:#fff;background:rgba(255,255,255,.07)}
+.variant-menu-actions{margin-top:24px;display:grid;gap:10px}
+.variant-menu-actions .btn{text-align:center;justify-content:center}
+.variant-menu-close{position:absolute;top:14px;right:14px;z-index:10;width:44px;height:44px;border:1px solid rgba(255,255,255,.28);border-radius:50%;background:transparent;color:#fff;font-size:1.35rem;line-height:1;cursor:pointer}
+/* Menu drill-in panels (Oct 2026): parent rows slide to a submenu
+   panel instead of expanding in place. Labels stay centered across
+   the full row width, the chevron rides the right edge without
+   shifting them, and a back row returns to the previous panel. */
+.variant-viewport{overflow:hidden}
+.variant-track{display:flex;align-items:flex-start;width:100%;margin:0;transition:transform var(--niv-mo-view,300ms) var(--niv-mo-ease,cubic-bezier(.22,1,.36,1))}
+.variant-panel{flex:0 0 100%;min-width:0;visibility:hidden;opacity:0;transition:opacity 260ms cubic-bezier(.22,1,.36,1)}
+.variant-panel[data-panel="root"]{visibility:visible;opacity:1}
+.variant-panel .variant-menu-inner{width:100%}
+.variant-row{position:relative;display:flex;align-items:center;justify-content:center;width:100%;min-height:54px;padding:0;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.25);color:#fff;font:inherit;font-size:1.08rem;font-weight:600;text-align:center;cursor:pointer}
+.variant-row:hover,.variant-row:focus-visible{background:rgba(255,255,255,.06);color:#fff;outline:none}
+.variant-drill-chev{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:1.35rem;font-weight:400;color:rgba(255,255,255,.85);pointer-events:none}
+.variant-back{justify-content:flex-start;font-size:1rem;color:rgba(255,255,255,.85)}
+.variant-back-chev{margin-right:10px;font-size:1.25rem}
+@media(prefers-reduced-motion:reduce){.variant-track{transition:none}.variant-panel{transition:none}}
+.variant-menu .lang-toggle{align-self:center;margin:0 0 10px}
+.variant-lang{display:flex;flex-direction:column;gap:8px;margin:0 0 10px}
+.variant-lang-current{display:flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:10px 18px;background:transparent;border:1px solid var(--line);border-radius:999px;color:#fff;font-family:'JetBrains Mono',monospace;font-size:.85rem;letter-spacing:.08em;cursor:pointer}
+.variant-lang-current:hover{border-color:#fff}
+.variant-lang-list{display:flex;flex-direction:column;gap:6px}
+.variant-lang-list[hidden]{display:none}
+.variant-lang-option{min-height:46px;padding:10px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:12px;color:#fff;font:600 .98rem 'Inter',system-ui,sans-serif;cursor:pointer;text-align:center}
+.variant-lang-option:hover{background:rgba(255,255,255,.09)}
+.variant-lang-option[aria-selected="true"]{border-color:#fff;background:rgba(255,255,255,.12)}
+@media(max-width:480px){.variant-nav{min-height:60px;padding:6px 14px}.variant-mark{width:30px;height:30px}.variant-wordmark{font-size:.88rem}.variant-menu-button{right:12px}.variant-menu-close{top:14px;right:14px}.variant-menu-inner{padding-top:78px}}
+@media(prefers-reduced-motion:reduce){.variant-menu{transition:none}}
+@media(max-width:380px){.variant-nav .variant-wordmark{display:none}.variant-nav{border-radius:20px;min-height:56px}}
+</style>
+
+<style>
+  /* Combined Nivelato page: overview block styles lifted from the
+     products page (.f-meta/.f-lede/.ticks), the get-section grid under
+     its anchor id, and scroll margin so anchored sections park below
+     the sticky header (same mechanism as the About pages). */
+  .f-meta{font-family:'JetBrains Mono';font-size:.8rem;color:var(--dim);letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+  .f-lede{color:var(--muted);font-size:1.08rem;max-width:64ch;margin-bottom:20px}
+  .f-lede strong{color:var(--ink)}
+  .ticks{list-style:none;display:grid;gap:10px;margin:22px 0 28px}
+  .ticks li{color:var(--muted);padding-left:24px;position:relative;max-width:62ch}
+  .ticks li::before{content:"\2713";position:absolute;left:0;color:#fff;font-weight:700}
+  #get .app-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+  @media(max-width:880px){#get .app-grid{grid-template-columns:1fr}}
+  #overview,#features,#how,#pricing,#get{scroll-margin-top:100px}
+</style>
+<link rel="alternate" type="text/markdown" title="AGENTS.md" href="/AGENTS.md">
+<style>
+/* ---- MOTION SYSTEM (Oct 2026, "zero jump-cuts"; docs/motion-system.md) ----
+   One motion language across Nivelato Labs surfaces; tokens are shared
+   with the app (canonical doc: DESIGN_SYSTEM_LABS.md in the app repo).
+   Additive only: entrances stay keyframe-based and content is visible
+   with no JS (the reveal system still only hides under html.js).
+   Everything collapses under prefers-reduced-motion. */
+:root{
+  --niv-mo-ease:cubic-bezier(.22,1,.36,1);
+  --niv-mo-micro:160ms;
+  --niv-mo-view:300ms;
+  --niv-mo-enter:560ms;
+}
+@keyframes niv-mo-menu-in{from{opacity:0;transform:translateY(10px)}}
+.btn{transition:background-color var(--niv-mo-micro) var(--niv-mo-ease),color var(--niv-mo-micro) var(--niv-mo-ease),border-color var(--niv-mo-micro) var(--niv-mo-ease),transform var(--niv-mo-micro) var(--niv-mo-ease)}
+.btn:active{transform:scale(.98)}
+nav a,footer a{transition:color var(--niv-mo-micro) var(--niv-mo-ease),background-color var(--niv-mo-micro) var(--niv-mo-ease)}
+header .kicker,header h1,header .lede,header .cta-row,header .rule{animation-duration:var(--niv-mo-enter);animation-timing-function:var(--niv-mo-ease)}
+html.js .reveal{transition:opacity var(--niv-mo-enter) var(--niv-mo-ease),transform var(--niv-mo-enter) var(--niv-mo-ease)}
+.variant-menu{transition:opacity var(--niv-mo-view) var(--niv-mo-ease),visibility 0s linear var(--niv-mo-view)}
+body.variant-menu-open .variant-menu{transition:opacity var(--niv-mo-view) var(--niv-mo-ease)}
+body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo-view) var(--niv-mo-ease)}
+.variant-menu-inner>a{transition:background-color var(--niv-mo-micro) var(--niv-mo-ease),color var(--niv-mo-micro) var(--niv-mo-ease)}
+.variant-lang-list:not([hidden]){animation:niv-mo-menu-in var(--niv-mo-view) var(--niv-mo-ease)}
+.variant-menu-row>a{transition:background-color var(--niv-mo-micro) var(--niv-mo-ease),color var(--niv-mo-micro) var(--niv-mo-ease)}
+.variant-sub-toggle{transition:background-color var(--niv-mo-micro) var(--niv-mo-ease)}
+.variant-submenu a{transition:background-color var(--niv-mo-micro) var(--niv-mo-ease),color var(--niv-mo-micro) var(--niv-mo-ease)}
+.variant-sub-chev{transition:transform var(--niv-mo-micro) var(--niv-mo-ease)}
+.variant-sub-toggle[aria-expanded="true"] .variant-sub-chev{transform:rotate(180deg)}
+.variant-lang-chev{display:inline-block;transition:transform var(--niv-mo-micro) var(--niv-mo-ease)}
+.variant-lang-current[aria-expanded="true"] .variant-lang-chev{transform:rotate(180deg)}
+.variant-lang-current{transition:border-color var(--niv-mo-micro) var(--niv-mo-ease)}
+.variant-lang-option{transition:background-color var(--niv-mo-micro) var(--niv-mo-ease),border-color var(--niv-mo-micro) var(--niv-mo-ease)}
+.lang-toggle{transition:background-color var(--niv-mo-micro) var(--niv-mo-ease),color var(--niv-mo-micro) var(--niv-mo-ease),border-color var(--niv-mo-micro) var(--niv-mo-ease)}
+.card{transition:border-color var(--niv-mo-micro) var(--niv-mo-ease),background-color var(--niv-mo-micro) var(--niv-mo-ease)}
+@media(prefers-reduced-motion:reduce){
+  .variant-menu{transition:none}
+  html.js .reveal{transition:none}
+  body.variant-menu-open .variant-menu-inner,.variant-lang-list:not([hidden]){animation:none}
+  .btn,.variant-menu-inner>a,.variant-menu-row>a,.variant-sub-toggle,.variant-submenu,.variant-submenu a,.variant-sub-chev,.variant-lang-current,.variant-lang-option,.lang-toggle,.card,nav a,footer a{transition:none}
+  .btn:active{transform:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="variant-nav" aria-label="Main">
+  <a class="variant-lockup" href="/" aria-label="Nivelato Labs home">
+    <span class="variant-mark"><svg viewBox="-5 -5 110 110" fill="none" stroke="currentColor" stroke-width="6.5" aria-hidden="true" focusable="false"><path d="M55 20 H20 V84 H84 V43" stroke-linejoin="miter"/><path d="M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z" stroke-linejoin="bevel"/></svg></span>
+    <span class="variant-wordmark">Nivelato Labs</span>
+  </a>
+  <button class="variant-menu-button" type="button" onclick="document.body.classList.add('variant-menu-open');this.setAttribute('aria-expanded','true')" aria-label="Open menu" aria-expanded="false" aria-controls="variant-menu"><i></i><i></i><i></i></button>
+</nav>
+<div class="variant-menu" id="variant-menu">
+  <button class="variant-menu-close" type="button" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')" aria-label="Close menu">×</button>
+  <div class="variant-viewport">
+  <div class="variant-track">
+    <div class="variant-panel" data-panel="root">
+    <div class="variant-menu-inner">
+    <a href="/" data-i18n="nav.home" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Home</a>
+    <button type="button" class="variant-row variant-drill" data-drill="products"><span class="variant-row-label" data-i18n="nav.products">Products</span><span class="variant-drill-chev" aria-hidden="true">›</span></button>
+    <button type="button" class="variant-row variant-drill" data-drill="about"><span class="variant-row-label" data-i18n="nav.about">About</span><span class="variant-drill-chev" aria-hidden="true">›</span></button>
+    <a href="/contact/" data-i18n="nav.contact" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Contact</a>
+    <div class="variant-menu-actions">
+          <div class="variant-lang" id="variant-lang">
+            <button class="variant-lang-current" type="button" aria-expanded="false" aria-controls="variant-lang-list"><span class="variant-lang-current-label">English</span><span class="variant-lang-chev" aria-hidden="true">▾</span></button>
+            <div class="variant-lang-list" id="variant-lang-list" role="listbox" aria-label="Language" hidden></div>
+          </div>
+          <a class="btn small variant-menu-action" href="https://login.nivelatolabs.com" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')" data-i18n="nav.login">Log in</a>
+          <a class="btn small variant-menu-action" href="/get/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')" data-i18n="nav.getNivelato">Get Nivelato</a>
+        </div>
+    </div>
+    </div>
+    <div class="variant-panel" data-panel="products">
+    <div class="variant-menu-inner">
+    <button type="button" class="variant-row variant-back" data-back><span class="variant-back-chev" aria-hidden="true">‹</span><span data-i18n="nav.products">Products</span></button>
+    <button type="button" class="variant-row variant-drill" data-drill="nivelato"><span class="variant-row-label" data-i18n="nav.sub.nivelato">Nivelato</span><span class="variant-drill-chev" aria-hidden="true">›</span></button>
+    <a href="/phonebench/" data-i18n="nav.sub.phonebench" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">PhoneBench</a>
+    <a href="https://legobele.github.io/coil-demo" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">COIL</a>
+    </div>
+    </div>
+    <div class="variant-panel" data-panel="nivelato">
+    <div class="variant-menu-inner">
+    <button type="button" class="variant-row variant-back" data-back><span class="variant-back-chev" aria-hidden="true">‹</span><span data-i18n="nav.sub.nivelato">Nivelato</span></button>
+    <a href="/nivelato/" aria-current="page" data-i18n="nav.sub.overview" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Overview</a>
+    <a href="/nivelato/#pricing" data-i18n="nav.sub.pricing" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Pricing</a>
+    <a href="/nivelato/#get" data-i18n="nav.get" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Get Nivelato</a>
+    </div>
+    </div>
+    <div class="variant-panel" data-panel="about">
+    <div class="variant-menu-inner">
+    <button type="button" class="variant-row variant-back" data-back><span class="variant-back-chev" aria-hidden="true">‹</span><span data-i18n="nav.about">About</span></button>
+    <a href="/about/" data-i18n="nav.about" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">About</a>
+    <a href="/about/mission/" data-i18n="nav.sub.mission" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Mission</a>
+    <a href="/about/vision/" data-i18n="nav.sub.vision" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Vision</a>
+    <a href="/about/values/" data-i18n="nav.sub.values" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Core Values</a>
+    <a href="/team/" data-i18n="nav.team" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Team</a>
+    </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div class="page-head"><div class="wrap">
+  <div class="kicker reveal" data-i18n="page.kicker">Nivelato</div>
+  <h1 class="reveal" data-i18n="nv.title">Field measurement, reinvented.</h1>
+  <p class="lede reveal" data-i18n="nv.lede">Nivelato is offset measuring software for glass shops. Capture field measurements and offsets on site, sync them to the shop, and turn a measurement into a quote in one flow.</p>
+  <div class="cta-row reveal">
+    <a class="btn" href="#get" data-i18n="nav.getNivelato">Get Nivelato</a>
+    <a class="btn ghost" href="#features" data-i18n="nav.features">What it does</a>
+  </div>
+</div></div>
+<button type="button" class="scroll-cue" aria-label="Scroll down to content">[ SCROLL ]<span class="cue-line" aria-hidden="true"></span></button>
+
+<section id="overview">
+  <div class="wrap">
+    <div class="f-meta reveal" data-i18n="nv.ov.meta">Flagship · Nivelato</div>
+    <h2 class="reveal" data-i18n="nv.ov.title">Nivelato: offset measuring software for glass shops</h2>
+    <p class="f-lede reveal" data-i18n="nv.ov.p1"><strong>Glass work is offset work.</strong> Panels sit in frames, hardware shifts lines, and a measurement taken flat is wrong by the time it reaches the saw. Nivelato is field measurement software for glass shops built around that reality: capture the measurement and its offsets on site, and the numbers that reach the shop are the numbers that were true on the wall.</p>
+    <p class="f-lede reveal" data-i18n="nv.ov.p2">It is a measure to quote workflow, not a notebook. Measure on site, sync to the shop, and quote on the spot, with panels, hardware, photos, and projects kept in one place. Android and web, built for the way glass work actually moves.</p>
+    <ul class="ticks reveal">
+      <li data-i18n="nv.ov.li1">Offset measurement captured at the point of measure, not reconstructed later from notes</li>
+      <li data-i18n="nv.ov.li2">Field measurements sync from the site to the shop in one flow</li>
+      <li data-i18n="nv.ov.li3">Measure to quote: a site visit ends with a quote, not a transcription session</li>
+      <li data-i18n="nv.ov.li4">Glass shop measuring software priced and designed for small shops, not enterprises</li>
+    </ul>
+    <div class="cta-row reveal">
+      <a class="btn ghost" href="#how" data-i18n="nav.how">How it works</a>
+      <a class="btn ghost" href="#pricing" data-i18n="nav.sub.pricing">Pricing</a>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="alt">
+  <div class="wrap">
+    <div class="sec-kicker reveal" data-i18n="features.kicker">What it does</div>
+    <h2 class="reveal" data-i18n="features.title">Everything the job needs, in your pocket.</h2>
+    <p class="sec-sub reveal" data-i18n="features.sub">Four capabilities in one app: field measurement, photo capture, project organization, and team management.</p>
+    <div class="tabs reveal" role="tablist" aria-label="Nivelato features">
+      <button class="tab active" role="tab" aria-selected="true" data-tab="t-measure" data-i18n="tab.measure">Field measurement</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="t-photo" data-i18n="tab.photo">Photo capture</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="t-projects" data-i18n="tab.projects">Project organization</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="t-team" data-i18n="tab.team">Team management</button>
+    </div>
+    <div class="tabpanel active reveal" id="t-measure" role="tabpanel">
+      <h3 data-i18n="panel.measure.h">Field measurement</h3>
+      <p data-i18n="panel.measure.p">Digital capture for every opening, dimension, and note, room by room, right on your phone. No clipboards, no lost napkins, no retyping at the office.</p>
+      <ul>
+        <li data-i18n="panel.measure.li1">Fast dimension entry built for gloves-on work</li>
+        <li data-i18n="panel.measure.li2">Notes and flags right on each measurement</li>
+        <li data-i18n="panel.measure.li3">Works offline, syncs when you are back on signal</li>
+      </ul>
+    </div>
+    <div class="tabpanel" id="t-photo" role="tabpanel">
+      <h3 data-i18n="panel.photo.h">Photo capture</h3>
+      <p data-i18n="panel.photo.p">Photos attach to each measurement automatically and stay with the job, so the shop sees exactly what you saw on site.</p>
+      <ul>
+        <li data-i18n="panel.photo.li1">One-tap photo step inside the measurement flow</li>
+        <li data-i18n="panel.photo.li2">Photos stored with the job, not lost in a camera roll</li>
+        <li data-i18n="panel.photo.li3">Review shots later from the dashboard or the app</li>
+      </ul>
+    </div>
+    <div class="tabpanel" id="t-projects" role="tabpanel">
+      <h3 data-i18n="panel.projects.h">Project organization</h3>
+      <p data-i18n="panel.projects.p">Group measurements into projects. Track what is measured, what is quoted, and what is done, all in one place instead of scattered across chats and paper.</p>
+      <ul>
+        <li data-i18n="panel.projects.li1">Projects with customers, users, and measurements</li>
+        <li data-i18n="panel.projects.li2">Full history per project, searchable any time</li>
+        <li data-i18n="panel.projects.li3">Dashboard view for the whole shop pipeline</li>
+      </ul>
+    </div>
+    <div class="tabpanel" id="t-team" role="tabpanel">
+      <h3 data-i18n="panel.team.h">Team management</h3>
+      <p data-i18n="panel.team.p">Invite your crew and keep everyone on the same job list. Owners control who sees what, and permissions follow each person automatically.</p>
+      <ul>
+        <li data-i18n="panel.team.li1">Invite by code, approve from the dashboard</li>
+        <li data-i18n="panel.team.li2">Role-based permissions: owners, supervisors, measurers</li>
+        <li data-i18n="panel.team.li3">Shared projects with per-user access</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sec-kicker reveal" data-i18n="how.kicker">How it works</div>
+    <h2 class="reveal" data-i18n="how.title">Measure, sync, quote. Done.</h2>
+    <p class="sec-sub reveal" data-i18n="how.sub">A process, not a pile of tools: three steps in order, from the job site to the finished quote, in a single visit.</p>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="n" data-i18n="step1.n">STEP 01</div>
+        <h3 data-i18n="step1.h">Measure on site</h3>
+        <p data-i18n="step1.p">Open Nivelato, pick the project, and log dimensions as you walk the job. Photos optional, encouraged.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n" data-i18n="step2.n">STEP 02</div>
+        <h3 data-i18n="step2.h">Sync to the shop</h3>
+        <p data-i18n="step2.p">Measurements upload automatically. The office sees the job the moment you finish, no end-of-day data entry.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n" data-i18n="step3.n">STEP 03</div>
+        <h3 data-i18n="step3.h">Quote and close</h3>
+        <p data-i18n="step3.p">Turn the measurement set into a customer-ready quote before you leave the driveway.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="alt">
+  <div class="wrap">
+    <div class="sec-kicker reveal" data-i18n="pricing.kicker">Pricing</div>
+    <h2 class="reveal" data-i18n="pricing.title">Start free. Grow into the shop plan.</h2>
+    <p class="sec-sub reveal" data-i18n="pricing.sub">Plans are per shop and billed through Google Play. Pick the tier that matches how you work.</p>
+    <div class="tiers">
+      <div class="tier reveal">
+        <div class="tname" data-i18n="tier.free.name">Free</div>
+        <div class="tprice" data-i18n="tier.free.price">$0 · Try it on a real job</div>
+        <ul>
+          <li data-i18n="tier.free.li1">On-phone measurement capture</li>
+          <li data-i18n="tier.free.li2">Photo capture</li>
+          <li data-i18n="tier.free.li3">Local job history</li>
+          <li class="no" data-i18n="tier.free.li4">Web dashboard</li>
+          <li class="no" data-i18n="tier.free.li5">Team seats</li>
+        </ul>
+        <a class="btn ghost" href="#get" style="text-align:center" data-i18n="tier.free.btn">Get started</a>
+      </div>
+      <div class="tier reveal">
+        <div class="tname" data-i18n="tier.pro.name">Pro</div>
+        <div class="tprice" data-i18n="tier.pro.price">$5.99/mo · For solo techs</div>
+        <ul>
+          <li data-i18n="tier.pro.li1">Everything in Free</li>
+          <li data-i18n="tier.pro.li2">Limited dashboard access</li>
+          <li data-i18n="tier.pro.li3">See your own measurements online</li>
+          <li data-i18n="tier.pro.li4">Project history in the cloud</li>
+          <li class="no" data-i18n="tier.pro.li5">Teammates' measurements</li>
+        </ul>
+        <a class="btn ghost" href="#get" style="text-align:center" data-i18n="tier.pro.btn">Go Pro</a>
+      </div>
+      <div class="tier hot reveal">
+        <div class="badge" data-i18n="tier.ultra.badge">Most popular</div>
+        <div class="tname" data-i18n="tier.ultra.name">Ultra</div>
+        <div class="tprice" data-i18n="tier.ultra.price">$10.99/mo per user · For shops running a crew</div>
+        <ul>
+          <li data-i18n="tier.ultra.li1">Everything in Pro</li>
+          <li data-i18n="tier.ultra.li2">Full dashboard, no limits</li>
+          <li data-i18n="tier.ultra.li3">View the whole team's measurements</li>
+          <li data-i18n="tier.ultra.li4">Team seats and user management</li>
+          <li data-i18n="tier.ultra.li5">Priority everything</li>
+        </ul>
+        <a class="btn" href="#get" style="text-align:center" data-i18n="tier.ultra.btn">Go Ultra</a>
+      </div>
+      <div class="tier reveal">
+        <div class="tname" data-i18n="tier.ent.name">Enterprise</div>
+        <div class="tprice" data-i18n="tier.ent.price">Custom</div>
+        <ul>
+          <li data-i18n="tier.ent.li1">Everything in Ultra</li>
+          <li data-i18n="tier.ent.li2">Multiple shops, one account</li>
+          <li data-i18n="tier.ent.li3">Custom terms</li>
+          <li data-i18n="tier.ent.li4">Priority support</li>
+        </ul>
+        <a class="btn ghost" href="mailto:lebron@nivelatolabs.com?subject=Enterprise%20inquiry" style="text-align:center" data-i18n="tier.ent.btn">Contact via email</a>
+      </div>
+    </div>
+    <p class="tier-note reveal" data-i18n="pricing.facts">Updated October 19, 2026. Prices in USD, as of October 2026. Ultra includes 5 users; additional seats are $19.99 per seat per month. Every feature is currently free: accounts are created on the web and all plans are unlocked at no charge until the Android app publishes on Google Play, when billing through Google Play begins.</p>
+    <p class="tier-note reveal" data-i18n="tier.note">Company accounts in Puerto Rico are currently by application only, <a href="/pr/">see below</a>.</p>
+  </div>
+</section>
+
+<section id="get">
+  <div class="wrap">
+    <div class="app-grid">
+      <div>
+        <div class="sec-kicker reveal" data-i18n="get.kicker">Get the app</div>
+        <h2 class="reveal" data-i18n="get.title">Nivelato is live. Grab it.</h2>
+        <p class="sec-sub reveal" style="margin-bottom:0" data-i18n="get.sub">Android app in closed testing on Google Play, plus the full web app. Sign in with your shop account or a personal account and start measuring.</p>
+        <div class="cta-row reveal">
+          <a class="btn" href="https://login.nivelatolabs.com" data-i18n="get.cta1">Open the web app</a>
+          <a class="btn ghost" href="https://login.nivelatolabs.com" data-i18n="get.cta2">Log in</a>
+        </div>
+        <div class="reveal"><span class="soon" data-i18n="get.soon">●&nbsp; now in closed testing on Google Play</span></div>
+      </div>
+      <div class="phone reveal">
+        <div class="screen-label" data-i18n="phone.label">Nivelato · job #1042</div>
+        <div class="measure"><span data-i18n="phone.m1">Storefront window</span><span><span class="v">96.5</span><span class="u">in</span></span></div>
+        <div class="measure"><span data-i18n="phone.m2">Door glass</span><span><span class="v">34.25</span><span class="u">in</span></span></div>
+        <div class="measure"><span data-i18n="phone.m3">Sidelite x2</span><span><span class="v">18.0</span><span class="u">in</span></span></div>
+        <div class="measure"><span data-i18n="phone.m4">Mirror, 1/4"</span><span><span class="v">60 x 36</span><span class="u">in</span></span></div>
+        <div class="total"><span style="color:var(--muted);font-size:.9rem" data-i18n="phone.total">Quote total</span><b>$1,284.00</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span data-i18n="footer.copy">© 2026 Nivelato Labs</span>
+    <span><a href="/pr/" data-i18n="nav.pr">Para clientes en PR</a></span>
+    <span class="mono">nivelatolabs.com · v1.3</span>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), {threshold: .12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Feature tabs
+  document.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.tabpanel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      const panel = document.getElementById(btn.dataset.tab);
+      if (panel) { panel.classList.add('active'); io.observe(panel); panel.classList.add('in'); }
+    });
+  });
+</script>
+<script>
+const I18N = {
+  en: {
+  "features.kicker": "What it does",
+  "features.sub": "Four capabilities in one app: field measurement, photo capture, project organization, and team management.",
+  "features.title": "Everything the job needs, in your pocket.",
+  "footer.copy": "© 2026 Nivelato Labs",
+  "get.cta1": "Open the web app",
+  "get.cta2": "Log in",
+  "get.kicker": "Get the app",
+  "get.soon": "●&nbsp; now in closed testing on Google Play",
+  "get.sub": "Android app in closed testing on Google Play, plus the full web app. Sign in with your shop account or a personal account and start measuring.",
+  "get.title": "Nivelato is live. Grab it.",
+  "how.kicker": "How it works",
+  "how.sub": "A process, not a pile of tools: three steps in order, from the job site to the finished quote, in a single visit.",
+  "how.title": "Measure, sync, quote. Done.",
+  "meta.desc": "Nivelato is offset measuring software for glass shops. It captures field measurements and offsets on site, syncs them to the shop, and turns a measurement into a quote in one measure to quote flow.",
+  "meta.title": "Nivelato - Offset Measuring Software for Glass Shops - Nivelato Labs",
+  "nav.about": "About",
+  "nav.contact": "Contact",
+  "nav.features": "What it does",
+  "nav.get": "Get the app",
+  "nav.getNivelato": "Get Nivelato",
+  "nav.home": "Home",
+  "nav.how": "How it works",
+  "nav.login": "Log in",
+  "nav.pr": "Para clientes en PR",
+  "nav.pricing": "Pricing",
+  "nav.products": "Products",
+  "nav.sub.mission": "Mission",
+  "nav.sub.nivelato": "Nivelato",
+  "nav.sub.overview": "Overview",
+  "nav.sub.phonebench": "PhoneBench",
+  "nav.sub.pricing": "Pricing",
+  "nav.sub.values": "Core Values",
+  "nav.sub.vision": "Vision",
+  "nav.team": "Team",
+  "nv.lede": "Nivelato is offset measuring software for glass shops. Capture field measurements and offsets on site, sync them to the shop, and turn a measurement into a quote in one flow.",
+  "nv.ov.li1": "Offset measurement captured at the point of measure, not reconstructed later from notes",
+  "nv.ov.li2": "Field measurements sync from the site to the shop in one flow",
+  "nv.ov.li3": "Measure to quote: a site visit ends with a quote, not a transcription session",
+  "nv.ov.li4": "Glass shop measuring software priced and designed for small shops, not enterprises",
+  "nv.ov.meta": "Flagship · Nivelato",
+  "nv.ov.p1": "<strong>Glass work is offset work.</strong> Panels sit in frames, hardware shifts lines, and a measurement taken flat is wrong by the time it reaches the saw. Nivelato is field measurement software for glass shops built around that reality: capture the measurement and its offsets on site, and the numbers that reach the shop are the numbers that were true on the wall.",
+  "nv.ov.p2": "It is a measure to quote workflow, not a notebook. Measure on site, sync to the shop, and quote on the spot, with panels, hardware, photos, and projects kept in one place. Android and web, built for the way glass work actually moves.",
+  "nv.ov.title": "Nivelato: offset measuring software for glass shops",
+  "nv.title": "Field measurement, reinvented.",
+  "page.kicker": "Nivelato",
+  "page.title": "PhoneBench",
+  "panel.measure.h": "Field measurement",
+  "panel.measure.li1": "Fast dimension entry built for gloves-on work",
+  "panel.measure.li2": "Notes and flags right on each measurement",
+  "panel.measure.li3": "Works offline, syncs when you are back on signal",
+  "panel.measure.p": "Digital capture for every opening, dimension, and note, room by room, right on your phone. No clipboards, no lost napkins, no retyping at the office.",
+  "panel.photo.h": "Photo capture",
+  "panel.photo.li1": "One-tap photo step inside the measurement flow",
+  "panel.photo.li2": "Photos stored with the job, not lost in a camera roll",
+  "panel.photo.li3": "Review shots later from the dashboard or the app",
+  "panel.photo.p": "Photos attach to each measurement automatically and stay with the job, so the shop sees exactly what you saw on site.",
+  "panel.projects.h": "Project organization",
+  "panel.projects.li1": "Projects with customers, users, and measurements",
+  "panel.projects.li2": "Full history per project, searchable any time",
+  "panel.projects.li3": "Dashboard view for the whole shop pipeline",
+  "panel.projects.p": "Group measurements into projects. Track what is measured, what is quoted, and what is done, all in one place instead of scattered across chats and paper.",
+  "panel.team.h": "Team management",
+  "panel.team.li1": "Invite by code, approve from the dashboard",
+  "panel.team.li2": "Role-based permissions: owners, supervisors, measurers",
+  "panel.team.li3": "Shared projects with per-user access",
+  "panel.team.p": "Invite your crew and keep everyone on the same job list. Owners control who sees what, and permissions follow each person automatically.",
+  "phone.label": "Nivelato · job #1042",
+  "phone.m1": "Storefront window",
+  "phone.m2": "Door glass",
+  "phone.m3": "Sidelite x2",
+  "phone.m4": "Mirror, 1/4\"",
+  "phone.total": "Quote total",
+  "pricing.facts": "Updated October 19, 2026. Prices in USD, as of October 2026. Ultra includes 5 users; additional seats are $19.99 per seat per month. Every feature is currently free: accounts are created on the web and all plans are unlocked at no charge until the Android app publishes on Google Play, when billing through Google Play begins.",
+  "pricing.kicker": "Pricing",
+  "pricing.sub": "Plans are per shop and billed through Google Play. Pick the tier that matches how you work.",
+  "pricing.title": "Start free. Grow into the shop plan.",
+  "step1.h": "Measure on site",
+  "step1.n": "STEP 01",
+  "step1.p": "Open Nivelato, pick the project, and log dimensions as you walk the job. Photos optional, encouraged.",
+  "step2.h": "Sync to the shop",
+  "step2.n": "STEP 02",
+  "step2.p": "Measurements upload automatically. The office sees the job the moment you finish, no end-of-day data entry.",
+  "step3.h": "Quote and close",
+  "step3.n": "STEP 03",
+  "step3.p": "Turn the measurement set into a customer-ready quote before you leave the driveway.",
+  "tab.measure": "Field measurement",
+  "tab.photo": "Photo capture",
+  "tab.projects": "Project organization",
+  "tab.team": "Team management",
+  "tier.ent.btn": "Contact via email",
+  "tier.ent.li1": "Everything in Ultra",
+  "tier.ent.li2": "Multiple shops, one account",
+  "tier.ent.li3": "Custom terms",
+  "tier.ent.li4": "Priority support",
+  "tier.ent.name": "Enterprise",
+  "tier.ent.price": "Custom",
+  "tier.free.btn": "Get started",
+  "tier.free.li1": "On-phone measurement capture",
+  "tier.free.li2": "Photo capture",
+  "tier.free.li3": "Local job history",
+  "tier.free.li4": "Web dashboard",
+  "tier.free.li5": "Team seats",
+  "tier.free.name": "Free",
+  "tier.free.price": "$0 · Try it on a real job",
+  "tier.note": "Company accounts in Puerto Rico are currently by application only, <a href=\"/pr/about/\">see below</a>.",
+  "tier.pro.btn": "Go Pro",
+  "tier.pro.li1": "Everything in Free",
+  "tier.pro.li2": "Limited dashboard access",
+  "tier.pro.li3": "See your own measurements online",
+  "tier.pro.li4": "Project history in the cloud",
+  "tier.pro.li5": "Teammates' measurements",
+  "tier.pro.name": "Pro",
+  "tier.pro.price": "$5.99/mo · For solo techs",
+  "tier.ultra.badge": "Most popular",
+  "tier.ultra.btn": "Go Ultra",
+  "tier.ultra.li1": "Everything in Pro",
+  "tier.ultra.li2": "Full dashboard, no limits",
+  "tier.ultra.li3": "View the whole team's measurements",
+  "tier.ultra.li4": "Team seats and user management",
+  "tier.ultra.li5": "Priority everything",
+  "tier.ultra.name": "Ultra",
+  "tier.ultra.price": "$10.99/mo per user · For shops running a crew"
+},
+  es: {
+  "features.kicker": "Qué hace",
+  "features.sub": "Cuatro capacidades en una sola app: medición en campo, captura de fotos, organización de proyectos y gestión de equipo.",
+  "features.title": "Todo lo que el trabajo necesita, en tu bolsillo.",
+  "footer.copy": "© 2026 Nivelato Labs",
+  "get.cta1": "Abrir la app web",
+  "get.cta2": "Iniciar sesión",
+  "get.kicker": "Descarga la app",
+  "get.soon": "●&nbsp; ahora en pruebas cerradas en Google Play",
+  "get.sub": "App Android en pruebas cerradas en Google Play, más la app web completa. Inicia sesión con tu cuenta del taller o una cuenta personal y empieza a medir.",
+  "get.title": "Nivelato ya está en vivo. Descárgalo.",
+  "how.kicker": "Cómo funciona",
+  "how.sub": "Un proceso, no una pila de herramientas: tres pasos en orden, desde el sitio de trabajo hasta la cotización final, en una sola visita.",
+  "how.title": "Mide, sincroniza, cotiza. Listo.",
+  "meta.desc": "Nivelato es software de medición con offset para talleres de cristales. Captura medidas de campo y offsets en el sitio, las sincroniza con el taller y convierte una medida en una cotización en un solo flujo de medir para cotizar.",
+  "meta.title": "Nivelato - Software de medición con offset para talleres de cristales - Nivelato Labs",
+  "nav.about": "Nosotros",
+  "nav.contact": "Contacto",
+  "nav.features": "Qué hace",
+  "nav.get": "Descarga la app",
+  "nav.getNivelato": "Descargar Nivelato",
+  "nav.home": "Inicio",
+  "nav.how": "Cómo funciona",
+  "nav.login": "Iniciar sesión",
+  "nav.pr": "Para clientes en PR",
+  "nav.pricing": "Precios",
+  "nav.products": "Productos",
+  "nav.sub.mission": "Misión",
+  "nav.sub.nivelato": "Nivelato",
+  "nav.sub.overview": "Resumen",
+  "nav.sub.phonebench": "PhoneBench",
+  "nav.sub.pricing": "Precios",
+  "nav.sub.values": "Valores",
+  "nav.sub.vision": "Visión",
+  "nav.team": "Equipo",
+  "nv.lede": "Nivelato es software de medición con offset para talleres de cristales. Captura medidas de campo y offsets en el sitio, sincronízalas con el taller y convierte una medida en una cotización en un solo flujo.",
+  "nv.ov.li1": "Medición con offset capturada en el punto de medida, no reconstruida después a partir de notas",
+  "nv.ov.li2": "Las medidas de campo se sincronizan del sitio al taller en un solo flujo",
+  "nv.ov.li3": "Medir para cotizar: una visita al sitio termina con una cotización, no con una sesión de transcripción",
+  "nv.ov.li4": "Software de medición para talleres de cristales, con precio y diseño pensados para talleres pequeños, no para grandes empresas",
+  "nv.ov.meta": "Producto insignia · Nivelato",
+  "nv.ov.p1": "<strong>El trabajo con cristales es trabajo de offset.</strong> Los paneles se montan en marcos, los herrajes desplazan las líneas y una medida tomada en plano ya es incorrecta cuando llega a la sierra. Nivelato es software de medición de campo para talleres de cristales construido sobre esa realidad: captura la medida y sus offsets en el sitio, y los números que llegan al taller son los números que eran correctos en la pared.",
+  "nv.ov.p2": "Es un flujo de medir para cotizar, no una libreta. Mide en el sitio, sincroniza con el taller y cotiza en el momento, con paneles, herrajes, fotos y proyectos guardados en un solo lugar. Android y web, construido para la forma en que el trabajo con cristales realmente se mueve.",
+  "nv.ov.title": "Nivelato: software de medición con offset para talleres de cristales",
+  "nv.title": "Medición de campo, reinventada.",
+  "page.kicker": "Nivelato",
+  "page.title": "PhoneBench",
+  "panel.measure.h": "Medición en campo",
+  "panel.measure.li1": "Entrada rápida de dimensiones, pensada para trabajar con guantes",
+  "panel.measure.li2": "Notas y marcas directo en cada medida",
+  "panel.measure.li3": "Funciona sin conexión, sincroniza al volver la señal",
+  "panel.measure.p": "Captura digital de cada abertura, dimensión y nota, cuarto por cuarto, directamente en tu teléfono. Sin portapapeles, sin servilletas perdidas, sin reescribir en la oficina.",
+  "panel.photo.h": "Captura de fotos",
+  "panel.photo.li1": "Paso de foto con un toque dentro del flujo de medición",
+  "panel.photo.li2": "Fotos guardadas con el trabajo, no perdidas en el carrete",
+  "panel.photo.li3": "Revisa las fotos después desde el panel o la app",
+  "panel.photo.p": "Las fotos se adjuntan a cada medida automáticamente y quedan con el trabajo, para que el taller vea exactamente lo que viste en el sitio.",
+  "panel.projects.h": "Organización de proyectos",
+  "panel.projects.li1": "Proyectos con clientes, usuarios y medidas",
+  "panel.projects.li2": "Historial completo por proyecto, buscable en todo momento",
+  "panel.projects.li3": "Vista de panel para todo el flujo del taller",
+  "panel.projects.p": "Agrupa medidas en proyectos. Sigue lo medido, lo cotizado y lo terminado, todo en un lugar en vez de regado entre chats y papel.",
+  "panel.team.h": "Gestión de equipo",
+  "panel.team.li1": "Invita por código, aprueba desde el panel",
+  "panel.team.li2": "Permisos por rol: dueños, supervisores, medidores",
+  "panel.team.li3": "Proyectos compartidos con acceso por usuario",
+  "panel.team.p": "Invita a tu equipo y mantén a todos en la misma lista de trabajos. Los dueños controlan quién ve qué, y los permisos siguen a cada persona automáticamente.",
+  "phone.label": "Nivelato · trabajo #1042",
+  "phone.m1": "Vitrina de tienda",
+  "phone.m2": "Cristal de puerta",
+  "phone.m3": "Laterales x2",
+  "phone.m4": "Espejo, 1/4\"",
+  "phone.total": "Total cotizado",
+  "pricing.facts": "Actualizado el 19 de octubre de 2026. Precios en USD, vigentes a octubre de 2026. Ultra incluye 5 usuarios; los asientos adicionales cuestan $19.99 por asiento al mes. Actualmente todas las funciones son gratuitas: las cuentas se crean en la web y todos los planes están desbloqueados sin cargo hasta que la app de Android se publique en Google Play, cuando comenzará la facturación a través de Google Play.",
+  "pricing.kicker": "Precios",
+  "pricing.sub": "Los planes son por taller y se facturan por Google Play. Elige el nivel que combine con tu forma de trabajar.",
+  "pricing.title": "Empieza gratis. Crece al plan del taller.",
+  "step1.h": "Mide en el sitio",
+  "step1.n": "PASO 01",
+  "step1.p": "Abre Nivelato, elige el proyecto y registra dimensiones mientras recorres el trabajo. Fotos opcionales, recomendadas.",
+  "step2.h": "Sincroniza con el taller",
+  "step2.n": "PASO 02",
+  "step2.p": "Las medidas se suben automáticamente. La oficina ve el trabajo en cuanto terminas, sin captura de datos al final del día.",
+  "step3.h": "Cotiza y cierra",
+  "step3.n": "PASO 03",
+  "step3.p": "Convierte el juego de medidas en una cotización lista para el cliente antes de salir del sitio.",
+  "tab.measure": "Medición en campo",
+  "tab.photo": "Captura de fotos",
+  "tab.projects": "Organización de proyectos",
+  "tab.team": "Gestión de equipo",
+  "tier.ent.btn": "Contactar por correo",
+  "tier.ent.li1": "Todo lo de Ultra",
+  "tier.ent.li2": "Varios talleres, una cuenta",
+  "tier.ent.li3": "Términos personalizados",
+  "tier.ent.li4": "Soporte prioritario",
+  "tier.ent.name": "Enterprise",
+  "tier.ent.price": "Personalizado",
+  "tier.free.btn": "Empezar",
+  "tier.free.li1": "Captura de medidas en el teléfono",
+  "tier.free.li2": "Captura de fotos",
+  "tier.free.li3": "Historial local de trabajos",
+  "tier.free.li4": "Panel web",
+  "tier.free.li5": "Puestos de equipo",
+  "tier.free.name": "Gratis",
+  "tier.free.price": "$0 · Pruébalo en un trabajo real",
+  "tier.note": "Las cuentas de empresa en Puerto Rico son actualmente solo por solicitud, <a href=\"/pr/about/\">ver abajo</a>.",
+  "tier.pro.btn": "Sube a Pro",
+  "tier.pro.li1": "Todo lo del plan Gratis",
+  "tier.pro.li2": "Acceso limitado al panel",
+  "tier.pro.li3": "Ve tus propias medidas en línea",
+  "tier.pro.li4": "Historial de proyectos en la nube",
+  "tier.pro.li5": "Medidas de tus compañeros",
+  "tier.pro.name": "Pro",
+  "tier.pro.price": "$5.99/mes · Para técnicos independientes",
+  "tier.ultra.badge": "Más popular",
+  "tier.ultra.btn": "Sube a Ultra",
+  "tier.ultra.li1": "Todo lo del plan Pro",
+  "tier.ultra.li2": "Panel completo, sin límites",
+  "tier.ultra.li3": "Ve las medidas de todo el equipo",
+  "tier.ultra.li4": "Puestos de equipo y gestión de usuarios",
+  "tier.ultra.li5": "Prioridad en todo",
+  "tier.ultra.name": "Ultra",
+  "tier.ultra.price": "$10.99/mes por usuario · Para talleres con equipo"
+}
+};
+const FORCED_LANG = null;
+
+const LANG_KEY = 'nivelato-lang';
+function currentLang() {
+  try {
+    const saved = localStorage.getItem(LANG_KEY);
+    if (saved && I18N[saved]) return saved;
+  } catch (e) {}
+  if (FORCED_LANG) return FORCED_LANG;
+  const nav = (navigator.language || 'en').toLowerCase();
+  const base = nav.split('-')[0];
+  return I18N[base] ? base : 'en';
+}
+function applyLang(l) {
+  const dict = I18N[l] || I18N.en;
+  document.documentElement.lang = l;
+  if (dict['meta.title']) document.title = dict['meta.title'];
+  const metaDescEl = document.querySelector('meta[name="description"]');
+  if (metaDescEl && dict['meta.desc']) metaDescEl.setAttribute('content', dict['meta.desc']);
+  document.querySelectorAll('[data-i18n]').forEach(function (el) {
+    const k = el.getAttribute('data-i18n');
+    if (dict[k] !== undefined) el.innerHTML = dict[k];
+  });
+  document.querySelectorAll('.lang-toggle').forEach(function (b) {
+    b.textContent = (l === 'en') ? 'ES' : 'EN';
+  });
+  try { localStorage.setItem(LANG_KEY, l); } catch (e) {}
+}
+document.querySelectorAll('.lang-toggle').forEach(function (b) {
+  b.addEventListener('click', function () {
+    const cur = document.documentElement.lang === 'es' ? 'es' : 'en';
+    applyLang(cur === 'en' ? 'es' : 'en');
+  });
+});
+applyLang(currentLang());
+
+</script>
+<style>
+  /* Custom dual cursor: slow outer ring + springy inner dot that can
+     overshoot (overflow) the ring on fast moves. Fine pointers only. */
+  #cur-outer, #cur-inner {
+    position: fixed; top: 0; left: 0; z-index: 9999;
+    pointer-events: none; border-radius: 50%;
+    opacity: 0; transition: opacity .25s;
+    will-change: transform;
+  }
+  #cur-outer {
+    width: 38px; height: 38px;
+    border: 1.5px solid rgba(255,255,255,.85);
+    transition: opacity .25s, width .2s, height .2s, border-color .2s;
+  }
+  #cur-outer.grow { width: 58px; height: 58px; border-color: rgba(255,255,255,.9); }
+  #cur-inner {
+    width: 8px; height: 8px;
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(255,255,255,.7);
+  }
+  body.cur-on #cur-outer, body.cur-on #cur-inner { opacity: 1; }
+
+</style>
+<div id="cur-outer" aria-hidden="true"></div>
+<div id="cur-inner" aria-hidden="true"></div>
+<script>
+const I18N = {
+  en: {
+  "features.kicker": "What it does",
+  "features.sub": "Four capabilities in one app: field measurement, photo capture, project organization, and team management.",
+  "features.title": "Everything the job needs, in your pocket.",
+  "footer.copy": "© 2026 Nivelato Labs",
+  "get.cta1": "Open the web app",
+  "get.cta2": "Log in",
+  "get.kicker": "Get the app",
+  "get.soon": "●&nbsp; now in closed testing on Google Play",
+  "get.sub": "Android app in closed testing on Google Play, plus the full web app. Sign in with your shop account or a personal account and start measuring.",
+  "get.title": "Nivelato is live. Grab it.",
+  "how.kicker": "How it works",
+  "how.sub": "A process, not a pile of tools: three steps in order, from the job site to the finished quote, in a single visit.",
+  "how.title": "Measure, sync, quote. Done.",
+  "meta.desc": "Nivelato is offset measuring software for glass shops. It captures field measurements and offsets on site, syncs them to the shop, and turns a measurement into a quote in one measure to quote flow.",
+  "meta.title": "Nivelato - Offset Measuring Software for Glass Shops - Nivelato Labs",
+  "nav.about": "About",
+  "nav.contact": "Contact",
+  "nav.features": "What it does",
+  "nav.get": "Get the app",
+  "nav.getNivelato": "Get Nivelato",
+  "nav.home": "Home",
+  "nav.how": "How it works",
+  "nav.login": "Log in",
+  "nav.pr": "Para clientes en PR",
+  "nav.pricing": "Pricing",
+  "nav.products": "Products",
+  "nav.sub.mission": "Mission",
+  "nav.sub.nivelato": "Nivelato",
+  "nav.sub.overview": "Overview",
+  "nav.sub.phonebench": "PhoneBench",
+  "nav.sub.pricing": "Pricing",
+  "nav.sub.values": "Core Values",
+  "nav.sub.vision": "Vision",
+  "nav.team": "Team",
+  "nv.lede": "Nivelato is offset measuring software for glass shops. Capture field measurements and offsets on site, sync them to the shop, and turn a measurement into a quote in one flow.",
+  "nv.ov.li1": "Offset measurement captured at the point of measure, not reconstructed later from notes",
+  "nv.ov.li2": "Field measurements sync from the site to the shop in one flow",
+  "nv.ov.li3": "Measure to quote: a site visit ends with a quote, not a transcription session",
+  "nv.ov.li4": "Glass shop measuring software priced and designed for small shops, not enterprises",
+  "nv.ov.meta": "Flagship · Nivelato",
+  "nv.ov.p1": "<strong>Glass work is offset work.</strong> Panels sit in frames, hardware shifts lines, and a measurement taken flat is wrong by the time it reaches the saw. Nivelato is field measurement software for glass shops built around that reality: capture the measurement and its offsets on site, and the numbers that reach the shop are the numbers that were true on the wall.",
+  "nv.ov.p2": "It is a measure to quote workflow, not a notebook. Measure on site, sync to the shop, and quote on the spot, with panels, hardware, photos, and projects kept in one place. Android and web, built for the way glass work actually moves.",
+  "nv.ov.title": "Nivelato: offset measuring software for glass shops",
+  "nv.title": "Field measurement, reinvented.",
+  "page.kicker": "Nivelato",
+  "page.title": "PhoneBench",
+  "panel.measure.h": "Field measurement",
+  "panel.measure.li1": "Fast dimension entry built for gloves-on work",
+  "panel.measure.li2": "Notes and flags right on each measurement",
+  "panel.measure.li3": "Works offline, syncs when you are back on signal",
+  "panel.measure.p": "Digital capture for every opening, dimension, and note, room by room, right on your phone. No clipboards, no lost napkins, no retyping at the office.",
+  "panel.photo.h": "Photo capture",
+  "panel.photo.li1": "One-tap photo step inside the measurement flow",
+  "panel.photo.li2": "Photos stored with the job, not lost in a camera roll",
+  "panel.photo.li3": "Review shots later from the dashboard or the app",
+  "panel.photo.p": "Photos attach to each measurement automatically and stay with the job, so the shop sees exactly what you saw on site.",
+  "panel.projects.h": "Project organization",
+  "panel.projects.li1": "Projects with customers, users, and measurements",
+  "panel.projects.li2": "Full history per project, searchable any time",
+  "panel.projects.li3": "Dashboard view for the whole shop pipeline",
+  "panel.projects.p": "Group measurements into projects. Track what is measured, what is quoted, and what is done, all in one place instead of scattered across chats and paper.",
+  "panel.team.h": "Team management",
+  "panel.team.li1": "Invite by code, approve from the dashboard",
+  "panel.team.li2": "Role-based permissions: owners, supervisors, measurers",
+  "panel.team.li3": "Shared projects with per-user access",
+  "panel.team.p": "Invite your crew and keep everyone on the same job list. Owners control who sees what, and permissions follow each person automatically.",
+  "phone.label": "Nivelato · job #1042",
+  "phone.m1": "Storefront window",
+  "phone.m2": "Door glass",
+  "phone.m3": "Sidelite x2",
+  "phone.m4": "Mirror, 1/4\"",
+  "phone.total": "Quote total",
+  "pricing.facts": "Updated October 19, 2026. Prices in USD, as of October 2026. Ultra includes 5 users; additional seats are $19.99 per seat per month. Every feature is currently free: accounts are created on the web and all plans are unlocked at no charge until the Android app publishes on Google Play, when billing through Google Play begins.",
+  "pricing.kicker": "Pricing",
+  "pricing.sub": "Plans are per shop and billed through Google Play. Pick the tier that matches how you work.",
+  "pricing.title": "Start free. Grow into the shop plan.",
+  "step1.h": "Measure on site",
+  "step1.n": "STEP 01",
+  "step1.p": "Open Nivelato, pick the project, and log dimensions as you walk the job. Photos optional, encouraged.",
+  "step2.h": "Sync to the shop",
+  "step2.n": "STEP 02",
+  "step2.p": "Measurements upload automatically. The office sees the job the moment you finish, no end-of-day data entry.",
+  "step3.h": "Quote and close",
+  "step3.n": "STEP 03",
+  "step3.p": "Turn the measurement set into a customer-ready quote before you leave the driveway.",
+  "tab.measure": "Field measurement",
+  "tab.photo": "Photo capture",
+  "tab.projects": "Project organization",
+  "tab.team": "Team management",
+  "tier.ent.btn": "Contact via email",
+  "tier.ent.li1": "Everything in Ultra",
+  "tier.ent.li2": "Multiple shops, one account",
+  "tier.ent.li3": "Custom terms",
+  "tier.ent.li4": "Priority support",
+  "tier.ent.name": "Enterprise",
+  "tier.ent.price": "Custom",
+  "tier.free.btn": "Get started",
+  "tier.free.li1": "On-phone measurement capture",
+  "tier.free.li2": "Photo capture",
+  "tier.free.li3": "Local job history",
+  "tier.free.li4": "Web dashboard",
+  "tier.free.li5": "Team seats",
+  "tier.free.name": "Free",
+  "tier.free.price": "$0 · Try it on a real job",
+  "tier.note": "Company accounts in Puerto Rico are currently by application only, <a href=\"/pr/about/\">see below</a>.",
+  "tier.pro.btn": "Go Pro",
+  "tier.pro.li1": "Everything in Free",
+  "tier.pro.li2": "Limited dashboard access",
+  "tier.pro.li3": "See your own measurements online",
+  "tier.pro.li4": "Project history in the cloud",
+  "tier.pro.li5": "Teammates' measurements",
+  "tier.pro.name": "Pro",
+  "tier.pro.price": "$5.99/mo · For solo techs",
+  "tier.ultra.badge": "Most popular",
+  "tier.ultra.btn": "Go Ultra",
+  "tier.ultra.li1": "Everything in Pro",
+  "tier.ultra.li2": "Full dashboard, no limits",
+  "tier.ultra.li3": "View the whole team's measurements",
+  "tier.ultra.li4": "Team seats and user management",
+  "tier.ultra.li5": "Priority everything",
+  "tier.ultra.name": "Ultra",
+  "tier.ultra.price": "$10.99/mo per user · For shops running a crew"
+},
+  es: {
+  "features.kicker": "Qué hace",
+  "features.sub": "Cuatro capacidades en una sola app: medición en campo, captura de fotos, organización de proyectos y gestión de equipo.",
+  "features.title": "Todo lo que el trabajo necesita, en tu bolsillo.",
+  "footer.copy": "© 2026 Nivelato Labs",
+  "get.cta1": "Abrir la app web",
+  "get.cta2": "Iniciar sesión",
+  "get.kicker": "Descarga la app",
+  "get.soon": "●&nbsp; ahora en pruebas cerradas en Google Play",
+  "get.sub": "App Android en pruebas cerradas en Google Play, más la app web completa. Inicia sesión con tu cuenta del taller o una cuenta personal y empieza a medir.",
+  "get.title": "Nivelato ya está en vivo. Descárgalo.",
+  "how.kicker": "Cómo funciona",
+  "how.sub": "Un proceso, no una pila de herramientas: tres pasos en orden, desde el sitio de trabajo hasta la cotización final, en una sola visita.",
+  "how.title": "Mide, sincroniza, cotiza. Listo.",
+  "meta.desc": "Nivelato es software de medición con offset para talleres de cristales. Captura medidas de campo y offsets en el sitio, las sincroniza con el taller y convierte una medida en una cotización en un solo flujo de medir para cotizar.",
+  "meta.title": "Nivelato - Software de medición con offset para talleres de cristales - Nivelato Labs",
+  "nav.about": "Nosotros",
+  "nav.contact": "Contacto",
+  "nav.features": "Qué hace",
+  "nav.get": "Descarga la app",
+  "nav.getNivelato": "Descargar Nivelato",
+  "nav.home": "Inicio",
+  "nav.how": "Cómo funciona",
+  "nav.login": "Iniciar sesión",
+  "nav.pr": "Para clientes en PR",
+  "nav.pricing": "Precios",
+  "nav.products": "Productos",
+  "nav.sub.mission": "Misión",
+  "nav.sub.nivelato": "Nivelato",
+  "nav.sub.overview": "Resumen",
+  "nav.sub.phonebench": "PhoneBench",
+  "nav.sub.pricing": "Precios",
+  "nav.sub.values": "Valores",
+  "nav.sub.vision": "Visión",
+  "nav.team": "Equipo",
+  "nv.lede": "Nivelato es software de medición con offset para talleres de cristales. Captura medidas de campo y offsets en el sitio, sincronízalas con el taller y convierte una medida en una cotización en un solo flujo.",
+  "nv.ov.li1": "Medición con offset capturada en el punto de medida, no reconstruida después a partir de notas",
+  "nv.ov.li2": "Las medidas de campo se sincronizan del sitio al taller en un solo flujo",
+  "nv.ov.li3": "Medir para cotizar: una visita al sitio termina con una cotización, no con una sesión de transcripción",
+  "nv.ov.li4": "Software de medición para talleres de cristales, con precio y diseño pensados para talleres pequeños, no para grandes empresas",
+  "nv.ov.meta": "Producto insignia · Nivelato",
+  "nv.ov.p1": "<strong>El trabajo con cristales es trabajo de offset.</strong> Los paneles se montan en marcos, los herrajes desplazan las líneas y una medida tomada en plano ya es incorrecta cuando llega a la sierra. Nivelato es software de medición de campo para talleres de cristales construido sobre esa realidad: captura la medida y sus offsets en el sitio, y los números que llegan al taller son los números que eran correctos en la pared.",
+  "nv.ov.p2": "Es un flujo de medir para cotizar, no una libreta. Mide en el sitio, sincroniza con el taller y cotiza en el momento, con paneles, herrajes, fotos y proyectos guardados en un solo lugar. Android y web, construido para la forma en que el trabajo con cristales realmente se mueve.",
+  "nv.ov.title": "Nivelato: software de medición con offset para talleres de cristales",
+  "nv.title": "Medición de campo, reinventada.",
+  "page.kicker": "Nivelato",
+  "page.title": "PhoneBench",
+  "panel.measure.h": "Medición en campo",
+  "panel.measure.li1": "Entrada rápida de dimensiones, pensada para trabajar con guantes",
+  "panel.measure.li2": "Notas y marcas directo en cada medida",
+  "panel.measure.li3": "Funciona sin conexión, sincroniza al volver la señal",
+  "panel.measure.p": "Captura digital de cada abertura, dimensión y nota, cuarto por cuarto, directamente en tu teléfono. Sin portapapeles, sin servilletas perdidas, sin reescribir en la oficina.",
+  "panel.photo.h": "Captura de fotos",
+  "panel.photo.li1": "Paso de foto con un toque dentro del flujo de medición",
+  "panel.photo.li2": "Fotos guardadas con el trabajo, no perdidas en el carrete",
+  "panel.photo.li3": "Revisa las fotos después desde el panel o la app",
+  "panel.photo.p": "Las fotos se adjuntan a cada medida automáticamente y quedan con el trabajo, para que el taller vea exactamente lo que viste en el sitio.",
+  "panel.projects.h": "Organización de proyectos",
+  "panel.projects.li1": "Proyectos con clientes, usuarios y medidas",
+  "panel.projects.li2": "Historial completo por proyecto, buscable en todo momento",
+  "panel.projects.li3": "Vista de panel para todo el flujo del taller",
+  "panel.projects.p": "Agrupa medidas en proyectos. Sigue lo medido, lo cotizado y lo terminado, todo en un lugar en vez de regado entre chats y papel.",
+  "panel.team.h": "Gestión de equipo",
+  "panel.team.li1": "Invita por código, aprueba desde el panel",
+  "panel.team.li2": "Permisos por rol: dueños, supervisores, medidores",
+  "panel.team.li3": "Proyectos compartidos con acceso por usuario",
+  "panel.team.p": "Invita a tu equipo y mantén a todos en la misma lista de trabajos. Los dueños controlan quién ve qué, y los permisos siguen a cada persona automáticamente.",
+  "phone.label": "Nivelato · trabajo #1042",
+  "phone.m1": "Vitrina de tienda",
+  "phone.m2": "Cristal de puerta",
+  "phone.m3": "Laterales x2",
+  "phone.m4": "Espejo, 1/4\"",
+  "phone.total": "Total cotizado",
+  "pricing.facts": "Actualizado el 19 de octubre de 2026. Precios en USD, vigentes a octubre de 2026. Ultra incluye 5 usuarios; los asientos adicionales cuestan $19.99 por asiento al mes. Actualmente todas las funciones son gratuitas: las cuentas se crean en la web y todos los planes están desbloqueados sin cargo hasta que la app de Android se publique en Google Play, cuando comenzará la facturación a través de Google Play.",
+  "pricing.kicker": "Precios",
+  "pricing.sub": "Los planes son por taller y se facturan por Google Play. Elige el nivel que combine con tu forma de trabajar.",
+  "pricing.title": "Empieza gratis. Crece al plan del taller.",
+  "step1.h": "Mide en el sitio",
+  "step1.n": "PASO 01",
+  "step1.p": "Abre Nivelato, elige el proyecto y registra dimensiones mientras recorres el trabajo. Fotos opcionales, recomendadas.",
+  "step2.h": "Sincroniza con el taller",
+  "step2.n": "PASO 02",
+  "step2.p": "Las medidas se suben automáticamente. La oficina ve el trabajo en cuanto terminas, sin captura de datos al final del día.",
+  "step3.h": "Cotiza y cierra",
+  "step3.n": "PASO 03",
+  "step3.p": "Convierte el juego de medidas en una cotización lista para el cliente antes de salir del sitio.",
+  "tab.measure": "Medición en campo",
+  "tab.photo": "Captura de fotos",
+  "tab.projects": "Organización de proyectos",
+  "tab.team": "Gestión de equipo",
+  "tier.ent.btn": "Contactar por correo",
+  "tier.ent.li1": "Todo lo de Ultra",
+  "tier.ent.li2": "Varios talleres, una cuenta",
+  "tier.ent.li3": "Términos personalizados",
+  "tier.ent.li4": "Soporte prioritario",
+  "tier.ent.name": "Enterprise",
+  "tier.ent.price": "Personalizado",
+  "tier.free.btn": "Empezar",
+  "tier.free.li1": "Captura de medidas en el teléfono",
+  "tier.free.li2": "Captura de fotos",
+  "tier.free.li3": "Historial local de trabajos",
+  "tier.free.li4": "Panel web",
+  "tier.free.li5": "Puestos de equipo",
+  "tier.free.name": "Gratis",
+  "tier.free.price": "$0 · Pruébalo en un trabajo real",
+  "tier.note": "Las cuentas de empresa en Puerto Rico son actualmente solo por solicitud, <a href=\"/pr/about/\">ver abajo</a>.",
+  "tier.pro.btn": "Sube a Pro",
+  "tier.pro.li1": "Todo lo del plan Gratis",
+  "tier.pro.li2": "Acceso limitado al panel",
+  "tier.pro.li3": "Ve tus propias medidas en línea",
+  "tier.pro.li4": "Historial de proyectos en la nube",
+  "tier.pro.li5": "Medidas de tus compañeros",
+  "tier.pro.name": "Pro",
+  "tier.pro.price": "$5.99/mes · Para técnicos independientes",
+  "tier.ultra.badge": "Más popular",
+  "tier.ultra.btn": "Sube a Ultra",
+  "tier.ultra.li1": "Todo lo del plan Pro",
+  "tier.ultra.li2": "Panel completo, sin límites",
+  "tier.ultra.li3": "Ve las medidas de todo el equipo",
+  "tier.ultra.li4": "Puestos de equipo y gestión de usuarios",
+  "tier.ultra.li5": "Prioridad en todo",
+  "tier.ultra.name": "Ultra",
+  "tier.ultra.price": "$10.99/mes por usuario · Para talleres con equipo"
+}
+};
+const FORCED_LANG = null;
+
+const LANG_KEY = 'nivelato-lang';
+function currentLang() {
+  try {
+    const saved = localStorage.getItem(LANG_KEY);
+    if (saved && I18N[saved]) return saved;
+  } catch (e) {}
+  if (FORCED_LANG) return FORCED_LANG;
+  const nav = (navigator.language || 'en').toLowerCase();
+  const base = nav.split('-')[0];
+  return I18N[base] ? base : 'en';
+}
+function applyLang(l) {
+  const dict = I18N[l] || I18N.en;
+  document.documentElement.lang = l;
+  if (dict['meta.title']) document.title = dict['meta.title'];
+  const metaDescEl = document.querySelector('meta[name="description"]');
+  if (metaDescEl && dict['meta.desc']) metaDescEl.setAttribute('content', dict['meta.desc']);
+  document.querySelectorAll('[data-i18n]').forEach(function (el) {
+    const k = el.getAttribute('data-i18n');
+    if (dict[k] !== undefined) el.innerHTML = dict[k];
+  });
+  document.querySelectorAll('.lang-toggle').forEach(function (b) {
+    b.textContent = (l === 'en') ? 'ES' : 'EN';
+  });
+  try { localStorage.setItem(LANG_KEY, l); } catch (e) {}
+}
+document.querySelectorAll('.lang-toggle').forEach(function (b) {
+  b.addEventListener('click', function () {
+    const cur = document.documentElement.lang === 'es' ? 'es' : 'en';
+    applyLang(cur === 'en' ? 'es' : 'en');
+  });
+});
+applyLang(currentLang());
+
+</script>
+<script>
+/* Language selector for the Variant B menu overlay. The available
+   languages are a registry, not a hard-coded toggle: the list is
+   built from the page's I18N dictionaries. To add a language, add
+   its dictionary to I18N and one label line to LANG_LABELS below;
+   the selector, detection, and persistence pick it up with no UI
+   changes. Switching reuses the existing applyLang(). */
+(function () {
+  var LANG_LABELS = { en: 'English', es: 'Español' };
+  var wrap = document.getElementById('variant-lang');
+  if (!wrap || typeof I18N === 'undefined' || typeof applyLang !== 'function') return;
+  var currentBtn = wrap.querySelector('.variant-lang-current');
+  var currentLabel = wrap.querySelector('.variant-lang-current-label');
+  var list = document.getElementById('variant-lang-list');
+  var registry = Object.keys(I18N).map(function (code) {
+    return { code: code, label: LANG_LABELS[code] || code.toUpperCase(), dictionary: I18N[code] };
+  });
+  function paint() {
+    var cur = document.documentElement.lang || 'en';
+    registry.forEach(function (entry) {
+      if (entry.code === cur) currentLabel.textContent = entry.label;
+    });
+    list.querySelectorAll('.variant-lang-option').forEach(function (opt) {
+      opt.setAttribute('aria-selected', opt.getAttribute('data-lang') === cur ? 'true' : 'false');
+    });
+  }
+  registry.forEach(function (entry) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'variant-lang-option';
+    b.setAttribute('role', 'option');
+    b.setAttribute('data-lang', entry.code);
+    b.textContent = entry.label;
+    b.addEventListener('click', function () {
+      applyLang(entry.code);
+      paint();
+      list.hidden = true;
+      currentBtn.setAttribute('aria-expanded', 'false');
+    });
+    list.appendChild(b);
+  });
+  currentBtn.addEventListener('click', function () {
+    var willOpen = list.hidden;
+    list.hidden = !willOpen;
+    currentBtn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+  });
+  paint();
+})();
+</script>
+<script>
+/* Scroll cue behavior: visible at the top of the page, retired for good
+   (this page view) after the first scroll past 40px. A tap glides to the
+   first section below the hero; reduced motion jumps instantly. */
+(function(){try{
+var cue=document.querySelector('.scroll-cue');if(!cue)return;
+var hero=document.querySelector('header')||document.querySelector('.page-head');
+var next=hero?hero.nextElementSibling:null;
+while(next&&(next.tagName==='STYLE'||next.classList.contains('scroll-cue'))){next=next.nextElementSibling;}
+var gone=false;
+function hide(){gone=true;cue.classList.remove('cue-on');}
+if(window.scrollY<=40){cue.classList.add('cue-on');}
+window.addEventListener('scroll',function(){if(window.scrollY>40&&!gone){hide();}},{passive:true});
+cue.addEventListener('click',function(){
+hide();
+if(!next){return;}
+var y=next.getBoundingClientRect().top+window.scrollY;
+var rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+try{window.scrollTo({top:y,behavior:rm?'instant':'smooth'});}catch(e){window.scrollTo(0,y);}
+});
+}catch(e){}})();
+</script>
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ba83c66be7af41d899cb499dfa1442c8"}'></script>
+<!-- End Cloudflare Web Analytics -->
+<script>
+/* Variant B menu drill-in: tapping a parent row slides the menu to
+   that section's panel; the back row slides back. Closing the menu
+   resets to the root panel, so it always reopens flat. Panels off
+   the current path are inert and, once the slide settles, hidden. */
+(function(){try{
+var menu=document.getElementById('variant-menu');if(!menu)return;
+var track=menu.querySelector('.variant-track');if(!track)return;
+var panels={};
+[].slice.call(track.querySelectorAll('.variant-panel')).forEach(function(p){panels[p.getAttribute('data-panel')]=p;});
+var stack=['root'];
+var hideTimer=null;
+function render(){
+  var ordered=stack.map(function(n){return panels[n];});
+  Object.keys(panels).forEach(function(n){if(stack.indexOf(n)===-1)ordered.push(panels[n]);});
+  ordered.forEach(function(p){track.appendChild(p);});
+  track.style.transform='translateX('+(-100*(stack.length-1))+'%)';
+  var top=stack[stack.length-1];
+  Object.keys(panels).forEach(function(n){
+    var p=panels[n];
+    if(n===top){p.style.visibility='visible';p.style.opacity='1';if('inert' in p)p.inert=false;}
+    else{p.style.opacity='0';if('inert' in p)p.inert=true;}
+  });
+  if(hideTimer)clearTimeout(hideTimer);
+  hideTimer=setTimeout(function(){
+    Object.keys(panels).forEach(function(n){if(n!==stack[stack.length-1])panels[n].style.visibility='hidden';});
+  },340);
+}
+menu.addEventListener('click',function(e){
+  var t=e.target;
+  var drill=t&&t.closest?t.closest('[data-drill]'):null;
+  if(drill){var name=drill.getAttribute('data-drill');if(panels[name]&&stack[stack.length-1]!==name){stack.push(name);render();}return;}
+  var back=t&&t.closest?t.closest('[data-back]'):null;
+  if(back&&stack.length>1){stack.pop();render();}
+});
+function reset(){stack=['root'];render();}
+var closeBtn=menu.querySelector('.variant-menu-close');
+if(closeBtn)closeBtn.addEventListener('click',reset);
+var openBtn=document.querySelector('.variant-menu-button');
+if(openBtn)openBtn.addEventListener('click',reset);
+render();
+}catch(e){}})();
+</script>
+
+<script>
+/* Menu bend: the sidebar grows out of the top bar capsule and folds
+   back into it. The sheet is assembled at runtime from the existing
+   menu parts so the drill-in system keeps its own nodes. */
+(function(){try{
+var menu=document.getElementById('variant-menu');if(!menu)return;
+var viewport=menu.querySelector('.variant-viewport');if(!viewport)return;
+var closeBtn=menu.querySelector('.variant-menu-close');
+var sheet=document.createElement('div');sheet.className='variant-sheet';sheet.id='variant-sheet';
+menu.appendChild(sheet);sheet.appendChild(viewport);if(closeBtn)sheet.appendChild(closeBtn);
+var nav=document.querySelector('.variant-nav');
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var EASE='cubic-bezier(.22,1,.36,1)',animating=false;
+function contentEls(){return [viewport,closeBtn].filter(Boolean);}
+function setContent(o,delay){contentEls().forEach(function(el){el.style.transition='opacity .22s ease '+(delay||0)+'ms';el.style.opacity=o;});}
+function finalRect(){
+  var w=Math.min(440,window.innerWidth-24);
+  var prevW=sheet.style.width,prevH=sheet.style.height,prevPos=sheet.style.position,prevVis=sheet.style.visibility;
+  sheet.style.width=w+'px';sheet.style.height='auto';sheet.style.visibility='hidden';
+  var h=Math.min(sheet.scrollHeight,window.innerHeight-24);
+  sheet.style.width=prevW;sheet.style.height=prevH;sheet.style.visibility=prevVis;
+  return {left:window.innerWidth-12-w,top:12,width:w,height:h};
+}
+function expand(){
+  if(reduce||!nav){setContent(1,60);return;}
+  animating=true;
+  var c=nav.getBoundingClientRect(),f=finalRect();
+  sheet.style.position='fixed';sheet.style.zIndex='5';sheet.style.margin='0';sheet.style.overflow='hidden';
+  sheet.style.left=c.left+'px';sheet.style.top=c.top+'px';sheet.style.width=c.width+'px';sheet.style.height=c.height+'px';sheet.style.borderRadius='999px';
+  setContent(0,0);
+  setTimeout(function(){setTimeout(function(){
+    sheet.style.transition='left .55s '+EASE+',top .55s '+EASE+',width .55s '+EASE+',height .55s '+EASE+',border-radius .55s '+EASE;
+    sheet.style.left=f.left+'px';sheet.style.top=f.top+'px';sheet.style.width=f.width+'px';sheet.style.height=f.height+'px';sheet.style.borderRadius='30px';
+    setContent(1,210);
+    setTimeout(function(){sheet.style.transition='';sheet.style.position='';sheet.style.zIndex='';sheet.style.left='';sheet.style.top='';sheet.style.width='';sheet.style.height='';sheet.style.borderRadius='';sheet.style.overflow='';animating=false;},600);
+  },30);},30);
+}
+function fold(){
+  if(reduce||!nav){return;}
+  document.body.classList.add('variant-menu-closing');
+  var c=nav.getBoundingClientRect();
+  var r=sheet.getBoundingClientRect();
+  sheet.style.position='fixed';sheet.style.zIndex='5';sheet.style.margin='0';sheet.style.overflow='hidden';
+  sheet.style.left=r.left+'px';sheet.style.top=r.top+'px';sheet.style.width=r.width+'px';sheet.style.height=r.height+'px';sheet.style.borderRadius='30px';
+  setContent(0,0);
+  setTimeout(function(){setTimeout(function(){
+    sheet.style.transition='left .5s '+EASE+',top .5s '+EASE+',width .5s '+EASE+',height .5s '+EASE+',border-radius .5s '+EASE;
+    sheet.style.left=c.left+'px';sheet.style.top=c.top+'px';sheet.style.width=c.width+'px';sheet.style.height=c.height+'px';sheet.style.borderRadius='999px';
+    setTimeout(function(){
+      document.body.classList.remove('variant-menu-closing');
+      sheet.style.transition='';sheet.style.position='';sheet.style.zIndex='';sheet.style.left='';sheet.style.top='';sheet.style.width='';sheet.style.height='';sheet.style.borderRadius='';sheet.style.overflow='';
+      contentEls().forEach(function(el){el.style.transition='';el.style.opacity='';});
+    },540);
+  },30);},30);
+}
+var wasOpen=false;
+new MutationObserver(function(){
+  var open=document.body.classList.contains('variant-menu-open');
+  if(open&&!wasOpen){wasOpen=true;expand();}
+  else if(!open&&wasOpen){wasOpen=false;fold();}
+}).observe(document.body,{attributes:true,attributeFilter:['class']});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'&&document.body.classList.contains('variant-menu-open')){
+    document.body.classList.remove('variant-menu-open');
+    var b=document.querySelector('.variant-menu-button');if(b)b.setAttribute('aria-expanded','false');
+  }
+});
+}catch(e){}})();
+</script>
+</body>
+</html>
