@@ -124,7 +124,7 @@
 
 <div class="mission">
   <h1 id="missionName">Attune A1 · Run 1 · Live Training</h1>
-  <div class="sub">FLIGHT COMMENTARY · GEMMA 4 E2B · ORPHEUS 3B VOICE · FULL TELEMETRY BROADCAST</div>
+  <div class="sub">FLIGHT COMMENTARY · LUX · ORPHEUS 3B VOICE · FULL TELEMETRY BROADCAST</div>
 </div>
 
 <div class="configstrip">
@@ -132,7 +132,7 @@
   <div class="c"><div class="k">Corpus</div><div class="v">RSI-CORPUS-V1 · DEEP-MASTER</div></div>
   <div class="c"><div class="k">Train Set</div><div class="v">612 TRACES · 11.50M TOKENS</div></div>
   <div class="c"><div class="k">Holdout</div><div class="v">10 TRACES · 1 PER FAMILY</div></div>
-  <div class="c"><div class="k">Commentator</div><div class="v">GEMMA 4 E2B · UNSLOTH</div></div>
+  <div class="c"><div class="k">Commentator</div><div class="v">LUX · LAB AGENT</div></div>
   <div class="c"><div class="k">Voice</div><div class="v">ORPHEUS 3B 0.1 FT · TARA</div></div>
   <div class="c"><div class="k">Compute</div><div class="v">M1 MAX · 64 GB UNIFIED</div></div>
 </div>
@@ -246,7 +246,7 @@
   </div>
 
   <div class="card s8">
-    <h2>Flight Commentary Loop <span class="r">WRITTEN LIVE BY GEMMA 4 E2B · VOICED BY ORPHEUS 3B</span></h2>
+    <h2>Flight Commentary Loop <span class="r">FOUR HOSTS · SCRIPTED LIVE BY LUX · VOICED BY ORPHEUS 3B</span></h2>
     <div class="feed" id="feed"></div>
   </div>
 
@@ -259,8 +259,8 @@
     </div>
     <table class="dt" style="margin-top:12px">
       <tr><td class="k">Audio State</td><td class="v" id="audioState">STANDBY</td></tr>
-      <tr><td class="k">Voice Model</td><td class="v">ORPHEUS 3B 0.1 FT</td></tr>
-      <tr><td class="k">Voice</td><td class="v">TARA</td></tr>
+      <tr><td class="k">Voice Model</td><td class="v">ORPHEUS 3B 0.1 FT · X4 HOSTS</td></tr>
+      <tr><td class="k">Voices</td><td class="v">TARA · LEO · MIA · DAN</td></tr>
       <tr><td class="k">Commentary Cadence</td><td class="v">EVERY 30 S</td></tr>
       <tr><td class="k">Segments Aired</td><td class="v" id="segCount">0</td></tr>
       <tr><td class="k">Input Side (STT)</td><td class="v">WHISPER LARGE V3</td></tr>
@@ -356,8 +356,11 @@ function addMsg(m){
   if(m.seq!=null){ if(seenSeqs.has(m.seq)) return; seenSeqs.add(m.seq); }
   const el=$("feed"), d=document.createElement("div");
   d.className="msg"+(m.speaker==="FLIGHT"?" sys":"");
-  d.innerHTML="<div class='who'><span>"+m.speaker+(m.seq!=null?" · SEG "+String(m.seq).padStart(3,"0"):"")+"</span><span class='tt'>"+(m.t||"")+"</span></div><div class='tx'></div>"+(m.audio?"<div class='meta'>AUDIO · "+m.audio.split("/").pop()+" · ORPHEUS 3B · TARA</div>":"<div class='meta'>TEXT ONLY · AUDIO PENDING</div>");
-  d.querySelector(".tx").textContent=m.text;
+  d.innerHTML="<div class='who'><span>"+m.speaker+(m.seq!=null?" · SEG "+String(m.seq).padStart(3,"0"):"")+"</span><span class='tt'>"+(m.t||"")+"</span></div><div class='tx'></div>"+(m.audio?"<div class='meta'>AUDIO · "+m.audio.split("/").pop()+" · ORPHEUS 3B · FOUR VOICES</div>":"<div class='meta'>TEXT ONLY · AUDIO PENDING</div>");
+  const txEl=d.querySelector(".tx");
+  if(m.turns&&m.turns.length){ txEl.innerHTML=m.turns.map(t=>"<div style='margin-bottom:5px'><span style='font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--cyan)'>"+t.speaker+"</span><br></div>").join("");
+    [...txEl.children].forEach((c,i)=>{const s=document.createElement("span");s.textContent=m.turns[i].text;c.appendChild(s);}); }
+  else txEl.textContent=m.text;
   el.prepend(d); while(el.children.length>30)el.lastChild.remove();
   if(m.audio){ const s=document.createElement("div"); s.className="seg";
     s.innerHTML="<span class='n'>SEG "+String(m.seq).padStart(3,"0")+"</span><span class='t'></span>";
