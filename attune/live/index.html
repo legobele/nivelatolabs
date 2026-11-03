@@ -283,7 +283,7 @@
 const $=id=>document.getElementById(id);
 const qs=new URLSearchParams(location.search);
 let ENDPOINT=(qs.get("src")||window.ATTUNE_LIVE_ENDPOINT||"").replace(/\/$/,"");
-const CANDIDATES=[ENDPOINT,"https://live.nivelatolabs.com","http://127.0.0.1:8321"].filter((v,i,a)=>v&&a.indexOf(v)===i);
+const CANDIDATES=[ENDPOINT,"https://providers-file-translated-jeremy.trycloudflare.com","https://live.nivelatolabs.com","http://127.0.0.1:8321"].filter((v,i,a)=>v&&a.indexOf(v)===i);
 let live=false, audioOn=false, muted=false, lastAudioSeq=-1, startedAt=Date.now(), segsAired=0;
 let lossHist=[], lrHist=[], gradHist=[], tpsHist=[], firstStep=null, firstStepAt=null, lastStep=null;
 const wave=$("wave"); for(let i=0;i<42;i++){const b=document.createElement("i");b.style.height=(4+Math.random()*10)+"px";wave.appendChild(b);}
