@@ -291,7 +291,7 @@ setInterval(()=>{ if(audioOn&&!muted){ [...wave.children].forEach(b=>b.style.hei
 
 function fmtT(s){s=Math.max(0,Math.floor(s));const h=String(Math.floor(s/3600)).padStart(2,"0"),m=String(Math.floor(s%3600/60)).padStart(2,"0"),x=String(s%60).padStart(2,"0");return h+":"+m+":"+x;}
 function fmtN(n){return n>=1e6?(n/1e6).toFixed(2)+"M":n>=1e3?(n/1e3).toFixed(1)+"K":String(Math.round(n));}
-setInterval(()=>{ $("tClock").textContent="T+ "+fmtT((Date.now()-startedAt)/1000+(window._e0||0));
+setInterval(()=>{ const tm=window._tm; if(tm!=null){ const v=tm-((Date.now()-window._tmAt)/1000); $("tClock").textContent=(v>=0?"T- ":"T+ ")+fmtT(Math.abs(v)); } else $("tClock").textContent="T+ "+fmtT((Date.now()-startedAt)/1000+(window._e0||0));
   const d=new Date(); $("utcClock").textContent=String(d.getUTCHours()).padStart(2,"0")+":"+String(d.getUTCMinutes()).padStart(2,"0")+":"+String(d.getUTCSeconds()).padStart(2,"0")+" UTC"; },500);
 
 function lineChart(id,data,color,fmt){
@@ -369,6 +369,7 @@ function addMsg(m){
 function applyStatus(s){
   if(s.mission) $("missionName").textContent=s.mission;
   if(s.elapsed_s!=null) window._e0=s.elapsed_s-((Date.now()-startedAt)/1000);
+  if(s.tminus_s!=null){ window._tm=s.tminus_s; window._tmAt=Date.now(); }
   const step=s.step||0, total=s.total_steps||2000;
   if(firstStep===null){firstStep=step;firstStepAt=Date.now();}
   lastStep=step;
@@ -418,11 +419,11 @@ const demoLines=[
  "Ten traces are held out for validation and never trained on, one per family, so the run can be measured honestly.",
  "At liftoff there is a 60-step smoke phase first. Only if it passes does the full epoch begin, an overnight run on the M1 Max."];
 function demoTick(){
-  dStep+=Math.floor(2+Math.random()*5); dLoss=Math.max(.42,dLoss-(Math.random()*.012)+(Math.random()<.18?.02:0));
-  const s={mission:"Attune A1 · Run 1 · Live Training",step:dStep,total_steps:2000,epoch:dStep/640,
-    loss:dLoss,lr:2e-4*Math.pow(.999,dStep),grad_norm:.4+Math.random()*.5,tokens_per_s:8200+Math.random()*900,
-    mem_gb:41+Math.random()*4,gpu_pct:88+Math.random()*10,temp_c:71+Math.random()*6,
-    eta_s:(2000-dStep)*1.9,phase:"PRE-SHOW",elapsed_s:(Date.now()-startedAt)/1000,source:"DEMO",
+  const tm=Math.round(300-(Date.now()-startedAt)/1000);
+  const s={mission:"Attune A1 · Run 1 · Live Training",step:0,total_steps:633,epoch:0,tminus_s:tm,
+    loss:null,lr:null,grad_norm:null,tokens_per_s:null,
+    mem_gb:41+Math.random()*4,gpu_pct:null,temp_c:null,
+    eta_s:null,phase:tm>0?"COUNTDOWN":"LIFTOFF WINDOW",elapsed_s:(Date.now()-startedAt)/1000,source:"DEMO",
     poll:{TELEMETRY:"GO",GPU:"GO",MEMORY:"GO",THERMAL:"GO",POWER:"GO",STORAGE:"GO",LOSS:"GO",DATA:"GO",CHECKPOINT:"GO",COMMENTARY:"GO",TTS:"GO",UPLINK:"GO"},
     events:[{t:"T+ "+fmtT((Date.now()-startedAt)/1000),text:"<b>Pre-show</b> · telling the Attune story · awaiting liftoff"}],commentary:[]};
   if(demoSeq%3===0) s.commentary=[{speaker:"GEMMA · FLIGHT COMMENTARY",t:"T+ "+fmtT((Date.now()-startedAt)/1000),text:demoLines[(demoSeq/3)%demoLines.length|0],seq:demoSeq}];
