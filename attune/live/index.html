@@ -141,14 +141,15 @@
 
 <div class="foot">
   NIVELATO LABS · ATTUNE TRAINING BROADCAST · <span id="srcLine">SOURCE: DEMO TELEMETRY</span><br>
-  Public broadcast mirror. Persona on all public lab surfaces: Benj Lebron, founder.
+  A Nivelato Labs public broadcast. Founder: Benj Lebron.
 </div>
 
 <script>
 "use strict";
 const $=id=>document.getElementById(id);
 const qs=new URLSearchParams(location.search);
-const ENDPOINT=(qs.get("src")||window.ATTUNE_LIVE_ENDPOINT||"").replace(/\/$/,"");
+let ENDPOINT=(qs.get("src")||window.ATTUNE_LIVE_ENDPOINT||"").replace(/\/$/,"");
+const ENDPOINT_CANDIDATES=[ENDPOINT,"https://live.nivelatolabs.com","http://127.0.0.1:8321"].filter((v,i,a)=>v&&a.indexOf(v)===i);
 let live=false, audioOn=false, muted=false, lastAudioSeq=-1, startedAt=Date.now();
 let lossHist=[];
 const wave=$("wave"); for(let i=0;i<42;i++){const b=document.createElement("i");b.style.height=(4+Math.random()*10)+"px";wave.appendChild(b);}
@@ -242,13 +243,15 @@ function demoTick(){
   demoSeq++; applyStatus(s);
 }
 async function tryLive(){
-  if(!ENDPOINT) return false;
-  try{ const r=await fetch(ENDPOINT+"/status.json",{cache:"no-store"}); if(!r.ok) return false;
-    const s=await r.json(); live=true;
+  for(const cand of ENDPOINT_CANDIDATES){
+  try{ const r=await fetch(cand+"/status.json",{cache:"no-store"}); if(!r.ok) continue;
+    const s=await r.json(); live=true; ENDPOINT=cand;
     $("liveBadgeTx").textContent="LIVE"; $("liveBadge").classList.remove("demo");
     $("srcLine").textContent="SOURCE: MAC BRIDGE · "+ENDPOINT;
     applyStatus(s); return true;
-  }catch(e){ return false; }
+  }catch(e){ continue; }
+  }
+  return false;
 }
 (async()=>{ 
   if(await tryLive()){ setInterval(tryLive,3000); }
