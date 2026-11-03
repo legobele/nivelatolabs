@@ -412,19 +412,19 @@ function applyStatus(s){
 /* Demo telemetry (in-browser simulation, labelled DEMO until the bridge feed is public). */
 let dStep=412, dLoss=2.31, demoSeq=0;
 const demoLines=[
- "Training is nominal. Loss is tracking down and to the right, gradient norm is stable.",
- "We are through step four hundred. Learning rate is on the planned decay curve.",
- "Memory pressure is comfortable on the M1 Max. We hold a GO for continued training.",
- "Commentary check: Gemma is reading telemetry every thirty seconds and the voice loop is live.",
- "Next milestone is the halfway checkpoint save. Flight will call it when we see it on the board."];
+ "Welcome to the Attune broadcast. This is the pre-show for Training Run 1, the first time this lab trains a model on its own agent work traces.",
+ "The dataset is RSI Corpus v1: 622 traces of real agent work with full reasoning, 21 million record tokens, built by 100 agents and reviewed by 30 more.",
+ "Run 1 trains Au1 Mini, a 2B router model, from a stock Gemma 4 E2B base. Small first, on purpose: every stage of the loop gets proven cheaply.",
+ "Ten traces are held out for validation and never trained on, one per family, so the run can be measured honestly.",
+ "At liftoff there is a 60-step smoke phase first. Only if it passes does the full epoch begin, an overnight run on the M1 Max."];
 function demoTick(){
   dStep+=Math.floor(2+Math.random()*5); dLoss=Math.max(.42,dLoss-(Math.random()*.012)+(Math.random()<.18?.02:0));
   const s={mission:"Attune A1 · Run 1 · Live Training",step:dStep,total_steps:2000,epoch:dStep/640,
     loss:dLoss,lr:2e-4*Math.pow(.999,dStep),grad_norm:.4+Math.random()*.5,tokens_per_s:8200+Math.random()*900,
     mem_gb:41+Math.random()*4,gpu_pct:88+Math.random()*10,temp_c:71+Math.random()*6,
-    eta_s:(2000-dStep)*1.9,phase:dStep<1800?"TRAINING":"CHECKPOINT",elapsed_s:(Date.now()-startedAt)/1000,source:"DEMO",
+    eta_s:(2000-dStep)*1.9,phase:"PRE-SHOW",elapsed_s:(Date.now()-startedAt)/1000,source:"DEMO",
     poll:{TELEMETRY:"GO",GPU:"GO",MEMORY:"GO",THERMAL:"GO",POWER:"GO",STORAGE:"GO",LOSS:"GO",DATA:"GO",CHECKPOINT:"GO",COMMENTARY:"GO",TTS:"GO",UPLINK:"GO"},
-    events:[{t:"T+ "+fmtT((Date.now()-startedAt)/1000),text:"<b>Step "+dStep+"</b> · loss "+dLoss.toFixed(4)}],commentary:[]};
+    events:[{t:"T+ "+fmtT((Date.now()-startedAt)/1000),text:"<b>Pre-show</b> · telling the Attune story · awaiting liftoff"}],commentary:[]};
   if(demoSeq%3===0) s.commentary=[{speaker:"GEMMA · FLIGHT COMMENTARY",t:"T+ "+fmtT((Date.now()-startedAt)/1000),text:demoLines[(demoSeq/3)%demoLines.length|0],seq:demoSeq}];
   demoSeq++; applyStatus(s);
 }
@@ -444,7 +444,7 @@ async function tryLive(){
   $("uplinkV").textContent="LOCAL"; $("sigV").textContent="DEMO";
   if(await tryLive()){ setInterval(tryLive,3000); }
   else{ $("liveBadgeTx").textContent="DEMO"; $("liveBadge").classList.add("demo");
-    addMsg({speaker:"FLIGHT",t:"T+ 00:00:00",text:"Broadcast page is up in demo mode. When the Mac bridge feed is public this page switches to real telemetry and live Orpheus audio automatically."});
+    addMsg({speaker:"FLIGHT",t:"T+ 00:00:00",text:"Pre-show is live. Training has not started yet: while we wait for liftoff, the commentary tells the Attune story. This page switches to real telemetry the moment the run begins."});
     demoTick(); setInterval(demoTick,2600); setInterval(async()=>{ if(await tryLive()) location.reload(); },15000);
   }
 })();
