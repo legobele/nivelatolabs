@@ -247,6 +247,13 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
   .btn:active{transform:none}
 }
 </style>
+<style>
+/* Site fixes (Nov 2026): anchor offset under the sticky pill
+   header, unified footer link spacing. */
+h1,h2,h3,section[id]{scroll-margin-top:128px}
+footer .foot-links a{margin-right:18px}
+footer .foot-links a:last-child{margin-right:0}
+</style>
 </head>
 <body>
 
@@ -282,7 +289,7 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
     <button type="button" class="variant-row variant-back" data-back><span class="variant-back-chev" aria-hidden="true">‹</span><span data-i18n="nav.products">Products</span></button>
     <button type="button" class="variant-row variant-drill" data-drill="nivelato"><span class="variant-row-label" data-i18n="nav.sub.nivelato">Nivelato</span><span class="variant-drill-chev" aria-hidden="true">›</span></button>
     <a href="/phonebench/" data-i18n="nav.sub.phonebench" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">PhoneBench</a>
-    <a href="https://legobele.github.io/coil-demo" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">COIL</a>
+    <a href="https://legobele.github.io/coil-demo" target="_blank" rel="noopener" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">COIL</a>
     </div>
     </div>
     <div class="variant-panel" data-panel="nivelato">
@@ -313,8 +320,6 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 </div></div>
 <section id="pr" class="alt" lang="es">
   <div class="wrap">
-    <div class="sec-kicker reveal" data-i18n="pr.kicker">Puerto Rico</div>
-    <h2 class="reveal" data-i18n="pr.title">Para clientes en Puerto Rico</h2>
     <div class="pr-card reveal">
       <p data-i18n="pr.p1">En este momento, <strong>solo las cuentas de QGC están activas</strong> en Puerto Rico. Las demás empresas todavía no pueden crear una cuenta por su cuenta.</p>
       <p data-i18n="pr.p2">Si tu empresa quiere usar Nivelato, puedes <strong>solicitar acceso</strong> llenando el formulario de solicitud. Revisamos cada solicitud y te contactamos con los próximos pasos.</p>
@@ -327,9 +332,8 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 
 <footer>
   <div class="wrap">
-    <span data-i18n="footer.copy">© 2026 Nivelato Labs</span>
-    <span><a href="/pr/" aria-current="page" data-i18n="nav.pr">Para clientes en PR</a></span>
-    <span class="mono">nivelatolabs.com · v1.3</span>
+    <div data-i18n="footer.tag">Nivelato Labs. Software that measures up.</div>
+    <div class="foot-links"><a href="/products/" data-i18n="nav.products">Products</a><a href="/about/" data-i18n="nav.about">About</a><a href="/contact/" data-i18n="nav.contact">Contact</a><a href="/pr/" data-i18n="nav.pr">Para clientes en PR</a><a href="/privacy/" data-i18n="nav.privacy">Privacy</a><a href="/support/" data-i18n="nav.support">Support</a><a href="/privacy/" data-i18n="nav.cookies">Cookies</a></div>
   </div>
 </footer>
 
@@ -373,6 +377,10 @@ const I18N = {
   "nav.sub.values": "Core Values",
   "nav.pr": "Para clientes en PR",
   "footer.copy": "© 2026 Nivelato Labs",
+  "nav.privacy": "Privacy",
+  "nav.support": "Support",
+  "nav.cookies": "Cookies",
+  "footer.tag": "Nivelato Labs. Software that measures up.",
   "meta.title": "For customers in Puerto Rico - Nivelato Labs",
   "meta.desc": "Business accounts in Puerto Rico: request access to Nivelato.",
   "page.kicker": "Puerto Rico",
@@ -400,6 +408,10 @@ const I18N = {
   "nav.sub.values": "Valores",
   "nav.pr": "Para clientes en PR",
   "footer.copy": "© 2026 Nivelato Labs",
+  "nav.privacy": "Privacidad",
+  "nav.support": "Soporte",
+  "nav.cookies": "Cookies",
+  "footer.tag": "Nivelato Labs. Software que da la medida.",
   "meta.title": "Para clientes en Puerto Rico - Nivelato Labs",
   "meta.desc": "Cuentas de empresa en Puerto Rico: solicita acceso a Nivelato.",
   "page.kicker": "Puerto Rico",
@@ -444,7 +456,17 @@ document.querySelectorAll('.lang-toggle').forEach(function (b) {
     applyLang(cur === 'en' ? 'es' : 'en');
   });
 });
+/* The PR page renders in Spanish by design (FORCED_LANG), but it must
+   not overwrite the visitor's site-wide language preference: capture the
+   stored preference before the forced apply and restore it afterwards.
+   Explicit switcher choices made on this page still persist normally. */
+var preSavedLang = null;
+try { preSavedLang = localStorage.getItem(LANG_KEY); } catch (e) {}
 applyLang(currentLang());
+try {
+  if (preSavedLang) localStorage.setItem(LANG_KEY, preSavedLang);
+  else localStorage.removeItem(LANG_KEY);
+} catch (e) {}
 
 </script>
 <style>

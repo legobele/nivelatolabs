@@ -63,7 +63,7 @@ h2{font-family:'Space Grotesk';font-size:clamp(1.8rem,3.6vw,2.7rem);line-height:
    top on a deep link (46px also absorbs the reveal system's 26px
    entrance offset, so the landing spot does not drift as the
    section fades in); the values grid runs two-up. */
-#mission,#vision,#values{scroll-margin-top:46px}
+#mission,#vision,#values{scroll-margin-top:128px}
 .cards.values-grid{grid-template-columns:repeat(2,1fr)}
 @media(max-width:820px){.cards.values-grid{grid-template-columns:1fr}}
 footer{padding:44px 0;border-top:1px solid var(--line);color:var(--dim);font-size:.9rem}
@@ -235,6 +235,15 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
   .btn:active{transform:none}
 }
 </style>
+<style>
+/* Site fixes (Nov 2026): anchor offset under the sticky pill
+   header, unified footer link spacing. */
+h1,h2,h3,section[id]{scroll-margin-top:128px}
+footer .foot-links a{margin-right:18px}
+footer .foot-links a:last-child{margin-right:0}
+header .scroll-cue{position:absolute;left:50%;bottom:14px;transform:translateX(-50%)}
+@media(max-width:860px){header{padding-bottom:88px}}
+</style>
 </head>
 <body>
 <div class="intro" aria-hidden="true"><svg class="intro-mark" viewBox="-5 -5 110 110" fill="none" stroke="currentColor" stroke-width="6.5" aria-hidden="true" focusable="false"><path d="M55 20 H20 V84 H84 V43" stroke-linejoin="miter"/><path d="M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z" stroke-linejoin="bevel"/></svg><span>Nivelato Labs</span></div>
@@ -270,7 +279,7 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
     <button type="button" class="variant-row variant-back" data-back><span class="variant-back-chev" aria-hidden="true">‹</span><span data-i18n="nav.products">Products</span></button>
     <button type="button" class="variant-row variant-drill" data-drill="nivelato"><span class="variant-row-label" data-i18n="nav.sub.nivelato">Nivelato</span><span class="variant-drill-chev" aria-hidden="true">›</span></button>
     <a href="/phonebench/" data-i18n="nav.sub.phonebench" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">PhoneBench</a>
-    <a href="https://legobele.github.io/coil-demo" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">COIL</a>
+    <a href="https://legobele.github.io/coil-demo" target="_blank" rel="noopener" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">COIL</a>
     </div>
     </div>
     <div class="variant-panel" data-panel="nivelato">
@@ -297,8 +306,8 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 <header><div class="wrap">
 <div class="kicker" data-i18n="about.values.kicker">Core values</div>
 <h1 data-i18n="about.values.h2">What the lab holds to.</h1>
-</div></header>
-<button type="button" class="scroll-cue" aria-label="Scroll down to content">[ SCROLL ]<span class="cue-line" aria-hidden="true"></span></button>
+</div><button type="button" class="scroll-cue" aria-label="Scroll down to content">[ SCROLL ]<span class="cue-line" aria-hidden="true"></span></button>
+</header>
 
 <section class="reveal" id="values"><div class="wrap">
 <p class="sec-sub" data-i18n="about.values.sub">Four rules run every decision here, from what gets built to what gets published.</p>
@@ -309,10 +318,12 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 <div class="card"><div class="n" data-i18n="about.v4.n">04 · STAY SMALL</div><h3 data-i18n="about.v4.h">Small on purpose</h3><p data-i18n="about.v4.p">One accountable name on every release. Staying small keeps every standard personal: if it ships, a human here read it, tested it, and signed it.</p></div>
 </div>
 </div></section>
-<footer><div class="wrap">
-<div data-i18n="footer.tag">Nivelato Labs. Software that measures up.</div>
-<div><a href="/products/" data-i18n="nav.products">Products</a><a href="/about/" data-i18n="nav.about">About</a><a href="/contact/" data-i18n="nav.contact">Contact</a><a href="/pr/" data-i18n="nav.pr">Para clientes en PR</a></div>
-</div></footer>
+<footer>
+  <div class="wrap">
+    <div data-i18n="footer.tag">Nivelato Labs. Software that measures up.</div>
+    <div class="foot-links"><a href="/products/" data-i18n="nav.products">Products</a><a href="/about/" data-i18n="nav.about">About</a><a href="/contact/" data-i18n="nav.contact">Contact</a><a href="/pr/" data-i18n="nav.pr">Para clientes en PR</a><a href="/privacy/" data-i18n="nav.privacy">Privacy</a><a href="/support/" data-i18n="nav.support">Support</a><a href="/privacy/" data-i18n="nav.cookies">Cookies</a></div>
+  </div>
+</footer>
 <script>
 document.documentElement.classList.add('js');
 (function(){try{
@@ -343,6 +354,9 @@ const I18N = {
   "nav.sub.vision": "Vision",
   "nav.sub.values": "Core Values",
   "footer.tag": "Nivelato Labs. Software that measures up.",
+  "nav.privacy": "Privacy",
+  "nav.support": "Support",
+  "nav.cookies": "Cookies",
   "about.kicker": "About",
   "about.h1": "An AI-driven lab, on purpose.",
   "about.lede": "Nivelato Labs is a software lab founded by <a href=\"/team/\">Benj Lebron</a>. It runs on a simple bet: a small lab that masters agentic development will out-ship a large team that does not.",
@@ -394,6 +408,9 @@ const I18N = {
   "nav.sub.vision": "Visión",
   "nav.sub.values": "Valores",
   "footer.tag": "Nivelato Labs. Software que da la medida.",
+  "nav.privacy": "Privacidad",
+  "nav.support": "Soporte",
+  "nav.cookies": "Cookies",
   "about.kicker": "Nosotros",
   "about.h1": "Un laboratorio impulsado por IA, a propósito.",
   "about.lede": "Nivelato Labs es un laboratorio de software fundado por <a href=\"/team/\">Benj Lebron</a>. Se sostiene sobre una apuesta simple: un laboratorio pequeño que domina el desarrollo agéntico entrega más que un equipo grande que no lo domina.",

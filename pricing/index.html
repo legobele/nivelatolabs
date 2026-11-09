@@ -248,6 +248,13 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
   .btn:active{transform:none}
 }
 </style>
+<style>
+/* Site fixes (Nov 2026): anchor offset under the sticky pill
+   header, unified footer link spacing. */
+h1,h2,h3,section[id]{scroll-margin-top:128px}
+footer .foot-links a{margin-right:18px}
+footer .foot-links a:last-child{margin-right:0}
+</style>
 </head>
 <body>
 
@@ -283,7 +290,7 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
     <button type="button" class="variant-row variant-back" data-back><span class="variant-back-chev" aria-hidden="true">‹</span><span data-i18n="nav.products">Products</span></button>
     <button type="button" class="variant-row variant-drill" data-drill="nivelato"><span class="variant-row-label" data-i18n="nav.sub.nivelato">Nivelato</span><span class="variant-drill-chev" aria-hidden="true">›</span></button>
     <a href="/phonebench/" data-i18n="nav.sub.phonebench" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">PhoneBench</a>
-    <a href="https://legobele.github.io/coil-demo" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">COIL</a>
+    <a href="https://legobele.github.io/coil-demo" target="_blank" rel="noopener" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">COIL</a>
     </div>
     </div>
     <div class="variant-panel" data-panel="nivelato">
@@ -346,7 +353,7 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
       <div class="tier hot reveal">
         <div class="badge" data-i18n="tier.ultra.badge">Most popular</div>
         <div class="tname" data-i18n="tier.ultra.name">Ultra</div>
-        <div class="tprice" data-i18n="tier.ultra.price">$10.99/mo per user · For shops running a crew</div>
+        <div class="tprice" data-i18n="tier.ultra.price">Includes 5 users · For shops running a crew</div>
         <ul>
           <li data-i18n="tier.ultra.li1">Everything in Pro</li>
           <li data-i18n="tier.ultra.li2">Full dashboard, no limits</li>
@@ -368,7 +375,7 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
         <a class="btn ghost" href="mailto:lebron@nivelatolabs.com?subject=Enterprise%20inquiry" style="text-align:center" data-i18n="tier.ent.btn">Contact via email</a>
       </div>
     </div>
-    <p class="tier-note reveal" data-i18n="pricing.facts">Updated October 19, 2026. Prices in USD, as of October 2026. Ultra includes 5 users; additional seats are $19.99 per seat per month. Every feature is currently free: accounts are created on the web and all plans are unlocked at no charge until the Android app publishes on Google Play, when billing through Google Play begins.</p>
+    <p class="tier-note reveal" data-i18n="pricing.facts">Updated November 9, 2026. Prices in USD, as of October 2026. Ultra includes 5 users; additional seats are $19.99 per seat per month ($199.99 per seat per year). Every feature is currently free during early access: accounts are created on the web and all plans are unlocked at no charge.</p>
     <p class="tier-note reveal" data-i18n="tier.note">Company accounts in Puerto Rico are currently by application only, <a href="/pr/">see below</a>.</p>
   </div>
 </section>
@@ -376,9 +383,8 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 
 <footer>
   <div class="wrap">
-    <span data-i18n="footer.copy">© 2026 Nivelato Labs</span>
-    <span><a href="/pr/" data-i18n="nav.pr">Para clientes en PR</a></span>
-    <span class="mono">nivelatolabs.com · v1.3</span>
+    <div data-i18n="footer.tag">Nivelato Labs. Software that measures up.</div>
+    <div class="foot-links"><a href="/products/" data-i18n="nav.products">Products</a><a href="/about/" data-i18n="nav.about">About</a><a href="/contact/" data-i18n="nav.contact">Contact</a><a href="/pr/" data-i18n="nav.pr">Para clientes en PR</a><a href="/privacy/" data-i18n="nav.privacy">Privacy</a><a href="/support/" data-i18n="nav.support">Support</a><a href="/privacy/" data-i18n="nav.cookies">Cookies</a></div>
   </div>
 </footer>
 
@@ -422,6 +428,10 @@ const I18N = {
   "nav.sub.values": "Core Values",
   "nav.pr": "Para clientes en PR",
   "footer.copy": "© 2026 Nivelato Labs",
+  "nav.privacy": "Privacy",
+  "nav.support": "Support",
+  "nav.cookies": "Cookies",
+  "footer.tag": "Nivelato Labs. Software that measures up.",
   "meta.title": "Nivelato Pricing - Plans for Glass Shops - Nivelato Labs",
   "meta.desc": "Nivelato pricing: Free, Pro, and Ultra plans per glass shop, billed through Google Play. Start free on a real job and grow into the shop plan.",
   "page.kicker": "Nivelato",
@@ -429,7 +439,7 @@ const I18N = {
   "pricing.kicker": "Pricing",
   "pricing.title": "Start free. Grow into the shop plan.",
   "pricing.sub": "Plans are per shop and billed through Google Play. Pick the tier that matches how you work.",
-  "pricing.facts": "Updated October 19, 2026. Prices in USD, as of October 2026. Ultra includes 5 users; additional seats are $19.99 per seat per month. Every feature is currently free: accounts are created on the web and all plans are unlocked at no charge until the Android app publishes on Google Play, when billing through Google Play begins.",
+  "pricing.facts": "Updated November 9, 2026. Prices in USD, as of October 2026. Ultra includes 5 users; additional seats are $19.99 per seat per month ($199.99 per seat per year). Every feature is currently free during early access: accounts are created on the web and all plans are unlocked at no charge.",
   "tier.free.name": "Free",
   "tier.free.price": "$0 · Try it on a real job",
   "tier.free.li1": "On-phone measurement capture",
@@ -448,7 +458,7 @@ const I18N = {
   "tier.pro.btn": "Go Pro",
   "tier.ultra.badge": "Most popular",
   "tier.ultra.name": "Ultra",
-  "tier.ultra.price": "$10.99/mo per user · For shops running a crew",
+  "tier.ultra.price": "Includes 5 users · For shops running a crew",
   "tier.ultra.li1": "Everything in Pro",
   "tier.ultra.li2": "Full dashboard, no limits",
   "tier.ultra.li3": "View the whole team's measurements",
@@ -481,6 +491,10 @@ const I18N = {
   "nav.sub.values": "Valores",
   "nav.pr": "Para clientes en PR",
   "footer.copy": "© 2026 Nivelato Labs",
+  "nav.privacy": "Privacidad",
+  "nav.support": "Soporte",
+  "nav.cookies": "Cookies",
+  "footer.tag": "Nivelato Labs. Software que da la medida.",
   "meta.title": "Precios de Nivelato - Planes para talleres - Nivelato Labs",
   "meta.desc": "Precios de Nivelato: planes Free, Pro y Ultra por taller de cristales, facturados a través de Google Play. Empieza gratis en un trabajo real.",
   "page.kicker": "Nivelato",
@@ -488,7 +502,7 @@ const I18N = {
   "pricing.kicker": "Precios",
   "pricing.title": "Empieza gratis. Crece al plan del taller.",
   "pricing.sub": "Los planes son por taller y se facturan por Google Play. Elige el nivel que combine con tu forma de trabajar.",
-  "pricing.facts": "Actualizado el 19 de octubre de 2026. Precios en USD, vigentes a octubre de 2026. Ultra incluye 5 usuarios; los asientos adicionales cuestan $19.99 por asiento al mes. Actualmente todas las funciones son gratuitas: las cuentas se crean en la web y todos los planes están desbloqueados sin cargo hasta que la app de Android se publique en Google Play, cuando comenzará la facturación a través de Google Play.",
+  "pricing.facts": "Actualizado el 9 de noviembre de 2026. Precios en USD, vigentes a octubre de 2026. Ultra incluye 5 usuarios; los asientos adicionales cuestan $19.99 por asiento al mes ($199.99 por asiento al año). Actualmente todas las funciones son gratuitas durante el acceso anticipado: las cuentas se crean en la web y todos los planes están desbloqueados sin cargo.",
   "tier.free.name": "Gratis",
   "tier.free.price": "$0 · Pruébalo en un trabajo real",
   "tier.free.li1": "Captura de medidas en el teléfono",
@@ -507,7 +521,7 @@ const I18N = {
   "tier.pro.btn": "Sube a Pro",
   "tier.ultra.badge": "Más popular",
   "tier.ultra.name": "Ultra",
-  "tier.ultra.price": "$10.99/mes por usuario · Para talleres con equipo",
+  "tier.ultra.price": "Incluye 5 usuarios · Para talleres con equipo",
   "tier.ultra.li1": "Todo lo del plan Pro",
   "tier.ultra.li2": "Panel completo, sin límites",
   "tier.ultra.li3": "Ve las medidas de todo el equipo",

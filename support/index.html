@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nivelato Help Center - Nivelato Labs</title>
+<link rel="canonical" href="https://nivelatolabs.com/support/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nivelato Labs">
+<meta property="og:title" content="Nivelato Help Center - Nivelato Labs">
+<meta property="og:description" content="Guides, plans, and troubleshooting for measuring openings like a pro: glass, countertops, tile, cabinets, and any panel that has to fit a space.">
+<meta property="og:url" content="https://nivelatolabs.com/support/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nivelato Help Center - Nivelato Labs">
+<meta name="twitter:description" content="Guides, plans, and troubleshooting for measuring openings like a pro: glass, countertops, tile, cabinets, and any panel that has to fit a space.">
+<meta name="description" content="Guides, plans, and troubleshooting for measuring openings like a pro: glass, countertops, tile, cabinets, and any panel that has to fit a space.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme:dark;
+    --bg:#0b0b0e; --bg2:#121216; --card:#16161c; --line:#232329;
+    --ink:#f2f1ec; --muted:#a7a7b3; --dim:#6d6d78;
+    --amber:#ffffff; --amber2:#e6e6e9; --laser:#ffffff;
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--amber);color:#111}
+  /* scrollbar */
+  html{scrollbar-width:thin;scrollbar-color:#2e2e38 var(--bg)}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:#2e2e38;border-radius:8px;border:2px solid var(--bg)}
+  ::-webkit-scrollbar-thumb:hover{background:#3f3f4c}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  .btn{display:inline-block;background:var(--amber);color:#141414;font-weight:600;padding:12px 26px;border-radius:999px;text-decoration:none;font-size:.95rem;transition:transform .15s,box-shadow .15s;border:none;cursor:pointer}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,255,255,.35)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn.ghost:hover{box-shadow:none;border-color:var(--amber)}
+  /* hero */
+  header{padding:110px 0 80px;position:relative;overflow:hidden}
+  header::before{content:"";position:absolute;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(255,255,255,.14),transparent 65%);pointer-events:none}
+  .kicker{font-family:'JetBrains Mono';font-size:.8rem;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:22px}
+  h1{font-family:'Space Grotesk';font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.04;font-weight:700;letter-spacing:-.02em;max-width:16ch}
+  h1 .laser{color:var(--laser)}
+  @supports((-webkit-text-stroke:1px #fff)){h1 .laser{color:transparent;-webkit-text-stroke:2px var(--ink)}}
+  .lede{margin-top:22px;font-size:1.15rem;color:var(--muted);max-width:56ch}
+  .cta-row{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
+  .rule{margin-top:70px;border-top:1px solid var(--line);padding-top:26px;display:flex;gap:36px;flex-wrap:wrap;font-family:'JetBrains Mono';font-size:.82rem;color:var(--dim)}
+  .rule b{color:var(--amber);font-weight:500}
+  /* sections */
+  section{padding:84px 0}
+  .sec-kicker{font-family:'JetBrains Mono';font-size:.78rem;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:14px}
+  h2{font-family:'Space Grotesk';font-size:clamp(1.8rem,3.6vw,2.7rem);letter-spacing:-.01em;line-height:1.12;margin-bottom:16px}
+  .sec-sub{color:var(--muted);max-width:62ch;margin-bottom:44px;font-size:1.05rem}
+  .alt{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  /* doc pages (support / privacy): ported help and policy content */
+  .doc-sec{padding:52px 0}
+  .doc-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:34px 32px;max-width:820px;margin-bottom:22px}
+  .doc-card[id]{scroll-margin-top:128px}
+  .doc-card h2{font-size:1.5rem;margin:0 0 12px}
+  .doc-card h3{font-family:'Space Grotesk';font-size:1.12rem;margin:20px 0 8px}
+  .doc-card p{color:var(--muted);margin-bottom:12px;max-width:70ch}
+  .doc-card ul,.doc-card ol{padding-left:22px;color:var(--muted);margin:8px 0 14px}
+  .doc-card li{margin-bottom:8px}
+  .doc-card strong{color:var(--ink)}
+  .doc-card a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+  .doc-back{display:inline-block;font-family:'JetBrains Mono';font-size:.8rem;letter-spacing:.1em;color:var(--muted);text-decoration:none;margin-bottom:20px}
+  .doc-back:hover{color:var(--ink)}
+  .doc-updated{font-size:.85rem;color:var(--dim);margin-top:34px}
+  .notice-card{border:1px solid var(--line);border-left:3px solid var(--ink);border-radius:var(--radius);background:var(--card);padding:20px 22px;max-width:820px;margin-bottom:22px}
+  .notice-card>b{display:block;margin-bottom:4px}
+  .notice-card span{color:var(--muted)}
+  .toc{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px;max-width:820px}
+  .toc a{border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:.85rem;text-decoration:none;color:var(--muted)}
+  .toc a:hover{color:var(--ink);border-color:var(--dim)}
+  .step-flow{counter-reset:step;list-style:none;padding:0}
+  .step-flow li{counter-increment:step;padding:10px 0 10px 46px;position:relative;border-bottom:1px solid var(--line)}
+  .step-flow li:last-child{border-bottom:none}
+  .step-flow li::before{content:counter(step);position:absolute;left:0;top:10px;width:30px;height:30px;border-radius:50%;background:var(--ink);color:#141414;font-size:.85rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .step-flow li b{display:block;color:var(--ink)}
+  .doc-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.93rem}
+  .doc-table th,.doc-table td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);color:var(--muted);vertical-align:top}
+  .doc-table th{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--dim)}
+  .doc-table td b{color:var(--ink)}
+  .doc-table .price{font-weight:700;white-space:nowrap;color:var(--ink)}
+  .faq details{border-bottom:1px solid var(--line);padding:13px 0}
+  .faq details:last-child{border-bottom:none}
+  .faq summary{font-weight:600;cursor:pointer;color:var(--ink)}
+  .faq .a{color:var(--muted);margin-top:6px}
+  h1,h2,h3,section[id]{scroll-margin-top:128px}
+  footer .foot-links a{margin-right:18px}
+  footer .foot-links a:last-child{margin-right:0}
+  footer{border-top:1px solid var(--line);padding:34px 0;color:var(--dim);font-size:.85rem}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer .mono{font-family:'JetBrains Mono';font-size:.76rem}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  /* page header */
+  .page-head{padding:10px 0 4px}
+  .page-head h1{font-family:'Space Grotesk';font-size:clamp(2.2rem,5vw,3.4rem);letter-spacing:-.02em;line-height:1.05;margin-top:12px}
+/* ---- Variant B header (EDOLUS concept, chosen Oct 2026) ----
+   One centered lockup over a transparent header: Breakout outline
+   mark above the wide wordmark, with a minimal menu glyph at the
+   right. The wordmark family lives in a single token so a later
+   font decision is a one-line change. Anybody is set at weight 900
+   and 150% width; .08em spacing keeps the EDOLUS air without
+   weakening the already-expanded letterforms. */
+@font-face{font-family:'Anybody';src:url('/assets/fonts/Anybody-Variable.ttf') format('truetype');font-weight:100 900;font-stretch:50% 150%;font-display:swap}
+.variant-nav{--wordmark-font:'Anybody','Archivo Black',system-ui,sans-serif;--wordmark-spacing:.08em;position:sticky;top:12px;z-index:300;min-height:64px;padding:8px 18px;margin:12px 12px 0;border:1px solid rgba(255,255,255,.16);border-radius:999px;box-shadow:0 14px 34px rgba(0,0,0,.42);background:rgba(7,7,9,.94);display:flex;align-items:center;justify-content:flex-start;overflow:visible}
+.variant-nav::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.46),rgba(0,0,0,0) 88%);pointer-events:none}
+.variant-nav .variant-lockup{position:relative;z-index:1;display:flex;flex-direction:row;align-items:center;gap:12px;max-width:calc(100vw - 112px);color:#fff;text-decoration:none}
+.variant-mark{width:34px;height:34px;color:#fff;flex:none}
+.variant-mark svg{display:block;width:100%;height:100%}
+.variant-wordmark{font-family:var(--wordmark-font);font-weight:900;font-stretch:150%;font-size:clamp(.92rem,2.2vw,1.18rem);line-height:1;letter-spacing:var(--wordmark-spacing);text-indent:var(--wordmark-spacing);text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 14px rgba(0,0,0,.35)}
+.variant-menu-button{position:absolute;top:50%;transform:translateY(-50%);right:20px;z-index:2;width:44px;height:44px;padding:0 10px;border:0;background:transparent;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer}
+.variant-menu-button i{display:block;width:22px;height:2.5px;border-radius:2px;background:currentColor}
+.variant-menu{position:fixed;inset:0;z-index:400;background:rgba(3,3,4,0);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility 0s linear .3s,background .45s ease}
+.variant-sheet{position:absolute;top:12px;right:12px;width:min(440px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow-y:auto;background:rgba(9,9,11,.97);border:1px solid rgba(255,255,255,.16);border-radius:30px;box-shadow:0 30px 70px rgba(0,0,0,.55)}
+body.variant-menu-closing .variant-menu{opacity:1;visibility:visible;pointer-events:none;background:rgba(3,3,4,0)}
+
+body.variant-menu-open .variant-menu{opacity:1;visibility:visible;pointer-events:auto;background:rgba(3,3,4,.5);transition:opacity .3s ease,background .45s ease}
+.variant-menu-inner{width:100%;margin:0;padding:78px 0 30px;display:flex;flex-direction:column;gap:2px}
+.variant-menu-inner>a{min-height:54px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(255,255,255,.25);color:#fff;text-decoration:none;font-size:1.08rem;font-weight:600;text-align:center}
+.variant-menu-inner>a:hover,.variant-menu-inner>a:focus-visible{color:#fff;background:rgba(255,255,255,.06)}
+/* Menu submenus (Oct 2026): a parent row pairs the page link with a
+   chevron toggle; the submenu expands on the motion tokens (grid-rows
+   + opacity), one open at a time, visibility keeps closed items out
+   of the tab order. */
+.variant-menu-item{border-bottom:1px solid rgba(255,255,255,.10)}
+.variant-menu-row{display:flex;align-items:stretch}
+.variant-menu-row>a{flex:1;min-width:0;min-height:54px;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;font-size:1.08rem;font-weight:600;text-align:center}
+.variant-menu-row>a:hover,.variant-menu-row>a:focus-visible{color:#fff;background:rgba(255,255,255,.06)}
+.variant-sub-toggle{flex:none;width:58px;min-height:54px;display:flex;align-items:center;justify-content:center;background:transparent;border:0;border-left:1px solid rgba(255,255,255,.08);color:#fff;cursor:pointer;font-size:.8rem;padding:0}
+.variant-sub-toggle:hover,.variant-sub-toggle:focus-visible{background:rgba(255,255,255,.06)}
+.variant-sub-chev{display:inline-block}
+.variant-submenu{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;transition:grid-template-rows var(--niv-mo-view,300ms) var(--niv-mo-ease,ease),opacity var(--niv-mo-view,300ms) var(--niv-mo-ease,ease),visibility 0s linear var(--niv-mo-view,300ms)}
+.variant-menu-item.open .variant-submenu{grid-template-rows:1fr;opacity:1;visibility:visible;transition:grid-template-rows var(--niv-mo-view,300ms) var(--niv-mo-ease,ease),opacity var(--niv-mo-view,300ms) var(--niv-mo-ease,ease)}
+.variant-submenu-in{overflow:hidden;min-height:0}
+.variant-submenu a{min-height:46px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.85);text-decoration:none;font-size:.99rem;font-weight:500;text-align:center;border-top:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.03)}
+.variant-submenu a:hover,.variant-submenu a:focus-visible{color:#fff;background:rgba(255,255,255,.07)}
+.variant-menu-actions{margin-top:24px;display:grid;gap:10px}
+.variant-menu-actions .btn{text-align:center;justify-content:center}
+.variant-menu-close{position:absolute;top:14px;right:14px;z-index:10;width:44px;height:44px;border:1px solid rgba(255,255,255,.28);border-radius:50%;background:transparent;color:#fff;font-size:1.35rem;line-height:1;cursor:pointer}
+/* Menu drill-in panels (Oct 2026): parent rows slide to a submenu
+   panel instead of expanding in place. Labels stay centered across
+   the full row width, the chevron rides the right edge without
+   shifting them, and a back row returns to the previous panel. */
+.variant-viewport{overflow:hidden}
+.variant-track{display:flex;align-items:flex-start;width:100%;margin:0;transition:transform var(--niv-mo-view,300ms) var(--niv-mo-ease,cubic-bezier(.22,1,.36,1))}
+.variant-panel{flex:0 0 100%;min-width:0;visibility:hidden;opacity:0;transition:opacity 260ms cubic-bezier(.22,1,.36,1)}
+.variant-panel[data-panel="root"]{visibility:visible;opacity:1}
+.variant-panel .variant-menu-inner{width:100%}
+.variant-row{position:relative;display:flex;align-items:center;justify-content:center;width:100%;min-height:54px;padding:0;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.25);color:#fff;font:inherit;font-size:1.08rem;font-weight:600;text-align:center;cursor:pointer}
+.variant-row:hover,.variant-row:focus-visible{background:rgba(255,255,255,.06);color:#fff;outline:none}
+.variant-drill-chev{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:1.35rem;font-weight:400;color:rgba(255,255,255,.85);pointer-events:none}
+.variant-back{justify-content:flex-start;font-size:1rem;color:rgba(255,255,255,.85)}
+.variant-back-chev{margin-right:10px;font-size:1.25rem}
+@media(prefers-reduced-motion:reduce){.variant-track{transition:none}.variant-panel{transition:none}}
+.variant-menu .lang-toggle{align-self:center;margin:0 0 10px}
+.variant-lang{display:flex;flex-direction:column;gap:8px;margin:0 0 10px}
+.variant-lang-current{display:flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:10px 18px;background:transparent;border:1px solid var(--line);border-radius:999px;color:#fff;font-family:'JetBrains Mono',monospace;font-size:.85rem;letter-spacing:.08em;cursor:pointer}
+.variant-lang-current:hover{border-color:#fff}
+.variant-lang-list{display:flex;flex-direction:column;gap:6px}
+.variant-lang-list[hidden]{display:none}
+.variant-lang-option{min-height:46px;padding:10px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:12px;color:#fff;font:600 .98rem 'Inter',system-ui,sans-serif;cursor:pointer;text-align:center}
+.variant-lang-option:hover{background:rgba(255,255,255,.09)}
+.variant-lang-option[aria-selected="true"]{border-color:#fff;background:rgba(255,255,255,.12)}
+@media(max-width:480px){.variant-nav{min-height:60px;padding:6px 14px}.variant-mark{width:30px;height:30px}.variant-wordmark{font-size:.88rem}.variant-menu-button{right:12px}.variant-menu-close{top:14px;right:14px}.variant-menu-inner{padding-top:78px}}
+@media(prefers-reduced-motion:reduce){.variant-menu{transition:none}}
+  /* Nav unification (Oct 2026): menu actions render as square blocks,
+     matching the redesigned pages; scoped to the menu so body CTAs keep
+     their current styling until the body polish pass. */
+  .variant-menu-actions .btn{border-radius:4px}
+  .variant-menu-actions .btn:hover{transform:none;box-shadow:none;background:#e6e6e9}
+  .variant-menu-actions .btn.ghost:hover{background:rgba(255,255,255,.08);border-color:var(--line)}
+  /* Footer: the PR link stays reachable from every page, as it was in
+     the old top nav (the redesigned pages' footers carry link rows). */
+  footer a{color:var(--muted);text-decoration:none;transition:color .2s}
+  footer a:hover{color:var(--ink)}
+@media(max-width:380px){.variant-nav .variant-wordmark{display:none}.variant-nav{border-radius:20px;min-height:56px}}
+</style>
+<link rel="alternate" type="text/markdown" title="AGENTS.md" href="/AGENTS.md">
+<style>
+/* ---- MOTION SYSTEM (Oct 2026, "zero jump-cuts"; docs/motion-system.md) ----
+   One motion language across Nivelato Labs surfaces; tokens are shared
+   with the app (canonical doc: DESIGN_SYSTEM_LABS.md in the app repo).
+   Additive only: entrances stay keyframe-based and content is visible
+   with no JS (the reveal system still only hides under html.js).
+   Everything collapses under prefers-reduced-motion. */
+:root{
+  --niv-mo-ease:cubic-bezier(.22,1,.36,1);
+  --niv-mo-micro:160ms;
+  --niv-mo-view:300ms;
+  --niv-mo-enter:560ms;
+}
+@keyframes niv-mo-menu-in{from{opacity:0;transform:translateY(10px)}}
+.btn{transition:background-color var(--niv-mo-micro) var(--niv-mo-ease),color var(--niv-mo-micro) var(--niv-mo-ease),border-color var(--niv-mo-micro) var(--niv-mo-ease),transform var(--niv-mo-micro) var(--niv-mo-ease)}
+.btn:active{transform:scale(.98)}
+nav a,footer a{transition:color var(--niv-mo-micro) var(--niv-mo-ease),background-color var(--niv-mo-micro) var(--niv-mo-ease)}
+header .kicker,header h1,header .lede,header .cta-row,header .rule{animation-duration:var(--niv-mo-enter);animation-timing-function:var(--niv-mo-ease)}
+html.js .reveal{transition:opacity var(--niv-mo-enter) var(--niv-mo-ease),transform var(--niv-mo-enter) var(--niv-mo-ease)}
+.variant-menu{transition:opacity var(--niv-mo-view) var(--niv-mo-ease),visibility 0s linear var(--niv-mo-view)}
+body.variant-menu-open .variant-menu{transition:opacity var(--niv-mo-view) var(--niv-mo-ease)}
+body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo-view) var(--niv-mo-ease)}
+.variant-menu-inner>a{transition:background-color var(--niv-mo-micro) var(--niv-mo-ease),color var(--niv-mo-micro) var(--niv-mo-ease)}
+.variant-lang-list:not([hidden]){animation:niv-mo-menu-in var(--niv-mo-view) var(--niv-mo-ease)}
+.variant-menu-row>a{transition:background-color var(--niv-mo-micro) var(--niv-mo-ease),color var(--niv-mo-micro) var(--niv-mo-ease)}
+.variant-sub-toggle{transition:background-color var(--niv-mo-micro) var(--niv-mo-ease)}
+.variant-submenu a{transition:background-color var(--niv-mo-micro) var(--niv-mo-ease),color var(--niv-mo-micro) var(--niv-mo-ease)}
+.variant-sub-chev{transition:transform var(--niv-mo-micro) var(--niv-mo-ease)}
+.variant-sub-toggle[aria-expanded="true"] .variant-sub-chev{transform:rotate(180deg)}
+.variant-lang-chev{display:inline-block;transition:transform var(--niv-mo-micro) var(--niv-mo-ease)}
+.variant-lang-current[aria-expanded="true"] .variant-lang-chev{transform:rotate(180deg)}
+.variant-lang-current{transition:border-color var(--niv-mo-micro) var(--niv-mo-ease)}
+.variant-lang-option{transition:background-color var(--niv-mo-micro) var(--niv-mo-ease),border-color var(--niv-mo-micro) var(--niv-mo-ease)}
+.lang-toggle{transition:background-color var(--niv-mo-micro) var(--niv-mo-ease),color var(--niv-mo-micro) var(--niv-mo-ease),border-color var(--niv-mo-micro) var(--niv-mo-ease)}
+.card{transition:border-color var(--niv-mo-micro) var(--niv-mo-ease),background-color var(--niv-mo-micro) var(--niv-mo-ease)}
+@media(prefers-reduced-motion:reduce){
+  .variant-menu{transition:none}
+  html.js .reveal{transition:none}
+  body.variant-menu-open .variant-menu-inner,.variant-lang-list:not([hidden]){animation:none}
+  .btn,.variant-menu-inner>a,.variant-menu-row>a,.variant-sub-toggle,.variant-submenu,.variant-submenu a,.variant-sub-chev,.variant-lang-current,.variant-lang-option,.lang-toggle,.card,nav a,footer a{transition:none}
+  .btn:active{transform:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="variant-nav" aria-label="Main">
+  <a class="variant-lockup" href="/" aria-label="Nivelato Labs home">
+    <span class="variant-mark"><svg viewBox="-5 -5 110 110" fill="none" stroke="currentColor" stroke-width="6.5" aria-hidden="true" focusable="false"><path d="M55 20 H20 V84 H84 V43" stroke-linejoin="miter"/><path d="M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z" stroke-linejoin="bevel"/></svg></span>
+    <span class="variant-wordmark">Nivelato Labs</span>
+  </a>
+  <button class="variant-menu-button" type="button" onclick="document.body.classList.add('variant-menu-open');this.setAttribute('aria-expanded','true')" aria-label="Open menu" aria-expanded="false" aria-controls="variant-menu"><i></i><i></i><i></i></button>
+</nav>
+<div class="variant-menu" id="variant-menu">
+  <button class="variant-menu-close" type="button" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')" aria-label="Close menu">×</button>
+  <div class="variant-viewport">
+  <div class="variant-track">
+    <div class="variant-panel" data-panel="root">
+    <div class="variant-menu-inner">
+    <a href="/" data-i18n="nav.home" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Home</a>
+    <button type="button" class="variant-row variant-drill" data-drill="products"><span class="variant-row-label" data-i18n="nav.products">Products</span><span class="variant-drill-chev" aria-hidden="true">›</span></button>
+    <button type="button" class="variant-row variant-drill" data-drill="about"><span class="variant-row-label" data-i18n="nav.about">About</span><span class="variant-drill-chev" aria-hidden="true">›</span></button>
+    <a href="/contact/" data-i18n="nav.contact" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Contact</a>
+    <div class="variant-menu-actions">
+          <div class="variant-lang" id="variant-lang">
+            <button class="variant-lang-current" type="button" aria-expanded="false" aria-controls="variant-lang-list"><span class="variant-lang-current-label">English</span><span class="variant-lang-chev" aria-hidden="true">▾</span></button>
+            <div class="variant-lang-list" id="variant-lang-list" role="listbox" aria-label="Language" hidden></div>
+          </div>
+          <a class="btn variant-menu-action" href="/get/" data-i18n="nav.get" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Get Nivelato</a>
+          <a class="btn ghost variant-menu-action" href="https://login.nivelatolabs.com" data-i18n="nav.login" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Log in</a>
+        </div>
+    </div>
+    </div>
+    <div class="variant-panel" data-panel="products">
+    <div class="variant-menu-inner">
+    <button type="button" class="variant-row variant-back" data-back><span class="variant-back-chev" aria-hidden="true">‹</span><span data-i18n="nav.products">Products</span></button>
+    <button type="button" class="variant-row variant-drill" data-drill="nivelato"><span class="variant-row-label" data-i18n="nav.sub.nivelato">Nivelato</span><span class="variant-drill-chev" aria-hidden="true">›</span></button>
+    <a href="/phonebench/" data-i18n="nav.sub.phonebench" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">PhoneBench</a>
+    <a href="https://legobele.github.io/coil-demo" target="_blank" rel="noopener" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">COIL</a>
+    </div>
+    </div>
+    <div class="variant-panel" data-panel="nivelato">
+    <div class="variant-menu-inner">
+    <button type="button" class="variant-row variant-back" data-back><span class="variant-back-chev" aria-hidden="true">‹</span><span data-i18n="nav.sub.nivelato">Nivelato</span></button>
+    <a href="/nivelato/" data-i18n="nav.sub.overview" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Overview</a>
+    <a href="/nivelato/#pricing" data-i18n="nav.sub.pricing" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Pricing</a>
+    <a href="/nivelato/#get" data-i18n="nav.get" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Get Nivelato</a>
+    </div>
+    </div>
+    <div class="variant-panel" data-panel="about">
+    <div class="variant-menu-inner">
+    <button type="button" class="variant-row variant-back" data-back><span class="variant-back-chev" aria-hidden="true">‹</span><span data-i18n="nav.about">About</span></button>
+    <a href="/about/" data-i18n="nav.about" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">About</a>
+    <a href="/about/mission/" data-i18n="nav.sub.mission" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Mission</a>
+    <a href="/about/vision/" data-i18n="nav.sub.vision" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Vision</a>
+    <a href="/about/values/" data-i18n="nav.sub.values" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Core Values</a>
+    <a href="/team/" data-i18n="nav.team" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">Team</a>
+    </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div class="page-head"><div class="wrap">
+  <div class="kicker reveal" data-i18n="page.kicker">Support</div>
+  <h1 class="reveal" data-i18n="header.h1">Nivelato Help Center</h1>
+  <p class="lede reveal" data-i18n="header.sub">Guides, plans, and troubleshooting for measuring openings like a pro: glass, countertops, tile, cabinets, and any panel that has to fit a space.</p>
+</div></div>
+<section class="doc-sec"><div class="wrap">
+  <div class="notice-card reveal">
+    <b data-i18n="notice.b">Are you outside Puerto Rico?</b>
+    <span data-i18n="notice.body">Quality Glass company access (the "QGC" button) is only for the team in Puerto Rico.
+  If you are somewhere else, you use <b>Nivelato Pro</b> or <b>Nivelato Ultra</b> with your Google Play account, everything else on this page applies to you just the same.</span>
+  </div>
+  <nav class="toc reveal">
+    <a href="#empezar" data-i18n="toc.empezar">Getting started</a>
+    <a href="#medir" data-i18n="toc.medir">How to measure</a>
+    <a href="#planes" data-i18n="toc.planes">Plans and billing</a>
+    <a href="#cuenta" data-i18n="toc.cuenta">Account and data</a>
+    <a href="#problemas" data-i18n="toc.problemas">Common problems</a>
+    <a href="#versiones" data-i18n="toc.versiones">Versions</a>
+    <a href="#contacto" data-i18n="toc.contacto">Contact</a>
+  </nav>
+
+  <div class="doc-card reveal" id="empezar">
+    <h2  data-i18n="empezar.h2">Getting started</h2>
+    <ol>
+      <li  data-i18n="empezar.li1"><b>Install Nivelato</b> from the Google Play Store on your Android.</li>
+      <li  data-i18n="empezar.li2"><b>Create your account</b>, you can sign in with Google or with email and password.</li>
+      <li  data-i18n="empezar.li3"><b>Start measuring.</b> The free account includes <b>3 saves</b> so you can try the full flow before paying.</li>
+    </ol>
+    <h3  data-i18n="empezar.h3">Requirements</h3>
+    <ul>
+      <li  data-i18n="empezar.r1">Android with Google Play Store and Google Play Billing.</li>
+      <li  data-i18n="empezar.r2">A laser measure (recommended) or a tape measure to take the measurements.</li>
+      <li  data-i18n="empezar.r3">Internet connection to sign in and sync; measuring works offline once you are in.</li>
+    </ul>
+  </div>
+
+  <div class="doc-card reveal" id="medir">
+    <h2  data-i18n="medir.h2">How to measure an opening</h2>
+    <p  data-i18n="medir.p">Every job follows the same 7 steps. Measurements are entered in <b>inches with fractions</b> (e.g. 36 ½").</p>
+    <ol class="step-flow">
+      <li  data-i18n="medir.s1"><b>Customer / Project</b>Customer name, project, and location before you start.</li>
+      <li  data-i18n="medir.s2"><b>Opening measurements</b>Width at the bottom and height on the left. The other two measurements are calculated automatically from the offsets.</li>
+      <li  data-i18n="medir.s3"><b>Left wall</b>From the laser to the wall: point A (bottom) and point B (top).</li>
+      <li  data-i18n="medir.s4"><b>Right wall</b>The same on the other side: point A (bottom) and point B (top).</li>
+      <li  data-i18n="medir.s5"><b>Top</b>Offset of the ceiling / top side.</li>
+      <li  data-i18n="medir.s6"><b>Bottom</b>Offset of the floor / bottom side.</li>
+      <li  data-i18n="medir.s7"><b>Photo with measurements</b>Take a photo of the opening with the measurements visible (requires a Pro plan or higher).</li>
+      <li  data-i18n="medir.s8"><b>Summary</b>Review everything, save the job, and share it if your plan allows it.</li>
+    </ol>
+    <h3  data-i18n="medir.h3">Tips</h3>
+    <ul>
+      <li  data-i18n="medir.t1">Always measure in the same order so you don't mix up points A and B.</li>
+      <li  data-i18n="medir.t2">If an offset reads zero at both points, the wall is plumb, perfect.</li>
+      <li  data-i18n="medir.t3">The step 7 photo saves you from arguments: always take it before leaving the site.</li>
+    </ul>
+  </div>
+
+  <div class="doc-card reveal" id="planes">
+    <h2  data-i18n="planes.h2">Plans and billing</h2>
+    <table class="doc-table">
+      <tr><th data-i18n="planes.th1">Plan</th><th data-i18n="planes.th2">Price</th><th data-i18n="planes.th3">Includes</th></tr>
+      <tr><td data-i18n="planes.n.free"><b>Free</b></td><td class="price" data-i18n="planes.pr.free">$0</td><td data-i18n="planes.inc.free">3 saves · no sharing · no screenshots</td></tr>
+      <tr><td data-i18n="planes.n.prom"><b>Pro Monthly</b></td><td class="price" data-i18n="planes.pr.prom">$5.99/mo</td><td rowspan="4" data-i18n="planes.inc.pro">Unlimited saves · share jobs · screenshots · photo with measurements</td></tr>
+      <tr><td data-i18n="planes.n.pros"><b>Pro Semiannual</b></td><td class="price" data-i18n="planes.pr.pros">$34.99/6 months</td></tr>
+      <tr><td data-i18n="planes.n.proa"><b>Pro Annual</b></td><td class="price" data-i18n="planes.pr.proa">$59.99/yr</td></tr>
+      <tr><td data-i18n="planes.n.proper"><b>Pro Lifetime</b></td><td class="price" data-i18n="planes.pr.proper">$299.99 one-time</td></tr>
+      <tr><td data-i18n="planes.n.ultram"><b>Ultra Monthly</b></td><td class="price" data-i18n="planes.pr.ultram">$10.99/mo</td><td rowspan="2" data-i18n="planes.inc.ultra">Everything in Pro · up to 30 users · unique links per job · team photos</td></tr>
+      <tr><td data-i18n="planes.n.ultraa"><b>Ultra Annual</b></td><td class="price" data-i18n="planes.pr.ultraa">$109.99/yr</td></tr>
+    </table>
+    <h3  data-i18n="planes.h3subs">Subscriptions and cancellation</h3>
+    <ul>
+      <li  data-i18n="planes.sub1">Subscriptions are bought with <b>Google Play Billing</b> and renew automatically.</li>
+      <li  data-i18n="planes.sub2">To cancel or change your plan: open <b>Play Store → your profile → Payments & subscriptions → Subscriptions</b> → Nivelato → Cancel.</li>
+      <li  data-i18n="planes.sub3">When you cancel, you keep access until the end of the paid period.</li>
+      <li  data-i18n="planes.sub4"><b>Pro Lifetime</b> is a one-time payment; it does not renew.</li>
+      <li  data-i18n="planes.sub5">Refunds are processed by Google Play according to its policy.</li>
+    </ul>
+    <h3  data-i18n="planes.h3which">Pro or Ultra?</h3>
+    <ul>
+      <li  data-i18n="planes.w1"><b>Pro</b> is just for you: your measurements, your jobs, your phone.</li>
+      <li  data-i18n="planes.w2"><b>Ultra</b> is for teams: up to 30 users under a single subscription, with unique links to share jobs with the rest of the crew.</li>
+    </ul>
+  </div>
+
+  <div class="doc-card reveal" id="cuenta">
+    <h2  data-i18n="cuenta.h2">Account and data</h2>
+    <ul>
+      <li  data-i18n="cuenta.li1"><b>Switching phones:</b> sign in with the same account (Google or email) on the new device. Your Google Play subscription travels with you.</li>
+      <li  data-i18n="cuenta.li2"><b>Deleting your account:</b> inside the app, on the "Privacy and data" screen, you can delete your account, this erases your email, your team link, and your cloud data.</li>
+      <li  data-i18n="cuenta.li3"><b>What we keep:</b> your email (account identity), your device link, and your saved jobs. Full details in the <a href="/privacy/">privacy policy</a>.</li>
+      <li  data-i18n="cuenta.li4"><b>Forgot your password?</b> Use "Forgot your password?" on the email login screen.</li>
+    </ul>
+  </div>
+
+  <div class="doc-card faq reveal" id="problemas">
+    <h2  data-i18n="problemas.h2">Common problems</h2>
+  <details>
+    <summary data-i18n="problemas.q1">I can't sign in with Google</summary>
+    <div class="a" data-i18n="problemas.a1">Check that the phone has an internet connection and that date/time are set to automatic. If the error persists, clear the Google Play Services cache and try again.</div>
+  </details>
+  <details>
+    <summary data-i18n="problemas.q2">I bought Pro but the app is still in free mode</summary>
+    <div class="a" data-i18n="problemas.a2">Close the app completely and reopen it with internet, the app verifies your subscription at launch. If it still doesn't activate, confirm in Play Store → Subscriptions that the payment went through, and write to us with your account email.</div>
+  </details>
+  <details>
+    <summary data-i18n="problemas.q3">My jobs don't appear / don't sync</summary>
+    <div class="a" data-i18n="problemas.a3">Sync requires internet. Open the app while connected and wait a few seconds. If a job was saved offline, it appears when you reconnect.</div>
+  </details>
+  <details>
+    <summary data-i18n="problemas.q4">The camera won't open at the photo step</summary>
+    <div class="a" data-i18n="problemas.a4">Nivelato needs camera permission: go to Android Settings → Apps → Nivelato → Permissions → Camera → Allow.</div>
+  </details>
+  <details>
+    <summary data-i18n="problemas.q5">The fractions don't add up for me</summary>
+    <div class="a" data-i18n="problemas.a5">The app works in inch fractions (½, ¼, ⅛, 1/16). Enter the whole number and pick the fraction from the menu, don't type decimals into the fraction field.</div>
+  </details>
+  <details>
+    <summary data-i18n="problemas.q6">The app closes when I open it</summary>
+    <div class="a" data-i18n="problemas.a6">Make sure you have the latest version from the Play Store. If the problem continues, restart the phone. As a last resort, reinstall (your cloud jobs are not lost).</div>
+  </details>
+  <details>
+    <summary data-i18n="problemas.q7">Does it work without internet?</summary>
+    <div class="a" data-i18n="problemas.a7">Yes for measuring: once your session has started, you can complete jobs offline. You need internet to sign in, sync, and verify your subscription.</div>
+  </details>
+  </div>
+
+  <div class="doc-card reveal" id="versiones">
+    <h2  data-i18n="versiones.h2">Versions and going back to an earlier version</h2>
+    <p  data-i18n="versiones.p">Sometimes a company needs to stay on an earlier version or undo a version change. This is what can be done today:</p>
+    <ul>
+      <li  data-i18n="versiones.li1"><b>Postponing an update:</b> when a data update arrives, the company owner can postpone it from the app's updates page. The system applies it later, only when nobody in the company is connected, so data is never touched in the middle of a work shift.</li>
+      <li  data-i18n="versiones.li2"><b>Going back to an earlier interface label:</b> every company runs with an interface version label. The owner can ask for their company to go back to an earlier label; the change moves the label, not the data.</li>
+      <li  data-i18n="versiones.li3"><b>No more channels:</b> there is no beta channel and no stable channel anymore. Every company runs the current version of Nivelato and gets new features at the same time.</li>
+      <li  data-i18n="versiones.li4"><b>Seeing which version your company runs:</b> at <a href="https://debug.nivelatolabs.com">debug.nivelatolabs.com</a> you can see your company's data version, its channel, and which version is being offered to it.</li>
+    </ul>
+    <h3  data-i18n="versiones.h3">What doesn't exist (yet)</h3>
+    <ul>
+      <li  data-i18n="versiones.li5"><b>There is no automatic data rollback:</b> company data migration is one-way by design. If your company needs its data returned to the previous version, it is a manual intervention by the Nivelato Labs team. It is requested with a support session: at <a href="https://remote.nivelatolabs.com">remote.nivelatolabs.com</a>, the owner enters the single-use code the support person gives them, and the session is recorded and time-limited.</li>
+      <li  data-i18n="versiones.li6"><b>Google Play doesn't downgrade:</b> Play does not allow installing an older version of the app over a newer one on a phone. An older version can only be distributed through a test track.</li>
+    </ul>
+  </div>
+
+  <div class="doc-card reveal" id="contacto">
+    <h2  data-i18n="contacto.h2">Contact</h2>
+    <p  data-i18n="contacto.p1">Didn't find your answer? Write to us at <a href="mailto:support@nivelatolabs.com"><b>support@nivelatolabs.com</b></a></p>
+    <p  data-i18n="contacto.p2">Include your account email, phone model, and Android version so we can help you faster.</p>
+  </div>
+</div></section>
+<footer>
+  <div class="wrap">
+    <div data-i18n="footer.tag">Nivelato Labs. Software that measures up.</div>
+    <div class="foot-links"><a href="/products/" data-i18n="nav.products">Products</a><a href="/about/" data-i18n="nav.about">About</a><a href="/contact/" data-i18n="nav.contact">Contact</a><a href="/pr/" data-i18n="nav.pr">Para clientes en PR</a><a href="/privacy/" data-i18n="nav.privacy">Privacy</a><a href="/support/" data-i18n="nav.support">Support</a><a href="/privacy/" data-i18n="nav.cookies">Cookies</a></div>
+  </div>
+</footer>
+
+
+<script>
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), {threshold: .12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+<script>
+const I18N = {
+  "en": {
+    "nav.home": "Home",
+    "nav.products": "Products",
+    "nav.about": "About",
+    "nav.team": "Team",
+    "nav.contact": "Contact",
+    "nav.get": "Get Nivelato",
+    "nav.login": "Log in",
+    "nav.sub.nivelato": "Nivelato",
+    "nav.sub.phonebench": "PhoneBench",
+    "nav.sub.pricing": "Pricing",
+    "nav.sub.overview": "Overview",
+    "nav.sub.mission": "Mission",
+    "nav.sub.vision": "Vision",
+    "nav.sub.values": "Core Values",
+    "nav.pr": "Para clientes en PR",
+    "footer.copy": "© 2026 Nivelato Labs",
+    "nav.privacy": "Privacy",
+    "nav.support": "Support",
+    "nav.cookies": "Cookies",
+    "footer.tag": "Nivelato Labs. Software that measures up.",
+    "page.kicker": "Support",
+    "meta.title": "Nivelato Help Center - Nivelato Labs",
+    "meta.desc": "Guides, plans, and troubleshooting for measuring openings like a pro: glass, countertops, tile, cabinets, and any panel that has to fit a space.",
+    "header.h1": "Nivelato Help Center",
+    "header.sub": "Guides, plans, and troubleshooting for measuring openings like a pro: glass, countertops, tile, cabinets, and any panel that has to fit a space.",
+    "notice.b": "Are you outside Puerto Rico?",
+    "notice.body": "Quality Glass company access (the \"QGC\" button) is only for the team in Puerto Rico.\n  If you are somewhere else, you use <b>Nivelato Pro</b> or <b>Nivelato Ultra</b> with your Google Play account, everything else on this page applies to you just the same.",
+    "toc.empezar": "Getting started",
+    "toc.medir": "How to measure",
+    "toc.planes": "Plans and billing",
+    "toc.cuenta": "Account and data",
+    "toc.problemas": "Common problems",
+    "toc.versiones": "Versions",
+    "toc.contacto": "Contact",
+    "empezar.h2": "Getting started",
+    "empezar.li1": "<b>Install Nivelato</b> from the Google Play Store on your Android.",
+    "empezar.li2": "<b>Create your account</b>, you can sign in with Google or with email and password.",
+    "empezar.li3": "<b>Start measuring.</b> The free account includes <b>3 saves</b> so you can try the full flow before paying.",
+    "empezar.h3": "Requirements",
+    "empezar.r1": "Android with Google Play Store and Google Play Billing.",
+    "empezar.r2": "A laser measure (recommended) or a tape measure to take the measurements.",
+    "empezar.r3": "Internet connection to sign in and sync; measuring works offline once you are in.",
+    "medir.h2": "How to measure an opening",
+    "medir.p": "Every job follows the same 7 steps. Measurements are entered in <b>inches with fractions</b> (e.g. 36 ½\").",
+    "medir.s1": "<b>Customer / Project</b>Customer name, project, and location before you start.",
+    "medir.s2": "<b>Opening measurements</b>Width at the bottom and height on the left. The other two measurements are calculated automatically from the offsets.",
+    "medir.s3": "<b>Left wall</b>From the laser to the wall: point A (bottom) and point B (top).",
+    "medir.s4": "<b>Right wall</b>The same on the other side: point A (bottom) and point B (top).",
+    "medir.s5": "<b>Top</b>Offset of the ceiling / top side.",
+    "medir.s6": "<b>Bottom</b>Offset of the floor / bottom side.",
+    "medir.s7": "<b>Photo with measurements</b>Take a photo of the opening with the measurements visible (requires a Pro plan or higher).",
+    "medir.s8": "<b>Summary</b>Review everything, save the job, and share it if your plan allows it.",
+    "medir.h3": "Tips",
+    "medir.t1": "Always measure in the same order so you don't mix up points A and B.",
+    "medir.t2": "If an offset reads zero at both points, the wall is plumb, perfect.",
+    "medir.t3": "The step 7 photo saves you from arguments: always take it before leaving the site.",
+    "planes.h2": "Plans and billing",
+    "planes.th1": "Plan",
+    "planes.th2": "Price",
+    "planes.th3": "Includes",
+    "planes.n.free": "<b>Free</b>",
+    "planes.n.prom": "<b>Pro Monthly</b>",
+    "planes.n.pros": "<b>Pro Semiannual</b>",
+    "planes.n.proa": "<b>Pro Annual</b>",
+    "planes.n.proper": "<b>Pro Lifetime</b>",
+    "planes.n.ultram": "<b>Ultra Monthly</b>",
+    "planes.n.ultraa": "<b>Ultra Annual</b>",
+    "planes.pr.free": "$0",
+    "planes.pr.prom": "$5.99/mo",
+    "planes.pr.pros": "$34.99/6 months",
+    "planes.pr.proa": "$59.99/yr",
+    "planes.pr.proper": "$299.99 one-time",
+    "planes.pr.ultram": "$10.99/mo",
+    "planes.pr.ultraa": "$109.99/yr",
+    "planes.inc.free": "3 saves · no sharing · no screenshots",
+    "planes.inc.pro": "Unlimited saves · share jobs · screenshots · photo with measurements",
+    "planes.inc.ultra": "Everything in Pro · up to 30 users · unique links per job · team photos",
+    "planes.h3subs": "Subscriptions and cancellation",
+    "planes.sub1": "Subscriptions are bought with <b>Google Play Billing</b> and renew automatically.",
+    "planes.sub2": "To cancel or change your plan: open <b>Play Store → your profile → Payments & subscriptions → Subscriptions</b> → Nivelato → Cancel.",
+    "planes.sub3": "When you cancel, you keep access until the end of the paid period.",
+    "planes.sub4": "<b>Pro Lifetime</b> is a one-time payment; it does not renew.",
+    "planes.sub5": "Refunds are processed by Google Play according to its policy.",
+    "planes.h3which": "Pro or Ultra?",
+    "planes.w1": "<b>Pro</b> is just for you: your measurements, your jobs, your phone.",
+    "planes.w2": "<b>Ultra</b> is for teams: up to 30 users under a single subscription, with unique links to share jobs with the rest of the crew.",
+    "cuenta.h2": "Account and data",
+    "cuenta.li1": "<b>Switching phones:</b> sign in with the same account (Google or email) on the new device. Your Google Play subscription travels with you.",
+    "cuenta.li2": "<b>Deleting your account:</b> inside the app, on the \"Privacy and data\" screen, you can delete your account, this erases your email, your team link, and your cloud data.",
+    "cuenta.li3": "<b>What we keep:</b> your email (account identity), your device link, and your saved jobs. Full details in the <a href=\"/privacy/\">privacy policy</a>.",
+    "cuenta.li4": "<b>Forgot your password?</b> Use \"Forgot your password?\" on the email login screen.",
+    "problemas.h2": "Common problems",
+    "problemas.q1": "I can't sign in with Google",
+    "problemas.a1": "Check that the phone has an internet connection and that date/time are set to automatic. If the error persists, clear the Google Play Services cache and try again.",
+    "problemas.q2": "I bought Pro but the app is still in free mode",
+    "problemas.a2": "Close the app completely and reopen it with internet, the app verifies your subscription at launch. If it still doesn't activate, confirm in Play Store → Subscriptions that the payment went through, and write to us with your account email.",
+    "problemas.q3": "My jobs don't appear / don't sync",
+    "problemas.a3": "Sync requires internet. Open the app while connected and wait a few seconds. If a job was saved offline, it appears when you reconnect.",
+    "problemas.q4": "The camera won't open at the photo step",
+    "problemas.a4": "Nivelato needs camera permission: go to Android Settings → Apps → Nivelato → Permissions → Camera → Allow.",
+    "problemas.q5": "The fractions don't add up for me",
+    "problemas.a5": "The app works in inch fractions (½, ¼, ⅛, 1/16). Enter the whole number and pick the fraction from the menu, don't type decimals into the fraction field.",
+    "problemas.q6": "The app closes when I open it",
+    "problemas.a6": "Make sure you have the latest version from the Play Store. If the problem continues, restart the phone. As a last resort, reinstall (your cloud jobs are not lost).",
+    "problemas.q7": "Does it work without internet?",
+    "problemas.a7": "Yes for measuring: once your session has started, you can complete jobs offline. You need internet to sign in, sync, and verify your subscription.",
+    "versiones.h2": "Versions and going back to an earlier version",
+    "versiones.p": "Sometimes a company needs to stay on an earlier version or undo a version change. This is what can be done today:",
+    "versiones.li1": "<b>Postponing an update:</b> when a data update arrives, the company owner can postpone it from the app's updates page. The system applies it later, only when nobody in the company is connected, so data is never touched in the middle of a work shift.",
+    "versiones.li2": "<b>Going back to an earlier interface label:</b> every company runs with an interface version label. The owner can ask for their company to go back to an earlier label; the change moves the label, not the data.",
+    "versiones.li3": "<b>No more channels:</b> there is no beta channel and no stable channel anymore. Every company runs the current version of Nivelato and gets new features at the same time.",
+    "versiones.li4": "<b>Seeing which version your company runs:</b> at <a href=\"https://debug.nivelatolabs.com\">debug.nivelatolabs.com</a> you can see your company's data version, its channel, and which version is being offered to it.",
+    "versiones.h3": "What doesn't exist (yet)",
+    "versiones.li5": "<b>There is no automatic data rollback:</b> company data migration is one-way by design. If your company needs its data returned to the previous version, it is a manual intervention by the Nivelato Labs team. It is requested with a support session: at <a href=\"https://remote.nivelatolabs.com\">remote.nivelatolabs.com</a>, the owner enters the single-use code the support person gives them, and the session is recorded and time-limited.",
+    "versiones.li6": "<b>Google Play doesn't downgrade:</b> Play does not allow installing an older version of the app over a newer one on a phone. An older version can only be distributed through a test track.",
+    "contacto.h2": "Contact",
+    "contacto.p1": "Didn't find your answer? Write to us at <a href=\"mailto:support@nivelatolabs.com\"><b>support@nivelatolabs.com</b></a>",
+    "contacto.p2": "Include your account email, phone model, and Android version so we can help you faster.",
+    "footer.brand": "Nivelato · Help Center",
+    "footer.privacy": "Privacy policy"
+  },
+  "es": {
+    "nav.home": "Inicio",
+    "nav.products": "Productos",
+    "nav.about": "Nosotros",
+    "nav.team": "Equipo",
+    "nav.contact": "Contacto",
+    "nav.get": "Descargar Nivelato",
+    "nav.login": "Iniciar sesión",
+    "nav.sub.nivelato": "Nivelato",
+    "nav.sub.phonebench": "PhoneBench",
+    "nav.sub.pricing": "Precios",
+    "nav.sub.overview": "Resumen",
+    "nav.sub.mission": "Misión",
+    "nav.sub.vision": "Visión",
+    "nav.sub.values": "Valores",
+    "nav.pr": "Para clientes en PR",
+    "footer.copy": "© 2026 Nivelato Labs",
+    "nav.privacy": "Privacidad",
+    "nav.support": "Soporte",
+    "nav.cookies": "Cookies",
+    "footer.tag": "Nivelato Labs. Software que da la medida.",
+    "page.kicker": "Soporte",
+    "meta.title": "Centro de ayuda de Nivelato - Nivelato Labs",
+    "meta.desc": "Guías, planes y solución de problemas para medir huecos como un profesional: cristales, topes, losas, gabinetes y cualquier panel que tiene que caber en un espacio.",
+    "header.h1": "Nivelato Centro de ayuda",
+    "header.sub": "Guías, planes y solución de problemas para medir huecos como un profesional: cristales, topes, losas, gabinetes y cualquier panel que tiene que caber en un espacio.",
+    "notice.b": "¿Estás fuera de Puerto Rico?",
+    "notice.body": "El acceso empresarial de Quality Glass (botón \"QGC\") es solo para el equipo en Puerto Rico.\n  Si estás en otro lugar, usas <b>Nivelato Pro</b> o <b>Nivelato Ultra</b> con tu cuenta de Google Play, todo lo demás en esta página aplica igual para ti.",
+    "toc.empezar": "Primeros pasos",
+    "toc.medir": "Cómo medir",
+    "toc.planes": "Planes y pagos",
+    "toc.cuenta": "Cuenta y datos",
+    "toc.problemas": "Problemas comunes",
+    "toc.versiones": "Versiones",
+    "toc.contacto": "Contacto",
+    "empezar.h2": "Primeros pasos",
+    "empezar.li1": "<b>Instala Nivelato</b> desde Google Play Store en tu Android.",
+    "empezar.li2": "<b>Crea tu cuenta</b>, puedes entrar con Google o con email y contraseña.",
+    "empezar.li3": "<b>Empieza a medir.</b> La cuenta gratuita incluye <b>3 guardados</b> para que pruebes el flujo completo antes de pagar.",
+    "empezar.h3": "Requisitos",
+    "empezar.r1": "Android con Google Play Store y Google Play Billing.",
+    "empezar.r2": "Un metro láser (recomendado) o cinta métrica para tomar las medidas.",
+    "empezar.r3": "Conexión a internet para iniciar sesión y sincronizar; la medición funciona sin conexión una vez dentro.",
+    "medir.h2": "Cómo medir un hueco",
+    "medir.p": "Cada trabajo sigue los mismos 7 pasos. Las medidas se entran en <b>pulgadas con fracciones</b> (ej. 36 ½\").",
+    "medir.s1": "<b>Cliente / Proyecto</b>Nombre del cliente, proyecto y ubicación antes de empezar.",
+    "medir.s2": "<b>Medidas del hueco</b>Ancho abajo y alto a la izquierda. Las otras dos medidas se calculan solas con los desniveles.",
+    "medir.s3": "<b>Pared izquierda</b>Del láser a la pared: punto A (abajo) y punto B (arriba).",
+    "medir.s4": "<b>Pared derecha</b>Lo mismo del otro lado: punto A (abajo) y punto B (arriba).",
+    "medir.s5": "<b>Arriba</b>Desnivel del techo / parte superior.",
+    "medir.s6": "<b>Abajo</b>Desnivel del piso / parte inferior.",
+    "medir.s7": "<b>Foto con medidas</b>Toma una foto del hueco con las medidas visibles (requiere plan Pro o superior).",
+    "medir.s8": "<b>Resumen</b>Revisa todo, guarda el trabajo y compártelo si tu plan lo permite.",
+    "medir.h3": "Consejos",
+    "medir.t1": "Mide siempre en el mismo orden para no confundir los puntos A y B.",
+    "medir.t2": "Si un desnivel te da cero en ambos puntos, la pared está a plomo, perfecto.",
+    "medir.t3": "La foto del paso 7 te salva de discusiones: siempre tómala antes de irte del sitio.",
+    "planes.h2": "Planes y pagos",
+    "planes.th1": "Plan",
+    "planes.th2": "Precio",
+    "planes.th3": "Incluye",
+    "planes.n.free": "<b>Gratis</b>",
+    "planes.n.prom": "<b>Pro Mensual</b>",
+    "planes.n.pros": "<b>Pro Semestral</b>",
+    "planes.n.proa": "<b>Pro Anual</b>",
+    "planes.n.proper": "<b>Pro Perpetuo</b>",
+    "planes.n.ultram": "<b>Ultra Mensual</b>",
+    "planes.n.ultraa": "<b>Ultra Anual</b>",
+    "planes.pr.free": "$0",
+    "planes.pr.prom": "$5.99/mes",
+    "planes.pr.pros": "$34.99/6 meses",
+    "planes.pr.proa": "$59.99/año",
+    "planes.pr.proper": "$299.99 único",
+    "planes.pr.ultram": "$10.99/mes",
+    "planes.pr.ultraa": "$109.99/año",
+    "planes.inc.free": "3 guardados · sin compartir · sin capturas",
+    "planes.inc.pro": "Guardados ilimitados · compartir trabajos · capturas de pantalla · foto con medidas",
+    "planes.inc.ultra": "Todo lo de Pro · hasta 30 usuarios · enlaces únicos por trabajo · fotos del equipo",
+    "planes.h3subs": "Suscripciones y cancelación",
+    "planes.sub1": "Las suscripciones se compran con <b>Google Play Billing</b> y se renuevan automáticamente.",
+    "planes.sub2": "Para cancelar o cambiar tu plan: abre <b>Play Store → tu perfil → Pagos y suscripciones → Suscripciones</b> → Nivelato → Cancelar.",
+    "planes.sub3": "Al cancelar, mantienes el acceso hasta el fin del período pagado.",
+    "planes.sub4": "<b>Pro Perpetuo</b> es un pago único, no se renueva.",
+    "planes.sub5": "Los reembolsos los procesa Google Play según su política.",
+    "planes.h3which": "¿Pro o Ultra?",
+    "planes.w1": "<b>Pro</b> es para ti solo: tus medidas, tus trabajos, tu teléfono.",
+    "planes.w2": "<b>Ultra</b> es para equipos: hasta 30 usuarios bajo una sola suscripción, con enlaces únicos para compartir trabajos con el resto del crew.",
+    "cuenta.h2": "Cuenta y datos",
+    "cuenta.li1": "<b>Cambiar de teléfono:</b> inicia sesión con la misma cuenta (Google o email) en el nuevo equipo. Tu suscripción de Google Play viaja contigo.",
+    "cuenta.li2": "<b>Borrar tu cuenta:</b> dentro de la app, en la pantalla \"Privacidad y datos\", puedes eliminar tu cuenta, esto borra tu email, el vínculo con tu equipo y tus datos en la nube.",
+    "cuenta.li3": "<b>Qué guardamos:</b> tu email (identidad de cuenta), el vínculo con tu dispositivo y tus trabajos guardados. Detalles completos en la <a href=\"/privacy/\">política de privacidad</a>.",
+    "cuenta.li4": "<b>¿Olvidaste tu contraseña?</b> Usa \"¿Olvidaste tu contraseña?\" en la pantalla de login con email.",
+    "problemas.h2": "Problemas comunes",
+    "problemas.q1": "No puedo iniciar sesión con Google",
+    "problemas.a1": "Verifica que el teléfono tenga conexión a internet y que la fecha/hora estén en automático. Si el error persiste, borra el caché de Google Play Services y reintenta.",
+    "problemas.q2": "Compré Pro pero la app sigue en modo gratis",
+    "problemas.a2": "Cierra la app por completo y vuelve a abrirla con internet, la app verifica tu suscripción al iniciar. Si sigue sin activarse, confirma en Play Store → Suscripciones que el pago se procesó, y escríbenos con tu email de cuenta.",
+    "problemas.q3": "Mis trabajos no aparecen / no sincronizan",
+    "problemas.a3": "La sincronización requiere internet. Abre la app conectado y espera unos segundos. Si un trabajo se guardó sin conexión, aparece al reconectarte.",
+    "problemas.q4": "La cámara no abre en el paso de foto",
+    "problemas.a4": "Nivelato necesita permiso de cámara: ve a Ajustes de Android → Apps → Nivelato → Permisos → Cámara → Permitir.",
+    "problemas.q5": "Las fracciones no me cuadran",
+    "problemas.a5": "La app trabaja en fracciones de pulgada (½, ¼, ⅛, 1/16). Entra el número entero y elige la fracción del menú, no escribas decimales en el campo de fracción.",
+    "problemas.q6": "La app se cierra al abrirla",
+    "problemas.a6": "Asegúrate de tener la última versión desde Play Store. Si el problema sigue, reinicia el teléfono. Como último recurso, reinstala (tus trabajos en la nube no se pierden).",
+    "problemas.q7": "¿Funciona sin internet?",
+    "problemas.a7": "Sí para medir: una vez iniciada la sesión, puedes completar trabajos sin conexión. Necesitas internet para iniciar sesión, sincronizar y verificar tu suscripción.",
+    "versiones.h2": "Versiones y volver a una versión anterior",
+    "versiones.p": "A veces una empresa necesita quedarse en una versión anterior o deshacer un cambio de versión. Esto es lo que se puede hacer hoy:",
+    "versiones.li1": "<b>Posponer una actualización:</b> cuando llega una actualización de datos, el dueño de la empresa puede posponerla desde la página de actualizaciones de la app. El sistema la aplica después, solo cuando nadie de la empresa esté conectado, para no tocar datos a mitad de un turno de trabajo.",
+    "versiones.li2": "<b>Volver a una etiqueta de interfaz anterior:</b> cada empresa corre con una etiqueta de versión de interfaz. El dueño puede pedir que su empresa vuelva a una etiqueta anterior; el cambio mueve la etiqueta, no los datos.",
+    "versiones.li3": "<b>Sin canales:</b> ya no hay canal beta ni canal estable. Todas las empresas corren la versión actual de Nivelato y reciben las novedades al mismo tiempo.",
+    "versiones.li4": "<b>Ver qué versión corre tu empresa:</b> en <a href=\"https://debug.nivelatolabs.com\">debug.nivelatolabs.com</a> puedes ver la versión de datos de tu empresa, su canal y qué versión se le está ofreciendo.",
+    "versiones.h3": "Lo que no existe (todavía)",
+    "versiones.li5": "<b>No hay reversa automática de datos:</b> la migración de datos de la empresa es de una sola vía por diseño. Si tu empresa necesita volver sus datos a la versión anterior, es una intervención manual del equipo de Nivelato Labs. Se pide con una sesión de soporte: en <a href=\"https://remote.nivelatolabs.com\">remote.nivelatolabs.com</a>, el dueño escribe el código de un solo uso que le da la persona de soporte y la sesión queda registrada y con tiempo límite.",
+    "versiones.li6": "<b>Google Play no baja versiones:</b> Play no permite instalar una versión anterior de la app sobre una más nueva en un teléfono. Una versión anterior solo puede distribuirse por una pista de prueba.",
+    "contacto.h2": "Contacto",
+    "contacto.p1": "¿No encontraste tu respuesta? Escríbenos a <a href=\"mailto:support@nivelatolabs.com\"><b>support@nivelatolabs.com</b></a>",
+    "contacto.p2": "Incluye tu email de cuenta, modelo de teléfono y versión de Android para ayudarte más rápido.",
+    "footer.brand": "Nivelato · Centro de ayuda",
+    "footer.privacy": "Política de privacidad"
+  }
+};
+const FORCED_LANG = null;
+
+const LANG_KEY = 'nivelato-lang';
+function currentLang() {
+  try {
+    const saved = localStorage.getItem(LANG_KEY);
+    if (saved === 'en' || saved === 'es') return saved;
+  } catch (e) {}
+  if (FORCED_LANG) return FORCED_LANG;
+  const nav = (navigator.language || 'en').toLowerCase();
+  return nav.indexOf('es') === 0 ? 'es' : 'en';
+}
+function applyLang(l) {
+  const dict = I18N[l] || I18N.en;
+  document.documentElement.lang = l;
+  if (dict['meta.title']) document.title = dict['meta.title'];
+  const metaDescEl = document.querySelector('meta[name="description"]');
+  if (metaDescEl && dict['meta.desc']) metaDescEl.setAttribute('content', dict['meta.desc']);
+  document.querySelectorAll('[data-i18n]').forEach(function (el) {
+    const k = el.getAttribute('data-i18n');
+    if (dict[k] !== undefined) el.innerHTML = dict[k];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(function (el) {
+    const k = el.getAttribute('data-i18n-ph');
+    if (dict[k] !== undefined) el.setAttribute('placeholder', dict[k]);
+  });
+  document.querySelectorAll('.lang-toggle').forEach(function (b) {
+    b.textContent = (l === 'en') ? 'ES' : 'EN';
+  });
+  try { localStorage.setItem(LANG_KEY, l); } catch (e) {}
+}
+document.querySelectorAll('.lang-toggle').forEach(function (b) {
+  b.addEventListener('click', function () {
+    const cur = document.documentElement.lang === 'es' ? 'es' : 'en';
+    applyLang(cur === 'en' ? 'es' : 'en');
+  });
+});
+applyLang(currentLang());
+
+</script>
+<style>
+  /* Custom dual cursor: slow outer ring + springy inner dot that can
+     overshoot (overflow) the ring on fast moves. Fine pointers only. */
+  #cur-outer, #cur-inner {
+    position: fixed; top: 0; left: 0; z-index: 9999;
+    pointer-events: none; border-radius: 50%;
+    opacity: 0; transition: opacity .25s;
+    will-change: transform;
+  }
+  #cur-outer {
+    width: 38px; height: 38px;
+    border: 1.5px solid rgba(255,255,255,.85);
+    transition: opacity .25s, width .2s, height .2s, border-color .2s;
+  }
+  #cur-outer.grow { width: 58px; height: 58px; border-color: rgba(255,255,255,.9); }
+  #cur-inner {
+    width: 8px; height: 8px;
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(255,255,255,.7);
+  }
+  body.cur-on #cur-outer, body.cur-on #cur-inner { opacity: 1; }
+
+</style>
+<div id="cur-outer" aria-hidden="true"></div>
+<div id="cur-inner" aria-hidden="true"></div>
+
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ba83c66be7af41d899cb499dfa1442c8"}'></script>
+<!-- End Cloudflare Web Analytics -->
+<script>
+/* Language selector for the Variant B menu overlay. The available
+   languages are a registry, not a hard-coded toggle: the list is
+   built from the page's I18N dictionaries. To add a language, add
+   its dictionary to I18N and one label line to LANG_LABELS below;
+   the selector, detection, and persistence pick it up with no UI
+   changes. Switching reuses the existing applyLang(). */
+(function () {
+  var LANG_LABELS = { en: 'English', es: 'Español' };
+  var wrap = document.getElementById('variant-lang');
+  if (!wrap || typeof I18N === 'undefined' || typeof applyLang !== 'function') return;
+  var currentBtn = wrap.querySelector('.variant-lang-current');
+  var currentLabel = wrap.querySelector('.variant-lang-current-label');
+  var list = document.getElementById('variant-lang-list');
+  var registry = Object.keys(I18N).map(function (code) {
+    return { code: code, label: LANG_LABELS[code] || code.toUpperCase(), dictionary: I18N[code] };
+  });
+  function paint() {
+    var cur = document.documentElement.lang || 'en';
+    registry.forEach(function (entry) {
+      if (entry.code === cur) currentLabel.textContent = entry.label;
+    });
+    list.querySelectorAll('.variant-lang-option').forEach(function (opt) {
+      opt.setAttribute('aria-selected', opt.getAttribute('data-lang') === cur ? 'true' : 'false');
+    });
+  }
+  registry.forEach(function (entry) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'variant-lang-option';
+    b.setAttribute('role', 'option');
+    b.setAttribute('data-lang', entry.code);
+    b.textContent = entry.label;
+    b.addEventListener('click', function () {
+      applyLang(entry.code);
+      paint();
+      list.hidden = true;
+      currentBtn.setAttribute('aria-expanded', 'false');
+    });
+    list.appendChild(b);
+  });
+  currentBtn.addEventListener('click', function () {
+    var willOpen = list.hidden;
+    list.hidden = !willOpen;
+    currentBtn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+  });
+  paint();
+})();
+</script>
+<script>
+/* Variant B menu drill-in: tapping a parent row slides the menu to
+   that section's panel; the back row slides back. Closing the menu
+   resets to the root panel, so it always reopens flat. Panels off
+   the current path are inert and, once the slide settles, hidden. */
+(function(){try{
+var menu=document.getElementById('variant-menu');if(!menu)return;
+var track=menu.querySelector('.variant-track');if(!track)return;
+var panels={};
+[].slice.call(track.querySelectorAll('.variant-panel')).forEach(function(p){panels[p.getAttribute('data-panel')]=p;});
+var stack=['root'];
+var hideTimer=null;
+function render(){
+  var ordered=stack.map(function(n){return panels[n];});
+  Object.keys(panels).forEach(function(n){if(stack.indexOf(n)===-1)ordered.push(panels[n]);});
+  ordered.forEach(function(p){track.appendChild(p);});
+  track.style.transform='translateX('+(-100*(stack.length-1))+'%)';
+  var top=stack[stack.length-1];
+  Object.keys(panels).forEach(function(n){
+    var p=panels[n];
+    if(n===top){p.style.visibility='visible';p.style.opacity='1';if('inert' in p)p.inert=false;}
+    else{p.style.opacity='0';if('inert' in p)p.inert=true;}
+  });
+  if(hideTimer)clearTimeout(hideTimer);
+  hideTimer=setTimeout(function(){
+    Object.keys(panels).forEach(function(n){if(n!==stack[stack.length-1])panels[n].style.visibility='hidden';});
+  },340);
+}
+menu.addEventListener('click',function(e){
+  var t=e.target;
+  var drill=t&&t.closest?t.closest('[data-drill]'):null;
+  if(drill){var name=drill.getAttribute('data-drill');if(panels[name]&&stack[stack.length-1]!==name){stack.push(name);render();}return;}
+  var back=t&&t.closest?t.closest('[data-back]'):null;
+  if(back&&stack.length>1){stack.pop();render();}
+});
+function reset(){stack=['root'];render();}
+var closeBtn=menu.querySelector('.variant-menu-close');
+if(closeBtn)closeBtn.addEventListener('click',reset);
+var openBtn=document.querySelector('.variant-menu-button');
+if(openBtn)openBtn.addEventListener('click',reset);
+render();
+}catch(e){}})();
+</script>
+
+<script>
+/* Menu bend: the sidebar grows out of the top bar capsule and folds
+   back into it. The sheet is assembled at runtime from the existing
+   menu parts so the drill-in system keeps its own nodes. */
+(function(){try{
+var menu=document.getElementById('variant-menu');if(!menu)return;
+var viewport=menu.querySelector('.variant-viewport');if(!viewport)return;
+var closeBtn=menu.querySelector('.variant-menu-close');
+var sheet=document.createElement('div');sheet.className='variant-sheet';sheet.id='variant-sheet';
+menu.appendChild(sheet);sheet.appendChild(viewport);if(closeBtn)sheet.appendChild(closeBtn);
+var nav=document.querySelector('.variant-nav');
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var EASE='cubic-bezier(.22,1,.36,1)',animating=false;
+function contentEls(){return [viewport,closeBtn].filter(Boolean);}
+function setContent(o,delay){contentEls().forEach(function(el){el.style.transition='opacity .22s ease '+(delay||0)+'ms';el.style.opacity=o;});}
+function finalRect(){
+  var w=Math.min(440,window.innerWidth-24);
+  var prevW=sheet.style.width,prevH=sheet.style.height,prevPos=sheet.style.position,prevVis=sheet.style.visibility;
+  sheet.style.width=w+'px';sheet.style.height='auto';sheet.style.visibility='hidden';
+  var h=Math.min(sheet.scrollHeight,window.innerHeight-24);
+  sheet.style.width=prevW;sheet.style.height=prevH;sheet.style.visibility=prevVis;
+  return {left:window.innerWidth-12-w,top:12,width:w,height:h};
+}
+function expand(){
+  if(reduce||!nav){setContent(1,60);return;}
+  animating=true;
+  var c=nav.getBoundingClientRect(),f=finalRect();
+  sheet.style.position='fixed';sheet.style.zIndex='5';sheet.style.margin='0';sheet.style.overflow='hidden';
+  sheet.style.left=c.left+'px';sheet.style.top=c.top+'px';sheet.style.width=c.width+'px';sheet.style.height=c.height+'px';sheet.style.borderRadius='999px';
+  setContent(0,0);
+  setTimeout(function(){setTimeout(function(){
+    sheet.style.transition='left .55s '+EASE+',top .55s '+EASE+',width .55s '+EASE+',height .55s '+EASE+',border-radius .55s '+EASE;
+    sheet.style.left=f.left+'px';sheet.style.top=f.top+'px';sheet.style.width=f.width+'px';sheet.style.height=f.height+'px';sheet.style.borderRadius='30px';
+    setContent(1,210);
+    setTimeout(function(){sheet.style.transition='';sheet.style.position='';sheet.style.zIndex='';sheet.style.left='';sheet.style.top='';sheet.style.width='';sheet.style.height='';sheet.style.borderRadius='';sheet.style.overflow='';animating=false;},600);
+  },30);},30);
+}
+function fold(){
+  if(reduce||!nav){return;}
+  document.body.classList.add('variant-menu-closing');
+  var c=nav.getBoundingClientRect();
+  var r=sheet.getBoundingClientRect();
+  sheet.style.position='fixed';sheet.style.zIndex='5';sheet.style.margin='0';sheet.style.overflow='hidden';
+  sheet.style.left=r.left+'px';sheet.style.top=r.top+'px';sheet.style.width=r.width+'px';sheet.style.height=r.height+'px';sheet.style.borderRadius='30px';
+  setContent(0,0);
+  setTimeout(function(){setTimeout(function(){
+    sheet.style.transition='left .5s '+EASE+',top .5s '+EASE+',width .5s '+EASE+',height .5s '+EASE+',border-radius .5s '+EASE;
+    sheet.style.left=c.left+'px';sheet.style.top=c.top+'px';sheet.style.width=c.width+'px';sheet.style.height=c.height+'px';sheet.style.borderRadius='999px';
+    setTimeout(function(){
+      document.body.classList.remove('variant-menu-closing');
+      sheet.style.transition='';sheet.style.position='';sheet.style.zIndex='';sheet.style.left='';sheet.style.top='';sheet.style.width='';sheet.style.height='';sheet.style.borderRadius='';sheet.style.overflow='';
+      contentEls().forEach(function(el){el.style.transition='';el.style.opacity='';});
+    },540);
+  },30);},30);
+}
+var wasOpen=false;
+new MutationObserver(function(){
+  var open=document.body.classList.contains('variant-menu-open');
+  if(open&&!wasOpen){wasOpen=true;expand();}
+  else if(!open&&wasOpen){wasOpen=false;fold();}
+}).observe(document.body,{attributes:true,attributeFilter:['class']});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'&&document.body.classList.contains('variant-menu-open')){
+    document.body.classList.remove('variant-menu-open');
+    var b=document.querySelector('.variant-menu-button');if(b)b.setAttribute('aria-expanded','false');
+  }
+});
+}catch(e){}})();
+</script>
+
+
+
+</body>
+</html>

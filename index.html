@@ -381,6 +381,16 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
   .btn:active{transform:none}
 }
 </style>
+<style>
+/* Site fixes (Nov 2026): anchor offset under the sticky pill
+   header, unified footer link spacing. */
+h1,h2,h3,section[id]{scroll-margin-top:128px}
+footer .foot-links a{margin-right:18px}
+footer .foot-links a:last-child{margin-right:0}
+.cookie-sheet-inner{position:relative}
+.cookie-close{position:absolute;top:10px;right:10px;width:38px;height:38px;border:1px solid rgba(255,255,255,.28);border-radius:50%;background:transparent;color:#fff;font-size:1.25rem;line-height:1;cursor:pointer;z-index:2}
+.cookie-close:hover{background:rgba(255,255,255,.08)}
+</style>
 </head>
 <body>
 <div class="intro" aria-hidden="true"><svg class="intro-mark" viewBox="-5 -5 110 110" fill="none" stroke="currentColor" stroke-width="6.5" aria-hidden="true" focusable="false"><path d="M55 20 H20 V84 H84 V43" stroke-linejoin="miter"/><path d="M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z" stroke-linejoin="bevel"/></svg><span>Nivelato Labs</span></div>
@@ -412,7 +422,7 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
     <button type="button" class="variant-row variant-back" data-back><span class="variant-back-chev" aria-hidden="true">‹</span><span>Products</span></button>
     <button type="button" class="variant-row variant-drill" data-drill="nivelato"><span class="variant-row-label">Nivelato</span><span class="variant-drill-chev" aria-hidden="true">›</span></button>
     <a href="/phonebench/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">PhoneBench</a>
-    <a href="https://legobele.github.io/coil-demo" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">COIL</a>
+    <a href="https://legobele.github.io/coil-demo" target="_blank" rel="noopener" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">COIL</a>
     </div>
     </div>
     <div class="variant-panel" data-panel="nivelato">
@@ -476,7 +486,7 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 <footer><div class="wrap">
 <div>Nivelato Labs. Software that measures up.</div>
 <div class="photo-credit">Hero photo: <a href="https://commons.wikimedia.org/wiki/File:20190725_Oeschinensee-Panorama,_Kandersteg_(06540-42_stitch).jpg" target="_blank" rel="noopener noreferrer">© Günter Seggebäing, Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></div>
-<div><a href="/products/">Products</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/pr/">Para clientes en PR</a><a href="#" id="cb-open">Cookies</a></div>
+<div class="foot-links"><a href="/products/">Products</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/pr/">Para clientes en PR</a><a href="/privacy/">Privacy</a><a href="/support/">Support</a><a href="/privacy/" id="cb-open">Cookies</a></div>
 </div></footer>
 <button type="button" class="cookie-cue" id="cookie-cue" aria-expanded="false" aria-controls="cookie-sheet" hidden><span class="cookie-cue-small">Scroll up for</span><span class="cookie-cue-big">Cookie Notice</span></button>
 <div class="cookie-spot" id="cookie-spot" aria-hidden="true" hidden></div>
@@ -485,6 +495,7 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 <div class="cookie-thanks" id="cookie-thanks" role="status" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5 L9.5 18 L20 6.5" stroke="#4caf6d" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Thanks for responding!</span></div>
 <div class="cookie-sheet" id="cookie-sheet" role="dialog" aria-modal="false" aria-labelledby="cookie-sheet-title" hidden>
 <div class="cookie-sheet-inner">
+<button type="button" class="cookie-close" id="cookie-close" aria-label="Close cookie notice">×</button>
 <p class="cookie-sheet-title" id="cookie-sheet-title">Cookie Notice</p>
 <p class="cookie-sheet-body">We use cookies and similar technologies to improve your browsing experience, personalize content and ads, provide social media features, and analyze our traffic. By clicking &ldquo;Use all&rdquo;, you consent to our use of cookies.</p>
 <p class="cookie-sheet-sub">Use these cookies:</p>
@@ -521,11 +532,13 @@ function usageOn(){return usage&&usage.classList.contains('on');}
 function setUsage(on){if(!usage)return;usage.classList.toggle('on',!!on);usage.setAttribute('aria-checked',on?'true':'false');}
 if(usage){usage.addEventListener('click',function(){setUsage(!usageOn());});}
 var open=false;
+var gen=0;
+var hoverMute=false;
 function pillDims(){if(!cue.hidden){return{w:cue.offsetWidth,h:cue.offsetHeight};}return{w:236,h:66};}
 var lockCount=0,savedY=0;
 function lockScroll(){if(lockCount===0){savedY=window.scrollY;document.body.style.position='fixed';document.body.style.top=(-savedY)+'px';document.body.style.left='0';document.body.style.right='0';}lockCount++;}
 function unlockScroll(){if(lockCount>0)lockCount--;if(lockCount===0){document.body.style.position='';document.body.style.top='';document.body.style.left='';document.body.style.right='';var de=document.documentElement;var prev=de.style.scrollBehavior;de.style.scrollBehavior='auto';window.scrollTo(0,savedY);de.style.scrollBehavior=prev;}}
-function expand(){if(open)return;open=true;cue.setAttribute('aria-expanded','true');document.body.classList.add('cookie-locked');document.body.classList.add('cookie-present');lockScroll();if(document.body.classList.contains('cookie-unscrolled')){document.body.classList.add('cookie-from-bottom');window.__nivFromBottom=true;}
+function expand(){if(open)return;open=true;var g=++gen;cue.setAttribute('aria-expanded','true');document.body.classList.add('cookie-locked');document.body.classList.add('cookie-present');lockScroll();if(document.body.classList.contains('cookie-unscrolled')){document.body.classList.add('cookie-from-bottom');window.__nivFromBottom=true;}
   var d=pillDims();cue.hidden=true;
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   sheet.hidden=false;
@@ -537,30 +550,58 @@ function expand(){if(open)return;open=true;cue.setAttribute('aria-expanded','tru
   sheet.style.width=d.w+'px';sheet.style.height=d.h+'px';sheet.style.borderRadius='18px';
   void sheet.offsetWidth;
   sheet.style.width=targetW+'px';sheet.style.height=targetH+'px';sheet.style.borderRadius='22px';
-  setTimeout(function(){inner.style.transition='opacity .26s ease';inner.style.opacity='1';sheet.style.width='';sheet.style.height='';sheet.style.borderRadius='';},360);}
-function collapse(decision){if(!open)return;open=false;cue.setAttribute('aria-expanded','false');
+  setTimeout(function(){if(g!==gen)return;inner.style.transition='opacity .26s ease';inner.style.opacity='1';sheet.style.width='';sheet.style.height='';sheet.style.borderRadius='';},360);}
+function collapse(decision){if(!open)return;open=false;var g=++gen;hoverMute=true;if(typeof hoverTimer!=='undefined'&&hoverTimer){clearTimeout(hoverTimer);hoverTimer=null;}cue.setAttribute('aria-expanded','false');
   if(decision){save(decision);if(!usageOn())killBeacon();clearAlert(true);}
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var inner=sheet.querySelector('.cookie-sheet-inner');
   if(reduce){sheet.hidden=true;inner.style.opacity='0';document.body.classList.remove('cookie-locked');unlockScroll();document.body.classList.remove('cookie-from-bottom');if(!decision&&!choice())cue.hidden=false;return;}
   inner.style.transition='opacity .15s ease';inner.style.opacity='0';
   setTimeout(function(){
+    if(g!==gen)return;
     var d=pillDims();var curW=sheet.offsetWidth,curH=sheet.offsetHeight;
     sheet.style.width=curW+'px';sheet.style.height=curH+'px';void sheet.offsetWidth;
     sheet.style.width=d.w+'px';sheet.style.height=d.h+'px';sheet.style.borderRadius='18px';
-    setTimeout(function(){sheet.hidden=true;sheet.style.width='';sheet.style.height='';sheet.style.borderRadius='';document.body.classList.remove('cookie-locked');unlockScroll();document.body.classList.remove('cookie-from-bottom');
+    setTimeout(function(){if(g!==gen)return;sheet.hidden=true;sheet.style.width='';sheet.style.height='';sheet.style.borderRadius='';document.body.classList.remove('cookie-locked');unlockScroll();document.body.classList.remove('cookie-from-bottom');
       if(decision){var th=document.getElementById('cookie-thanks');if(th){th.hidden=false;th.classList.add('pop');if(window.__nivFromBottom)th.classList.add('at-bottom');document.body.classList.add('cookie-thanks-on');setTimeout(function(){th.classList.add('bye');setTimeout(function(){th.hidden=true;th.classList.remove('pop','bye','at-bottom');window.__nivFromBottom=false;document.body.classList.remove('cookie-present','cookie-thanks-on');},380);},2300);}}
       else if(!choice()){if(alertArmed){showAlert();}else{cue.hidden=false;}}
       else{document.body.classList.remove('cookie-present');}},350);
   },190);}
+/* Hard close for the X control and Escape: cancel any pending open or
+   close animation, remove the sheet outright, clear any alert block, and
+   release every scroll lock. Consent choices are untouched: dismissing
+   stores nothing, and the cue returns when no choice is stored, exactly
+   as a no-decision collapse did. */
+function closeSheet(){
+  gen++;
+  hoverMute=true;
+  if(typeof hoverTimer!=='undefined'&&hoverTimer){clearTimeout(hoverTimer);hoverTimer=null;}
+  open=false;
+  cue.setAttribute('aria-expanded','false');
+  alertArmed=false;
+  if(spot)spot.hidden=true;
+  if(ring){ring.hidden=true;ring.classList.remove('flash');}
+  if(alertCard)alertCard.hidden=true;
+  document.body.classList.remove('cookie-blocked');
+  sheet.hidden=true;
+  sheet.style.width='';sheet.style.height='';sheet.style.borderRadius='';
+  var inner=sheet.querySelector('.cookie-sheet-inner');
+  inner.style.opacity='';inner.style.transition='';
+  document.body.classList.remove('cookie-locked');document.body.classList.remove('cookie-from-bottom');
+  while(lockCount>0)unlockScroll();
+  if(!choice()){cue.hidden=false;}
+  else{document.body.classList.remove('cookie-present');}
+}
+var csBtn=document.getElementById('cookie-close');
+if(csBtn){csBtn.addEventListener('click',function(){closeSheet();});}
 function decide(v){if(v==='all')setUsage(true);if(v==='none')setUsage(false);collapse(v==='all'?'all':(v==='none'?'none':'custom'));}
 var p=document.getElementById('cookie-preserve'),a=document.getElementById('cookie-all'),n=document.getElementById('cookie-none');
 if(p)p.addEventListener('click',function(){decide('custom');});
 if(a)a.addEventListener('click',function(){decide('all');});
 if(n)n.addEventListener('click',function(){decide('none');});
 cue.addEventListener('click',expand);
-if(window.matchMedia&&window.matchMedia('(hover: hover)').matches){var hoverTimer=null;cue.addEventListener('mouseenter',function(){hoverTimer=setTimeout(expand,300);});cue.addEventListener('mouseleave',function(){if(hoverTimer)clearTimeout(hoverTimer);});}
-document.addEventListener('keydown',function(e){if(e.key==='Escape'&&open)collapse(null);});
+if(window.matchMedia&&window.matchMedia('(hover: hover)').matches){var hoverTimer=null;cue.addEventListener('mouseenter',function(){if(hoverMute)return;hoverTimer=setTimeout(expand,300);});cue.addEventListener('mouseleave',function(){hoverMute=false;if(hoverTimer)clearTimeout(hoverTimer);});}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&open)closeSheet();});
 /* overscroll-up triggers: wheel at the very top, or an upward swipe at the very top */
 window.addEventListener('wheel',function(e){if(!open&&!choice()&&window.scrollY<=0&&e.deltaY<-6){expand();}},{passive:true});
 var ty=null;
@@ -659,7 +700,7 @@ render();
 <script>
 (function(){
 var TESTIMONIALS={employee:[],company:null};
-var COMPANIES=[{id:'qgc',name:'Quality Glazing Contractors',loc:'San Juan, Puerto Rico',desc:'Quality Glazing Contractors is a leading glass shop in Puerto Rico, who uses Nivelato for their employees to assist them.',logo:'/assets/qg-monogram-white.png'}];
+var COMPANIES=[{id:'qgc',name:'Quality Glazing Contractors',loc:'San Juan, Puerto Rico',desc:'Quality Glazing Contractors is a leading glass shop in Puerto Rico, which uses Nivelato to assist its employees.',logo:'/assets/qg-monogram-white.png'}];
 function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML;}
 function quotesHTML(){
   var e=TESTIMONIALS.employee.length?TESTIMONIALS.employee.map(function(q){return '<p class="company-quote">&ldquo;'+esc(q.text)+'&rdquo;<span>- '+esc(q.name)+'</span></p>';}).join(''):'<p class="company-none">Testimonials from the Quality Glazing team are being collected.</p>';
@@ -688,12 +729,9 @@ function lockScroll(){lockY=window.scrollY;document.body.style.position='fixed';
 function unlockScroll(){document.body.style.position='';document.body.style.top='';document.body.style.left='';document.body.style.right='';var de=document.documentElement,p=de.style.scrollBehavior;de.style.scrollBehavior='auto';window.scrollTo(0,lockY);de.style.scrollBehavior=p;locked=false;}
 slides.forEach(function(slide){
   var spot=slide.querySelector('.co-spot'),badge=slide.querySelector('.co-badge'),card=slide.querySelector('.co-card'),cta=slide.querySelector('.company-cta'),closeBtn=slide.querySelector('.co-full-close');
-  function openCard(){spot.classList.add('open');badge.setAttribute('aria-expanded','true');anyOpen=true;}
-  function closeCard(){if(card.classList.contains('full'))return;spot.classList.remove('open');badge.setAttribute('aria-expanded','false');anyOpen=false;}
-  badge.addEventListener('mouseenter',openCard);
-  badge.addEventListener('focus',openCard);
+  function openCard(){spot.classList.add('open');badge.setAttribute('aria-expanded','true');anyOpen=true;slide.style.minHeight=(48+card.offsetHeight+16)+'px';}
+  function closeCard(){if(card.classList.contains('full'))return;spot.classList.remove('open');badge.setAttribute('aria-expanded','false');anyOpen=false;slide.style.minHeight='';}
   badge.addEventListener('click',function(){spot.classList.contains('open')?closeCard():openCard();});
-  spot.addEventListener('mouseleave',closeCard);
   function toFull(){
     var r=card.getBoundingClientRect();
     card.dataset.rect=JSON.stringify({left:r.left,top:r.top,width:r.width,height:r.height});

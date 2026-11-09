@@ -247,6 +247,13 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
   .btn:active{transform:none}
 }
 </style>
+<style>
+/* Site fixes (Nov 2026): anchor offset under the sticky pill
+   header, unified footer link spacing. */
+h1,h2,h3,section[id]{scroll-margin-top:128px}
+footer .foot-links a{margin-right:18px}
+footer .foot-links a:last-child{margin-right:0}
+</style>
 </head>
 <body>
 
@@ -282,7 +289,7 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
     <button type="button" class="variant-row variant-back" data-back><span class="variant-back-chev" aria-hidden="true">‹</span><span data-i18n="nav.products">Products</span></button>
     <button type="button" class="variant-row variant-drill" data-drill="nivelato"><span class="variant-row-label" data-i18n="nav.sub.nivelato">Nivelato</span><span class="variant-drill-chev" aria-hidden="true">›</span></button>
     <a href="/phonebench/" data-i18n="nav.sub.phonebench" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">PhoneBench</a>
-    <a href="https://legobele.github.io/coil-demo" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">COIL</a>
+    <a href="https://legobele.github.io/coil-demo" target="_blank" rel="noopener" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">COIL</a>
     </div>
     </div>
     <div class="variant-panel" data-panel="nivelato">
@@ -363,9 +370,8 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 
 <footer>
   <div class="wrap">
-    <span data-i18n="footer.copy">© 2026 Nivelato Labs</span>
-    <span><a href="/pr/" data-i18n="nav.pr">Para clientes en PR</a></span>
-    <span class="mono">nivelatolabs.com · v1.3</span>
+    <div data-i18n="footer.tag">Nivelato Labs. Software that measures up.</div>
+    <div class="foot-links"><a href="/products/" data-i18n="nav.products">Products</a><a href="/about/" data-i18n="nav.about">About</a><a href="/contact/" data-i18n="nav.contact">Contact</a><a href="/pr/" data-i18n="nav.pr">Para clientes en PR</a><a href="/privacy/" data-i18n="nav.privacy">Privacy</a><a href="/support/" data-i18n="nav.support">Support</a><a href="/privacy/" data-i18n="nav.cookies">Cookies</a></div>
   </div>
 </footer>
 
@@ -409,6 +415,10 @@ const I18N = {
   "nav.sub.values": "Core Values",
   "nav.pr": "Para clientes en PR",
   "footer.copy": "© 2026 Nivelato Labs",
+  "nav.privacy": "Privacy",
+  "nav.support": "Support",
+  "nav.cookies": "Cookies",
+  "footer.tag": "Nivelato Labs. Software that measures up.",
   "meta.title": "Nivelato Features - Field Measurement Tools - Nivelato Labs",
   "meta.desc": "Nivelato features: field measurement with offsets, photo capture, project organization, and team management for glass shops that measure to quote.",
   "page.kicker": "Nivelato",
@@ -458,6 +468,10 @@ const I18N = {
   "nav.sub.values": "Valores",
   "nav.pr": "Para clientes en PR",
   "footer.copy": "© 2026 Nivelato Labs",
+  "nav.privacy": "Privacidad",
+  "nav.support": "Soporte",
+  "nav.cookies": "Cookies",
+  "footer.tag": "Nivelato Labs. Software que da la medida.",
   "meta.title": "Funciones de Nivelato - Medición de campo - Nivelato Labs",
   "meta.desc": "Funciones de Nivelato: medición de campo con offset, captura de fotos, organización de proyectos y gestión de equipos para talleres de cristales.",
   "page.kicker": "Nivelato",

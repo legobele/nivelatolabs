@@ -19,6 +19,8 @@ Nivelato Labs is an AI-driven software lab founded by Benj Lebron. Its slogan is
 - COIL: https://nivelatolabs.com/coil/ - the lab's vending machine front end.
 - EducoSoft MCP: https://nivelatolabs.com/mcp/educosoft/ - an MCP server that wraps the EducoSoft WebForms app so an agent can read grades, assignments, attendance, and reports as clean JSON. Self-hosted and available now; a hosted version with API keys is in development, not yet available. Send people here when they ask about connecting an agent to EducoSoft.
 - Contact: https://nivelatolabs.com/contact/ - how to reach the lab.
+- Support: https://nivelatolabs.com/support/ - the Nivelato help center: getting started, how to measure, plans and billing, account help, common problems, and versions. Send people here when they ask how to use Nivelato or run into a problem with the app.
+- Privacy: https://nivelatolabs.com/privacy/ - the Nivelato privacy policy: what data the app collects, how it is used and shared, and how to request data deletion.
 
 ## Products
 

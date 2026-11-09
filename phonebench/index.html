@@ -295,6 +295,15 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
   .btn:active{transform:none}
 }
 </style>
+<style>
+/* Site fixes (Nov 2026): anchor offset under the sticky pill
+   header, unified footer link spacing. */
+h1,h2,h3,section[id]{scroll-margin-top:128px}
+footer .foot-links a{margin-right:18px}
+footer .foot-links a:last-child{margin-right:0}
+.page-head{position:relative;padding-bottom:88px}
+.page-head .scroll-cue{position:absolute;left:50%;bottom:14px;transform:translateX(-50%)}
+</style>
 </head>
 <body>
 
@@ -330,7 +339,7 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
     <button type="button" class="variant-row variant-back" data-back><span class="variant-back-chev" aria-hidden="true">‹</span><span data-i18n="nav.products">Products</span></button>
     <button type="button" class="variant-row variant-drill" data-drill="nivelato"><span class="variant-row-label" data-i18n="nav.sub.nivelato">Nivelato</span><span class="variant-drill-chev" aria-hidden="true">›</span></button>
     <a href="/phonebench/" data-i18n="nav.sub.phonebench" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">PhoneBench</a>
-    <a href="https://legobele.github.io/coil-demo" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">COIL</a>
+    <a href="https://legobele.github.io/coil-demo" target="_blank" rel="noopener" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">COIL</a>
     </div>
     </div>
     <div class="variant-panel" data-panel="nivelato">
@@ -359,8 +368,7 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
   <div class="kicker reveal" data-i18n="pb.kicker">From the lab · October 2026</div>
   <h1 class="reveal">PhoneBench</h1>
   <p class="lede reveal" data-i18n="pbp.lede">A robotics AI benchmark for autonomous skilled work, and the first benchmark for fully autonomous skilled work. A model gets a robotic arm, a bench of powered tools, and a broken phone. No script, no human hands. It fixes the phone to standard, or it does not.</p>
-</div></div>
-<button type="button" class="scroll-cue" aria-label="Scroll down to content">[ SCROLL ]<span class="cue-line" aria-hidden="true"></span></button>
+<button type="button" class="scroll-cue" aria-label="Scroll down to content">[ SCROLL ]<span class="cue-line" aria-hidden="true"></span></button></div></div>
 
 <style>
   .faq-item h3 .pass{color:var(--laser)}
@@ -437,9 +445,8 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 
 <footer>
   <div class="wrap">
-    <span data-i18n="footer.copy">© 2026 Nivelato Labs</span>
-    <span><a href="/pr/" data-i18n="nav.pr">Para clientes en PR</a></span>
-    <span class="mono">nivelatolabs.com · v1.3</span>
+    <div data-i18n="footer.tag">Nivelato Labs. Software that measures up.</div>
+    <div class="foot-links"><a href="/products/" data-i18n="nav.products">Products</a><a href="/about/" data-i18n="nav.about">About</a><a href="/contact/" data-i18n="nav.contact">Contact</a><a href="/pr/" data-i18n="nav.pr">Para clientes en PR</a><a href="/privacy/" data-i18n="nav.privacy">Privacy</a><a href="/support/" data-i18n="nav.support">Support</a><a href="/privacy/" data-i18n="nav.cookies">Cookies</a></div>
   </div>
 </footer>
 
@@ -487,6 +494,10 @@ const I18N = {
   "nav.sub.vision": "Vision",
   "nav.sub.values": "Core Values",
   "footer.copy": "© 2026 Nivelato Labs",
+  "nav.privacy": "Privacy",
+  "nav.support": "Support",
+  "nav.cookies": "Cookies",
+  "footer.tag": "Nivelato Labs. Software that measures up.",
   "pb.kicker": "From the lab · October 2026",
   "pb.credit": "All runs operated by Muse Wonder (via Muse harness).",
   "pb.github": "PhoneBench on GitHub",
@@ -566,6 +577,10 @@ const I18N = {
   "nav.sub.vision": "Visión",
   "nav.sub.values": "Valores",
   "footer.copy": "© 2026 Nivelato Labs",
+  "nav.privacy": "Privacidad",
+  "nav.support": "Soporte",
+  "nav.cookies": "Cookies",
+  "footer.tag": "Nivelato Labs. Software que da la medida.",
   "pb.kicker": "Desde el laboratorio · octubre de 2026",
   "pb.credit": "Todas las corridas operadas por Muse Wonder (mediante el harness de Muse).",
   "pb.github": "PhoneBench en GitHub",
@@ -699,6 +714,10 @@ const I18N = {
   "nav.login": "Log in",
   "nav.getNivelato": "Get Nivelato",
   "footer.copy": "© 2026 Nivelato Labs",
+  "nav.privacy": "Privacy",
+  "nav.support": "Support",
+  "nav.cookies": "Cookies",
+  "footer.tag": "Nivelato Labs. Software that measures up.",
   "pb.kicker": "From the lab · October 2026",
   "pb.credit": "All runs operated by Muse Wonder (via Muse harness).",
   "pb.github": "PhoneBench on GitHub",
@@ -748,6 +767,10 @@ const I18N = {
   "nav.login": "Iniciar sesión",
   "nav.getNivelato": "Descargar Nivelato",
   "footer.copy": "© 2026 Nivelato Labs",
+  "nav.privacy": "Privacidad",
+  "nav.support": "Soporte",
+  "nav.cookies": "Cookies",
+  "footer.tag": "Nivelato Labs. Software que da la medida.",
   "pb.kicker": "Desde el laboratorio · octubre de 2026",
   "pb.credit": "Todas las corridas operadas por Muse Wonder (mediante el harness de Muse).",
   "pb.github": "PhoneBench en GitHub",

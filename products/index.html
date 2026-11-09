@@ -229,6 +229,15 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
   .btn:active{transform:none}
 }
 </style>
+<style>
+/* Site fixes (Nov 2026): anchor offset under the sticky pill
+   header, unified footer link spacing. */
+h1,h2,h3,section[id]{scroll-margin-top:128px}
+footer .foot-links a{margin-right:18px}
+footer .foot-links a:last-child{margin-right:0}
+header .scroll-cue{position:absolute;left:50%;bottom:14px;transform:translateX(-50%)}
+@media(max-width:860px){header{padding-bottom:88px}}
+</style>
 </head>
 <body>
 <div class="intro" aria-hidden="true"><svg class="intro-mark" viewBox="-5 -5 110 110" fill="none" stroke="currentColor" stroke-width="6.5" aria-hidden="true" focusable="false"><path d="M55 20 H20 V84 H84 V43" stroke-linejoin="miter"/><path d="M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z" stroke-linejoin="bevel"/></svg><span>Nivelato Labs</span></div>
@@ -260,7 +269,7 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
     <button type="button" class="variant-row variant-back" data-back><span class="variant-back-chev" aria-hidden="true">‹</span><span>Products</span></button>
     <button type="button" class="variant-row variant-drill" data-drill="nivelato"><span class="variant-row-label">Nivelato</span><span class="variant-drill-chev" aria-hidden="true">›</span></button>
     <a href="/phonebench/" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">PhoneBench</a>
-    <a href="https://legobele.github.io/coil-demo" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">COIL</a>
+    <a href="https://legobele.github.io/coil-demo" target="_blank" rel="noopener" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">COIL</a>
     </div>
     </div>
     <div class="variant-panel" data-panel="nivelato">
@@ -288,8 +297,8 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 <div class="kicker">Products</div>
 <h1>Built to measure. <span class="laser">Built to be measured.</span></h1>
 <p class="lede">The homepage is the lab. This page is the work: offset measuring software that real glass shops run on, and the robotics AI benchmark that keeps the lab honest.</p>
-</div></header>
-<button type="button" class="scroll-cue" aria-label="Scroll down to content">[ SCROLL ]<span class="cue-line" aria-hidden="true"></span></button>
+</div><button type="button" class="scroll-cue" aria-label="Scroll down to content">[ SCROLL ]<span class="cue-line" aria-hidden="true"></span></button>
+</header>
 
 <section class="alt feature reveal"><div class="wrap">
 <div class="f-meta">Flagship · Nivelato</div>
@@ -321,7 +330,7 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 </div></section>
 <footer><div class="wrap">
 <div>Nivelato Labs. Software that measures up.</div>
-<div><a href="/products/">Products</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/pr/">Para clientes en PR</a></div>
+<div class="foot-links"><a href="/products/">Products</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/pr/">Para clientes en PR</a><a href="/privacy/">Privacy</a><a href="/support/">Support</a><a href="/privacy/">Cookies</a></div>
 </div></footer>
 <script>
 document.documentElement.classList.add('js');

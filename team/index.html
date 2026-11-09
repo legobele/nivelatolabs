@@ -260,6 +260,15 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
   .btn:active{transform:none}
 }
 </style>
+<style>
+/* Site fixes (Nov 2026): anchor offset under the sticky pill
+   header, unified footer link spacing. */
+h1,h2,h3,section[id]{scroll-margin-top:128px}
+footer .foot-links a{margin-right:18px}
+footer .foot-links a:last-child{margin-right:0}
+header .scroll-cue{position:absolute;left:50%;bottom:14px;transform:translateX(-50%)}
+@media(max-width:860px){header{padding-bottom:88px}}
+</style>
 </head>
 <body>
 <div class="intro" aria-hidden="true"><svg class="intro-mark" viewBox="-5 -5 110 110" fill="none" stroke="currentColor" stroke-width="6.5" aria-hidden="true" focusable="false"><path d="M55 20 H20 V84 H84 V43" stroke-linejoin="miter"/><path d="M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z" stroke-linejoin="bevel"/></svg><span>Nivelato Labs</span></div>
@@ -295,7 +304,7 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
     <button type="button" class="variant-row variant-back" data-back><span class="variant-back-chev" aria-hidden="true">‹</span><span data-i18n="nav.products">Products</span></button>
     <button type="button" class="variant-row variant-drill" data-drill="nivelato"><span class="variant-row-label" data-i18n="nav.sub.nivelato">Nivelato</span><span class="variant-drill-chev" aria-hidden="true">›</span></button>
     <a href="/phonebench/" data-i18n="nav.sub.phonebench" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">PhoneBench</a>
-    <a href="https://legobele.github.io/coil-demo" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">COIL</a>
+    <a href="https://legobele.github.io/coil-demo" target="_blank" rel="noopener" onclick="document.body.classList.remove('variant-menu-open');document.querySelector('.variant-menu-button').setAttribute('aria-expanded','false')">COIL</a>
     </div>
     </div>
     <div class="variant-panel" data-panel="nivelato">
@@ -330,8 +339,8 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 <div class="stat"><b>100%</b><span data-i18n="team.stat4.l">Company meetings, fully attended</span></div>
 </div>
 <div class="photo-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:20190725_Oeschinensee-Panorama,_Kandersteg_(06540-42_stitch).jpg" target="_blank" rel="noopener noreferrer">© Günter Seggebäing, Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></div>
-</div></header>
-<button type="button" class="scroll-cue" aria-label="Scroll down to content">[ SCROLL ]<span class="cue-line" aria-hidden="true"></span></button>
+</div><button type="button" class="scroll-cue" aria-label="Scroll down to content">[ SCROLL ]<span class="cue-line" aria-hidden="true"></span></button>
+</header>
 
 <section class="alt reveal"><div class="wrap">
 <div class="sec-kicker" data-i18n="team.roster.kicker">The roster</div>
@@ -363,10 +372,12 @@ body.variant-menu-open .variant-menu-inner{animation:niv-mo-menu-in var(--niv-mo
 <a class="btn ghost" href="/contact/" data-i18n="team.cta.contact">Talk to the team</a>
 </div>
 </div></section>
-<footer><div class="wrap">
-<div data-i18n="footer.tag">Nivelato Labs. Software that measures up.</div>
-<div><a href="/products/" data-i18n="nav.products">Products</a><a href="/about/" data-i18n="nav.about">About</a><a href="/team/" data-i18n="nav.team">Team</a><a href="/contact/" data-i18n="nav.contact">Contact</a><a href="/pr/" data-i18n="nav.pr">Para clientes en PR</a></div>
-</div></footer>
+<footer>
+  <div class="wrap">
+    <div data-i18n="footer.tag">Nivelato Labs. Software that measures up.</div>
+    <div class="foot-links"><a href="/products/" data-i18n="nav.products">Products</a><a href="/about/" data-i18n="nav.about">About</a><a href="/contact/" data-i18n="nav.contact">Contact</a><a href="/pr/" data-i18n="nav.pr">Para clientes en PR</a><a href="/privacy/" data-i18n="nav.privacy">Privacy</a><a href="/support/" data-i18n="nav.support">Support</a><a href="/privacy/" data-i18n="nav.cookies">Cookies</a></div>
+  </div>
+</footer>
 <script>
 document.documentElement.classList.add('js');
 (function(){try{
@@ -397,6 +408,9 @@ const I18N = {
   "nav.sub.vision": "Vision",
   "nav.sub.values": "Core Values",
   "footer.tag": "Nivelato Labs. Software that measures up.",
+  "nav.privacy": "Privacy",
+  "nav.support": "Support",
+  "nav.cookies": "Cookies",
   "team.kicker": "[ The Team ]",
   "team.h1": "Meet the team.",
   "team.lede": "Every department at Nivelato Labs is fully staffed, by one person. Founder, engineering, design, support, quality assurance: all Benj Lebron, all in San Juan, and all accountable by name.",
@@ -454,6 +468,9 @@ const I18N = {
   "nav.sub.vision": "Visión",
   "nav.sub.values": "Valores",
   "footer.tag": "Nivelato Labs. Software que da la medida.",
+  "nav.privacy": "Privacidad",
+  "nav.support": "Soporte",
+  "nav.cookies": "Cookies",
   "team.kicker": "[ El Equipo ]",
   "team.h1": "Conoce al equipo.",
   "team.lede": "Cada departamento de Nivelato Labs está completamente equipado, por una sola persona. Fundador, ingeniería, diseño, soporte, calidad: todo es Benj Lebron, todo en San Juan, y todo tiene un responsable con nombre.",

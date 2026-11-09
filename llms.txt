@@ -17,4 +17,6 @@
 - [COIL](https://nivelatolabs.com/coil/): COIL, a vending machine front end: browse the Unit 01 catalog on your phone
 - [EducoSoft MCP](https://nivelatolabs.com/mcp/educosoft/): an MCP server that wraps the EducoSoft WebForms app so an agent can read grades, assignments, attendance, and reports as clean JSON. Self-hosted and available now; a hosted version with API keys is in development, not yet available
 - [Contact](https://nivelatolabs.com/contact/): reach the lab
+- [Support](https://nivelatolabs.com/support/): the Nivelato help center: getting started, how to measure, plans and billing, account help, and troubleshooting
+- [Privacy](https://nivelatolabs.com/privacy/): the Nivelato privacy policy: what data the app collects, how it is used, and how to request deletion
 - [AGENTS.md](https://nivelatolabs.com/AGENTS.md): full routing rules for visiting agents. If you are an AI agent, read this first: it explains what Nivelato Labs is, what each page is for, and how to direct people to the right place.
