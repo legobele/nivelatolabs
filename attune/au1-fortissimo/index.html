@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="Au1 Fortissimo is the 27B Cyber Verification Program build of the Au1 latent series by Nivelato Labs. Application only. Wave one holds fifteen slots. Ships December 1, 2026.">
+<title>Au1 Fortissimo · Attune by Nivelato Labs</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-5 -5 110 110'%3E%3Crect x='-5' y='-5' width='110' height='110' fill='%23050505'/%3E%3Cg fill='none' stroke='white' stroke-width='6.5'%3E%3Cpath d='M55 20 H20 V84 H84 V43'/%3E%3Cpath d='M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+@font-face{
+  font-family:'Anybody';
+  src:url('/assets/fonts/Anybody-Variable.ttf') format('truetype');
+  font-weight:100 900;
+  font-display:swap;
+}
+:root{
+  --bg:#050505; --surface2:#0a0a0b; --card:#0e0e10; --raised:#16161a;
+  --line:rgba(255,255,255,.14); --line-strong:rgba(255,255,255,.28);
+  --ink:#fafafa; --muted:#a8a8b0; --dim:#6f6f77;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+  --disp:'Anybody',Arial,Helvetica,sans-serif;
+  --ui:Arial,Helvetica,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--ui);
+  min-height:100dvh; line-height:1.5;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.040) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.040) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.075) 1px, transparent 1px);
+  background-size:44px 44px, 44px 44px, 220px 220px, 220px 220px;
+}
+.wrap{position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:0 20px 56px;}
+.hud{font-family:var(--mono); text-transform:uppercase; letter-spacing:.26em; font-size:.72rem; color:var(--muted);}
+.hud b{color:var(--ink); font-weight:600;}
+.headline{font-family:var(--disp); font-weight:850; font-stretch:150%; text-transform:uppercase; line-height:.98; letter-spacing:.01em;}
+.wordmark{font-family:var(--disp); font-weight:900; font-stretch:150%; text-transform:uppercase; letter-spacing:.08em;}
+.mark{color:var(--ink); display:block;}
+a{color:var(--ink);}
+
+/* top strip */
+.topstrip{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:18px 0 14px; border-bottom:1px solid var(--line);
+}
+.brand{display:flex; align-items:center; gap:12px;}
+.brand .mark{width:34px; height:34px;}
+.brand .wordmark{font-size:1.3rem;}
+
+.crumb{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:18px 0 0;}
+.crumb a{text-decoration:none;color:var(--muted);}
+.crumb a:hover{color:var(--ink);}
+
+/* the film: the intro, full bleed inside the wrap */
+.film{
+  margin-top:28px; border:1px solid var(--line); border-radius:8px; overflow:hidden;
+  background:#000; aspect-ratio:16/9;
+}
+.film video{display:block; width:100%; height:100%; object-fit:cover;}
+
+/* hero */
+.hero{padding:52px 0 8px; text-align:left;}
+.hero h1{font-size:clamp(2.6rem, 10vw, 5.4rem); margin-top:24px;}
+.hero .sub{color:var(--muted); font-size:1.12rem; line-height:1.6; max-width:34rem; margin-top:22px;}
+.hero .sub b{color:var(--ink); font-weight:600;}
+
+/* terms */
+.terms{
+  margin-top:56px; border:1px solid var(--line); border-radius:8px; background:var(--surface2);
+  padding:24px 22px;
+}
+.terms h2{font-size:clamp(1.7rem, 6vw, 2.4rem); margin-top:8px;}
+.terms ul{list-style:none; margin-top:20px;}
+.terms li{
+  font-family:var(--mono); font-size:.86rem; letter-spacing:.05em; color:var(--muted);
+  line-height:1.9; padding-left:22px; position:relative;
+}
+.terms li::before{content:"·"; position:absolute; left:4px; color:var(--ink);}
+.terms li b{color:var(--ink); font-weight:600;}
+
+.cta-row{display:flex; flex-wrap:wrap; gap:12px; margin-top:34px;}
+.btn{
+  min-height:56px; padding:0 30px;
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  border-radius:6px; font-family:var(--mono); text-transform:uppercase;
+  letter-spacing:.2em; font-size:.95rem; text-decoration:none;
+  transition:transform 160ms var(--ease), filter 160ms var(--ease), background 160ms var(--ease);
+}
+.btn:active{transform:scale(.97);}
+.btn-ghost{box-shadow:inset 0 0 0 1px var(--line-strong); color:var(--ink);}
+.btn-ghost:active{background:rgba(255,255,255,.08);}
+
+footer{
+  margin-top:56px; border-top:1px solid var(--line); padding-top:22px;
+  display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between;
+}
+.byline{display:flex; align-items:center; gap:9px; color:var(--muted);}
+.byline .mark{width:17px; height:17px; color:var(--muted); flex:0 0 auto;}
+footer a{text-underline-offset:3px;}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none !important; transition:none !important;}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="breakout" viewBox="-5 -5 110 110"><g fill="none" stroke="currentColor" stroke-width="6.5"><path d="M55 20 H20 V84 H84 V43" stroke-linejoin="miter"/><path d="M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z" stroke-linejoin="bevel"/></g></symbol></defs></svg>
+<div class="wrap">
+  <div class="topstrip">
+    <div class="brand"><svg class="mark" viewBox="-5 -5 110 110" aria-hidden="true"><use href="#breakout"/></svg><span class="wordmark">Nivelato Labs</span></div>
+    <span class="hud">[ Attune · Research Preview ]</span>
+  </div>
+  <nav class="crumb hud"><a href="/attune/">Attune</a> &nbsp;/&nbsp; <a href="/attune/au1/">Au1</a> &nbsp;/&nbsp; <b>Fortissimo</b></nav>
+
+  <div class="film">
+    <video autoplay muted loop playsinline preload="auto" poster="/attune/au1-fortissimo/au1-intro-poster.jpg" aria-label="Au1 Mezzo-Fortissimo and Au1 Fortissimo: the film">
+      <source src="/attune/au1-fortissimo/au1-intro.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <header class="hero">
+    <span class="hud">[ Attune · Au1 · Fortissimo ]</span>
+    <h1 class="headline">Au1<br>Fortissimo</h1>
+    <p class="sub">The flagship of the latent series, in its <b>Cyber Verification Program</b> build. Same 27B mind as Au1 Mezzo-Fortissimo, released only where it can be accounted for: inside the Attune Harness, on an enrolled device, behind a hardware key.</p>
+    <p class="sub">It ships <b>December 1, 2026</b>. Access is by application. The first wave holds fifteen slots.</p>
+  </header>
+  <main>
+    <section class="terms" aria-label="Fortissimo CVP terms">
+      <span class="hud">[ Fortissimo · CVP terms ]</span>
+      <h2 class="headline">Held close</h2>
+      <ul>
+        <li>Ships only inside the <b>base Attune Harness</b></li>
+        <li>Bound to an <b>enrolled device</b> and a <b>hardware key</b></li>
+        <li><b>Redistribution and extraction</b> prohibited</li>
+        <li>A refused load <b>reports itself</b></li>
+        <li><b>Application only</b>; wave one holds 15 slots</li>
+      </ul>
+    </section>
+    <div class="cta-row"><a class="btn btn-ghost" href="/attune/au1/">Back to Au1</a><a class="btn btn-ghost" href="/attune/">Attune overview</a></div>
+  </main>
+
+  <footer>
+    <div class="byline"><svg class="mark" viewBox="-5 -5 110 110" aria-hidden="true"><use href="#breakout"/></svg><span class="hud">Attune by <a href="https://nivelatolabs.com/">Nivelato Labs</a></span></div>
+    <span class="hud">[ Shown in part ]</span>
+  </footer>
+</div>
+</body>
+</html>
