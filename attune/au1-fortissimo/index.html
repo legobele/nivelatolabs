@@ -3,108 +3,120 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#050505">
+<meta name="theme-color" content="#f7f5f0">
 <meta name="description" content="Au1 Fortissimo is the 27B Cyber Verification Program build of the Au1 latent series by Nivelato Labs. Application only. The CVP build is not yet open; no ship date set.">
 <title>Au1 Fortissimo · Attune by Nivelato Labs</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-5 -5 110 110'%3E%3Crect x='-5' y='-5' width='110' height='110' fill='%23050505'/%3E%3Cg fill='none' stroke='white' stroke-width='6.5'%3E%3Cpath d='M55 20 H20 V84 H84 V43'/%3E%3Cpath d='M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z'/%3E%3C/g%3E%3C/svg%3E">
 <style>
-@font-face{
-  font-family:'Anybody';
-  src:url('/assets/fonts/Anybody-Variable.ttf') format('truetype');
-  font-weight:100 900;
-  font-display:swap;
-}
 :root{
-  --bg:#050505; --surface2:#0a0a0b; --card:#0e0e10; --raised:#16161a;
-  --line:rgba(255,255,255,.14); --line-strong:rgba(255,255,255,.28);
-  --ink:#fafafa; --muted:#a8a8b0; --dim:#6f6f77;
-  --mono:ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
-  --disp:'Anybody',Arial,Helvetica,sans-serif;
-  --ui:Arial,Helvetica,sans-serif;
+  --paper:#f7f5f0; --paper-2:#efede5; --card:#fffdf8;
+  --ink:#201d1a; --ink-soft:#46413a; --muted:#7c7569;
+  --line:#ddd6c7; --line-strong:#c6bfae;
+  --clay:#c2663f;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   --ease:cubic-bezier(.22,1,.36,1);
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
 body{
-  background:var(--bg); color:var(--ink); font-family:var(--ui);
-  min-height:100dvh; line-height:1.5;
+  background:var(--paper); color:var(--ink); font-family:var(--sans);
+  min-height:100dvh; line-height:1.6;
 }
-body::before{
-  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.040) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.040) 1px, transparent 1px),
-    linear-gradient(rgba(255,255,255,.075) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.075) 1px, transparent 1px);
-  background-size:44px 44px, 44px 44px, 220px 220px, 220px 220px;
-}
-.wrap{position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:0 20px 56px;}
-.hud{font-family:var(--mono); text-transform:uppercase; letter-spacing:.26em; font-size:.72rem; color:var(--muted);}
-.hud b{color:var(--ink); font-weight:600;}
-.headline{font-family:var(--disp); font-weight:850; font-stretch:150%; text-transform:uppercase; line-height:.98; letter-spacing:.01em;}
-.wordmark{font-family:var(--disp); font-weight:900; font-stretch:150%; text-transform:uppercase; letter-spacing:.08em;}
-.mark{color:var(--ink); display:block;}
+::selection{background:rgba(194,102,63,.22);}
 a{color:var(--ink);}
+a:focus-visible,button:focus-visible{outline:2px solid var(--clay); outline-offset:3px; border-radius:4px;}
+.wrap{max-width:1120px; margin:0 auto; padding:0 24px 64px;}
+.hud{font-family:var(--sans); text-transform:uppercase; letter-spacing:.14em; font-size:.72rem; color:var(--muted); font-weight:500;}
+.hud b{color:var(--ink); font-weight:600;}
+.headline{font-family:var(--serif); font-weight:500; line-height:1.04; letter-spacing:-.015em;}
+.wordmark{font-family:var(--serif); font-weight:600; letter-spacing:-.01em;}
+.mark{color:var(--ink); display:block;}
 
 /* top strip */
 .topstrip{
   display:flex; align-items:center; justify-content:space-between; gap:16px;
-  padding:18px 0 14px; border-bottom:1px solid var(--line);
+  padding:22px 0 18px; border-bottom:1px solid var(--line);
 }
-.brand{display:flex; align-items:center; gap:12px;}
-.brand .mark{width:34px; height:34px;}
-.brand .wordmark{font-size:1.3rem;}
+.brand{display:flex; align-items:center; gap:11px;}
+.brand .mark{width:30px; height:30px;}
+.brand .wordmark{font-size:1.28rem;}
 
-.crumb{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:18px 0 0;}
+.crumb{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:26px 0 0;}
 .crumb a{text-decoration:none;color:var(--muted);}
-.crumb a:hover{color:var(--ink);}
+.crumb a:hover{color:var(--ink); text-decoration:underline; text-underline-offset:4px;}
 
-/* the film: the intro, full bleed inside the wrap */
+/* the film: a working player, poster first */
 .film{
-  margin-top:28px; border:1px solid var(--line); border-radius:8px; overflow:hidden;
-  background:#000; aspect-ratio:16/9;
+  position:relative; margin-top:34px; border:1px solid var(--line); border-radius:14px; overflow:hidden;
+  background:#16130f; aspect-ratio:16/9;
+  box-shadow:0 28px 60px rgba(32,29,26,.14);
 }
-.film video{display:block; width:100%; height:100%; object-fit:cover;}
+.film video{display:block; width:100%; height:100%; object-fit:cover; cursor:pointer;}
+.film-play{
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  width:88px; height:88px; border:0; border-radius:50%; cursor:pointer;
+  background:rgba(247,245,240,.94); color:var(--ink);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 12px 32px rgba(0,0,0,.35);
+  transition:transform 200ms var(--ease), opacity 200ms var(--ease), visibility 200ms;
+}
+.film-play:hover{transform:translate(-50%,-50%) scale(1.06);}
+.film-play svg{width:30px; height:30px; margin-left:4px;}
+.film.is-playing .film-play{opacity:0; visibility:hidden; pointer-events:none;}
 
 /* hero */
-.hero{padding:52px 0 8px; text-align:left;}
-.hero h1{font-size:clamp(2.6rem, 10vw, 5.4rem); margin-top:24px;}
-.hero .sub{color:var(--muted); font-size:1.12rem; line-height:1.6; max-width:34rem; margin-top:22px;}
+.hero{padding:64px 0 8px; text-align:left;}
+.hero h1{font-size:clamp(3.1rem, 7.5vw, 5.25rem); margin-top:26px;}
+.hero .sub{color:var(--ink-soft); font-size:1.14rem; line-height:1.7; max-width:37rem; margin-top:20px;}
 .hero .sub b{color:var(--ink); font-weight:600;}
 
 /* terms */
 .terms{
-  margin-top:56px; border:1px solid var(--line); border-radius:8px; background:var(--surface2);
-  padding:24px 22px;
+  margin-top:64px; border:1px solid var(--line); border-radius:14px; background:var(--card);
+  padding:38px 38px 30px;
 }
-.terms h2{font-size:clamp(1.7rem, 6vw, 2.4rem); margin-top:8px;}
-.terms ul{list-style:none; margin-top:20px;}
+.terms h2{font-size:clamp(2rem, 4.5vw, 2.75rem); margin-top:10px;}
+.terms ul{list-style:none; margin-top:26px;}
 .terms li{
-  font-family:var(--mono); font-size:.86rem; letter-spacing:.05em; color:var(--muted);
-  line-height:1.9; padding-left:22px; position:relative;
+  font-size:1.02rem; color:var(--ink-soft);
+  line-height:1.6; padding:15px 0 15px 26px; position:relative;
+  border-top:1px solid var(--line);
 }
-.terms li::before{content:"·"; position:absolute; left:4px; color:var(--ink);}
+.terms li:first-child{border-top:0;}
+.terms li::before{
+  content:""; position:absolute; left:4px; top:1.42em;
+  width:7px; height:7px; border-radius:50%; background:var(--clay);
+}
 .terms li b{color:var(--ink); font-weight:600;}
 
-.cta-row{display:flex; flex-wrap:wrap; gap:12px; margin-top:34px;}
+.cta-row{display:flex; flex-wrap:wrap; gap:12px; margin-top:40px;}
 .btn{
-  min-height:56px; padding:0 30px;
+  min-height:52px; padding:0 28px;
   display:inline-flex; align-items:center; justify-content:center; gap:10px;
-  border-radius:6px; font-family:var(--mono); text-transform:uppercase;
-  letter-spacing:.2em; font-size:.95rem; text-decoration:none;
-  transition:transform 160ms var(--ease), filter 160ms var(--ease), background 160ms var(--ease);
+  border-radius:999px; border:1px solid var(--line-strong); background:transparent;
+  font-family:var(--sans); font-size:.95rem; font-weight:500; letter-spacing:.01em;
+  text-decoration:none; color:var(--ink);
+  transition:background 160ms var(--ease), color 160ms var(--ease), border-color 160ms var(--ease), transform 160ms var(--ease);
 }
-.btn:active{transform:scale(.97);}
-.btn-ghost{box-shadow:inset 0 0 0 1px var(--line-strong); color:var(--ink);}
-.btn-ghost:active{background:rgba(255,255,255,.08);}
+.btn:hover{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+.btn:active{transform:scale(.98);}
 
 footer{
-  margin-top:56px; border-top:1px solid var(--line); padding-top:22px;
+  margin-top:72px; border-top:1px solid var(--line); padding-top:24px;
   display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between;
 }
 .byline{display:flex; align-items:center; gap:9px; color:var(--muted);}
 .byline .mark{width:17px; height:17px; color:var(--muted); flex:0 0 auto;}
 footer a{text-underline-offset:3px;}
+@media (max-width:640px){
+  .wrap{padding:0 18px 48px;}
+  .hero{padding-top:48px;}
+  .terms{padding:28px 22px 22px;}
+  .film-play{width:68px; height:68px;}
+  .film-play svg{width:24px; height:24px;}
+  .topstrip .hud{font-size:.62rem; letter-spacing:.1em;}
+}
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation:none !important; transition:none !important;}
 }
@@ -119,10 +131,13 @@ footer a{text-underline-offset:3px;}
   </div>
   <nav class="crumb hud"><a href="/attune/">Attune</a> &nbsp;/&nbsp; <a href="/attune/au1/">Au1</a> &nbsp;/&nbsp; <b>Fortissimo</b></nav>
 
-  <div class="film">
-    <video autoplay muted loop playsinline preload="auto" poster="/attune/au1-fortissimo/au1-intro-poster.jpg" aria-label="Au1 Mezzo-Fortissimo and Au1 Fortissimo: the film">
+  <div class="film" id="filmFigure">
+    <video id="introFilm" controls playsinline preload="metadata" poster="/attune/au1-fortissimo/au1-intro-poster.jpg" aria-label="Au1 Mezzo-Fortissimo and Au1 Fortissimo: the film">
       <source src="/attune/au1-fortissimo/au1-intro.mp4" type="video/mp4">
     </video>
+    <button class="film-play" id="filmPlay" type="button" aria-label="Play the Au1 film">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+    </button>
   </div>
 
   <header class="hero">
@@ -151,5 +166,27 @@ footer a{text-underline-offset:3px;}
     <span class="hud">[ Shown in part ]</span>
   </footer>
 </div>
+<script>
+(function () {
+  var figure = document.getElementById('filmFigure');
+  var video = document.getElementById('introFilm');
+  var play = document.getElementById('filmPlay');
+  if (!figure || !video || !play) return;
+  function sync() { figure.classList.toggle('is-playing', !video.paused && !video.ended); }
+  function toggle() {
+    if (video.paused || video.ended) {
+      var p = video.play();
+      if (p && p.catch) { p.catch(function () {}); }
+    } else {
+      video.pause();
+    }
+  }
+  play.addEventListener('click', toggle);
+  video.addEventListener('click', toggle);
+  video.addEventListener('play', sync);
+  video.addEventListener('pause', sync);
+  video.addEventListener('ended', sync);
+})();
+</script>
 </body>
 </html>
