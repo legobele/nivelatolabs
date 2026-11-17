@@ -46,24 +46,13 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--clay); outline-offs
 .crumb a{text-decoration:none;color:var(--muted);}
 .crumb a:hover{color:var(--ink); text-decoration:underline; text-underline-offset:4px;}
 
-/* the film: a working player, poster first */
+/* hero image: the dateless poster frame, static while the film is out */
 .film{
   position:relative; margin-top:34px; border:1px solid var(--line); border-radius:14px; overflow:hidden;
   background:#16130f; aspect-ratio:16/9;
   box-shadow:0 28px 60px rgba(32,29,26,.14);
 }
-.film video{display:block; width:100%; height:100%; object-fit:cover; cursor:pointer;}
-.film-play{
-  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
-  width:88px; height:88px; border:0; border-radius:50%; cursor:pointer;
-  background:rgba(247,245,240,.94); color:var(--ink);
-  display:flex; align-items:center; justify-content:center;
-  box-shadow:0 12px 32px rgba(0,0,0,.35);
-  transition:transform 200ms var(--ease), opacity 200ms var(--ease), visibility 200ms;
-}
-.film-play:hover{transform:translate(-50%,-50%) scale(1.06);}
-.film-play svg{width:30px; height:30px; margin-left:4px;}
-.film.is-playing .film-play{opacity:0; visibility:hidden; pointer-events:none;}
+.film img{display:block; width:100%; height:100%; object-fit:cover;}
 
 /* hero */
 .hero{padding:64px 0 8px; text-align:left;}
@@ -113,8 +102,6 @@ footer a{text-underline-offset:3px;}
   .wrap{padding:0 18px 48px;}
   .hero{padding-top:48px;}
   .terms{padding:28px 22px 22px;}
-  .film-play{width:68px; height:68px;}
-  .film-play svg{width:24px; height:24px;}
   .topstrip .hud{font-size:.62rem; letter-spacing:.1em;}
 }
 @media (prefers-reduced-motion: reduce){
@@ -131,13 +118,8 @@ footer a{text-underline-offset:3px;}
   </div>
   <nav class="crumb hud"><a href="/attune/">Attune</a> &nbsp;/&nbsp; <a href="/attune/au1/">Au1</a> &nbsp;/&nbsp; <b>Fortissimo</b></nav>
 
-  <div class="film" id="filmFigure">
-    <video id="introFilm" controls playsinline preload="metadata" poster="/attune/au1-fortissimo/au1-intro-poster.jpg" aria-label="Au1 Mezzo-Fortissimo and Au1 Fortissimo: the film">
-      <source src="/attune/au1-fortissimo/au1-intro.mp4" type="video/mp4">
-    </video>
-    <button class="film-play" id="filmPlay" type="button" aria-label="Play the Au1 film">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
-    </button>
+  <div class="film">
+    <img src="/attune/au1-fortissimo/au1-intro-poster.jpg" alt="A blossoming tree on a grassy hill at golden sunrise, mist in the valley below">
   </div>
 
   <header class="hero">
@@ -166,27 +148,5 @@ footer a{text-underline-offset:3px;}
     <span class="hud">[ Shown in part ]</span>
   </footer>
 </div>
-<script>
-(function () {
-  var figure = document.getElementById('filmFigure');
-  var video = document.getElementById('introFilm');
-  var play = document.getElementById('filmPlay');
-  if (!figure || !video || !play) return;
-  function sync() { figure.classList.toggle('is-playing', !video.paused && !video.ended); }
-  function toggle() {
-    if (video.paused || video.ended) {
-      var p = video.play();
-      if (p && p.catch) { p.catch(function () {}); }
-    } else {
-      video.pause();
-    }
-  }
-  play.addEventListener('click', toggle);
-  video.addEventListener('click', toggle);
-  video.addEventListener('play', sync);
-  video.addEventListener('pause', sync);
-  video.addEventListener('ended', sync);
-})();
-</script>
 </body>
 </html>
