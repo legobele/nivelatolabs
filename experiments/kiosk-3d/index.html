@@ -12,8 +12,21 @@
     />
     <link rel="canonical" href="https://nivelatolabs.com/experiments/kiosk-3d/" />
     <title>Quality Glass | QGI 3D Kiosk System</title>
-    <script type="module" crossorigin src="../kiosk/assets/index-C2G3mflb.js"></script>
-    <link rel="stylesheet" crossorigin href="../kiosk/assets/index-DUuap11A.css">
+    <script>
+      // Loads the current 3D kiosk build from its GitHub Pages deployment (always the latest asset hashes).
+      (function () {
+        var base = 'https://legobele.github.io/glass-shop-kiosk/';
+        function add(js, css) {
+          var l = document.createElement('link'); l.rel = 'stylesheet'; l.crossOrigin = ''; l.href = base + css; document.head.appendChild(l);
+          var sc = document.createElement('script'); sc.type = 'module'; sc.crossOrigin = ''; sc.src = base + js; document.head.appendChild(sc);
+        }
+        fetch(base, { cache: 'no-cache' }).then(function (r) { return r.text(); }).then(function (h) {
+          var js = h.match(/assets\/index-[\w-]+\.js/), css = h.match(/assets\/index-[\w-]+\.css/);
+          if (!js || !css) throw new Error('assets not found');
+          add(js[0], css[0]);
+        }).catch(function () { add('assets/index-BK5BtRF_.js', 'assets/index-DUuap11A.css'); });
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
