@@ -55,9 +55,11 @@ a{color:var(--ink);}
   display:flex; align-items:center; justify-content:space-between; gap:16px;
   padding:18px 0 14px; border-bottom:1px solid var(--line);
 }
-.brand{display:flex; align-items:center; gap:12px;}
+.brand{display:flex; align-items:center; gap:12px; color:inherit; text-decoration:none;}
 .brand .mark{width:34px; height:34px;}
 .brand .wordmark{font-size:1.3rem;}
+a.brand:hover .wordmark{text-decoration:underline; text-underline-offset:6px;}
+a.brand:focus-visible{outline:2px solid currentColor; outline-offset:6px; border-radius:2px;}
 
 /* hero */
 .hero{padding:76px 0 8px; text-align:left;}
@@ -160,7 +162,7 @@ footer a{text-underline-offset:3px;}
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="breakout" viewBox="-5 -5 110 110"><g fill="none" stroke="currentColor" stroke-width="6.5"><path d="M55 20 H20 V84 H84 V43" stroke-linejoin="miter"/><path d="M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z" stroke-linejoin="bevel"/></g></symbol></defs></svg>
 <div class="wrap">
   <div class="topstrip">
-    <div class="brand"><svg class="mark" viewBox="-5 -5 110 110" aria-hidden="true"><use href="#breakout"/></svg><span class="wordmark">Nivelato Labs</span></div>
+    <a class="brand" href="/" aria-label="Nivelato Labs home"><svg class="mark" viewBox="-5 -5 110 110" aria-hidden="true"><use href="#breakout"/></svg><span class="wordmark">Nivelato Labs</span></a>
     <span class="hud">[ Attune · Research Preview ]</span>
   </div>
   <nav class="crumb hud"><a href="/attune/">Attune</a> &nbsp;/&nbsp; <a href="/attune/a1/">A1</a> &nbsp;/&nbsp; <b>A1 Chat</b></nav>
