@@ -55,9 +55,11 @@ a{color:var(--ink);}
   display:flex; align-items:center; justify-content:space-between; gap:16px;
   padding:18px 0 14px; border-bottom:1px solid var(--line);
 }
-.brand{display:flex; align-items:center; gap:12px;}
+.brand{display:flex; align-items:center; gap:12px; color:inherit; text-decoration:none;}
 .brand .mark{width:34px; height:34px;}
 .brand .wordmark{font-size:1.3rem;}
+a.brand:hover .wordmark{text-decoration:underline; text-underline-offset:6px;}
+a.brand:focus-visible{outline:2px solid currentColor; outline-offset:6px; border-radius:2px;}
 
 /* hero */
 .hero{padding:76px 0 8px; text-align:left;}
@@ -159,10 +161,10 @@ footer a{text-underline-offset:3px;}
 <div class="wrap">
 
   <div class="topstrip">
-    <div class="brand">
+    <a class="brand" href="/" aria-label="Nivelato Labs home">
       <svg class="mark" viewBox="-5 -5 110 110" aria-hidden="true"><use href="#breakout"/></svg>
       <span class="wordmark">Nivelato Labs</span>
-    </div>
+    </a>
     <span class="hud">[ Attune · Research Preview ]</span>
   </div>
 
