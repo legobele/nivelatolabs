@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#050805">
+<meta name="description" content="CRT Kiosk: the Nivelato Labs glass shop order kiosk, rebuilt as an old green-phosphor touch terminal. Same ordering flow.">
+<link rel="canonical" href="https://nivelatolabs.com/experiments/kiosk-crt/">
+<title>CRT Kiosk · Nivelato Labs Experiments</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-5 -5 110 110'%3E%3Crect x='-5' y='-5' width='110' height='110' fill='%23050505'/%3E%3Cg fill='none' stroke='white' stroke-width='6.5'%3E%3Cpath d='M55 20 H20 V84 H84 V43'/%3E%3Cpath d='M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+<style>
+:root{--ph:#5dff8a;--ph2:#2fb85a;--dim:#1c6b36;--bg:#031006;--glow:0 0 6px rgba(93,255,138,.65),0 0 18px rgba(93,255,138,.25);--f:'VT323','Courier New',Courier,monospace}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:#000;overflow:hidden}
+body{font-family:var(--f);color:var(--ph);font-size:26px;line-height:1.15;display:flex;align-items:center;justify-content:center;user-select:none;-webkit-user-select:none}
+/* bezel + tube */
+.bezel{width:100vw;height:100vh;height:100dvh;padding:clamp(6px,1.6vmin,22px);background:#0b0b0b}
+.tube{position:relative;width:100%;height:100%;border-radius:clamp(14px,3vmin,34px) / clamp(14px,3vmin,34px);overflow:hidden;background:radial-gradient(ellipse at 50% 45%,#07200e 0%,#031006 70%,#010603 100%);box-shadow:inset 0 0 60px rgba(0,0,0,.9),inset 0 0 8px rgba(93,255,138,.2)}
+.tube::before{content:"";position:absolute;inset:0;z-index:50;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(0,0,0,.30) 0,rgba(0,0,0,.30) 1px,transparent 1px,transparent 3px)}
+.tube::after{content:"";position:absolute;inset:0;z-index:51;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(0,0,0,.55) 100%);animation:flick 5s infinite steps(1)}
+@keyframes flick{0%,100%{opacity:1}47%{opacity:.93}48%{opacity:1}83%{opacity:.96}84%{opacity:1}}
+@keyframes roll{from{transform:translateY(-12%)}to{transform:translateY(112%)}}
+.roll{position:absolute;left:0;right:0;top:0;height:14%;z-index:49;pointer-events:none;background:linear-gradient(to bottom,transparent,rgba(93,255,138,.045),transparent);animation:roll 7s linear infinite}
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;padding:clamp(10px,2.4vmin,26px) clamp(14px,3vw,40px);text-shadow:var(--glow)}
+.top{display:flex;justify-content:space-between;gap:16px;border-bottom:3px solid var(--ph);padding-bottom:6px;font-size:1.0em;letter-spacing:.06em;text-transform:uppercase;flex:none}
+.top .sys{opacity:.85}
+.top .l{display:flex;gap:18px;align-items:center;min-width:0}
+.exit{color:var(--ph);text-decoration:none;border:2px solid var(--dim);padding:0 8px;white-space:nowrap}
+.exit:hover,.exit:active{background:var(--ph);color:#021006;text-shadow:none}
+.demo{border:2px solid var(--ph);padding:0 8px;white-space:nowrap;background:var(--ph);color:#021006;text-shadow:none;letter-spacing:.1em}
+.top .r{display:flex;gap:14px;align-items:center}
+.steps{display:flex;gap:4px;align-items:center}
+.steps i{display:block;width:14px;height:14px;border:2px solid var(--ph)}
+.steps i.on{background:var(--ph)}
+.main{flex:1;min-height:0;display:flex;gap:clamp(12px,2vw,28px);padding-top:clamp(8px,1.6vmin,18px)}
+.col{flex:1;min-width:0;display:flex;flex-direction:column;min-height:0}
+.side{flex:0 0 36%;min-width:0;display:flex;flex-direction:column;gap:10px;min-height:0}
+.side.off{display:none}
+h1{font-weight:400;font-size:clamp(34px,5.6vmin,60px);text-transform:uppercase;letter-spacing:.04em;line-height:1}
+h1::before{content:"> ";}
+h1::after{content:"_";animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.sub{color:var(--ph2);font-size:clamp(20px,3vmin,30px);margin:6px 0 clamp(8px,1.6vmin,16px)}
+.body{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:2px 6px 6px 2px;scrollbar-width:thin;scrollbar-color:var(--ph) #031006}
+.body::-webkit-scrollbar{width:14px}.body::-webkit-scrollbar-thumb{background:var(--ph)}.body::-webkit-scrollbar-track{background:#06220d;border-left:2px solid var(--dim)}
+.grid{display:grid;gap:10px}
+.fg{grid-template-columns:repeat(8,1fr)}
+.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+/* square touch buttons */
+.btn{font-family:var(--f);font-size:clamp(24px,3.4vmin,36px);color:var(--ph);background:#041a0a;border:3px solid var(--ph);border-radius:0;min-height:clamp(54px,9vmin,84px);padding:6px 12px;text-align:left;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;text-shadow:var(--glow);box-shadow:4px 4px 0 var(--dim);display:flex;align-items:center;justify-content:space-between;gap:10px;line-height:1.05;position:relative}
+.btn small{display:block;font-size:.66em;color:var(--ph2);text-transform:none;letter-spacing:0;margin-top:2px}
+.btn:active,.btn.on{background:var(--ph);color:#021006;text-shadow:none;box-shadow:1px 1px 0 var(--dim);transform:translate(3px,3px)}
+.btn.on small,.btn:active small{color:#06361a}
+.btn::after{flex:none;white-space:nowrap}
+.btn.on::after{content:"[X]";font-size:.8em}
+.btn.c::after{display:none!important}
+.btn.ck:not(.on)::after{content:"[ ]";font-size:.8em;color:var(--ph2)}
+.btn.c{justify-content:center;text-align:center}
+.btn:disabled{opacity:.35;border-style:dashed;box-shadow:none;cursor:default}
+.btn.big{font-size:clamp(30px,4.6vmin,48px);min-height:clamp(70px,12vmin,110px)}
+.btn.sm{min-height:clamp(44px,7vmin,60px);font-size:clamp(22px,3vmin,30px);padding:2px 8px}
+.foot{flex:none;display:flex;justify-content:space-between;gap:14px;padding-top:10px;border-top:3px solid var(--ph);margin-top:8px}
+.foot .btn{min-width:min(34vw,300px)}
+.field{border:3px solid var(--dim);padding:6px 12px;min-height:clamp(52px,8vmin,70px);font-size:clamp(26px,3.6vmin,38px);display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;text-transform:none;margin-bottom:10px}
+.field.act{border-color:var(--ph);background:#052510}
+.field .lab{font-size:.6em;text-transform:uppercase;color:var(--ph2);letter-spacing:.1em;flex:none}
+.field .val{flex:1;text-align:right;overflow:hidden;white-space:nowrap}
+.field.act .val::after{content:"█";animation:blink 1s steps(1) infinite}
+.kb{display:grid;gap:6px;margin-top:2px}
+.kbrow{display:grid;gap:6px}
+.kb .btn{min-height:clamp(40px,6.4vmin,58px);font-size:clamp(22px,3vmin,30px);justify-content:center;padding:0;box-shadow:3px 3px 0 var(--dim)}
+.kb .btn::after{display:none}
+.pre{border:3px solid var(--ph);background:#02180a;position:relative;padding:4px}
+.pre canvas{display:block;width:100%;height:auto;image-rendering:pixelated;aspect-ratio:8/5}
+.pre .cap{position:absolute;left:8px;top:2px;font-size:.7em;color:var(--ph2)}
+.spec{overflow-wrap:anywhere;border:3px solid var(--dim);padding:8px 12px;font-size:clamp(20px,2.9vmin,28px);line-height:1.2;overflow:auto;flex:1;min-height:0}
+.spec b{font-weight:400;color:#cfffe0}
+.row{display:flex;justify-content:space-between;gap:12px;border-bottom:2px dotted var(--dim);padding:5px 2px;font-size:clamp(22px,3.2vmin,32px)}
+.row span:first-child{color:var(--ph2);text-transform:uppercase}
+.row span:last-child{text-align:right}
+.note{border:3px solid var(--ph);padding:8px 12px;margin-top:10px;font-size:clamp(20px,3vmin,30px);background:#05260f}
+.warn{border:3px dashed var(--ph);padding:6px 12px;margin:6px 0;font-size:clamp(20px,2.8vmin,28px)}
+.big-id{font-size:clamp(54px,11vmin,110px);letter-spacing:.12em;text-align:center;border:3px solid var(--ph);padding:6px;margin:10px 0;background:#052510}
+.splash{margin:auto;text-align:center}
+.splash pre{font-family:var(--f);font-size:clamp(16px,2.9vmin,34px);line-height:1;color:var(--ph);margin-bottom:12px;text-shadow:var(--glow)}
+.splash h2{font-weight:400;font-size:clamp(30px,5.6vmin,64px);letter-spacing:.1em}
+.splash p{color:var(--ph2);font-size:clamp(20px,3.4vmin,34px);margin:8px 0 18px}
+.splash .grid{max-width:760px;margin:0 auto}
+.link{position:absolute;left:50%;transform:translateX(-50%);bottom:clamp(12px,3vmin,30px);white-space:nowrap;z-index:60;font-size:.65em;color:var(--dim);text-decoration:none;text-shadow:none;pointer-events:auto}
+.link:hover{color:var(--ph)}
+@media (max-width:760px){
+ .top .sys,.steps{display:none}
+ .fg{grid-template-columns:repeat(4,1fr)}
+ .top{font-size:.85em}
+ .main{flex-direction:column}.side{flex:none;flex-direction:row;height:auto;max-height:28%}.side .spec{display:none}.side .pre{flex:1}.pre canvas{max-height:20vh;width:auto;margin:0 auto}
+ .g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(2,1fr)}
+ .foot .btn{min-width:0;flex:1}
+}
+@media (prefers-reduced-motion:reduce){.tube::after,.roll,h1::after,.field.act .val::after{animation:none}}
+</style>
+</head>
+<body>
+<div class="bezel"><div class="tube"><div class="roll"></div><div class="screen" id="app"></div></div></div>
+<script>
+const D={"G":{"float":{"clear":{"th":["1/8\"","5/32\"","3/16\"","1/4\"","5/16\"","3/8\"","1/2\"","5/8\"","3/4\""],"key":"cClear"},"ultra-clear":{"th":["1/4\"","3/8\"","1/2\""],"key":"cUltraClear"},"gray":{"th":["1/4\"","3/8\"","1/2\""],"key":"cGray"},"bronze":{"th":["1/8\"","1/4\"","3/8\"","1/2\""],"key":"cBronze"},"blue-green":{"th":["1/4\"","3/8\""],"key":"cBlueGreen"},"arctic-blue":{"th":["3/8\""],"key":"cArcticBlue"},"mirror-clear":{"th":["1/8\"","1/4\""],"key":"cMirrorClear"},"mirror-clear-back":{"th":["1/8\""],"key":"cMirrorBack"},"mirror-bronze":{"th":["1/4\""],"key":"cMirrorBronze"},"mirror-antique":{"th":["1/4\""],"key":"cMirrorAntique"},"cianite-clear":{"th":["3/16\""],"key":"cCianiteClear"},"cianite-bronze":{"th":["1/4\""],"key":"cCianiteBronze"},"rain":{"th":["3/8\""],"key":"cRain"},"barb-wire":{"th":["1/4\""],"key":"cBarbWire"},"acid-etch":{"th":["3/8\"","1/2\""],"key":"cAcidEtch"},"white-lac":{"th":["1/4\""],"key":"cWhiteLac"},"black-lac":{"th":["1/4\""],"key":"cBlackLac"},"optic-white":{"th":["1/8\""],"key":"cOpticWhite"},"low-e":{"th":["1/4\"","3/8\"","1/2\""],"key":"cLowE"}},"tempered":{"clear":{"th":["1/8\"","5/32\"","3/16\"","1/4\"","5/16\"","3/8\"","1/2\"","5/8\"","3/4\""],"key":"cClear"},"ultra-clear":{"th":["1/4\"","3/8\"","1/2\""],"key":"cUltraClear"},"gray":{"th":["1/4\"","3/8\"","1/2\""],"key":"cGray"},"bronze":{"th":["1/8\"","1/4\"","3/8\"","1/2\""],"key":"cBronze"},"blue-green":{"th":["1/4\"","3/8\""],"key":"cBlueGreen"},"arctic-blue":{"th":["3/8\""],"key":"cArcticBlue"},"cianite-clear":{"th":["3/16\""],"key":"cCianiteClear"},"cianite-bronze":{"th":["1/4\""],"key":"cCianiteBronze"},"rain":{"th":["3/8\""],"key":"cRain"},"acid-etch":{"th":["3/8\"","1/2\""],"key":"cAcidEtch"},"low-e":{"th":["1/4\"","3/8\"","1/2\""],"key":"cLowE"}},"ultra-clear-float":{"ultra-clear":{"th":["1/4\"","3/8\"","1/2\""],"key":"cUltraClear"}},"ultra-clear-tempered":{"ultra-clear":{"th":["1/4\"","3/8\"","1/2\""],"key":"cUltraClear"}},"laminated":{"clear":{"th":["1/4\"","5/16\"","3/8\"","1/2\"","5/8\"","3/4\""],"key":"cClear"},"gray":{"th":["1/4\""],"key":"cGray"},"bronze":{"th":["1/4\""],"key":"cBronze"},"blue-green":{"th":["1/4\""],"key":"cBlueGreen"},"white-lac":{"th":["1/4\""],"key":"cWhiteLac"}}},"en":{"cClear":"Clear","cUltraClear":"Ultra-Clear","cGray":"Gray","cBronze":"Bronze","cBlueGreen":"Blue-Green","cArcticBlue":"Arctic Blue","cMirrorClear":"Mirror, Clear","cMirrorBack":"Mirror, Clear (with backing)","cMirrorBronze":"Mirror, Bronze","cMirrorAntique":"Mirror, Antique","cCianiteClear":"Cianite, Clear","cCianiteBronze":"Cianite, Bronze","cRain":"Rain Glass","cBarbWire":"Wired (Barb)","cAcidEtch":"Acid Etch","cWhiteLac":"White (Lacquered)","cBlackLac":"Black (Lacquered)","cOpticWhite":"Mirror White","cLowE":"Low-E"},"es":{"cClear":"Claro","cUltraClear":"Ultra-Claro","cGray":"Gris","cBronze":"Bronce","cBlueGreen":"Verde-Azul","cArcticBlue":"Azul Ártico","cMirrorClear":"Espejo Claro","cMirrorBack":"Espejo Claro (con respaldo)","cMirrorBronze":"Espejo Bronce","cMirrorAntique":"Espejo Antiguo","cCianiteClear":"Cianite Claro","cCianiteBronze":"Cianite Bronce","cRain":"Cristal Rain","cBarbWire":"Cristal de Alambre","cAcidEtch":"Grabado al Ácido","cWhiteLac":"Blanco Lacado","cBlackLac":"Negro Lacado","cOpticWhite":"Mirror White","cLowE":"Low-E"}};
+const T={
+en:{sys:'QUALITY GLASS ORDER TERMINAL',ver:'MODEL QGI-86 REV 0.5',pick:'SELECT LANGUAGE / SELECCIONE IDIOMA',touch:'TOUCH TO BEGIN',
+ start:'START ORDER',next:'CONTINUE',back:'BACK',who:'Who is this order for?',whoSub:'We use this to find your order at the counter.',name:'Name',proj:'Project',projO:'(optional)',
+ typeT:'Select glass type',typeSub:'Pick a base, then add options.',float:'Float glass',floatD:'Widest range of colors and sizes.',lam:'Laminated glass',lamD:'Two layers, PVB bonded. Safety and sound.',
+ temp:'Tempered',uc:'Ultra-clear',sizeT:'Enter dimensions',sizeSub:'Touch a field. Inches, plus 1/16 fractions.',w:'Width',h:'Height',whole:'INCHES',frac:'FRACTION',clr:'CLR',del:'DEL',
+ oversize:'OVER STOCK LITE SIZE. SALES WILL QUOTE THIS CUT AT THE COUNTER.',qtyT:'How many pieces?',qtySub:'All pieces are cut to the same size.',pcs:'pieces',
+ thT:'Select thickness',thSub:'Offered for the glass type you chose.',coT:'Select color',coSub:'Available in the thickness you chose.',
+ adT:'Optional additions',adSub:'Touch to toggle. All are optional.',bev:'Beveling',bevD:'Angled polished edge.',df:'Diamon-Fusion',dfD:'Water and stain repellent coating.',er:'Edge rounding',erD:'Rounded edges and corners.',sb:'Sandblasting',sbD:'Frosted privacy finish.',fm:'Filo Matado',fmD:'Light sanding on the sharp edge.',
+ payT:'Payment method',paySub:'Demo only. Nothing is charged.',cash:'Cash',card:'Credit / debit card',dig:'Apple Pay / Google Pay / ATH Movil',
+ revT:'Review your order',revSub:'Check everything. This demo does not submit an order.',place:'FINISH DEMO',cust:'Customer',glass:'Glass',size:'Size',qty:'Quantity',thick:'Thickness',color:'Color',adds:'Additions',pay:'Payment',none:'None',
+ okT:'Demo order complete',okSub:'This was a demo. Nothing was sent to the shop. These numbers are fake.',oid:'DEMO ORDER ID (FAKE)',pin:'DEMO PIN (FAKE)',again:'START OVER',demo:'DEMO ONLY. NO ORDER WAS SUBMITTED, SENT OR SAVED.',step:'STEP',
+ t:{float:'Float','ultra-clear-float':'Ultra-clear','tempered':'Tempered','ultra-clear-tempered':'Ultra-clear tempered',laminated:'Laminated'},nm:'Name required'},
+es:{sys:'TERMINAL DE ORDENES QUALITY GLASS',ver:'MODELO QGI-86 REV 0.5',pick:'SELECT LANGUAGE / SELECCIONE IDIOMA',touch:'TOQUE PARA EMPEZAR',
+ start:'EMPEZAR ORDEN',next:'CONTINUAR',back:'ATRAS',who:'Para quien es la orden?',whoSub:'Esto nos ayuda a encontrar su orden en el mostrador.',name:'Nombre',proj:'Proyecto',projO:'(opcional)',
+ typeT:'Tipo de cristal',typeSub:'Escoja una base y luego opciones.',float:'Cristal regular',floatD:'Mayor variedad de colores y medidas.',lam:'Cristal laminado',lamD:'Dos capas unidas con PVB. Seguridad y sonido.',
+ temp:'Templado',uc:'Ultra-claro',sizeT:'Entre las medidas',sizeSub:'Toque un campo. Pulgadas y fracciones de 1/16.',w:'Ancho',h:'Alto',whole:'PULGADAS',frac:'FRACCION',clr:'BORRAR',del:'QUITAR',
+ oversize:'EXCEDE EL TAMANO DE LAMINA. VENTAS COTIZA ESTE CORTE EN EL MOSTRADOR.',qtyT:'Cuantas piezas?',qtySub:'Todas se cortan al mismo tamano.',pcs:'piezas',
+ thT:'Seleccione grosor',thSub:'Disponible para el tipo de cristal escogido.',coT:'Seleccione color',coSub:'Disponible en el grosor escogido.',
+ adT:'Adiciones opcionales',adSub:'Toque para activar. Todas son opcionales.',bev:'Biselado',bevD:'Borde angulado y pulido.',df:'Diamon-Fusion',dfD:'Recubrimiento repelente de agua y manchas.',er:'Redondeo',erD:'Bordes y esquinas redondeados.',sb:'Sandblasting',sbD:'Acabado esmerilado de privacidad.',fm:'Filo Matado',fmD:'Lijado ligero del filo vivo.',
+ payT:'Metodo de pago',paySub:'Solo demo. No se cobra nada.',cash:'Efectivo',card:'Tarjeta de credito / debito',dig:'Apple Pay / Google Pay / ATH Movil',
+ revT:'Revise su orden',revSub:'Verifique todo. Esta demo no envia ninguna orden.',place:'TERMINAR DEMO',cust:'Cliente',glass:'Cristal',size:'Medida',qty:'Cantidad',thick:'Grosor',color:'Color',adds:'Adiciones',pay:'Pago',none:'Ninguna',
+ okT:'Orden demo completada',okSub:'Esto fue una demo. Nada se envio a la tienda. Estos numeros son falsos.',oid:'ID DE ORDEN DEMO (FALSO)',pin:'PIN DEMO (FALSO)',again:'EMPEZAR DE NUEVO',demo:'SOLO DEMO. NADA SE ENVIA NI SE GUARDA.',step:'PASO',
+ t:{float:'Regular','ultra-clear-float':'Ultra-claro','tempered':'Templado','ultra-clear-tempered':'Ultra-claro templado',laminated:'Laminado'},nm:'Nombre requerido'}};
+const LITE={float:[[130,96],[142,98]],laminated:[[71,95],[84,130]]};
+const MIRROR={'1/8"':[[83,129]],'1/4"':[[141,97]]};
+const THO=['1/8"','5/32"','3/16"','1/4"','5/16"','3/8"','1/2"','5/8"','3/4"'];
+const STEPS=['name','type','size','qty','thick','color','add','pay','review'];
+const S={};
+function reset(){Object.assign(S,{lang:'en',slide:'lang',hist:[],name:'',proj:'',field:'name',base:null,tmp:false,uc:false,w:'',wf:0,h:'',hf:0,af:'w',qty:1,thick:null,color:null,add:{bev:false,df:false,er:false,sb:false,fm:false},pay:null,oid:'',pin:''})}
+reset();
+const $=s=>document.querySelector(s);
+const t=k=>T[S.lang][k]??T.en[k];
+function gtype(){if(!S.base)return null;if(S.base==='laminated')return'laminated';if(S.uc&&S.tmp)return'ultra-clear-tempered';if(S.uc)return'ultra-clear-float';if(S.tmp)return'tempered';return'float'}
+function fr(n){const w=Math.floor(n),f=Math.round((n-w)*16);if(!f)return w+'"';let a=f,b=16;while(a%2===0){a/=2;b/=2}return w+' '+a+'/'+b+'"'}
+function dim(a){const i=a==='w'?S.w:S.h,f=a==='w'?S.wf:S.hf;return(parseInt(i||'0',10)+f/16)}
+function dimStr(a){const i=a==='w'?S.w:S.h;return i===''&&(a==='w'?S.wf:S.hf)===0?'--':fr(dim(a))}
+function fl(i){if(!i)return'0';let a=i,b=16;while(a%2===0){a/=2;b/=2}return a+'/'+b}
+function thicks(ty){const s=new Set();Object.values(D.G[ty]).forEach(c=>c.th.forEach(x=>s.add(x)));return THO.filter(x=>s.has(x))}
+function colors(ty,th){return Object.entries(D.G[ty]).filter(([,c])=>c.th.includes(th))}
+function cname(k){return (S.lang==='es'?D.es[k]:D.en[k])||D.en[k]||k}
+function oversize(){const w=dim('w'),h=dim('h');if(!w||!h)return false;const ty=gtype()||'float';let L=(S.color&&S.color.startsWith('mirror')&&MIRROR[S.thick])||LITE[ty==='laminated'?'laminated':'float'];for(const[a,b]of L){if(w<=a-1&&h<=b-1)return false;if(h<=a-1&&w<=b-1)return false}return true}
+function can(){switch(S.slide){case'name':return S.name.trim().length>0;case'type':return!!S.base;case'size':return dim('w')>0&&dim('h')>0;case'qty':return S.qty>=1;case'thick':return!!S.thick;case'color':return!!S.color;case'add':return true;case'pay':return!!S.pay;default:return true}}
+function go(s){if(s!=='lang')S.hist.push(S.slide);S.slide=s;render()}
+function nextOf(){const i=STEPS.indexOf(S.slide);return STEPS[i+1]||'success'}
+function back(){if(S.hist.length){S.slide=S.hist.pop();render()}}
+function adds(){const a=[];if(S.add.bev)a.push(t('bev'));if(S.add.df)a.push(t('df'));if(S.add.er)a.push(t('er'));if(S.add.sb)a.push(t('sb'));if(S.add.fm)a.push(t('fm'));return a}
+function esc(x){return String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+const LOGO=String.raw`+----------------+
+|################|
+|################|
+|##  QUALITY  ##|
+|##   GLASS   ##|
+|################|
++----------------+`;
+function btn(label,opts={}){const{sub,on,ck,id,c,cls}=opts;return `<button class="btn${on?' on':''}${ck?' ck':''}${c?' c':''}${cls?' '+cls:''}" data-a="${String(id).replace(/"/g,'&quot;')}"><span>${label}${sub?`<small>${sub}</small>`:''}</span></button>`}
+function body(){const sl=S.slide;let h='';
+ if(sl==='name'){
+  const KB=['1234567890','QWERTYUIOP','ASDFGHJKL','ZXCVBNM'];
+  h+=`<div class="field${S.field==='name'?' act':''}" data-a="f:name"><span class="lab">${t('name')}</span><span class="val">${esc(S.name)}</span></div>`;
+  h+=`<div class="field${S.field==='proj'?' act':''}" data-a="f:proj"><span class="lab">${t('proj')} ${t('projO')}</span><span class="val">${esc(S.proj)}</span></div>`;
+  h+='<div class="kb">'+KB.map(r=>`<div class="kbrow" style="grid-template-columns:repeat(${r.length},1fr)">${[...r].map(c=>`<button class="btn c" data-a="k:${c}">${c}</button>`).join('')}</div>`).join('');
+  h+=`<div class="kbrow" style="grid-template-columns:1fr 3fr 1fr 1fr"><button class="btn c" data-a="k:.">.</button><button class="btn c" data-a="k: ">SPACE</button><button class="btn c" data-a="k:-">-</button><button class="btn c" data-a="k:<">DEL</button></div></div>`}
+ if(sl==='type'){
+  h+=`<div class="grid g2">${btn(t('float'),{sub:t('floatD'),on:S.base==='float',id:'base:float',cls:'big'})}${btn(t('lam'),{sub:t('lamD'),on:S.base==='laminated',id:'base:laminated',cls:'big'})}</div>`;
+  if(S.base==='float')h+=`<div class="grid g2" style="margin-top:12px">${btn(t('temp'),{ck:1,on:S.tmp,id:'tmp'})}${btn(t('uc'),{ck:1,on:S.uc,id:'uc'})}</div>`;
+  if(S.base)h+=`<div class="note">&gt; ${esc(T[S.lang].t[gtype()])}</div>`}
+ if(sl==='size'){
+  const ac=S.af;
+  h+=`<div class="grid g2"><div class="field${ac==='w'?' act':''}" data-a="af:w"><span class="lab">${t('w')}</span><span class="val">${dimStr('w')}</span></div><div class="field${ac==='h'?' act':''}" data-a="af:h"><span class="lab">${t('h')}</span><span class="val">${dimStr('h')}</span></div></div>`;
+  h+=`<div class="sub" style="margin:0 0 4px">${t('whole')}</div><div class="grid" style="grid-template-columns:repeat(5,1fr)">${[1,2,3,4,5,6,7,8,9,0].map(n=>`<button class="btn c sm" data-a="n:${n}">${n}</button>`).join('')}</div>`;
+  h+=`<div class="grid g2" style="margin-top:8px"><button class="btn c sm" data-a="n:del">${t('del')}</button><button class="btn c sm" data-a="n:clr">${t('clr')}</button></div>`;
+  const cf=ac==='w'?S.wf:S.hf;
+  h+=`<div class="sub" style="margin:8px 0 4px">${t('frac')}</div><div class="grid fg">${Array.from({length:16},(_,i)=>`<button class="btn c sm${cf===i?' on':''}" style="font-size:clamp(17px,2.4vmin,26px);padding:0" data-a="fr:${i}">${fl(i)}</button>`).join('')}</div>`;
+  if(oversize())h+=`<div class="warn">! ${t('oversize')}</div>`}
+ if(sl==='qty'){
+  h+=`<div class="field act" style="justify-content:center"><span class="val" style="text-align:center;flex:none;font-size:1.6em">${S.qty}</span><span class="lab" style="margin-left:14px">${t('pcs')}</span></div>`;
+  h+=`<div class="grid g4">${[1,2,3,4,5,6,8,10].map(n=>btn(n,{on:S.qty===n,id:'q:'+n,c:1})).join('')}</div>`;
+  h+=`<div class="grid g4" style="margin-top:10px">${btn('-1',{id:'qd:-1',c:1})}${btn('+1',{id:'qd:1',c:1})}${btn('-10',{id:'qd:-10',c:1})}${btn('+10',{id:'qd:10',c:1})}</div>`}
+ if(sl==='thick'){const ty=gtype();h+=`<div class="grid g3">${thicks(ty).map(x=>btn(x,{on:S.thick===x,id:'th:'+x,c:1,cls:'big'})).join('')}</div>`}
+ if(sl==='color'){const ty=gtype();h+=`<div class="grid g2">${colors(ty,S.thick).map(([k,c])=>btn(cname(c.key),{on:S.color===k,id:'co:'+k})).join('')}</div>`}
+ if(sl==='add'){h+=`<div class="grid">${[['bev','bev'],['df','df'],['er','er'],['sb','sb'],['fm','fm']].map(([k])=>btn(t(k),{sub:t(k+'D'),ck:1,on:S.add[k],id:'ad:'+k})).join('')}</div>`}
+ if(sl==='pay'){h+=`<div class="grid">${[['cash',t('cash')],['credit-debit',t('card')],['apple-google-ath',t('dig')]].map(([k,l])=>btn(l,{on:S.pay===k,id:'py:'+k,cls:'big'})).join('')}</div><div class="note">&gt; ${t('paySub')}</div>`}
+ if(sl==='review'){const a=adds();
+  const R=(l,v,to)=>`<div class="row" data-a="${to?'ed:'+to:''}" style="${to?'cursor:pointer':''}"><span>${l}</span><span>${esc(v)}</span></div>`;
+  h+=R(t('cust'),S.name+(S.proj?' / '+S.proj:''),'name')+R(t('glass'),T[S.lang].t[gtype()],'type')+R(t('size'),dimStr('w')+' x '+dimStr('h'),'size')+R(t('qty'),S.qty,'qty')+R(t('thick'),S.thick,'thick')+R(t('color'),cname(D.G[gtype()][S.color].key),'color')+R(t('adds'),a.length?a.join(', '):t('none'),'add')+R(t('pay'),S.pay==='cash'?t('cash'):S.pay==='credit-debit'?t('card'):t('dig'),'pay');
+  if(oversize())h+=`<div class="warn">! ${t('oversize')}</div>`}
+ if(sl==='success'){h+=`<div class="sub">${t('oid')}</div><div class="big-id">${S.oid}</div><div class="sub">${t('pin')}</div><div class="big-id" style="font-size:clamp(40px,8vmin,80px)">${S.pin}</div><div class="note">&gt; ${t('demo')}</div>`}
+ return h}
+const TITLES={name:['who','whoSub'],type:['typeT','typeSub'],size:['sizeT','sizeSub'],qty:['qtyT','qtySub'],thick:['thT','thSub'],color:['coT','coSub'],add:['adT','adSub'],pay:['payT','paySub'],review:['revT','revSub'],success:['okT','okSub']};
+const EXIT='<a class="exit" href="/experiments/"><span class="xl">[ESC] EXPERIMENTS</span></a>';
+const DEMO='<span class="demo">DEMO</span>';
+function render(){
+ const app=$('#app');
+ if(S.slide==='lang'){
+  app.innerHTML=`<div class="top"><span class="l">${EXIT}<span class="sys">${T.en.sys}</span></span><span class="r"><span class="sys">${T.en.ver}</span>${DEMO}</span></div><div class="splash"><pre>${LOGO}</pre><h2>QUALITY GLASS</h2><p>${T.en.pick}</p><div class="grid g2"><button class="btn c big" data-a="lang:en">ENGLISH</button><button class="btn c big" data-a="lang:es">ESPANOL</button></div></div>`;return}
+ const i=STEPS.indexOf(S.slide);
+ const steps=STEPS.map((_,j)=>`<i class="${j<=i||S.slide==='success'?'on':''}"></i>`).join('');
+ const [ti,su]=TITLES[S.slide];
+ const showSide=['type','size','qty','thick','color','add','pay','review','success'].includes(S.slide);
+ const stage=S.slide==='success'?'':'';
+ let foot='';
+ if(S.slide==='success')foot=`<button class="btn c" data-a="again" style="flex:1">${t('again')}</button>`;
+ else foot=`<button class="btn c${S.hist.length?'':''}" data-a="back"${S.hist.length?'':' disabled'}>&lt; ${t('back')}</button>`+(S.slide==='review'?`<button class="btn c big" data-a="place" style="min-height:0">${t('place')} &gt;</button>`:`<button class="btn c" data-a="next"${can()?'':' disabled'}>${t('next')} &gt;</button>`);
+ app.innerHTML=`<div class="top"><span class="l">${EXIT}<span class="sys">${t('sys')}</span></span><span class="r"><span class="steps" aria-label="${t('step')} ${Math.max(i+1,1)}/${STEPS.length}">${steps}</span>${DEMO}</span></div>
+ <div class="main"><div class="col"><h1>${t(ti)}</h1><div class="sub">${t(su)}</div><div class="body" id="body">${body()}</div></div>
+ <div class="side${showSide?'':' off'}"><div class="pre"><span class="cap">PREVIEW</span><canvas id="cv" width="160" height="100"></canvas></div><div class="spec" id="spec"></div></div></div>
+ <div class="foot">${foot}</div>`;
+ if(showSide){draw();$('#spec').innerHTML=specHtml()}
+}
+function specHtml(){const ty=gtype();const L=[];if(ty)L.push(['TYPE',T[S.lang].t[ty]]);if(dim('w')&&dim('h'))L.push(['SIZE',dimStr('w')+' x '+dimStr('h')]);L.push(['QTY',S.qty]);if(S.thick)L.push(['THICK',S.thick]);if(S.color)L.push(['COLOR',cname(D.G[ty][S.color].key)]);const a=adds();if(a.length)L.push(['ADD',a.join(', ')]);return L.map(([k,v])=>`<div><span style="color:var(--ph2)">${k}:</span> <b>${esc(v)}</b></div>`).join('')}
+/* pixel graphics: 160x100 canvas, hard edges, dither only */
+function draw(){
+ const c=$('#cv');if(!c)return;const x=c.getContext('2d');x.imageSmoothingEnabled=false;
+ const P='#5dff8a',Q='#1c6b36',B='#02180a';
+ x.fillStyle=B;x.fillRect(0,0,160,100);
+ // grid
+ x.fillStyle=Q;for(let i=0;i<160;i+=10)for(let j=0;j<100;j+=10)x.fillRect(i,j,1,1);
+ let w=dim('w'),h=dim('h');if(!(w>0&&h>0)){w=36;h=24}
+ const maxW=120,maxH=62;const sc=Math.min(maxW/w,maxH/h);let pw=Math.max(14,Math.round(w*sc)),ph=Math.max(10,Math.round(h*sc));
+ const px=Math.round((160-pw)/2),py=Math.round((100-ph)/2)-2;
+ const th=S.thick?Math.max(1,Math.round(thickVal(S.thick)*8)):1;
+ // fill pattern by color
+ const key=S.color||'clear';const pat=patFor(key);
+ x.fillStyle=Q;
+ for(let i=0;i<pw;i++)for(let j=0;j<ph;j++){if(pat(i,j))x.fillRect(px+i,py+j,1,1)}
+ // diagonal glint
+ x.fillStyle=P;for(let k=0;k<Math.min(pw,ph)-6;k+=2){x.fillRect(px+4+k,py+ph-4-k,1,1);if(k%6===0&&px+8+k+2<px+pw-2)x.fillRect(px+8+k,py+ph-4-k,2,1)}
+ if(S.add.sb){x.fillStyle=P;for(let i=0;i<pw;i+=3)for(let j=0;j<ph;j+=3)if(((i+j)/3)%2===0)x.fillRect(px+i+1,py+j+1,1,1)}
+ // outline (thickness = border weight)
+ x.fillStyle=P;
+ x.fillRect(px,py,pw,th);x.fillRect(px,py+ph-th,pw,th);x.fillRect(px,py,th,ph);x.fillRect(px+pw-th,py,th,ph);
+ if(S.add.bev){const o=th+3;x.fillRect(px+o,py+o,pw-2*o,1);x.fillRect(px+o,py+ph-o-1,pw-2*o,1);x.fillRect(px+o,py+o,1,ph-2*o);x.fillRect(px+pw-o-1,py+o,1,ph-2*o);for(let k=0;k<=3;k++){x.fillRect(px+th+k,py+th+k,1,1);x.fillRect(px+pw-th-k-1,py+th+k,1,1);x.fillRect(px+th+k,py+ph-th-k-1,1,1);x.fillRect(px+pw-th-k-1,py+ph-th-k-1,1,1)}}
+ if(S.add.er){x.fillStyle=B;[[0,0,1,1],[pw-1,0,-1,1],[0,ph-1,1,-1],[pw-1,ph-1,-1,-1]].forEach(([a,b,dx,dy])=>{for(let k=0;k<4;k++)for(let m=0;m<4-k;m++)x.fillRect(px+a+dx*k,py+b+dy*m,1,1)});x.fillStyle=P;[[0,0,1,1],[pw-1,0,-1,1],[0,ph-1,1,-1],[pw-1,ph-1,-1,-1]].forEach(([a,b,dx,dy])=>{for(let k=0;k<4;k++)x.fillRect(px+a+dx*(3-k),py+b+dy*k,1,1);x.fillRect(px+a+dx*4,py+b,1,1);x.fillRect(px+a,py+b+dy*4,1,1)})}
+ if(S.add.df){x.fillStyle=P;[[px-4,py-4],[px+pw+2,py-4],[px-4,py+ph+2],[px+pw+2,py+ph+2]].forEach(([a,b])=>{x.fillRect(a+1,b,1,3);x.fillRect(a,b+1,3,1)})}
+ // dimension lines
+ x.fillStyle=P;
+ if(dim('w')>0){const y=py+ph+6;x.fillRect(px,y,pw,1);x.fillRect(px,y-2,1,5);x.fillRect(px+pw-1,y-2,1,5);label(x,dimStr('w'),80,y+3,P)}
+ if(dim('h')>0){const xx=px-7;x.fillRect(xx,py,1,ph);x.fillRect(xx-2,py,5,1);x.fillRect(xx-2,py+ph-1,5,1);label(x,dimStr('h'),Math.max(12,xx-3-dimStr('h').length*2),py+Math.round(ph/2)-3,P)}
+}
+function thickVal(s){const m=s.replace('"','');if(m.includes('/')){const[a,b]=m.split('/');return a/b}return +m}
+function patFor(k){
+ if(k.startsWith('mirror'))return(i,j)=>(i+j)%4===0;
+ if(k==='clear'||k==='ultra-clear'||k==='optic-white'||k==='low-e')return(i,j)=>(i%8===0&&j%8===0);
+ if(k==='gray'||k==='black-lac')return(i,j)=>(i+j)%2===0;
+ if(k==='bronze'||k==='cianite-bronze')return(i,j)=>(i%2===0&&j%2===0);
+ if(k.startsWith('blue')||k==='arctic-blue'||k==='cianite-clear')return(i,j)=>j%3===0;
+ if(k==='rain')return(i,j)=>i%3===0&&(j+i)%5<2;
+ if(k==='acid-etch')return(i,j)=>(i*7+j*13)%5===0;
+ if(k==='white-lac')return(i,j)=>(i+j)%3!==0;
+ if(k==='barb-wire')return(i,j)=>i%10===0||j%10===0;
+ return(i,j)=>i%6===0&&j%6===0}
+const FONT={'0':'111101101101111','1':'010110010010111','2':'111001111100111','3':'111001111001111','4':'101101111001001','5':'111100111001111','6':'111100111101111','7':'111001001001001','8':'111101111101111','9':'111101111001111','/':'001001010100100',' ':'000000000000000','"':'101101000000000','-':'000000111000000'};
+function label(x,s,cx,y,col){const w=s.length*4-1;let px=Math.round(cx-w/2);x.fillStyle='#02180a';x.fillRect(px-2,y-1,w+3,7);x.fillStyle=col;for(const ch of s){const g=FONT[ch]||FONT[' '];for(let i=0;i<15;i++)if(g[i]==='1')x.fillRect(px+(i%3),y+Math.floor(i/3),1,1);px+=4}}
+function newId(){return 'QG'+Math.random().toString(36).substring(2,10).toUpperCase().padEnd(8,'0')}
+function act(a){
+ const[k,v]=[a.split(':')[0],a.slice(a.indexOf(':')+1)];
+ switch(k){
+ case'lang':S.lang=v;go('name');return;
+ case'back':back();return;
+ case'next':if(can()){let n=nextOf();if(S.fromReview&&S.thick&&S.color&&gtype()&&D.G[gtype()][S.color]&&D.G[gtype()][S.color].th.includes(S.thick)){S.fromReview=false;go('review');return}if(n==='thick'&&S.thick&&!thicks(gtype()).includes(S.thick))S.thick=null;go(n)}return;
+ case'again':reset();render();return;
+ case'place':S.fromReview=false;S.oid=newId();S.pin=String(Math.floor(100000+Math.random()*900000));S.slide='success';S.hist=[];render();return;
+ case'ed':if(v){S.fromReview=true;S.hist.push('review');S.slide=v;render()}return;
+ case'f':S.field=v;render();return;
+ case'k':{const f=S.field==='name'?'name':'proj';if(v==='<')S[f]=S[f].slice(0,-1);else if(S[f].length<32)S[f]+=(S[f].length===0||S[f].endsWith(' '))?v.toUpperCase():v;render();return}
+ case'base':S.base=v;if(v==='laminated'){S.tmp=false;S.uc=false}S.thick=null;S.color=null;render();return;
+ case'tmp':S.tmp=!S.tmp;S.thick=null;S.color=null;render();return;
+ case'uc':S.uc=!S.uc;S.thick=null;S.color=null;render();return;
+ case'af':S.af=v;render();return;
+ case'n':{const a=S.af;let s=a==='w'?S.w:S.h;if(v==='del')s=s.slice(0,-1);else if(v==='clr'){s='';S[a==='w'?'wf':'hf']=0}else if(s.length<3)s=(s+v).replace(/^0+(?=\d)/,'');if(a==='w')S.w=s;else S.h=s;S.color&&0;render();return}
+ case'fr':S[S.af==='w'?'wf':'hf']=+v;render();return;
+ case'q':S.qty=+v;render();return;
+ case'qd':S.qty=Math.max(1,Math.min(999,S.qty+ +v));render();return;
+ case'th':S.thick=v;if(S.color&&!D.G[gtype()][S.color].th.includes(v))S.color=null;render();return;
+ case'co':S.color=v;render();return;
+ case'ad':S.add[v]=!S.add[v];render();return;
+ case'py':S.pay=v;render();return;
+ }
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b&&b.dataset.a&&!b.disabled)act(b.dataset.a)});
+document.addEventListener('keydown',e=>{if(S.slide==='name'&&!e.metaKey&&!e.ctrlKey&&!e.altKey){if(e.key==='Backspace'){act('k:<');e.preventDefault()}else if(e.key.length===1){act('k:'+e.key);e.preventDefault()}else if(e.key==='Tab'){S.field=S.field==='name'?'proj':'name';render();e.preventDefault()}}
+ if(e.key==='Enter'&&can()&&S.slide!=='review'&&S.slide!=='success'&&S.slide!=='lang')act('next')});
+render();
+</script>
+</body>
+</html>
