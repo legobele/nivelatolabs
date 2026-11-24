@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="Experiments by Nivelato Labs: live builds the lab is trying in public.">
+<link rel="canonical" href="https://nivelatolabs.com/experiments/">
+<title>Experiments · Nivelato Labs</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-5 -5 110 110'%3E%3Crect x='-5' y='-5' width='110' height='110' fill='%23050505'/%3E%3Cg fill='none' stroke='white' stroke-width='6.5'%3E%3Cpath d='M55 20 H20 V84 H84 V43'/%3E%3Cpath d='M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+@font-face{
+  font-family:'Anybody';
+  src:url('/assets/fonts/Anybody-Variable.ttf') format('truetype');
+  font-weight:100 900;
+  font-display:swap;
+}
+:root{
+  --bg:#050505; --surface2:#0a0a0b; --card:#0e0e10; --raised:#16161a;
+  --line:rgba(255,255,255,.14); --line-strong:rgba(255,255,255,.28);
+  --ink:#fafafa; --muted:#a8a8b0; --dim:#6f6f77;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+  --disp:'Anybody',Arial,Helvetica,sans-serif;
+  --ui:Arial,Helvetica,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--ui);
+  min-height:100dvh; line-height:1.5;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.040) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.040) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.075) 1px, transparent 1px);
+  background-size:44px 44px, 44px 44px, 220px 220px, 220px 220px;
+}
+.wrap{position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:0 20px 56px;}
+.hud{font-family:var(--mono); text-transform:uppercase; letter-spacing:.26em; font-size:.72rem; color:var(--muted);}
+.hud b{color:var(--ink); font-weight:600;}
+.headline{font-family:var(--disp); font-weight:850; font-stretch:150%; text-transform:uppercase; line-height:.98; letter-spacing:.01em;}
+.wordmark{font-family:var(--disp); font-weight:900; font-stretch:150%; text-transform:uppercase; letter-spacing:.08em;}
+.mark{color:var(--ink); display:block;}
+a{color:var(--ink);}
+
+.topstrip{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:18px 0 14px; border-bottom:1px solid var(--line);
+}
+.brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
+.brand .mark{width:34px; height:34px;}
+.brand .wordmark{font-size:1.3rem;}
+
+.hero{text-align:center; padding:52px 0 8px;}
+.hero .mark{width:104px; height:104px; margin:0 auto;}
+.hero .wordmark{font-size:2.4rem; margin-top:18px;}
+.hero h1{font-size:clamp(2.6rem, 11vw, 4.6rem); margin-top:30px;}
+.hero .sub{color:var(--muted); font-size:1.08rem; line-height:1.55; max-width:34rem; margin:18px auto 0;}
+
+.list-head{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin:56px 0 20px;}
+.list-head h2{font-size:clamp(1.7rem, 6vw, 2.4rem); margin-top:8px;}
+.grid{display:grid; grid-template-columns:1fr; gap:14px;}
+@media (min-width:760px){ .grid{grid-template-columns:repeat(2,1fr); gap:18px;} }
+.xcard{
+  background:var(--card); border:1px solid var(--line); border-radius:8px;
+  padding:18px 18px 16px; position:relative; display:flex; flex-direction:column;
+  text-decoration:none;
+  transition:border-color 160ms var(--ease), transform 160ms var(--ease);
+}
+.xcard:hover{border-color:var(--line-strong);}
+.xcard:active{transform:scale(.99);}
+.xcard .slot{position:absolute; top:14px; left:16px;}
+.xcard .status{position:absolute; top:14px; right:16px; color:var(--ink);}
+.xcard .xname{font-family:var(--disp); font-weight:800; font-stretch:130%; text-transform:uppercase; font-size:1.28rem; line-height:1.15; letter-spacing:.02em; margin-top:30px;}
+.xcard .xtag{font-family:var(--mono); font-size:.72rem; letter-spacing:.22em; text-transform:uppercase; color:var(--dim); margin-top:7px;}
+.xcard .xblurb{color:var(--muted); font-size:.98rem; line-height:1.45; margin-top:9px;}
+.xcard .xrow{display:flex; justify-content:space-between; align-items:baseline; margin-top:auto; padding-top:16px;}
+.xcard .xopen{font-family:var(--mono); font-size:.8rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink);}
+.note{
+  margin-top:22px; border:1px solid var(--line); border-radius:8px; background:var(--surface2);
+  padding:18px 20px; color:var(--muted); font-size:1rem; line-height:1.55;
+}
+.note b{color:var(--ink);}
+
+footer{
+  margin-top:56px; border-top:1px solid var(--line); padding-top:22px;
+  display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between;
+}
+footer .byline{display:flex; align-items:center; gap:9px; color:var(--muted);}
+footer .byline .mark{width:17px; height:17px; color:var(--muted); flex:0 0 auto;}
+footer a{text-underline-offset:3px;}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none !important; transition:none !important;}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="breakout" viewBox="-5 -5 110 110">
+      <g fill="none" stroke="currentColor" stroke-width="6.5">
+        <path d="M55 20 H20 V84 H84 V43" stroke-linejoin="miter"/>
+        <path d="M80 -1 L84.5 13.5 L99 18 L84.5 22.5 L80 37 L75.5 22.5 L61 18 L75.5 13.5 Z" stroke-linejoin="bevel"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+  <div class="topstrip">
+    <a class="brand" href="https://nivelatolabs.com/">
+      <svg class="mark" viewBox="-5 -5 110 110" aria-hidden="true"><use href="#breakout"/></svg>
+      <span class="wordmark">Nivelato Labs</span>
+    </a>
+    <span class="hud">[ Experiments ]</span>
+  </div>
+
+  <header class="hero">
+    <svg class="mark" viewBox="-5 -5 110 110" aria-hidden="true"><use href="#breakout"/></svg>
+    <h1 class="headline">Experiments</h1>
+    <p class="sub">Live builds the lab is trying in public. Rough edges included, working software regardless.</p>
+  </header>
+
+  <main>
+    <div class="list-head">
+      <div>
+        <div class="hud">[ 01 · The Bench ]</div>
+        <h2 class="headline">What is<br>on it</h2>
+      </div>
+      <span class="hud">[ 01 Live ]</span>
+    </div>
+
+    <div class="grid">
+      <a class="xcard" href="/experiments/kiosk/">
+        <span class="hud slot">[ 01 ]</span>
+        <span class="hud status">[ Live ]</span>
+        <h3 class="xname">QGI Kiosk System</h3>
+        <div class="xtag">Glass Shop · Order Kiosk</div>
+        <p class="xblurb">Order kiosk, admin dashboard, and customer portal for a glass shop. One system, three surfaces.</p>
+        <div class="xrow"><span class="xopen">Open &rarr;</span><span class="hud">[ Kiosk ]</span></div>
+      </a>
+    </div>
+
+    <p class="note"><b>More lands here as it is built.</b> Experiments are working builds, not product pages. For what the lab ships, see <a href="https://nivelatolabs.com/products/">Products</a>.</p>
+  </main>
+
+  <footer>
+    <div class="byline">
+      <svg class="mark" viewBox="-5 -5 110 110" aria-hidden="true"><use href="#breakout"/></svg>
+      <span class="hud">Experiments by <a href="https://nivelatolabs.com/">Nivelato Labs</a></span>
+    </div>
+    <span class="hud">[ Software that measures up. ]</span>
+  </footer>
+
+</div>
+</body>
+</html>
